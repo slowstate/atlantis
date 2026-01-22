@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://csf0beklm550h"]
+
+[ext_resource type="Script" uid="uid://ds4fwatayx6mo" path="res://components/spawn_point/spawn_point.gd" id="1_gfhpd"]
+
+[node name="SpawnPoint" type="Node"]
+script = ExtResource("1_gfhpd")

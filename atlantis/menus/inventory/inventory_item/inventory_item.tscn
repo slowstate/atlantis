@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dr650y141ls7y"]
+
+[ext_resource type="Script" uid="uid://8q268n5af11x" path="res://menus/inventory/inventory_item/inventory_item.gd" id="1_jjcwd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jjcwd"]
+font_size = 4
+
+[node name="InventoryItem" type="PanelContainer"]
+custom_minimum_size = Vector2(16, 16)
+offset_right = 14.0
+offset_bottom = 14.0
+script = ExtResource("1_jjcwd")
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 2
+expand_mode = 3
+
+[node name="CountLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_vertical = 1
+text = "1"
+label_settings = SubResource("LabelSettings_jjcwd")
+horizontal_alignment = 2
+vertical_alignment = 2
