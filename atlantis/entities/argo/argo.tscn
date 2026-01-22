@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://bkqgm12tie6br"]
+
+[ext_resource type="Script" uid="uid://rm3ejcft5tb8" path="res://entities/argo/argo.gd" id="1_1th8m"]
+[ext_resource type="Texture2D" uid="uid://7k150sh0w4yj" path="res://entities/argo/argo.png" id="1_23iny"]
+[ext_resource type="PackedScene" uid="uid://44g3nqpsueeg" path="res://components/interactable/interactable.tscn" id="3_vgtj0"]
+[ext_resource type="PackedScene" uid="uid://csf0beklm550h" path="res://components/spawn_point/spawn_point.tscn" id="4_7w5ae"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_23iny"]
+radius = 13.0
+height = 54.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_goyq5"]
+
+[node name="Argo" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_1th8m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_23iny")
+
+[node name="InteractionBox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionBox"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_23iny")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_goyq5")
+
+[node name="Interactable" parent="." node_paths=PackedStringArray("interaction_box") instance=ExtResource("3_vgtj0")]
+interaction_box = NodePath("../InteractionBox")
+
+[node name="SpawnPoint" parent="." instance=ExtResource("4_7w5ae")]
+
+[connection signal="just_interacted" from="Interactable" to="." method="_on_interactable_just_interacted"]

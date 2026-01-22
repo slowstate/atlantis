@@ -1,0 +1,113 @@
+[gd_scene load_steps=15 format=3 uid="uid://bareqc1eyxlpq"]
+
+[ext_resource type="PackedScene" uid="uid://j51i3vf5hn3d" path="res://player/player.tscn" id="1_fyns7"]
+[ext_resource type="PackedScene" uid="uid://p6fv62obxr2c" path="res://world/shallows/open_air.tscn" id="2_usalr"]
+[ext_resource type="PackedScene" uid="uid://bkqgm12tie6br" path="res://entities/argo/argo.tscn" id="3_fv0dc"]
+[ext_resource type="PackedScene" uid="uid://dnd1any0b2rkh" path="res://entities/glowstone/glowstone.tscn" id="4_422jt"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_usalr"]
+friction = 0.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_usalr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7iohk"]
+size = Vector2(76, 720)
+
+[sub_resource type="Gradient" id="Gradient_usalr"]
+offsets = PackedFloat32Array(0.64)
+colors = PackedColorArray(0.64, 0.64, 0.64, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_usalr"]
+gradient = SubResource("Gradient_usalr")
+width = 76
+height = 720
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fyns7"]
+size = Vector2(280, 128)
+
+[sub_resource type="Gradient" id="Gradient_fyns7"]
+offsets = PackedFloat32Array(0.64)
+colors = PackedColorArray(0.64, 0.64, 0.64, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fv0dc"]
+gradient = SubResource("Gradient_fyns7")
+width = 280
+height = 128
+
+[sub_resource type="Gradient" id="Gradient_fv0dc"]
+offsets = PackedFloat32Array(0, 0.6533333, 1)
+colors = PackedColorArray(0, 0.16533333, 0.32, 1, 0, 0.30748522, 0.60038817, 1, 0.3872, 0.44, 0.44, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_422jt"]
+gradient = SubResource("Gradient_fv0dc")
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+
+[node name="Shallows" type="Node2D"]
+
+[node name="TopBoundary" type="StaticBody2D" parent="."]
+position = Vector2(69, 127)
+collision_layer = 2
+collision_mask = 5
+physics_material_override = SubResource("PhysicsMaterial_usalr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopBoundary"]
+rotation = 3.1415927
+shape = SubResource("WorldBoundaryShape2D_usalr")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(69, 480)
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_7iohk")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = SubResource("GradientTexture2D_usalr")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(699, 480)
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource("RectangleShape2D_7iohk")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
+texture = SubResource("GradientTexture2D_usalr")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(247, 304)
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+shape = SubResource("RectangleShape2D_fyns7")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3"]
+texture = SubResource("GradientTexture2D_fv0dc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.2)
+position = Vector2(368, 484.99997)
+scale = Vector2(18.828125, 11.093749)
+texture = SubResource("GradientTexture2D_422jt")
+
+[node name="Player" parent="." instance=ExtResource("1_fyns7")]
+position = Vector2(124, 149)
+
+[node name="OpenAir" parent="." instance=ExtResource("2_usalr")]
+position = Vector2(68, 130)
+
+[node name="Argo" parent="." instance=ExtResource("3_fv0dc")]
+position = Vector2(165, 151)
+
+[node name="Glowstone" parent="." instance=ExtResource("4_422jt")]
+position = Vector2(353, 239)
+
+[node name="Glowstone2" parent="." instance=ExtResource("4_422jt")]
+position = Vector2(278, 236)
+
+[node name="Glowstone3" parent="." instance=ExtResource("4_422jt")]
+position = Vector2(109, 206)
