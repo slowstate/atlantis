@@ -5,6 +5,7 @@ var drive := false
 var argo_acceleration := 50
 var argo_max_speed := 50
 var argo_friction := 40
+var repaired := false
 
 
 func _ready() -> void:
@@ -68,4 +69,6 @@ func has_component(component: StringName) -> bool:
 
 
 func _on_interactable_just_interacted() -> void:
-	pass # Replace with function body.
+	if Globals.player.inventory.has_item(Ids.Entities.Glowstone):
+		Globals.player.inventory.remove_item(Ids.Entities.Glowstone)
+		repaired = true

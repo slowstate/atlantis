@@ -63,9 +63,13 @@ func _input(event: InputEvent) -> void:
 		var frontmost_interactable = overlapping_interactable_areas.front().owner
 
 		if frontmost_interactable is Argo:
-			enter_argo(!is_in_argo)
+			if Globals.argo.repaired:
+				enter_argo(!is_in_argo)
+			else:
+				var interactable_component = frontmost_interactable.get_component(Interactable.string_name) as Interactable
+				interactable_component.interact()
 
-		if frontmost_interactable is Entity:
+		if frontmost_interactable is Entity or frontmost_interactable is Note:
 			if frontmost_interactable.has_component(Interactable.string_name):
 				var interactable_component = (frontmost_interactable.get_component(Interactable.string_name) as Interactable)
 				interactable_component.interact()

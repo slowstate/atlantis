@@ -7,6 +7,7 @@ var count: int
 @onready var icon: TextureRect = $Icon
 @onready var count_label: Label = $CountLabel
 
+
 func _ready() -> void:
 	icon.texture = icon_texture
-	count_label.text = str(count)
+	count_label.text = str(count) if count > 1 else ""

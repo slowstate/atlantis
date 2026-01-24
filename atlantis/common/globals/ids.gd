@@ -1,5 +1,9 @@
 extends Node
 
 enum Entities {
-	Glowstone = 0,
+	MiningTool = 0,
+	Glowstone = 100,
+}
+enum Notes {
+	ArkPlans = 0,
 }

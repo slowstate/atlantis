@@ -1,7 +1,7 @@
 class_name Entity
 extends Node2D
 
-static var id: Ids.Entities
+var id: Ids.Entities
 
 
 func _enter_tree() -> void:

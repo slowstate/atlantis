@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://70xk32ju81ns"]
+
+[ext_resource type="Script" uid="uid://dg8j1ntcrg0d4" path="res://tools/mining_tool/mining_tool.gd" id="1_r1bsi"]
+[ext_resource type="Script" uid="uid://ylglnacmilfi" path="res://components/interactable/interactable.gd" id="2_5js5g"]
+[ext_resource type="Texture2D" uid="uid://cwpmv527qq3qs" path="res://icon.svg" id="2_jfakr"]
+[ext_resource type="Script" uid="uid://215ytidtgyrf" path="res://components/collectable/collectable.gd" id="3_w5tih"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ikjkm"]
+
+[node name="MiningTool" type="Node2D"]
+script = ExtResource("1_r1bsi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_jfakr")
+
+[node name="InteractionBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionBox"]
+shape = SubResource("CircleShape2D_ikjkm")
+
+[node name="Interactable" type="Node" parent="." node_paths=PackedStringArray("interaction_box")]
+script = ExtResource("2_5js5g")
+interaction_box = NodePath("../InteractionBox")
+metadata/_custom_type_script = "uid://ylglnacmilfi"
+
+[node name="Collectable" type="Node" parent="."]
+script = ExtResource("3_w5tih")
+metadata/_custom_type_script = "uid://215ytidtgyrf"
+
+[connection signal="just_interacted" from="Interactable" to="." method="_on_interactable_just_interacted"]

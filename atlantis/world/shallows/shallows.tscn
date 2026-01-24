@@ -1,14 +1,26 @@
-[gd_scene load_steps=15 format=3 uid="uid://bareqc1eyxlpq"]
+[gd_scene load_steps=19 format=3 uid="uid://bareqc1eyxlpq"]
 
-[ext_resource type="PackedScene" uid="uid://j51i3vf5hn3d" path="res://player/player.tscn" id="1_fyns7"]
 [ext_resource type="PackedScene" uid="uid://p6fv62obxr2c" path="res://world/shallows/open_air.tscn" id="2_usalr"]
-[ext_resource type="PackedScene" uid="uid://bkqgm12tie6br" path="res://entities/argo/argo.tscn" id="3_fv0dc"]
+[ext_resource type="PackedScene" uid="uid://70xk32ju81ns" path="res://tools/mining_tool/mining_tool.tscn" id="3_fv0dc"]
+[ext_resource type="PackedScene" uid="uid://chblsv0q7dh0c" path="res://entities/notes/note/note.tscn" id="4_3a0gb"]
 [ext_resource type="PackedScene" uid="uid://dnd1any0b2rkh" path="res://entities/glowstone/glowstone.tscn" id="4_422jt"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_usalr"]
 friction = 0.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_usalr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_usalr"]
+size = Vector2(231, 46)
+
+[sub_resource type="Gradient" id="Gradient_e14nq"]
+offsets = PackedFloat32Array(0.64)
+colors = PackedColorArray(0.64, 0.64, 0.64, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fv0dc"]
+gradient = SubResource("Gradient_e14nq")
+width = 280
+height = 128
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7iohk"]
 size = Vector2(76, 720)
@@ -22,17 +34,17 @@ gradient = SubResource("Gradient_usalr")
 width = 76
 height = 720
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fyns7"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fv0dc"]
+size = Vector2(231, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_422jt"]
+size = Vector2(280, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3a0gb"]
 size = Vector2(280, 128)
 
-[sub_resource type="Gradient" id="Gradient_fyns7"]
-offsets = PackedFloat32Array(0.64)
-colors = PackedColorArray(0.64, 0.64, 0.64, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_fv0dc"]
-gradient = SubResource("Gradient_fyns7")
-width = 280
-height = 128
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xef6i"]
+size = Vector2(190, 186)
 
 [sub_resource type="Gradient" id="Gradient_fv0dc"]
 offsets = PackedFloat32Array(0, 0.6533333, 1)
@@ -46,7 +58,7 @@ fill_to = Vector2(0.5, 0)
 [node name="Shallows" type="Node2D"]
 
 [node name="TopBoundary" type="StaticBody2D" parent="."]
-position = Vector2(69, 127)
+position = Vector2(69, 119)
 collision_layer = 2
 collision_mask = 5
 physics_material_override = SubResource("PhysicsMaterial_usalr")
@@ -55,59 +67,116 @@ physics_material_override = SubResource("PhysicsMaterial_usalr")
 rotation = 3.1415927
 shape = SubResource("WorldBoundaryShape2D_usalr")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(69, 480)
+[node name="LeftIsland" type="StaticBody2D" parent="."]
+position = Vector2(-33, 138)
 collision_layer = 2
 collision_mask = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("RectangleShape2D_7iohk")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftIsland"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_usalr")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-texture = SubResource("GradientTexture2D_usalr")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(699, 480)
-collision_layer = 2
-collision_mask = 5
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-shape = SubResource("RectangleShape2D_7iohk")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
-texture = SubResource("GradientTexture2D_usalr")
-
-[node name="StaticBody2D3" type="StaticBody2D" parent="."]
-position = Vector2(247, 304)
-collision_layer = 2
-collision_mask = 5
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-shape = SubResource("RectangleShape2D_fyns7")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3"]
+[node name="Sprite2D" type="Sprite2D" parent="LeftIsland"]
+position = Vector2(0, 3.9999952)
+scale = Vector2(0.98571426, 0.42187506)
 texture = SubResource("GradientTexture2D_fv0dc")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="LeftWall" type="StaticBody2D" parent="."]
+position = Vector2(-131, 480)
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
+shape = SubResource("RectangleShape2D_7iohk")
+
+[node name="Sprite2D" type="Sprite2D" parent="LeftWall"]
+texture = SubResource("GradientTexture2D_usalr")
+
+[node name="LeftCave" type="StaticBody2D" parent="."]
+position = Vector2(-61, 256)
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftCave"]
+position = Vector2(-22.5, 0)
+shape = SubResource("RectangleShape2D_fv0dc")
+
+[node name="Sprite2D" type="Sprite2D" parent="LeftCave"]
+position = Vector2(-23.5, 0)
+scale = Vector2(0.83214283, 0.3593747)
+texture = SubResource("GradientTexture2D_fv0dc")
+
+[node name="RightIsland" type="StaticBody2D" parent="."]
+position = Vector2(530, 135)
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightIsland"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_422jt")
+
+[node name="Sprite2D" type="Sprite2D" parent="RightIsland"]
+position = Vector2(0, -5.999999)
+scale = Vector2(1, 0.18750004)
+texture = SubResource("GradientTexture2D_fv0dc")
+
+[node name="RightCave1a" type="StaticBody2D" parent="."]
+position = Vector2(559, 159)
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightCave1a"]
+position = Vector2(0, 47)
+shape = SubResource("RectangleShape2D_3a0gb")
+
+[node name="Sprite2D" type="Sprite2D" parent="RightCave1a"]
+position = Vector2(0, 46.499996)
+scale = Vector2(1, 1.0078125)
+texture = SubResource("GradientTexture2D_fv0dc")
+
+[node name="RightCave1b" type="StaticBody2D" parent="."]
+position = Vector2(539, 426)
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightCave1b"]
+position = Vector2(0, 47)
+shape = SubResource("RectangleShape2D_xef6i")
+
+[node name="Sprite2D" type="Sprite2D" parent="RightCave1b"]
+position = Vector2(0, 46.499996)
+scale = Vector2(0.6785714, 1.4609377)
+texture = SubResource("GradientTexture2D_fv0dc")
+
+[node name="RightWall" type="StaticBody2D" parent="."]
+position = Vector2(635, 480)
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
+shape = SubResource("RectangleShape2D_7iohk")
+
+[node name="Sprite2D" type="Sprite2D" parent="RightWall"]
+texture = SubResource("GradientTexture2D_usalr")
+
+[node name="Water" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.2)
-position = Vector2(368, 484.99997)
+position = Vector2(368, 478)
 scale = Vector2(18.828125, 11.093749)
 texture = SubResource("GradientTexture2D_422jt")
 
-[node name="Player" parent="." instance=ExtResource("1_fyns7")]
-position = Vector2(124, 149)
-
 [node name="OpenAir" parent="." instance=ExtResource("2_usalr")]
-position = Vector2(68, 130)
-
-[node name="Argo" parent="." instance=ExtResource("3_fv0dc")]
-position = Vector2(165, 151)
+position = Vector2(68, 122)
 
 [node name="Glowstone" parent="." instance=ExtResource("4_422jt")]
-position = Vector2(353, 239)
+position = Vector2(-72, 224)
 
 [node name="Glowstone2" parent="." instance=ExtResource("4_422jt")]
-position = Vector2(278, 236)
+position = Vector2(585, 284)
 
-[node name="Glowstone3" parent="." instance=ExtResource("4_422jt")]
-position = Vector2(109, 206)
+[node name="MiningTool" parent="." instance=ExtResource("3_fv0dc")]
+position = Vector2(521, 368)
+
+[node name="Note" parent="." instance=ExtResource("4_3a0gb")]
+position = Vector2(552, 369)

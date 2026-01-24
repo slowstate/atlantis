@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dgksxox3np48f"]
+[gd_scene load_steps=12 format=3 uid="uid://dgksxox3np48f"]
 
 [ext_resource type="Script" uid="uid://cwmo876cdwweu" path="res://menus/inventory/inventory.gd" id="1_5ksev"]
+[ext_resource type="PackedScene" uid="uid://bpt3so4d8palv" path="res://menus/inventory/inventory_note/inventory_note.tscn" id="2_lhdlt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ksev"]
 content_margin_left = 4.0
@@ -14,21 +15,159 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
 
-[node name="Inventory" type="Control"]
-layout_mode = 3
-anchors_preset = 0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lhdlt"]
+content_margin_top = 1.0
+content_margin_bottom = 1.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_blj0o"]
+content_margin_top = 1.0
+content_margin_bottom = 1.0
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lk85g"]
+content_margin_top = 1.0
+content_margin_bottom = 1.0
+bg_color = Color(0.225, 0.225, 0.225, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fvn0m"]
+content_margin_top = 1.0
+content_margin_bottom = 1.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cgr8y"]
+content_margin_top = 1.0
+content_margin_bottom = 1.0
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_srch5"]
+content_margin_left = 2.0
+content_margin_top = 0.0
+content_margin_right = 2.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 6
+
+[sub_resource type="Theme" id="Theme_3vech"]
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_srch5")
+
+[sub_resource type="Theme" id="Theme_lhdlt"]
+
+[node name="Inventory" type="PanelContainer"]
+custom_minimum_size = Vector2(120, 120)
 offset_left = 32.0
 offset_top = 24.0
-offset_right = 32.0
-offset_bottom = 24.0
+offset_right = 152.0
+offset_bottom = 124.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5ksev")
 script = ExtResource("1_5ksev")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 0
-offset_right = 120.0
-offset_bottom = 120.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_5ksev")
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
 
-[node name="InventoryGrid" type="GridContainer" parent="PanelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="ItemsButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_lhdlt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_blj0o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lk85g")
+text = "Items"
+
+[node name="NotesButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_fvn0m")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cgr8y")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lk85g")
+text = "Notes"
+
+[node name="InventoryGrid" type="GridContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 columns = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+theme = SubResource("Theme_3vech")
+horizontal_scroll_mode = 0
+
+[node name="NotesList" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InventoryNote" parent="VBoxContainer/ScrollContainer/NotesList" instance=ExtResource("2_lhdlt")]
+layout_mode = 2
+theme = SubResource("Theme_lhdlt")
+
+[node name="InventoryNote2" parent="VBoxContainer/ScrollContainer/NotesList" instance=ExtResource("2_lhdlt")]
+layout_mode = 2
+theme = SubResource("Theme_lhdlt")
+
+[node name="InventoryNote3" parent="VBoxContainer/ScrollContainer/NotesList" instance=ExtResource("2_lhdlt")]
+layout_mode = 2
+theme = SubResource("Theme_lhdlt")
+
+[node name="InventoryNote4" parent="VBoxContainer/ScrollContainer/NotesList" instance=ExtResource("2_lhdlt")]
+layout_mode = 2
+theme = SubResource("Theme_lhdlt")
+
+[node name="InventoryNote5" parent="VBoxContainer/ScrollContainer/NotesList" instance=ExtResource("2_lhdlt")]
+layout_mode = 2
+theme = SubResource("Theme_lhdlt")
+
+[node name="InventoryNote6" parent="VBoxContainer/ScrollContainer/NotesList" instance=ExtResource("2_lhdlt")]
+layout_mode = 2
+theme = SubResource("Theme_lhdlt")
+
+[node name="InventoryNote7" parent="VBoxContainer/ScrollContainer/NotesList" instance=ExtResource("2_lhdlt")]
+layout_mode = 2
+theme = SubResource("Theme_lhdlt")
+
+[node name="InventoryNote8" parent="VBoxContainer/ScrollContainer/NotesList" instance=ExtResource("2_lhdlt")]
+layout_mode = 2
+theme = SubResource("Theme_lhdlt")

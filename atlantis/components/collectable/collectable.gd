@@ -6,7 +6,8 @@ static var string_name = &"Collectable"
 
 func _enter_tree() -> void:
 	owner.set_meta(string_name, self)
-	assert(Icons.IconByEntityId[(owner as Entity).id] != null, "Error: Missing entity icon")
+	if owner is Entity:
+		assert(Icons.IconByEntityId[(owner as Entity).id] != null, "Error: Missing entity icon for " + str(owner))
 
 
 func _exit_tree() -> void:
@@ -15,4 +16,7 @@ func _exit_tree() -> void:
 
 
 func collect() -> void:
-	(Globals.player.inventory as Inventory).add_item(owner)
+	if owner is Entity:
+		(Globals.player.inventory as Inventory).add_item(owner.id)
+	if owner is Note:
+		(Globals.player.inventory as Inventory).add_note(owner.id)

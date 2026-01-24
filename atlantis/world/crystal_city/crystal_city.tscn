@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://78dtm2oyn1qs"]
+
+[ext_resource type="PackedScene" uid="uid://d26r2a2m086uo" path="res://world/crystal_city/buildings/warehouse/warehouse.tscn" id="1_p0dhy"]
+
+[sub_resource type="Gradient" id="Gradient_xdrvk"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.80784315, 0.49803922, 0.32156864, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_p0dhy"]
+gradient = SubResource("Gradient_xdrvk")
+width = 240
+height = 240
+
+[sub_resource type="Gradient" id="Gradient_5r0gn"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.47843137, 0.2627451, 0.18431373, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_iojnm"]
+gradient = SubResource("Gradient_5r0gn")
+width = 180
+height = 120
+
+[sub_resource type="Gradient" id="Gradient_bxvt2"]
+offsets = PackedFloat32Array(0.28, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5r0gn"]
+gradient = SubResource("Gradient_bxvt2")
+height = 240
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Gradient" id="Gradient_p0dhy"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.14509805, 0.09411765, 0.07058824, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3xwy7"]
+gradient = SubResource("Gradient_p0dhy")
+width = 120
+height = 180
+
+[node name="CrystalCity" type="Node2D"]
+
+[node name="RothschildTower" type="Sprite2D" parent="."]
+position = Vector2(0, -120)
+texture = SubResource("GradientTexture2D_p0dhy")
+
+[node name="RocketHangar" type="Sprite2D" parent="."]
+position = Vector2(210, -60)
+texture = SubResource("GradientTexture2D_iojnm")
+
+[node name="Sprite2D" type="Sprite2D" parent="RocketHangar"]
+show_behind_parent = true
+position = Vector2(3, -60)
+texture = SubResource("GradientTexture2D_5r0gn")
+
+[node name="Warehouse" parent="." instance=ExtResource("1_p0dhy")]
+position = Vector2(380, -80)
+
+[node name="Building1" type="Sprite2D" parent="."]
+position = Vector2(-304, -90)
+texture = SubResource("GradientTexture2D_3xwy7")

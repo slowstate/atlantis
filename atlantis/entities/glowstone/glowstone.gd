@@ -17,4 +17,5 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_interactable_just_interacted() -> void:
-	mined = true
+	if Globals.player.inventory.has_item(Ids.Entities.MiningTool):
+		mined = true
