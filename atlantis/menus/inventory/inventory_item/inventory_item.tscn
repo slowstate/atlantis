@@ -1,24 +1,43 @@
-[gd_scene load_steps=3 format=3 uid="uid://dr650y141ls7y"]
+[gd_scene load_steps=6 format=3 uid="uid://dr650y141ls7y"]
 
 [ext_resource type="Script" uid="uid://8q268n5af11x" path="res://menus/inventory/inventory_item/inventory_item.gd" id="1_jjcwd"]
+[ext_resource type="Texture2D" uid="uid://cwpmv527qq3qs" path="res://icon.svg" id="1_wod2m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jjcwd"]
+bg_color = Color(0, 0, 0, 0.5)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.8001019, 0.8001019, 0.8001019, 0.5)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jjcwd"]
+content_margin_right = 1.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_jjcwd"]
 font_size = 4
 
-[node name="InventoryItem" type="PanelContainer"]
+[node name="InventoryItem" type="Button"]
 custom_minimum_size = Vector2(16, 16)
-offset_right = 14.0
-offset_bottom = 14.0
+offset_right = 16.0
+offset_bottom = 16.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_jjcwd")
+icon = ExtResource("1_wod2m")
+text_overrun_behavior = 1
+autowrap_trim_flags = 192
+icon_alignment = 1
+expand_icon = true
 script = ExtResource("1_jjcwd")
 
-[node name="Icon" type="TextureRect" parent="."]
-layout_mode = 2
-expand_mode = 3
-
 [node name="CountLabel" type="Label" parent="."]
-layout_mode = 2
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
 size_flags_vertical = 1
+theme_override_styles/normal = SubResource("StyleBoxEmpty_jjcwd")
 text = "1"
 label_settings = SubResource("LabelSettings_jjcwd")
 horizontal_alignment = 2
 vertical_alignment = 2
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

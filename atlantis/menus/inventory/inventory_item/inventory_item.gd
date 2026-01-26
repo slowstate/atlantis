@@ -1,13 +1,18 @@
 class_name InventoryItem
-extends PanelContainer
+extends Button
 
-var icon_texture: Texture2D
+signal inventory_item_selected(inventory_item: InventoryItem)
+
+var id: Ids.Entities
 var count: int
 
-@onready var icon: TextureRect = $Icon
 @onready var count_label: Label = $CountLabel
 
 
 func _ready() -> void:
-	icon.texture = icon_texture
+	icon = Icons.IconByEntityId[id]
 	count_label.text = str(count) if count > 1 else ""
+
+
+func _on_pressed() -> void:
+	inventory_item_selected.emit(self)

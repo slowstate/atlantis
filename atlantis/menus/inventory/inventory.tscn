@@ -1,19 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://dgksxox3np48f"]
+[gd_scene load_steps=17 format=3 uid="uid://dgksxox3np48f"]
 
 [ext_resource type="Script" uid="uid://cwmo876cdwweu" path="res://menus/inventory/inventory.gd" id="1_5ksev"]
 [ext_resource type="PackedScene" uid="uid://bpt3so4d8palv" path="res://menus/inventory/inventory_note/inventory_note.tscn" id="2_lhdlt"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ksev"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.33715135, 0.33715135, 0.33715135, 0.2)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
+[sub_resource type="Gradient" id="Gradient_lhdlt"]
+offsets = PackedFloat32Array(0.995, 1)
+colors = PackedColorArray(0.47397572, 0.47397572, 0.47397572, 0.1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lk85g"]
+gradient = SubResource("Gradient_lhdlt")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lhdlt"]
 content_margin_top = 1.0
@@ -82,19 +80,48 @@ VScrollBar/styles/scroll = SubResource("StyleBoxFlat_srch5")
 
 [sub_resource type="Theme" id="Theme_lhdlt"]
 
-[node name="Inventory" type="PanelContainer"]
-custom_minimum_size = Vector2(120, 120)
-offset_left = 32.0
-offset_top = 24.0
-offset_right = 152.0
-offset_bottom = 124.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_5ksev")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fvn0m"]
+gradient = SubResource("Gradient_lhdlt")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_blj0o"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_cgr8y"]
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_srch5"]
+font_size = 4
+
+[node name="Inventory" type="HBoxContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -119.0
+offset_top = -61.0
+offset_right = 119.0
+offset_bottom = 61.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -2
 script = ExtResource("1_5ksev")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Items" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
+texture = SubResource("GradientTexture2D_lk85g")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Items"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 116.0
+offset_bottom = 118.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Items/VBoxContainer"]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -102,7 +129,7 @@ size_flags_vertical = 4
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="ItemsButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="ItemsButton" type="Button" parent="Items/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -113,7 +140,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_blj0o")
 theme_override_styles/hover = SubResource("StyleBoxFlat_lk85g")
 text = "Items"
 
-[node name="NotesButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="NotesButton" type="Button" parent="Items/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -124,50 +151,89 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_cgr8y")
 theme_override_styles/hover = SubResource("StyleBoxFlat_lk85g")
 text = "Notes"
 
-[node name="InventoryGrid" type="GridContainer" parent="VBoxContainer"]
+[node name="ItemsGrid" type="GridContainer" parent="Items/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 columns = 5
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+[node name="NotesGrid" type="GridContainer" parent="Items/VBoxContainer"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+columns = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Items/VBoxContainer"]
 visible = false
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 theme = SubResource("Theme_3vech")
 horizontal_scroll_mode = 0
 
-[node name="NotesList" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
+[node name="NotesList" type="VBoxContainer" parent="Items/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="InventoryNote" parent="VBoxContainer/ScrollContainer/NotesList" instance=ExtResource("2_lhdlt")]
+[node name="InventoryNote" parent="Items/VBoxContainer/ScrollContainer/NotesList" instance=ExtResource("2_lhdlt")]
 layout_mode = 2
 theme = SubResource("Theme_lhdlt")
 
-[node name="InventoryNote2" parent="VBoxContainer/ScrollContainer/NotesList" instance=ExtResource("2_lhdlt")]
+[node name="InventoryNote2" parent="Items/VBoxContainer/ScrollContainer/NotesList" instance=ExtResource("2_lhdlt")]
 layout_mode = 2
 theme = SubResource("Theme_lhdlt")
 
-[node name="InventoryNote3" parent="VBoxContainer/ScrollContainer/NotesList" instance=ExtResource("2_lhdlt")]
+[node name="InventoryNote3" parent="Items/VBoxContainer/ScrollContainer/NotesList" instance=ExtResource("2_lhdlt")]
 layout_mode = 2
 theme = SubResource("Theme_lhdlt")
 
-[node name="InventoryNote4" parent="VBoxContainer/ScrollContainer/NotesList" instance=ExtResource("2_lhdlt")]
+[node name="InventoryNote4" parent="Items/VBoxContainer/ScrollContainer/NotesList" instance=ExtResource("2_lhdlt")]
 layout_mode = 2
 theme = SubResource("Theme_lhdlt")
 
-[node name="InventoryNote5" parent="VBoxContainer/ScrollContainer/NotesList" instance=ExtResource("2_lhdlt")]
+[node name="InventoryNote5" parent="Items/VBoxContainer/ScrollContainer/NotesList" instance=ExtResource("2_lhdlt")]
 layout_mode = 2
 theme = SubResource("Theme_lhdlt")
 
-[node name="InventoryNote6" parent="VBoxContainer/ScrollContainer/NotesList" instance=ExtResource("2_lhdlt")]
+[node name="InventoryNote6" parent="Items/VBoxContainer/ScrollContainer/NotesList" instance=ExtResource("2_lhdlt")]
 layout_mode = 2
 theme = SubResource("Theme_lhdlt")
 
-[node name="InventoryNote7" parent="VBoxContainer/ScrollContainer/NotesList" instance=ExtResource("2_lhdlt")]
+[node name="InventoryNote7" parent="Items/VBoxContainer/ScrollContainer/NotesList" instance=ExtResource("2_lhdlt")]
 layout_mode = 2
 theme = SubResource("Theme_lhdlt")
 
-[node name="InventoryNote8" parent="VBoxContainer/ScrollContainer/NotesList" instance=ExtResource("2_lhdlt")]
+[node name="InventoryNote8" parent="Items/VBoxContainer/ScrollContainer/NotesList" instance=ExtResource("2_lhdlt")]
 layout_mode = 2
 theme = SubResource("Theme_lhdlt")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+texture = SubResource("GradientTexture2D_fvn0m")
+
+[node name="Info" type="VBoxContainer" parent="TextureRect"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 0
+offset_right = 120.0
+offset_bottom = 122.0
+
+[node name="HSeparator" type="HSeparator" parent="TextureRect/Info"]
+layout_mode = 2
+theme_override_constants/separation = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_blj0o")
+
+[node name="TitleLabel" type="Label" parent="TextureRect/Info"]
+layout_mode = 2
+text = "Title"
+label_settings = SubResource("LabelSettings_cgr8y")
+horizontal_alignment = 1
+
+[node name="ContentLabel" type="Label" parent="TextureRect/Info"]
+custom_minimum_size = Vector2(100, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Content goes here"
+label_settings = SubResource("LabelSettings_srch5")
+autowrap_mode = 2
+
+[connection signal="pressed" from="Items/VBoxContainer/HBoxContainer/ItemsButton" to="." method="_on_items_button_pressed"]
+[connection signal="pressed" from="Items/VBoxContainer/HBoxContainer/NotesButton" to="." method="_on_notes_button_pressed"]
