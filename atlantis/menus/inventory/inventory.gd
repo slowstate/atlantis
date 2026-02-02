@@ -19,15 +19,15 @@ func _ready() -> void:
 	_clear_info_text()
 
 
-func add_item(entity_id: Ids.Entities) -> void:
+func add_item(entity_id: Ids.Entities, count: int = 1) -> void:
 	items.get_or_add(entity_id, 0)
-	items[entity_id] += 1
+	items[entity_id] += count
 	update_user_interface()
 
 
-func remove_item(entity_id: Ids.Entities) -> void:
+func remove_item(entity_id: Ids.Entities, count: int = 1) -> void:
 	if has_item(entity_id):
-		items[entity_id] -= 1
+		items[entity_id] -= count
 	if items.get(entity_id) <= 0:
 		items.erase(entity_id)
 	update_user_interface()
@@ -43,8 +43,12 @@ func get_item_count(entity_id: Ids.Entities) -> int:
 
 func add_note(note_id: Ids.Notes) -> void:
 	var index := notes.bsearch(note_id)
-	notes.insert(note_id, index)
+	notes.insert(index, note_id)
 	update_user_interface()
+
+
+func has_note(note_id: Ids.Notes) -> bool:
+	return notes.has(note_id)
 
 
 func update_user_interface() -> void:

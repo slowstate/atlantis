@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://j51i3vf5hn3d"]
+[gd_scene load_steps=16 format=3 uid="uid://j51i3vf5hn3d"]
 
 [ext_resource type="Script" uid="uid://d33wj2wxlurur" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Texture2D" uid="uid://bhsbeiho1ftwj" path="res://player/player.png" id="2_g1dw6"]
 [ext_resource type="PackedScene" uid="uid://dgksxox3np48f" path="res://menus/inventory/inventory.tscn" id="3_g1dw6"]
+[ext_resource type="PackedScene" uid="uid://do72rdi1hrydt" path="res://player/hud/item_selector/item_selector.tscn" id="4_rgyib"]
 [ext_resource type="Script" uid="uid://cws56lrnieioe" path="res://player/PlayerStateMachine/player_state_machine.gd" id="4_yw30f"]
 [ext_resource type="Script" uid="uid://ygoqb4k67vi1" path="res://player/PlayerStateMachine/oxygen_refilling_state.gd" id="5_qjkh3"]
 [ext_resource type="Script" uid="uid://bfj0tbm2sub6y" path="res://player/PlayerStateMachine/oxygen_depleting_state.gd" id="6_g6k8r"]
@@ -105,6 +106,12 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 4
 text = "Respawn"
+
+[node name="ItemSelector" parent="UserInterface" instance=ExtResource("4_rgyib")]
+offset_left = 292.0
+offset_top = 154.0
+offset_right = 308.0
+offset_bottom = 170.0
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("4_yw30f")

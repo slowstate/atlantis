@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=3 uid="uid://bareqc1eyxlpq"]
 
 [ext_resource type="PackedScene" uid="uid://p6fv62obxr2c" path="res://world/shallows/open_air.tscn" id="2_usalr"]
-[ext_resource type="PackedScene" uid="uid://70xk32ju81ns" path="res://tools/mining_tool/mining_tool.tscn" id="3_fv0dc"]
+[ext_resource type="PackedScene" uid="uid://70xk32ju81ns" path="res://entities/mining_tool/mining_tool.tscn" id="3_fv0dc"]
 [ext_resource type="PackedScene" uid="uid://chblsv0q7dh0c" path="res://entities/notes/note/note.tscn" id="4_3a0gb"]
 [ext_resource type="PackedScene" uid="uid://dnd1any0b2rkh" path="res://entities/glowstone/glowstone.tscn" id="4_422jt"]
 
@@ -178,5 +178,6 @@ position = Vector2(585, 284)
 [node name="MiningTool" parent="." instance=ExtResource("3_fv0dc")]
 position = Vector2(521, 368)
 
-[node name="Note" parent="." instance=ExtResource("4_3a0gb")]
+[node name="SurvivorsJournalNote" parent="." instance=ExtResource("4_3a0gb")]
 position = Vector2(552, 369)
+id = 1

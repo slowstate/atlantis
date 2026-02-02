@@ -1,6 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://78dtm2oyn1qs"]
+[gd_scene load_steps=13 format=3 uid="uid://78dtm2oyn1qs"]
 
+[ext_resource type="Script" uid="uid://j2aeuxkdgo4t" path="res://world/crystal_city/crystal_city.gd" id="1_bxvt2"]
 [ext_resource type="PackedScene" uid="uid://d26r2a2m086uo" path="res://world/crystal_city/buildings/warehouse/warehouse.tscn" id="1_p0dhy"]
+[ext_resource type="PackedScene" uid="uid://hw1iho5ivxbw" path="res://world/crystal_city/buildings/generator/generator.tscn" id="2_3xwy7"]
+[ext_resource type="PackedScene" uid="uid://bod07y12hlqh" path="res://world/crystal_city/buildings/warehouse/warehouse_interior.tscn" id="3_5r0gn"]
 
 [sub_resource type="Gradient" id="Gradient_xdrvk"]
 offsets = PackedFloat32Array(1)
@@ -40,6 +43,7 @@ width = 120
 height = 180
 
 [node name="CrystalCity" type="Node2D"]
+script = ExtResource("1_bxvt2")
 
 [node name="RothschildTower" type="Sprite2D" parent="."]
 position = Vector2(0, -120)
@@ -54,9 +58,19 @@ show_behind_parent = true
 position = Vector2(3, -60)
 texture = SubResource("GradientTexture2D_5r0gn")
 
+[node name="WarehouseInterior" parent="." instance=ExtResource("3_5r0gn")]
+visible = false
+position = Vector2(380, -80)
+
 [node name="Warehouse" parent="." instance=ExtResource("1_p0dhy")]
 position = Vector2(380, -80)
 
 [node name="Building1" type="Sprite2D" parent="."]
 position = Vector2(-304, -90)
 texture = SubResource("GradientTexture2D_3xwy7")
+
+[node name="Generator" parent="." instance=ExtResource("2_3xwy7")]
+position = Vector2(505, -45)
+
+[connection signal="warehouse_interior_door_just_interacted" from="WarehouseInterior" to="." method="_on_warehouse_interior_warehouse_interior_door_just_interacted"]
+[connection signal="warehouse_door_just_interacted" from="Warehouse" to="." method="_on_warehouse_warehouse_door_just_interacted"]

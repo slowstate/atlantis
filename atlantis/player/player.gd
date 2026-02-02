@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 const OXYGEN_MAX := 30.0
 
+var god_mode := false
 var oxygen := OXYGEN_MAX
 var spawn_point: SpawnPoint
 var acceleration := 200
@@ -10,6 +11,12 @@ var max_speed := 50
 var friction := 100
 var is_in_argo := false
 var glowstone := 0
+var currently_selected_tool: Ids.Entities:
+	get():
+		if inventory.items.size() <= 0:
+			return Ids.Entities.Nothing
+		return inventory.items.keys().get(item_selector.currently_selected_item_index) as Ids.Entities
+var current_dialogue: Dialogue
 
 @onready var player_sprite: Sprite2D = $PlayerSprite
 @onready var player_state_machine: PlayerStateMachine = $PlayerStateMachine
@@ -19,6 +26,7 @@ var glowstone := 0
 @onready var inventory: Inventory = $UserInterface/Inventory
 @onready var drowning_overlay: Sprite2D = $UserInterface/DrowningOverlay
 @onready var drowned_overlay: VBoxContainer = $UserInterface/DrownedOverlay
+@onready var item_selector: ItemSelector = $UserInterface/ItemSelector
 
 
 func _ready() -> void:
@@ -33,6 +41,16 @@ func _process(delta: float) -> void:
 		velocity = Vector2(0, 0)
 		return
 
+	if Input.is_action_just_pressed("god_mode") and OS.is_debug_build():
+		god_mode = !god_mode
+		if god_mode:
+			acceleration = 400
+			max_speed = 200
+			friction = 200
+		else:
+			acceleration = 200
+			max_speed = 50
+			friction = 100
 	var move_vec = Vector2.ZERO
 	if Input.is_action_pressed("player_move_up"):
 		move_vec.y = -1
@@ -57,22 +75,43 @@ func _input(event: InputEvent) -> void:
 		inventory.visible = !inventory.visible
 
 	if event.is_action_pressed("player_interact"):
-		var overlapping_interactable_areas: Array[Area2D] = interaction_box.get_overlapping_areas()
+		var overlapping_interactable_areas: Array[Area2D] = interaction_box.get_overlapping_areas().filter(func(area): return area.owner.visible)
 		if overlapping_interactable_areas.is_empty():
 			return
 		var frontmost_interactable = overlapping_interactable_areas.front().owner
 
 		if frontmost_interactable is Argo:
-			if Globals.argo.repaired:
-				enter_argo(!is_in_argo)
-			else:
-				var interactable_component = frontmost_interactable.get_component(Interactable.string_name) as Interactable
+			var argo = frontmost_interactable
+			if !argo.repaired and !is_in_argo:
+				var interactable_component = ComponentUtils.get_component(argo, Interactable.string_name) as Interactable
 				interactable_component.interact()
+				if argo.repaired:
+					return
+			enter_argo(!is_in_argo)
 
 		if frontmost_interactable is Entity or frontmost_interactable is Note:
-			if frontmost_interactable.has_component(Interactable.string_name):
-				var interactable_component = (frontmost_interactable.get_component(Interactable.string_name) as Interactable)
+			if ComponentUtils.has_component(frontmost_interactable, Interactable.string_name):
+				var interactable_component = ComponentUtils.get_component(frontmost_interactable, Interactable.string_name) as Interactable
 				interactable_component.interact()
+
+		if frontmost_interactable is Generator:
+			var generator = frontmost_interactable
+			var interactable_component = ComponentUtils.get_component(generator, Interactable.string_name) as Interactable
+			interactable_component.interact()
+			if !generator.has_glowstone or !generator.has_diode:
+				_dialogue("I think the generator is still missing something")
+
+		if frontmost_interactable is Warehouse:
+			var warehouse = frontmost_interactable
+			if !warehouse.is_lit:
+				_dialogue("It's too dark in here, maybe I can light it up somehow")
+			var interactable_component = ComponentUtils.get_component(warehouse, Interactable.string_name) as Interactable
+			interactable_component.interact()
+
+		if frontmost_interactable is WarehouseInterior:
+			var warehouse = frontmost_interactable
+			var interactable_component = ComponentUtils.get_component(warehouse, Interactable.string_name) as Interactable
+			interactable_component.interact()
 
 
 func enter_argo(is_entering: bool) -> void:
@@ -80,12 +119,12 @@ func enter_argo(is_entering: bool) -> void:
 	player_sprite.visible = !is_in_argo
 	Globals.argo.drive = is_in_argo
 	if is_in_argo:
-		spawn_point = Globals.argo.get_component(SpawnPoint.string_name)
+		spawn_point = ComponentUtils.get_component(Globals.argo, SpawnPoint.string_name) as SpawnPoint
 
 
 func _on_respawn_button_pressed() -> void:
 	if spawn_point == null:
-		spawn_point = Globals.argo.get_component(SpawnPoint.string_name) as SpawnPoint
+		spawn_point = ComponentUtils.get_component(Globals.argo, SpawnPoint.string_name) as SpawnPoint
 	global_position = spawn_point.get_global_position()
 
 	drowning_overlay.visible = false
@@ -94,3 +133,10 @@ func _on_respawn_button_pressed() -> void:
 	player_state_machine.set_state("OxygenDepletingState")
 	oxygen = OXYGEN_MAX
 	enter_argo(true)
+
+
+func _dialogue(dialogue_key: String, duration: float = 3.0, relative_position: Vector2 = Vector2(0.0, -32.0)) -> void:
+	if current_dialogue:
+		current_dialogue.queue_free()
+	current_dialogue = Dialogue.create(dialogue_key, duration, relative_position)
+	add_child(current_dialogue)

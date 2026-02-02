@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://bh4c2cjfq0w6f"]
+
+[ext_resource type="Script" uid="uid://c4tweg85pwg8l" path="res://common/dialogue/dialogue.gd" id="1_wx8oo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wx8oo"]
+font_size = 4
+
+[node name="Dialogue" type="Label"]
+custom_minimum_size = Vector2(80, 0)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -180.0
+offset_right = -80.0
+offset_bottom = -173.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "This is a test dialogue"
+label_settings = SubResource("LabelSettings_wx8oo")
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 2
+script = ExtResource("1_wx8oo")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

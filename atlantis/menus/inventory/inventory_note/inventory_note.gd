@@ -13,7 +13,7 @@ var content: String:
 
 
 func _ready() -> void:
-	icon = Icons.IconByNoteId[id]
+	icon = Icons.icon_by_note_id[id]
 
 
 func _on_pressed() -> void:

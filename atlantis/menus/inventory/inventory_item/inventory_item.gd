@@ -10,7 +10,7 @@ var count: int
 
 
 func _ready() -> void:
-	icon = Icons.IconByEntityId[id]
+	icon = Icons.icon_by_entity_id[id]
 	count_label.text = str(count) if count > 1 else ""
 
 
