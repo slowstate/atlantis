@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dr650y141ls7y"]
+[gd_scene load_steps=8 format=3 uid="uid://dr650y141ls7y"]
 
 [ext_resource type="Script" uid="uid://8q268n5af11x" path="res://menus/inventory/inventory_item/inventory_item.gd" id="1_jjcwd"]
 [ext_resource type="Texture2D" uid="uid://cwpmv527qq3qs" path="res://icon.svg" id="1_wod2m"]
@@ -16,6 +16,18 @@ content_margin_right = 1.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_jjcwd"]
 font_size = 4
+
+[sub_resource type="Gradient" id="Gradient_jjcwd"]
+offsets = PackedFloat32Array(0.9866667, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wod2m"]
+gradient = SubResource("Gradient_jjcwd")
+width = 6
+height = 6
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
 
 [node name="InventoryItem" type="Button"]
 custom_minimum_size = Vector2(16, 16)
@@ -39,5 +51,9 @@ text = "1"
 label_settings = SubResource("LabelSettings_jjcwd")
 horizontal_alignment = 2
 vertical_alignment = 2
+
+[node name="Notification" type="Sprite2D" parent="."]
+position = Vector2(12, 4)
+texture = SubResource("GradientTexture2D_wod2m")
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

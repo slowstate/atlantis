@@ -11,11 +11,11 @@ var max_speed := 50
 var friction := 100
 var is_in_argo := false
 var glowstone := 0
-var currently_selected_tool: Ids.Entities:
+var currently_selected_tool: Ids.Items:
 	get():
 		if inventory.items.size() <= 0:
-			return Ids.Entities.Nothing
-		return inventory.items.keys().get(item_selector.currently_selected_item_index) as Ids.Entities
+			return Ids.Items.Nothing
+		return inventory.items.keys().get(item_selector.currently_selected_item_index) as Ids.Items
 var current_dialogue: Dialogue
 
 @onready var player_sprite: Sprite2D = $PlayerSprite
@@ -24,6 +24,7 @@ var current_dialogue: Dialogue
 @onready var oxygen_box: Area2D = $OxygenBox
 @onready var interaction_box: Area2D = $InteractionBox
 @onready var inventory: Inventory = $UserInterface/Inventory
+@onready var notification: Sprite2D = $UserInterface/Notification
 @onready var drowning_overlay: Sprite2D = $UserInterface/DrowningOverlay
 @onready var drowned_overlay: VBoxContainer = $UserInterface/DrownedOverlay
 @onready var item_selector: ItemSelector = $UserInterface/ItemSelector
@@ -73,9 +74,11 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("player_inventory"):
 		inventory.visible = !inventory.visible
+		notification.visible = false
 
 	if event.is_action_pressed("player_interact"):
 		var overlapping_interactable_areas: Array[Area2D] = interaction_box.get_overlapping_areas().filter(func(area): return area.owner.visible)
+		overlapping_interactable_areas.sort_custom(func(a: Area2D, b: Area2D): return a.owner.z_index > b.owner.z_index)
 		if overlapping_interactable_areas.is_empty():
 			return
 		var frontmost_interactable = overlapping_interactable_areas.front().owner
@@ -89,10 +92,9 @@ func _input(event: InputEvent) -> void:
 					return
 			enter_argo(!is_in_argo)
 
-		if frontmost_interactable is Entity or frontmost_interactable is Note:
-			if ComponentUtils.has_component(frontmost_interactable, Interactable.string_name):
-				var interactable_component = ComponentUtils.get_component(frontmost_interactable, Interactable.string_name) as Interactable
-				interactable_component.interact()
+		if frontmost_interactable is Item or frontmost_interactable is Note:
+			var interactable_component = ComponentUtils.get_component(frontmost_interactable, Interactable.string_name) as Interactable
+			interactable_component.interact()
 
 		if frontmost_interactable is Generator:
 			var generator = frontmost_interactable
@@ -112,6 +114,14 @@ func _input(event: InputEvent) -> void:
 			var warehouse = frontmost_interactable
 			var interactable_component = ComponentUtils.get_component(warehouse, Interactable.string_name) as Interactable
 			interactable_component.interact()
+
+		if frontmost_interactable is WarehouseGenerator:
+			var warehouse_generator = frontmost_interactable
+			var interactable_component = ComponentUtils.get_component(warehouse_generator, Interactable.string_name) as Interactable
+			interactable_component.interact()
+
+		if frontmost_interactable is WrongDiode:
+			_dialogue("This diode won't fit the generator")
 
 
 func enter_argo(is_entering: bool) -> void:
@@ -133,6 +143,8 @@ func _on_respawn_button_pressed() -> void:
 	player_state_machine.set_state("OxygenDepletingState")
 	oxygen = OXYGEN_MAX
 	enter_argo(true)
+
+	SignalBus.player_respawned.emit()
 
 
 func _dialogue(dialogue_key: String, duration: float = 3.0, relative_position: Vector2 = Vector2(0.0, -32.0)) -> void:

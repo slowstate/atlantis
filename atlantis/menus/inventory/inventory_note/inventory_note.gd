@@ -10,11 +10,17 @@ var title: String:
 var content: String:
 	get():
 		return NoteStrings.note_content[id]
+var viewed := false
+
+@onready var notification: Sprite2D = $Notification
 
 
 func _ready() -> void:
 	icon = Icons.icon_by_note_id[id]
+	notification.visible = !viewed
 
 
 func _on_pressed() -> void:
 	inventory_note_selected.emit(self)
+	viewed = true
+	notification.visible = !viewed

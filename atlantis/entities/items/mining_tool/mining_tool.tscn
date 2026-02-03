@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://70xk32ju81ns"]
 
-[ext_resource type="Script" uid="uid://dg8j1ntcrg0d4" path="res://entities/mining_tool/mining_tool.gd" id="1_r1bsi"]
+[ext_resource type="Script" uid="uid://dg8j1ntcrg0d4" path="res://entities/items/mining_tool/mining_tool.gd" id="1_r1bsi"]
 [ext_resource type="Script" uid="uid://ylglnacmilfi" path="res://components/interactable/interactable.gd" id="2_5js5g"]
 [ext_resource type="Texture2D" uid="uid://cwpmv527qq3qs" path="res://icon.svg" id="2_jfakr"]
 [ext_resource type="Script" uid="uid://215ytidtgyrf" path="res://components/collectable/collectable.gd" id="3_w5tih"]

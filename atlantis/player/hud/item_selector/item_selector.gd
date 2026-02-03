@@ -7,7 +7,7 @@ var currently_selected_item_index := 0
 
 
 func _input(event: InputEvent) -> void:
-	var player_items := Globals.player.inventory.items.keys() as Array[Ids.Entities]
+	var player_items := Globals.player.inventory.items.keys() as Array[Ids.Items]
 	if player_items.is_empty() or !player_items:
 		return
 
@@ -24,4 +24,4 @@ func _input(event: InputEvent) -> void:
 
 	while currently_selected_item_index >= player_items.size():
 		currently_selected_item_index -= 1
-	currently_selected_item_texture.texture = Icons.icon_by_entity_id[player_items[currently_selected_item_index]]
+	currently_selected_item_texture.texture = Icons.icon_by_item_id[player_items[currently_selected_item_index]]

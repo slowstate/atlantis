@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://j51i3vf5hn3d"]
+[gd_scene load_steps=19 format=3 uid="uid://j51i3vf5hn3d"]
 
 [ext_resource type="Script" uid="uid://d33wj2wxlurur" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Texture2D" uid="uid://bhsbeiho1ftwj" path="res://player/player.png" id="2_g1dw6"]
 [ext_resource type="PackedScene" uid="uid://dgksxox3np48f" path="res://menus/inventory/inventory.tscn" id="3_g1dw6"]
 [ext_resource type="PackedScene" uid="uid://do72rdi1hrydt" path="res://player/hud/item_selector/item_selector.tscn" id="4_rgyib"]
 [ext_resource type="Script" uid="uid://cws56lrnieioe" path="res://player/PlayerStateMachine/player_state_machine.gd" id="4_yw30f"]
+[ext_resource type="Script" uid="uid://demetty61s5el" path="res://player/notification.gd" id="5_hg6s5"]
 [ext_resource type="Script" uid="uid://ygoqb4k67vi1" path="res://player/PlayerStateMachine/oxygen_refilling_state.gd" id="5_qjkh3"]
 [ext_resource type="Script" uid="uid://bfj0tbm2sub6y" path="res://player/PlayerStateMachine/oxygen_depleting_state.gd" id="6_g6k8r"]
 [ext_resource type="Script" uid="uid://by7vkwfrt78qv" path="res://player/PlayerStateMachine/drowning_state.gd" id="7_boad6"]
@@ -35,7 +36,20 @@ fill_to = Vector2(1, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_yw30f"]
 font_size = 8
 
+[sub_resource type="Gradient" id="Gradient_jjcwd"]
+offsets = PackedFloat32Array(0.9866667, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rgyib"]
+gradient = SubResource("Gradient_jjcwd")
+width = 6
+height = 6
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
 [node name="Player" type="CharacterBody2D"]
+z_index = 9
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_oul6g")
@@ -113,6 +127,11 @@ offset_top = 154.0
 offset_right = 308.0
 offset_bottom = 170.0
 
+[node name="Notification" type="Sprite2D" parent="UserInterface"]
+position = Vector2(305, 148)
+texture = SubResource("GradientTexture2D_rgyib")
+script = ExtResource("5_hg6s5")
+
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("4_yw30f")
 current_state = NodePath("OxygenDepletingState")
@@ -129,5 +148,6 @@ script = ExtResource("7_boad6")
 [node name="DrowningTimer" type="Timer" parent="PlayerStateMachine/DrowningState"]
 one_shot = true
 
+[connection signal="show_notification" from="UserInterface/Inventory" to="UserInterface/Notification" method="_on_inventory_show_notification"]
 [connection signal="pressed" from="UserInterface/DrownedOverlay/RespawnButton" to="." method="_on_respawn_button_pressed"]
 [connection signal="timeout" from="PlayerStateMachine/DrowningState/DrowningTimer" to="PlayerStateMachine/DrowningState" method="_on_drowning_timer_timeout"]

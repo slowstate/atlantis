@@ -1,9 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://bareqc1eyxlpq"]
+[gd_scene load_steps=17 format=3 uid="uid://bareqc1eyxlpq"]
 
 [ext_resource type="PackedScene" uid="uid://p6fv62obxr2c" path="res://world/shallows/open_air.tscn" id="2_usalr"]
-[ext_resource type="PackedScene" uid="uid://70xk32ju81ns" path="res://entities/mining_tool/mining_tool.tscn" id="3_fv0dc"]
+[ext_resource type="PackedScene" uid="uid://70xk32ju81ns" path="res://entities/items/mining_tool/mining_tool.tscn" id="3_fv0dc"]
 [ext_resource type="PackedScene" uid="uid://chblsv0q7dh0c" path="res://entities/notes/note/note.tscn" id="4_3a0gb"]
-[ext_resource type="PackedScene" uid="uid://dnd1any0b2rkh" path="res://entities/glowstone/glowstone.tscn" id="4_422jt"]
+[ext_resource type="PackedScene" uid="uid://dnd1any0b2rkh" path="res://entities/items/glowstone/glowstone.tscn" id="4_422jt"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_usalr"]
 friction = 0.0
@@ -45,15 +45,6 @@ size = Vector2(280, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xef6i"]
 size = Vector2(190, 186)
-
-[sub_resource type="Gradient" id="Gradient_fv0dc"]
-offsets = PackedFloat32Array(0, 0.6533333, 1)
-colors = PackedColorArray(0, 0.16533333, 0.32, 1, 0, 0.30748522, 0.60038817, 1, 0.3872, 0.44, 0.44, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_422jt"]
-gradient = SubResource("Gradient_fv0dc")
-fill_from = Vector2(0.5, 1)
-fill_to = Vector2(0.5, 0)
 
 [node name="Shallows" type="Node2D"]
 
@@ -159,13 +150,6 @@ shape = SubResource("RectangleShape2D_7iohk")
 [node name="Sprite2D" type="Sprite2D" parent="RightWall"]
 texture = SubResource("GradientTexture2D_usalr")
 
-[node name="Water" type="Sprite2D" parent="."]
-visible = false
-modulate = Color(1, 1, 1, 0.2)
-position = Vector2(368, 478)
-scale = Vector2(18.828125, 11.093749)
-texture = SubResource("GradientTexture2D_422jt")
-
 [node name="OpenAir" parent="." instance=ExtResource("2_usalr")]
 position = Vector2(68, 122)
 
@@ -173,7 +157,7 @@ position = Vector2(68, 122)
 position = Vector2(-72, 224)
 
 [node name="Glowstone2" parent="." instance=ExtResource("4_422jt")]
-position = Vector2(585, 284)
+position = Vector2(591, 779)
 
 [node name="MiningTool" parent="." instance=ExtResource("3_fv0dc")]
 position = Vector2(521, 368)

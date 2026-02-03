@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://ndopql3dys0y"]
+
+[ext_resource type="Script" uid="uid://6bjjpew41rx0" path="res://entities/items/diode/wrong_diode.gd" id="1_usu1g"]
+[ext_resource type="Script" uid="uid://ylglnacmilfi" path="res://components/interactable/interactable.gd" id="2_v1pku"]
+
+[sub_resource type="Gradient" id="Gradient_8v70o"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vfw4h"]
+gradient = SubResource("Gradient_8v70o")
+width = 12
+height = 4
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0s52t"]
+size = Vector2(12, 4)
+
+[node name="WrongDiode" type="Node2D"]
+script = ExtResource("1_usu1g")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_vfw4h")
+
+[node name="InteractionBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionBox"]
+shape = SubResource("RectangleShape2D_0s52t")
+
+[node name="Interactable" type="Node" parent="." node_paths=PackedStringArray("interaction_box")]
+script = ExtResource("2_v1pku")
+interaction_box = NodePath("../InteractionBox")
+metadata/_custom_type_script = "uid://ylglnacmilfi"

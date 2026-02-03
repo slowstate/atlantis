@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dyv5541unjajh"
-path="res://.godot/imported/glowstone.png-b6c5481b1681fd0915963e130ca57e12.ctex"
+path="res://.godot/imported/glowstone.png-0bb691f243a07a70165ab6a78d8b4c2c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/glowstone/glowstone.png"
-dest_files=["res://.godot/imported/glowstone.png-b6c5481b1681fd0915963e130ca57e12.ctex"]
+source_file="res://entities/items/glowstone/glowstone.png"
+dest_files=["res://.godot/imported/glowstone.png-0bb691f243a07a70165ab6a78d8b4c2c.ctex"]
 
 [params]
 

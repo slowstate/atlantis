@@ -1,5 +1,5 @@
 class_name Glowstone
-extends Entity
+extends Item
 
 var mined := false
 
@@ -7,7 +7,7 @@ var mined := false
 
 
 func _init() -> void:
-	id = Ids.Entities.Glowstone
+	id = Ids.Items.Glowstone
 
 
 func _physics_process(_delta: float) -> void:
@@ -17,5 +17,5 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_interactable_just_interacted() -> void:
-	if Globals.player.inventory.has_item(Ids.Entities.MiningTool):
+	if Globals.player.inventory.has_item(Ids.Items.MiningTool):
 		mined = true

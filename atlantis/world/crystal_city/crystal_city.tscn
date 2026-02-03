@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://78dtm2oyn1qs"]
+[gd_scene load_steps=12 format=3 uid="uid://78dtm2oyn1qs"]
 
 [ext_resource type="Script" uid="uid://j2aeuxkdgo4t" path="res://world/crystal_city/crystal_city.gd" id="1_bxvt2"]
 [ext_resource type="PackedScene" uid="uid://d26r2a2m086uo" path="res://world/crystal_city/buildings/warehouse/warehouse.tscn" id="1_p0dhy"]
@@ -14,25 +14,6 @@ gradient = SubResource("Gradient_xdrvk")
 width = 240
 height = 240
 
-[sub_resource type="Gradient" id="Gradient_5r0gn"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.47843137, 0.2627451, 0.18431373, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_iojnm"]
-gradient = SubResource("Gradient_5r0gn")
-width = 180
-height = 120
-
-[sub_resource type="Gradient" id="Gradient_bxvt2"]
-offsets = PackedFloat32Array(0.28, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_5r0gn"]
-gradient = SubResource("Gradient_bxvt2")
-height = 240
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0)
-
 [sub_resource type="Gradient" id="Gradient_p0dhy"]
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(0.14509805, 0.09411765, 0.07058824, 1)
@@ -42,21 +23,22 @@ gradient = SubResource("Gradient_p0dhy")
 width = 120
 height = 180
 
+[sub_resource type="Gradient" id="Gradient_5r0gn"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.50980395, 0.28235295, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_iojnm"]
+gradient = SubResource("Gradient_5r0gn")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dg3dl"]
+size = Vector2(64, 64)
+
 [node name="CrystalCity" type="Node2D"]
 script = ExtResource("1_bxvt2")
 
 [node name="RothschildTower" type="Sprite2D" parent="."]
 position = Vector2(0, -120)
 texture = SubResource("GradientTexture2D_p0dhy")
-
-[node name="RocketHangar" type="Sprite2D" parent="."]
-position = Vector2(210, -60)
-texture = SubResource("GradientTexture2D_iojnm")
-
-[node name="Sprite2D" type="Sprite2D" parent="RocketHangar"]
-show_behind_parent = true
-position = Vector2(3, -60)
-texture = SubResource("GradientTexture2D_5r0gn")
 
 [node name="WarehouseInterior" parent="." instance=ExtResource("3_5r0gn")]
 visible = false
@@ -72,5 +54,18 @@ texture = SubResource("GradientTexture2D_3xwy7")
 [node name="Generator" parent="." instance=ExtResource("2_3xwy7")]
 position = Vector2(505, -45)
 
+[node name="Floor" type="Sprite2D" parent="."]
+position = Vector2(0, 164.25)
+scale = Vector2(29.03125, 5.1328125)
+texture = SubResource("GradientTexture2D_iojnm")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Floor"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/StaticBody2D"]
+shape = SubResource("RectangleShape2D_dg3dl")
+
 [connection signal="warehouse_interior_door_just_interacted" from="WarehouseInterior" to="." method="_on_warehouse_interior_warehouse_interior_door_just_interacted"]
 [connection signal="warehouse_door_just_interacted" from="Warehouse" to="." method="_on_warehouse_warehouse_door_just_interacted"]
+[connection signal="generator_enabled" from="Generator" to="." method="_on_generator_generator_enabled"]

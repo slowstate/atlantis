@@ -1,11 +1,11 @@
-class_name MiningTool
-extends Entity
+class_name Diode
+extends Item
 
 @onready var collectable: Collectable = $Collectable
 
 
 func _init() -> void:
-	id = Ids.Entities.MiningTool
+	id = Ids.Items.Diode
 
 
 func _on_interactable_just_interacted() -> void:
