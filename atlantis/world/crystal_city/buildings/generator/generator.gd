@@ -17,3 +17,4 @@ func _on_interactable_just_interacted() -> void:
 
 	if has_glowstone and has_diode:
 		generator_enabled.emit()
+		Globals.is_crystal_city_generator_enabled = true

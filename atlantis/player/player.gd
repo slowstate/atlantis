@@ -123,6 +123,13 @@ func _input(event: InputEvent) -> void:
 		if frontmost_interactable is WrongDiode:
 			_dialogue("This diode won't fit the generator")
 
+		if frontmost_interactable is RocketHangar:
+			if !Globals.is_crystal_city_generator_enabled:
+				_dialogue("It's too dark in here, I need to find a way to power the lights")
+			var rocket_hangar = frontmost_interactable
+			var interactable_component = ComponentUtils.get_component(rocket_hangar, Interactable.string_name) as Interactable
+			interactable_component.interact()
+
 
 func enter_argo(is_entering: bool) -> void:
 	is_in_argo = is_entering
