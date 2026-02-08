@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://chhtc74hdy2e5"]
+
+[ext_resource type="PackedScene" uid="uid://bareqc1eyxlpq" path="res://world/shallows/shallows.tscn" id="1_4717r"]
+[ext_resource type="Script" uid="uid://bo7x6fki5nxsa" path="res://world/world.gd" id="1_mmdvd"]
+[ext_resource type="PackedScene" uid="uid://j51i3vf5hn3d" path="res://player/player.tscn" id="2_h5o24"]
+[ext_resource type="PackedScene" uid="uid://78dtm2oyn1qs" path="res://world/crystal_city/crystal_city.tscn" id="2_mmdvd"]
+[ext_resource type="PackedScene" uid="uid://bkqgm12tie6br" path="res://argo/argo.tscn" id="3_mmdvd"]
+
+[sub_resource type="Gradient" id="Gradient_fv0dc"]
+offsets = PackedFloat32Array(0, 0.6533333, 1)
+colors = PackedColorArray(0, 0.16533333, 0.32, 1, 0, 0.30748522, 0.60038817, 1, 0.3872, 0.44, 0.44, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mmdvd"]
+gradient = SubResource("Gradient_fv0dc")
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_mmdvd")
+
+[node name="Shallows" parent="." instance=ExtResource("1_4717r")]
+
+[node name="CrystalCity" parent="." instance=ExtResource("2_mmdvd")]
+position = Vector2(74, 1344)
+
+[node name="Argo" parent="." instance=ExtResource("3_mmdvd")]
+position = Vector2(165, 151)
+
+[node name="Player" parent="." instance=ExtResource("2_h5o24")]
+position = Vector2(121, 149)
+
+[node name="Water" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.2)
+position = Vector2(170.75, 836.50006)
+scale = Vector2(24.992188, 22.296877)
+texture = SubResource("GradientTexture2D_mmdvd")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dyv5541unjajh"
-path="res://.godot/imported/glowstone.png-b6c5481b1681fd0915963e130ca57e12.ctex"
+uid="uid://7k150sh0w4yj"
+path="res://.godot/imported/argo.png-4f7eff728023dafa7dcd2e9feb98d53e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/glowstone/glowstone.png"
-dest_files=["res://.godot/imported/glowstone.png-b6c5481b1681fd0915963e130ca57e12.ctex"]
+source_file="res://argo/argo.png"
+dest_files=["res://.godot/imported/argo.png-4f7eff728023dafa7dcd2e9feb98d53e.ctex"]
 
 [params]
 

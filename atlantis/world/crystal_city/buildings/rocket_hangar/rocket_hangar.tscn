@@ -1,0 +1,63 @@
+[gd_scene load_steps=10 format=3 uid="uid://clsxexl5mayua"]
+
+[ext_resource type="Script" uid="uid://guxkh04y6nk8" path="res://world/crystal_city/buildings/rocket_hangar/rocket_hangar.gd" id="1_ovpci"]
+[ext_resource type="Script" uid="uid://ylglnacmilfi" path="res://components/interactable/interactable.gd" id="2_e1skg"]
+
+[sub_resource type="Gradient" id="Gradient_5r0gn"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.47843137, 0.2627451, 0.18431373, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8wuce"]
+gradient = SubResource("Gradient_5r0gn")
+width = 180
+height = 120
+
+[sub_resource type="Gradient" id="Gradient_bxvt2"]
+offsets = PackedFloat32Array(0.28, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1bqvj"]
+gradient = SubResource("Gradient_bxvt2")
+height = 240
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Gradient" id="Gradient_fkcjg"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.15167314, 5.3996683e-07, 2.9480086e-07, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nr56y"]
+gradient = SubResource("Gradient_fkcjg")
+width = 24
+height = 32
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ovpci"]
+size = Vector2(24, 32)
+
+[node name="RocketHangar" type="Node2D"]
+script = ExtResource("1_ovpci")
+
+[node name="RocketHangar" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_8wuce")
+
+[node name="Sprite2D" type="Sprite2D" parent="RocketHangar"]
+show_behind_parent = true
+position = Vector2(3, -60)
+texture = SubResource("GradientTexture2D_1bqvj")
+
+[node name="Door" type="Sprite2D" parent="."]
+position = Vector2(0, 44)
+texture = SubResource("GradientTexture2D_nr56y")
+
+[node name="InteractionBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionBox"]
+position = Vector2(0, 44)
+shape = SubResource("RectangleShape2D_ovpci")
+
+[node name="Interactable" type="Node" parent="." node_paths=PackedStringArray("interaction_box")]
+script = ExtResource("2_e1skg")
+interaction_box = NodePath("../InteractionBox")
+metadata/_custom_type_script = "uid://ylglnacmilfi"
+
+[connection signal="just_interacted" from="Interactable" to="." method="_on_interactable_just_interacted"]

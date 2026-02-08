@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://do72rdi1hrydt"]
+
+[ext_resource type="Script" uid="uid://btom7r4a45eio" path="res://player/hud/item_selector/item_selector.gd" id="1_rwg25"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dcrgu"]
+bg_color = Color(0.60038817, 0.60038817, 0.60038817, 0.5)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[node name="ItemSelector" type="PanelContainer"]
+custom_minimum_size = Vector2(16, 16)
+offset_right = 16.0
+offset_bottom = 16.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dcrgu")
+script = ExtResource("1_rwg25")
+
+[node name="CurrentlySelectedItemTexture" type="TextureRect" parent="."]
+layout_mode = 2
+expand_mode = 3

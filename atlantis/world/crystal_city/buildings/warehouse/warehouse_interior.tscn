@@ -1,0 +1,108 @@
+[gd_scene load_steps=14 format=3 uid="uid://bod07y12hlqh"]
+
+[ext_resource type="Script" uid="uid://bpxil5n8dxc5n" path="res://world/crystal_city/buildings/warehouse/warehouse_interior.gd" id="1_oqesa"]
+[ext_resource type="Script" uid="uid://ylglnacmilfi" path="res://components/interactable/interactable.gd" id="2_oqesa"]
+[ext_resource type="PackedScene" uid="uid://df60u47vjbk03" path="res://world/crystal_city/buildings/warehouse/warehouse_generator/warehouse_generator.tscn" id="3_oqesa"]
+[ext_resource type="PackedScene" uid="uid://ndopql3dys0y" path="res://entities/items/diode/wrong_diode.tscn" id="4_v6vnf"]
+
+[sub_resource type="Gradient" id="Gradient_h453x"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.3254902, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_67roc"]
+gradient = SubResource("Gradient_h453x")
+width = 160
+height = 160
+
+[sub_resource type="Gradient" id="Gradient_v6vnf"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0, 0.29657534, 0.29797253, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lnnyb"]
+gradient = SubResource("Gradient_v6vnf")
+width = 24
+height = 32
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f56gq"]
+size = Vector2(24, 32)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_v6vnf"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lnnyb"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_n34xo"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ximtb"]
+
+[node name="WarehouseInterior" type="Node2D"]
+script = ExtResource("1_oqesa")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_67roc")
+
+[node name="Door" type="Sprite2D" parent="."]
+position = Vector2(0, 64)
+texture = SubResource("GradientTexture2D_lnnyb")
+
+[node name="InteractionBox" type="Area2D" parent="."]
+position = Vector2(0, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionBox"]
+shape = SubResource("RectangleShape2D_f56gq")
+
+[node name="Interactable" type="Node" parent="." node_paths=PackedStringArray("interaction_box")]
+script = ExtResource("2_oqesa")
+interaction_box = NodePath("../InteractionBox")
+metadata/_custom_type_script = "uid://ylglnacmilfi"
+
+[node name="WarehouseGenerator" parent="." instance=ExtResource("3_oqesa")]
+position = Vector2(55, 72)
+
+[node name="WrongDiode" parent="." instance=ExtResource("4_v6vnf")]
+position = Vector2(-65, -16)
+
+[node name="WrongDiode2" parent="." instance=ExtResource("4_v6vnf")]
+position = Vector2(63, -16)
+
+[node name="WrongDiode3" parent="." instance=ExtResource("4_v6vnf")]
+position = Vector2(-66, 19)
+
+[node name="WrongDiode4" parent="." instance=ExtResource("4_v6vnf")]
+position = Vector2(61, 17)
+
+[node name="TopBoundary" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="TopBoundaryCollisionShape2D" type="CollisionShape2D" parent="TopBoundary"]
+position = Vector2(0, -80)
+rotation = 3.1415927
+shape = SubResource("WorldBoundaryShape2D_v6vnf")
+
+[node name="RightBoundary" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="RightBoundaryCollisionShape2D" type="CollisionShape2D" parent="RightBoundary"]
+position = Vector2(80, 0)
+rotation = 4.712389
+shape = SubResource("WorldBoundaryShape2D_lnnyb")
+
+[node name="BottomBoundary" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="BottomBoundaryCollisionShape2D" type="CollisionShape2D" parent="BottomBoundary"]
+position = Vector2(0, 80)
+shape = SubResource("WorldBoundaryShape2D_n34xo")
+
+[node name="LeftBoundary" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="LeftBoundaryCollisionShape2D" type="CollisionShape2D" parent="LeftBoundary"]
+position = Vector2(-80, 0)
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_ximtb")
+
+[connection signal="just_interacted" from="Interactable" to="." method="_on_interactable_just_interacted"]

@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://d26r2a2m086uo"]
+
+[ext_resource type="Script" uid="uid://f1ntgcfa2cma" path="res://world/crystal_city/buildings/warehouse/warehouse.gd" id="1_d76dh"]
+[ext_resource type="PackedScene" uid="uid://44g3nqpsueeg" path="res://components/interactable/interactable.tscn" id="2_jsrcb"]
+
+[sub_resource type="Gradient" id="Gradient_3xwy7"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.3254902, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_v23jn"]
+gradient = SubResource("Gradient_3xwy7")
+width = 160
+height = 160
+
+[sub_resource type="Gradient" id="Gradient_d76dh"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.15167314, 5.3996683e-07, 2.9480086e-07, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qei4l"]
+gradient = SubResource("Gradient_d76dh")
+width = 24
+height = 32
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k3j1t"]
+size = Vector2(24, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d76dh"]
+size = Vector2(160, 54)
+
+[node name="Warehouse" type="Node2D"]
+script = ExtResource("1_d76dh")
+
+[node name="Warehouse" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_v23jn")
+
+[node name="Door" type="Sprite2D" parent="."]
+position = Vector2(0, 64)
+texture = SubResource("GradientTexture2D_qei4l")
+
+[node name="InteractionBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionBox"]
+position = Vector2(0, 64)
+shape = SubResource("RectangleShape2D_k3j1t")
+
+[node name="LightUpBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LightUpBox"]
+position = Vector2(0, -100)
+shape = SubResource("RectangleShape2D_d76dh")
+
+[node name="Interactable" parent="." node_paths=PackedStringArray("interaction_box") instance=ExtResource("2_jsrcb")]
+interaction_box = NodePath("../InteractionBox")
+
+[connection signal="body_entered" from="LightUpBox" to="." method="_on_light_up_box_body_entered"]
+[connection signal="body_exited" from="LightUpBox" to="." method="_on_light_up_box_body_exited"]
+[connection signal="just_interacted" from="Interactable" to="." method="_on_interactable_just_interacted"]

@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://chblsv0q7dh0c"]
+
+[ext_resource type="Script" uid="uid://d4aub74gop34n" path="res://entities/notes/note/note.gd" id="1_ymd6p"]
+[ext_resource type="Script" uid="uid://ylglnacmilfi" path="res://components/interactable/interactable.gd" id="2_ft3vd"]
+[ext_resource type="Script" uid="uid://215ytidtgyrf" path="res://components/collectable/collectable.gd" id="3_lyyc8"]
+
+[sub_resource type="Gradient" id="Gradient_ft3vd"]
+offsets = PackedFloat32Array(0.7266667, 1)
+colors = PackedColorArray(0.7775128, 0.5742985, 0.3937748, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lyyc8"]
+gradient = SubResource("Gradient_ft3vd")
+width = 20
+height = 20
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ft3vd"]
+
+[node name="Note" type="Sprite2D"]
+texture = SubResource("GradientTexture2D_lyyc8")
+script = ExtResource("1_ymd6p")
+
+[node name="InteractionBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionBox"]
+shape = SubResource("CircleShape2D_ft3vd")
+
+[node name="Interactable" type="Node" parent="." node_paths=PackedStringArray("interaction_box")]
+script = ExtResource("2_ft3vd")
+interaction_box = NodePath("../InteractionBox")
+metadata/_custom_type_script = "uid://ylglnacmilfi"
+
+[node name="Collectable" type="Node" parent="."]
+script = ExtResource("3_lyyc8")
+metadata/_custom_type_script = "uid://215ytidtgyrf"
+
+[connection signal="just_interacted" from="Interactable" to="." method="_on_interactable_just_interacted"]

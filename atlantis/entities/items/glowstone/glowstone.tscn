@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dnd1any0b2rkh"]
 
-[ext_resource type="Script" uid="uid://bb8qqaqjh6rvb" path="res://entities/glowstone/glowstone.gd" id="1_05abb"]
-[ext_resource type="Texture2D" uid="uid://dyv5541unjajh" path="res://entities/glowstone/glowstone.png" id="1_o7jv2"]
+[ext_resource type="Script" uid="uid://bb8qqaqjh6rvb" path="res://entities/items/glowstone/glowstone.gd" id="1_05abb"]
+[ext_resource type="Texture2D" uid="uid://dyv5541unjajh" path="res://entities/items/glowstone/glowstone.png" id="1_o7jv2"]
 [ext_resource type="PackedScene" uid="uid://44g3nqpsueeg" path="res://components/interactable/interactable.tscn" id="3_yo7q6"]
 [ext_resource type="PackedScene" uid="uid://c22m6y805jswx" path="res://components/collectable/collectable.tscn" id="4_3vn4x"]
 
@@ -16,7 +16,6 @@ texture = ExtResource("1_o7jv2")
 
 [node name="InteractionBox" type="Area2D" parent="."]
 collision_layer = 8
-collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionBox"]
 shape = SubResource("CircleShape2D_05abb")

@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://hw1iho5ivxbw"]
+
+[ext_resource type="Script" uid="uid://d0s8jgbo3ytmr" path="res://world/crystal_city/buildings/generator/generator.gd" id="1_1kuhh"]
+[ext_resource type="Script" uid="uid://ylglnacmilfi" path="res://components/interactable/interactable.gd" id="2_d0s04"]
+
+[sub_resource type="Gradient" id="Gradient_dg3dl"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0.43529412, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g3fwv"]
+gradient = SubResource("Gradient_dg3dl")
+width = 90
+height = 90
+
+[sub_resource type="Gradient" id="Gradient_g3fwv"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7v6ow"]
+gradient = SubResource("Gradient_g3fwv")
+width = 32
+height = 8
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r33x6"]
+size = Vector2(90, 90)
+
+[node name="Generator" type="Node2D"]
+script = ExtResource("1_1kuhh")
+
+[node name="Generator" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_g3fwv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -18)
+texture = SubResource("GradientTexture2D_7v6ow")
+
+[node name="InteractionBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionBox"]
+shape = SubResource("RectangleShape2D_r33x6")
+
+[node name="Interactable" type="Node" parent="." node_paths=PackedStringArray("interaction_box")]
+script = ExtResource("2_d0s04")
+interaction_box = NodePath("../InteractionBox")
+metadata/_custom_type_script = "uid://ylglnacmilfi"
+
+[connection signal="just_interacted" from="Interactable" to="." method="_on_interactable_just_interacted"]
