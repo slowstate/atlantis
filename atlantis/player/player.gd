@@ -44,7 +44,7 @@ func _process(delta: float) -> void:
 		velocity = Vector2(0, 0)
 		return
 
-	if Input.is_action_just_pressed("god_mode") and OS.is_debug_build():
+	if Input.is_action_just_pressed("god_mode") and OS.is_debug_build() and controls_enabled:
 		god_mode = !god_mode
 		if god_mode:
 			acceleration = 400
@@ -74,6 +74,9 @@ func _process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if !controls_enabled:
+		return
+
 	if event.is_action_pressed("player_inventory"):
 		inventory.visible = !inventory.visible
 		notification_sprite.visible = false
