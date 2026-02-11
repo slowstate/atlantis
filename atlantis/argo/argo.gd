@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 		return
 	var move_vec = Vector2.ZERO
 
-	if drive:
+	if drive and Globals.player.controls_enabled:
 		if Input.is_action_pressed("player_move_up"):
 			move_vec.y = -1
 		if Input.is_action_pressed("player_move_left"):

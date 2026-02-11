@@ -52,7 +52,7 @@ label_settings = SubResource("LabelSettings_jjcwd")
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="Notification" type="Sprite2D" parent="."]
+[node name="ItemNotification" type="Sprite2D" parent="."]
 position = Vector2(12, 4)
 texture = SubResource("GradientTexture2D_wod2m")
 

@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://b35vvqaxxa16"]
+
+[node name="CameraFocus" type="Area2D"]

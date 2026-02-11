@@ -33,7 +33,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("1_fayeb")
 
-[node name="Notification" type="Sprite2D" parent="."]
+[node name="NoteNotification" type="Sprite2D" parent="."]
 position = Vector2(12, 4)
 texture = SubResource("GradientTexture2D_2rqgg")
 
