@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://chhtc74hdy2e5"]
+[gd_scene load_steps=10 format=3 uid="uid://chhtc74hdy2e5"]
 
 [ext_resource type="PackedScene" uid="uid://bareqc1eyxlpq" path="res://world/shallows/shallows.tscn" id="1_4717r"]
 [ext_resource type="Script" uid="uid://bo7x6fki5nxsa" path="res://world/world.gd" id="1_mmdvd"]
+[ext_resource type="Texture2D" uid="uid://cwpmv527qq3qs" path="res://icon.svg" id="2_fn3g3"]
 [ext_resource type="PackedScene" uid="uid://j51i3vf5hn3d" path="res://player/player.tscn" id="2_h5o24"]
 [ext_resource type="PackedScene" uid="uid://78dtm2oyn1qs" path="res://world/crystal_city/crystal_city.tscn" id="2_mmdvd"]
+[ext_resource type="PackedScene" uid="uid://dgjpc2funhyed" path="res://world/parallax_2d_layer/parallax_2d_layer.tscn" id="2_sc4t8"]
 [ext_resource type="PackedScene" uid="uid://bkqgm12tie6br" path="res://argo/argo.tscn" id="3_mmdvd"]
 
 [sub_resource type="Gradient" id="Gradient_fv0dc"]
@@ -17,6 +19,22 @@ fill_to = Vector2(0.5, 0)
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_mmdvd")
+
+[node name="Parallax2DLayer" parent="." instance=ExtResource("2_sc4t8")]
+scroll_scale = Vector2(0.95, 0.95)
+scroll_offset = Vector2(216, 1027)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2DLayer"]
+scale = Vector2(5, 5)
+texture = ExtResource("2_fn3g3")
+
+[node name="Parallax2DLayer2" parent="." instance=ExtResource("2_sc4t8")]
+scroll_scale = Vector2(0.9, 0.9)
+scroll_offset = Vector2(228, 1082)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2DLayer2"]
+scale = Vector2(3, 3)
+texture = ExtResource("2_fn3g3")
 
 [node name="Shallows" parent="." instance=ExtResource("1_4717r")]
 
@@ -34,3 +52,8 @@ modulate = Color(1, 1, 1, 0.2)
 position = Vector2(170.75, 836.50006)
 scale = Vector2(24.992188, 22.296877)
 texture = SubResource("GradientTexture2D_mmdvd")
+
+[node name="FishSpawnTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="timeout" from="FishSpawnTimer" to="." method="_on_fish_spawn_timer_timeout"]

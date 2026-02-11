@@ -4,6 +4,7 @@ extends CharacterBody2D
 const OXYGEN_MAX := 30.0
 
 var god_mode := false
+var controls_enabled := true
 var oxygen := OXYGEN_MAX
 var spawn_point: SpawnPoint
 var acceleration := 200
@@ -18,16 +19,17 @@ var currently_selected_tool: Ids.Items:
 		return inventory.items.keys().get(item_selector.currently_selected_item_index) as Ids.Items
 var current_dialogue: Dialogue
 
+@onready var camera_2d: Camera2D = $Camera2D
 @onready var player_sprite: Sprite2D = $PlayerSprite
 @onready var player_state_machine: PlayerStateMachine = $PlayerStateMachine
 @onready var oxygen_meter_label: Label = $UserInterface/OxygenMeterLabel
 @onready var oxygen_box: Area2D = $OxygenBox
 @onready var interaction_box: Area2D = $InteractionBox
 @onready var inventory: Inventory = $UserInterface/Inventory
-@onready var notification: Sprite2D = $UserInterface/Notification
 @onready var drowning_overlay: Sprite2D = $UserInterface/DrowningOverlay
 @onready var drowned_overlay: VBoxContainer = $UserInterface/DrownedOverlay
 @onready var item_selector: ItemSelector = $UserInterface/ItemSelector
+@onready var notification_sprite: Sprite2D = $UserInterface/NotificationSprite
 
 
 func _ready() -> void:
@@ -74,7 +76,7 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("player_inventory"):
 		inventory.visible = !inventory.visible
-		notification.visible = false
+		notification_sprite.visible = false
 
 	if event.is_action_pressed("player_interact"):
 		var overlapping_interactable_areas: Array[Area2D] = interaction_box.get_overlapping_areas().filter(func(area): return area.owner.visible)

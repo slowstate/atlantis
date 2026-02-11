@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://78dtm2oyn1qs"]
+[gd_scene load_steps=15 format=3 uid="uid://78dtm2oyn1qs"]
 
 [ext_resource type="Script" uid="uid://j2aeuxkdgo4t" path="res://world/crystal_city/crystal_city.gd" id="1_bxvt2"]
 [ext_resource type="PackedScene" uid="uid://d26r2a2m086uo" path="res://world/crystal_city/buildings/warehouse/warehouse.tscn" id="1_p0dhy"]
 [ext_resource type="PackedScene" uid="uid://hw1iho5ivxbw" path="res://world/crystal_city/buildings/generator/generator.tscn" id="2_3xwy7"]
 [ext_resource type="PackedScene" uid="uid://bod07y12hlqh" path="res://world/crystal_city/buildings/warehouse/warehouse_interior.tscn" id="3_5r0gn"]
 [ext_resource type="PackedScene" uid="uid://clsxexl5mayua" path="res://world/crystal_city/buildings/rocket_hangar/rocket_hangar.tscn" id="5_iojnm"]
+[ext_resource type="Script" uid="uid://c5lkvw0sbomdj" path="res://common/camera_focus/camera_focus.gd" id="6_dg3dl"]
 
 [sub_resource type="Gradient" id="Gradient_xdrvk"]
 offsets = PackedFloat32Array(1)
@@ -34,7 +35,11 @@ gradient = SubResource("Gradient_5r0gn")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dg3dl"]
 size = Vector2(64, 64)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ww5kb"]
+size = Vector2(462, 240)
+
 [node name="CrystalCity" type="Node2D"]
+z_index = 5
 script = ExtResource("1_bxvt2")
 
 [node name="RothschildTower" type="Sprite2D" parent="."]
@@ -70,6 +75,27 @@ shape = SubResource("RectangleShape2D_dg3dl")
 [node name="RocketHangar" parent="." instance=ExtResource("5_iojnm")]
 position = Vector2(210, -60)
 
+[node name="CameraFocusRocket" type="Area2D" parent="." node_paths=PackedStringArray("focus_point")]
+position = Vector2(206, -224)
+collision_layer = 32
+script = ExtResource("6_dg3dl")
+focus_point = NodePath("FocusPoint")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraFocusRocket"]
+shape = SubResource("RectangleShape2D_ww5kb")
+
+[node name="FocusPoint" type="Node2D" parent="CameraFocusRocket"]
+position = Vector2(6, 62)
+
+[node name="FocusInTimer" type="Timer" parent="CameraFocusRocket"]
+one_shot = true
+
+[node name="FocusOutTimer" type="Timer" parent="CameraFocusRocket"]
+one_shot = true
+
 [connection signal="warehouse_interior_door_just_interacted" from="WarehouseInterior" to="." method="_on_warehouse_interior_warehouse_interior_door_just_interacted"]
 [connection signal="warehouse_door_just_interacted" from="Warehouse" to="." method="_on_warehouse_warehouse_door_just_interacted"]
 [connection signal="generator_enabled" from="Generator" to="." method="_on_generator_generator_enabled"]
+[connection signal="body_entered" from="CameraFocusRocket" to="CameraFocusRocket" method="_on_body_entered"]
+[connection signal="body_exited" from="CameraFocusRocket" to="CameraFocusRocket" method="_on_body_exited"]
+[connection signal="timeout" from="CameraFocusRocket/FocusOutTimer" to="CameraFocusRocket" method="_on_focus_out_timer_timeout"]

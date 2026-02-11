@@ -47,6 +47,7 @@ size = Vector2(280, 128)
 size = Vector2(190, 186)
 
 [node name="Shallows" type="Node2D"]
+z_index = 5
 
 [node name="TopBoundary" type="StaticBody2D" parent="."]
 position = Vector2(69, 119)

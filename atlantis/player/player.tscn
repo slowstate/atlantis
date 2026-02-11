@@ -21,6 +21,18 @@ height = 16.0
 [sub_resource type="LabelSettings" id="LabelSettings_g1dw6"]
 font_size = 8
 
+[sub_resource type="Gradient" id="Gradient_jjcwd"]
+offsets = PackedFloat32Array(0.9866667, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rgyib"]
+gradient = SubResource("Gradient_jjcwd")
+width = 6
+height = 6
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
 [sub_resource type="Gradient" id="Gradient_g1dw6"]
 offsets = PackedFloat32Array(0.50666666, 1)
 colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
@@ -35,18 +47,6 @@ fill_to = Vector2(1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_yw30f"]
 font_size = 8
-
-[sub_resource type="Gradient" id="Gradient_jjcwd"]
-offsets = PackedFloat32Array(0.9866667, 1)
-colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_rgyib"]
-gradient = SubResource("Gradient_jjcwd")
-width = 6
-height = 6
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 9
@@ -90,6 +90,17 @@ offset_bottom = 176.0
 text = "O₂: 20"
 label_settings = SubResource("LabelSettings_g1dw6")
 
+[node name="ItemSelector" parent="UserInterface" instance=ExtResource("4_rgyib")]
+offset_left = 292.0
+offset_top = 154.0
+offset_right = 308.0
+offset_bottom = 170.0
+
+[node name="NotificationSprite" type="Sprite2D" parent="UserInterface"]
+position = Vector2(305, 148)
+texture = SubResource("GradientTexture2D_rgyib")
+script = ExtResource("5_hg6s5")
+
 [node name="DrowningOverlay" type="Sprite2D" parent="UserInterface"]
 visible = false
 texture = SubResource("GradientTexture2D_yw30f")
@@ -121,17 +132,6 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 4
 text = "Respawn"
 
-[node name="ItemSelector" parent="UserInterface" instance=ExtResource("4_rgyib")]
-offset_left = 292.0
-offset_top = 154.0
-offset_right = 308.0
-offset_bottom = 170.0
-
-[node name="Notification" type="Sprite2D" parent="UserInterface"]
-position = Vector2(305, 148)
-texture = SubResource("GradientTexture2D_rgyib")
-script = ExtResource("5_hg6s5")
-
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("4_yw30f")
 current_state = NodePath("OxygenDepletingState")
@@ -148,6 +148,6 @@ script = ExtResource("7_boad6")
 [node name="DrowningTimer" type="Timer" parent="PlayerStateMachine/DrowningState"]
 one_shot = true
 
-[connection signal="show_notification" from="UserInterface/Inventory" to="UserInterface/Notification" method="_on_inventory_show_notification"]
+[connection signal="show_notification" from="UserInterface/Inventory" to="UserInterface/NotificationSprite" method="_on_inventory_show_notification"]
 [connection signal="pressed" from="UserInterface/DrownedOverlay/RespawnButton" to="." method="_on_respawn_button_pressed"]
 [connection signal="timeout" from="PlayerStateMachine/DrowningState/DrowningTimer" to="PlayerStateMachine/DrowningState" method="_on_drowning_timer_timeout"]
