@@ -8,6 +8,10 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Atlantis"
@@ -101,3 +105,7 @@ locale/translations=PackedStringArray("res://common/localisation/locales_notes.e
 2d_physics/layer_4="interactables"
 2d_physics/layer_5="oxygen"
 2d_physics/layer_6="camera_focus"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
