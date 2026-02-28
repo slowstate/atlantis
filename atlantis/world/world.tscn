@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://chhtc74hdy2e5"]
+[gd_scene load_steps=9 format=3 uid="uid://chhtc74hdy2e5"]
 
 [ext_resource type="PackedScene" uid="uid://bareqc1eyxlpq" path="res://world/shallows/shallows.tscn" id="1_4717r"]
 [ext_resource type="Script" uid="uid://bo7x6fki5nxsa" path="res://world/world.gd" id="1_mmdvd"]
@@ -7,15 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://78dtm2oyn1qs" path="res://world/crystal_city/crystal_city.tscn" id="2_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://dgjpc2funhyed" path="res://world/parallax_2d_layer/parallax_2d_layer.tscn" id="2_sc4t8"]
 [ext_resource type="PackedScene" uid="uid://bkqgm12tie6br" path="res://argo/argo.tscn" id="3_mmdvd"]
-
-[sub_resource type="Gradient" id="Gradient_fv0dc"]
-offsets = PackedFloat32Array(0, 0.6533333, 1)
-colors = PackedColorArray(0, 0.16533333, 0.32, 1, 0, 0.30748522, 0.60038817, 1, 0.3872, 0.44, 0.44, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_mmdvd"]
-gradient = SubResource("Gradient_fv0dc")
-fill_from = Vector2(0.5, 1)
-fill_to = Vector2(0.5, 0)
+[ext_resource type="Texture2D" uid="uid://okf7smr618ds" path="res://world/parallax_2d_layer/ocean.png" id="8_ai45w"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_mmdvd")
@@ -42,16 +34,14 @@ texture = ExtResource("2_fn3g3")
 position = Vector2(74, 1344)
 
 [node name="Argo" parent="." instance=ExtResource("3_mmdvd")]
-position = Vector2(165, 151)
+position = Vector2(684, 50)
 
 [node name="Player" parent="." instance=ExtResource("2_h5o24")]
-position = Vector2(121, 149)
+position = Vector2(576, 24)
 
-[node name="Water" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.2)
-position = Vector2(170.75, 836.50006)
-scale = Vector2(24.992188, 22.296877)
-texture = SubResource("GradientTexture2D_mmdvd")
+[node name="Ocean" type="Sprite2D" parent="."]
+position = Vector2(640, 592)
+texture = ExtResource("8_ai45w")
 
 [node name="FishSpawnTimer" type="Timer" parent="."]
 wait_time = 3.0

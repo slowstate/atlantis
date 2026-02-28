@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjm2jugt3lgik"
-path="res://.godot/imported/ocean_front.png-54d10a1428b961ea2eb61cf07583021d.ctex"
+uid="uid://dfajsy8c2vjey"
+path="res://.godot/imported/city_front.png-722b4b9098914c7bbf5058f55cef5502.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://world/parallax_2d_layer/ocean_front.png"
-dest_files=["res://.godot/imported/ocean_front.png-54d10a1428b961ea2eb61cf07583021d.ctex"]
+source_file="res://world/crystal_city/city_front.png"
+dest_files=["res://.godot/imported/city_front.png-722b4b9098914c7bbf5058f55cef5502.ctex"]
 
 [params]
 
