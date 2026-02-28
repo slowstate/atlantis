@@ -1,9 +1,18 @@
-[gd_scene load_steps=17 format=3 uid="uid://bareqc1eyxlpq"]
+[gd_scene load_steps=26 format=3 uid="uid://bareqc1eyxlpq"]
 
 [ext_resource type="PackedScene" uid="uid://p6fv62obxr2c" path="res://world/shallows/open_air.tscn" id="2_usalr"]
 [ext_resource type="PackedScene" uid="uid://70xk32ju81ns" path="res://entities/items/mining_tool/mining_tool.tscn" id="3_fv0dc"]
 [ext_resource type="PackedScene" uid="uid://chblsv0q7dh0c" path="res://entities/notes/note/note.tscn" id="4_3a0gb"]
 [ext_resource type="PackedScene" uid="uid://dnd1any0b2rkh" path="res://entities/items/glowstone/glowstone.tscn" id="4_422jt"]
+[ext_resource type="Texture2D" uid="uid://okf7smr618ds" path="res://world/shallows/ocean.png" id="5_mwkxx"]
+[ext_resource type="Texture2D" uid="uid://d3uux8t0datas" path="res://world/parallax_2d_layer/ocean_back.png" id="5_vd8h0"]
+[ext_resource type="Texture2D" uid="uid://bjm2jugt3lgik" path="res://world/parallax_2d_layer/ocean_front.png" id="6_mwkxx"]
+[ext_resource type="Texture2D" uid="uid://c0rh6wpn15uo1" path="res://world/shallows/ocean_surface_light.png" id="7_64aqm"]
+[ext_resource type="Texture2D" uid="uid://c0qtbaxpx7pic" path="res://world/shallows/ocean_surface_distort.png" id="8_ea2l5"]
+[ext_resource type="Texture2D" uid="uid://0br2fbkys6ob" path="res://world/shallows/cliff_wall_left_front.png" id="9_olmvm"]
+[ext_resource type="Texture2D" uid="uid://ol70tvc2u3jj" path="res://world/shallows/cliff_wall_left_back.png" id="10_cxsdh"]
+[ext_resource type="Texture2D" uid="uid://73j4gep5jqyx" path="res://world/parallax_2d_layer/ocean_middle.png" id="11_sr3cf"]
+[ext_resource type="Texture2D" uid="uid://1gnqesbohr3l" path="res://world/shallows/shallows.png" id="12_1jc31"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_usalr"]
 friction = 0.0
@@ -60,6 +69,7 @@ rotation = 3.1415927
 shape = SubResource("WorldBoundaryShape2D_usalr")
 
 [node name="LeftIsland" type="StaticBody2D" parent="."]
+visible = false
 position = Vector2(-33, 138)
 collision_layer = 2
 collision_mask = 5
@@ -74,6 +84,7 @@ scale = Vector2(0.98571426, 0.42187506)
 texture = SubResource("GradientTexture2D_fv0dc")
 
 [node name="LeftWall" type="StaticBody2D" parent="."]
+visible = false
 position = Vector2(-131, 480)
 collision_layer = 2
 collision_mask = 5
@@ -85,6 +96,7 @@ shape = SubResource("RectangleShape2D_7iohk")
 texture = SubResource("GradientTexture2D_usalr")
 
 [node name="LeftCave" type="StaticBody2D" parent="."]
+visible = false
 position = Vector2(-61, 256)
 collision_layer = 2
 collision_mask = 5
@@ -99,6 +111,7 @@ scale = Vector2(0.83214283, 0.3593747)
 texture = SubResource("GradientTexture2D_fv0dc")
 
 [node name="RightIsland" type="StaticBody2D" parent="."]
+visible = false
 position = Vector2(530, 135)
 collision_layer = 2
 collision_mask = 5
@@ -113,6 +126,7 @@ scale = Vector2(1, 0.18750004)
 texture = SubResource("GradientTexture2D_fv0dc")
 
 [node name="RightCave1a" type="StaticBody2D" parent="."]
+visible = false
 position = Vector2(559, 159)
 collision_layer = 2
 collision_mask = 5
@@ -127,6 +141,7 @@ scale = Vector2(1, 1.0078125)
 texture = SubResource("GradientTexture2D_fv0dc")
 
 [node name="RightCave1b" type="StaticBody2D" parent="."]
+visible = false
 position = Vector2(539, 426)
 collision_layer = 2
 collision_mask = 5
@@ -141,6 +156,7 @@ scale = Vector2(0.6785714, 1.4609377)
 texture = SubResource("GradientTexture2D_fv0dc")
 
 [node name="RightWall" type="StaticBody2D" parent="."]
+visible = false
 position = Vector2(635, 480)
 collision_layer = 2
 collision_mask = 5
@@ -166,3 +182,41 @@ position = Vector2(521, 368)
 [node name="SurvivorsJournalNote" parent="." instance=ExtResource("4_3a0gb")]
 position = Vector2(552, 369)
 id = 1
+
+[node name="CliffWallLeft" type="StaticBody2D" parent="."]
+
+[node name="Ocean" type="Sprite2D" parent="."]
+position = Vector2(640, 592)
+texture = ExtResource("5_mwkxx")
+
+[node name="OceanSurfaceDistort" type="Sprite2D" parent="."]
+position = Vector2(466, 96.5)
+texture = ExtResource("8_ea2l5")
+
+[node name="OceanSurfaceLight" type="Sprite2D" parent="."]
+position = Vector2(428, 46.5)
+texture = ExtResource("7_64aqm")
+
+[node name="OceanBack" type="Sprite2D" parent="."]
+position = Vector2(551.5, 155.5)
+texture = ExtResource("5_vd8h0")
+
+[node name="OceanMiddle" type="Sprite2D" parent="."]
+position = Vector2(547, 214.5)
+texture = ExtResource("11_sr3cf")
+
+[node name="CliffWallLeftFront" type="Sprite2D" parent="."]
+position = Vector2(209, 174.5)
+texture = ExtResource("9_olmvm")
+
+[node name="CliffWallLeftBack" type="Sprite2D" parent="."]
+position = Vector2(251, 157)
+texture = ExtResource("10_cxsdh")
+
+[node name="OceanFront" type="Sprite2D" parent="."]
+position = Vector2(557.5, 236.5)
+texture = ExtResource("6_mwkxx")
+
+[node name="Shallows" type="Sprite2D" parent="."]
+position = Vector2(640, 283)
+texture = ExtResource("12_1jc31")

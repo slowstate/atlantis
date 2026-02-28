@@ -15,5 +15,3 @@ dest_files=["res://common/localisation/locales_notes.en.translation"]
 
 compress=true
 delimiter=0
-unescape_keys=false
-unescape_translations=true
