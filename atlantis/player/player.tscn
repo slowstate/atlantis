@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://j51i3vf5hn3d"]
+[gd_scene load_steps=20 format=3 uid="uid://j51i3vf5hn3d"]
 
 [ext_resource type="Script" uid="uid://d33wj2wxlurur" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Texture2D" uid="uid://bhsbeiho1ftwj" path="res://player/player.png" id="2_g1dw6"]
@@ -11,8 +11,12 @@
 [ext_resource type="Script" uid="uid://by7vkwfrt78qv" path="res://player/PlayerStateMachine/drowning_state.gd" id="7_boad6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qjkh3"]
-radius = 6.0
-height = 16.0
+radius = 5.0
+height = 18.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hg6s5"]
+radius = 3.0
+height = 10.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g1dw6"]
 
@@ -51,11 +55,17 @@ font_size = 8
 [node name="Player" type="CharacterBody2D"]
 z_index = 9
 collision_mask = 2
-motion_mode = 1
+floor_stop_on_slope = false
+floor_constant_speed = true
 script = ExtResource("1_oul6g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
 shape = SubResource("CapsuleShape2D_qjkh3")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(1, 7)
+shape = SubResource("CapsuleShape2D_hg6s5")
 
 [node name="OxygenBox" type="Area2D" parent="."]
 collision_layer = 0

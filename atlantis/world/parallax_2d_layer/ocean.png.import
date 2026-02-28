@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://73j4gep5jqyx"
-path="res://.godot/imported/ocean_middle.png-24d88ac3baaa476648ddc30de8cf149f.ctex"
+uid="uid://okf7smr618ds"
+path="res://.godot/imported/ocean.png-16168065082e3e94f26343da617f62dd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://world/parallax_2d_layer/ocean_middle.png"
-dest_files=["res://.godot/imported/ocean_middle.png-24d88ac3baaa476648ddc30de8cf149f.ctex"]
+source_file="res://world/parallax_2d_layer/ocean.png"
+dest_files=["res://.godot/imported/ocean.png-16168065082e3e94f26343da617f62dd.ctex"]
 
 [params]
 
