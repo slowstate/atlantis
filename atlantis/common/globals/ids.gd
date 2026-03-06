@@ -6,7 +6,7 @@ enum Items {
 	MiningTool = 1,
 	# 100-199: Stackable resources
 	Glowstone = 100,
-	Diode = 101,
+	PhotonicInvertor = 101,
 	# 200-299: Quest items
 }
 enum Notes {

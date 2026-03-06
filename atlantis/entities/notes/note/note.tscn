@@ -19,6 +19,7 @@ fill_to = Vector2(1, 0.5)
 [sub_resource type="CircleShape2D" id="CircleShape2D_ft3vd"]
 
 [node name="Note" type="Sprite2D"]
+z_index = 9
 texture = SubResource("GradientTexture2D_lyyc8")
 script = ExtResource("1_ymd6p")
 

@@ -8,6 +8,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_ikjkm"]
 
 [node name="MiningTool" type="Node2D"]
+z_index = 9
 script = ExtResource("1_r1bsi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

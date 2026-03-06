@@ -8,10 +8,11 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_05abb"]
 
 [node name="Glowstone" type="Node2D"]
+z_index = 9
 script = ExtResource("1_05abb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.125, 0.125)
+position = Vector2(-5, 3)
 texture = ExtResource("1_o7jv2")
 
 [node name="InteractionBox" type="Area2D" parent="."]

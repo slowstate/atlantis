@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://j51i3vf5hn3d"]
+[gd_scene load_steps=22 format=3 uid="uid://j51i3vf5hn3d"]
 
 [ext_resource type="Script" uid="uid://d33wj2wxlurur" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Texture2D" uid="uid://bhsbeiho1ftwj" path="res://player/player.png" id="2_g1dw6"]
@@ -21,6 +21,18 @@ height = 10.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g1dw6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkbax"]
+
+[sub_resource type="Gradient" id="Gradient_hg6s5"]
+offsets = PackedFloat32Array(0.8888889, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8t03j"]
+gradient = SubResource("Gradient_hg6s5")
+width = 96
+height = 96
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_g1dw6"]
 font_size = 8
@@ -53,8 +65,8 @@ fill_to = Vector2(1, 1)
 font_size = 8
 
 [node name="Player" type="CharacterBody2D"]
-z_index = 9
-collision_mask = 2
+z_index = 99
+collision_mask = 66
 floor_stop_on_slope = false
 floor_constant_speed = true
 script = ExtResource("1_oul6g")
@@ -80,6 +92,10 @@ collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionBox"]
 shape = SubResource("CapsuleShape2D_rkbax")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.7
+texture = SubResource("GradientTexture2D_8t03j")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_g1dw6")

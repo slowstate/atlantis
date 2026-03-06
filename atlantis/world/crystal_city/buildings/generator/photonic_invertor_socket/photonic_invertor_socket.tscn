@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bn5lnmw0qd410"]
+
+[ext_resource type="Script" uid="uid://ylglnacmilfi" path="res://components/interactable/interactable.gd" id="1_4acip"]
+[ext_resource type="Script" uid="uid://b6h0n5vwgtqpp" path="res://world/crystal_city/buildings/generator/photonic_invertor_socket/photonic_invertor_socket.gd" id="1_at2gf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_at2gf"]
+size = Vector2(14, 14)
+
+[node name="PhotonicInvertorSocket" type="Node2D"]
+script = ExtResource("1_at2gf")
+
+[node name="InteractionBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionBox"]
+shape = SubResource("RectangleShape2D_at2gf")
+
+[node name="Interactable" type="Node" parent="." node_paths=PackedStringArray("interaction_box")]
+script = ExtResource("1_4acip")
+interaction_box = NodePath("../InteractionBox")
+metadata/_custom_type_script = "uid://ylglnacmilfi"
+
+[connection signal="just_interacted" from="Interactable" to="." method="_on_interactable_just_interacted"]
