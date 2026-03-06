@@ -1,0 +1,354 @@
+[gd_scene load_steps=73 format=3 uid="uid://cnojh8ult7c0v"]
+
+[ext_resource type="Script" uid="uid://dr6l7ajnsag05" path="res://common/sfx_manager/sfx_manager.gd" id="1_hetwi"]
+[ext_resource type="AudioStream" uid="uid://dilu1c57o7rld" path="res://audio/sfx/AirpocketAmbience/AirpocketAmbienceSFX1.mp3" id="2_wp0wu"]
+[ext_resource type="AudioStream" uid="uid://dbekon64q04sc" path="res://audio/sfx/AirpocketAmbience/AirpocketAmbienceSFX2.mp3" id="3_pe4fu"]
+[ext_resource type="AudioStream" uid="uid://vnvsmx7gim0k" path="res://audio/sfx/AirpocketAmbience/AirpocketAmbienceSFX3.mp3" id="4_jdanj"]
+[ext_resource type="AudioStream" uid="uid://d1ku87idigs61" path="res://audio/sfx/AirpocketAmbience/AirpocketAmbienceSFX4.mp3" id="5_4nmj1"]
+[ext_resource type="AudioStream" uid="uid://clmk2m6mc17t7" path="res://audio/sfx/AirpocketAmbience/AirpocketAmbienceSFX5.mp3" id="6_xcqxa"]
+[ext_resource type="AudioStream" uid="uid://buthoq5vugbi" path="res://audio/sfx/ARGODisturbWater/ARGODisturbWaterSFX1.mp3" id="7_k0t34"]
+[ext_resource type="AudioStream" uid="uid://cdockx2aogdfu" path="res://audio/sfx/ARGODisturbWater/ARGODisturbWaterSFX2.mp3" id="8_4d7pp"]
+[ext_resource type="AudioStream" uid="uid://bpwh7l4s4vn0j" path="res://audio/sfx/ARGODisturbWater/ARGODisturbWaterSFX3.mp3" id="9_4inm2"]
+[ext_resource type="AudioStream" uid="uid://dlqcsqdtt0fco" path="res://audio/sfx/ARGODisturbWater/ARGODisturbWaterSFX4.mp3" id="10_nyfd2"]
+[ext_resource type="AudioStream" uid="uid://xixe7skyjpxh" path="res://audio/sfx/ARGODoor/ARGODoorSFX1.mp3" id="11_ehcjt"]
+[ext_resource type="AudioStream" uid="uid://b5nu2u8b3yefh" path="res://audio/sfx/ARGODrive/ARGODriveSFX1.mp3" id="12_caj56"]
+[ext_resource type="AudioStream" uid="uid://c7oc22rtgrvqv" path="res://audio/sfx/ClickButton/ClickButtonSFX1.mp3" id="13_a3glf"]
+[ext_resource type="AudioStream" uid="uid://donr5ts3yj77x" path="res://audio/sfx/CollectInverter/CollectInverterSFX1.mp3" id="14_fwp0a"]
+[ext_resource type="AudioStream" uid="uid://bpbda3rx42qr3" path="res://audio/sfx/CollectNote/CollectNoteSFX1.mp3" id="15_jwl5s"]
+[ext_resource type="AudioStream" uid="uid://c0m8v5sqkjwiq" path="res://audio/sfx/CollectNote/CollectNoteSFX2.mp3" id="16_as5h3"]
+[ext_resource type="AudioStream" uid="uid://c8fcpf6uxv7fa" path="res://audio/sfx/CollectNote/CollectNoteSFX3.mp3" id="17_4eill"]
+[ext_resource type="AudioStream" uid="uid://csy7q5x2hdwx" path="res://audio/sfx/DismantleMachine/DismantleMachineSFX1.mp3" id="18_bvgoq"]
+[ext_resource type="AudioStream" uid="uid://bbgbbyuoa8mm5" path="res://audio/sfx/DoorLocked/DoorLockedSFX1.mp3" id="19_vudd4"]
+[ext_resource type="AudioStream" uid="uid://btjngokw73j3o" path="res://audio/sfx/Earthquake/EarthquakeSFX1.mp3" id="20_ahimh"]
+[ext_resource type="AudioStream" uid="uid://kyvgc0sqryto" path="res://audio/sfx/Earthquake/EarthquakeSFX2.mp3" id="21_cfjt1"]
+[ext_resource type="AudioStream" uid="uid://srrkjkdlibiw" path="res://audio/sfx/Earthquake/EarthquakeSFX3.mp3" id="22_hc2vs"]
+[ext_resource type="AudioStream" uid="uid://bl3hp1fokrl1v" path="res://audio/sfx/Earthquake/EarthquakeSFX4.mp3" id="23_lmlg1"]
+[ext_resource type="AudioStream" uid="uid://ciqfmil4shpe6" path="res://audio/sfx/EmailReceived/EmailReceivedSFX1.mp3" id="24_luxrm"]
+[ext_resource type="AudioStream" uid="uid://de56u4idusoeo" path="res://audio/sfx/GeneratorBreak/GeneratorBreakSFX1.mp3" id="25_7myrm"]
+[ext_resource type="AudioStream" uid="uid://cua8sumb5dx55" path="res://audio/sfx/GeneratorRunning/GeneratorRunningSFX1.mp3" id="26_55a64"]
+[ext_resource type="AudioStream" uid="uid://p4ikp7ukqfca" path="res://audio/sfx/GeneratorShort/GeneratorShortSFX1.mp3" id="27_i6bx1"]
+[ext_resource type="AudioStream" uid="uid://cxh6hyd6yi21q" path="res://audio/sfx/GeneratorStart/GeneratorStartSFX1.mp3" id="28_ylo4h"]
+[ext_resource type="AudioStream" uid="uid://bvq0wr45g1688" path="res://audio/sfx/IncorrectTool/IncorrectToolSFX1.mp3" id="29_mgsgm"]
+[ext_resource type="AudioStream" uid="uid://bj8rw7wg27ta4" path="res://audio/sfx/IncorrectTool/IncorrectToolSFX2.mp3" id="30_n0w8e"]
+[ext_resource type="AudioStream" uid="uid://b1al00x1miy7d" path="res://audio/sfx/InsertInverter/InsertInverterSFX1.mp3" id="31_yeyvh"]
+[ext_resource type="AudioStream" uid="uid://cc8mmbnwti74e" path="res://audio/sfx/LandAmbience/LandAmbienceSFX1.mp3" id="32_d5ie2"]
+[ext_resource type="AudioStream" uid="uid://bhhck6k6d4qt0" path="res://audio/sfx/OpenDoor/OpenDoorSFX1.mp3" id="33_te14l"]
+[ext_resource type="AudioStream" uid="uid://xjd56ye8jikm" path="res://audio/sfx/OpenDoor/OpenDoorSFX2.mp3" id="34_bdrlc"]
+[ext_resource type="AudioStream" uid="uid://cvt4c27dv156m" path="res://audio/sfx/PlayerSwim/PlayerSwimSFX1.mp3" id="35_d878c"]
+[ext_resource type="AudioStream" uid="uid://doy6wvuuxrfny" path="res://audio/sfx/PlayerSwim/PlayerSwimSFX2.mp3" id="36_xdlsk"]
+[ext_resource type="AudioStream" uid="uid://b01evupvoyqlj" path="res://audio/sfx/PlayerSwim/PlayerSwimSFX3.mp3" id="37_1od4d"]
+[ext_resource type="AudioStream" uid="uid://bxq2cxgwkf3e4" path="res://audio/sfx/PlayerSwim/PlayerSwimSFX4.mp3" id="38_s38c2"]
+[ext_resource type="AudioStream" uid="uid://bedd4api2r25g" path="res://audio/sfx/PlayerSwim/PlayerSwimSFX5.mp3" id="39_b6fx1"]
+[ext_resource type="AudioStream" uid="uid://bptg0splosfp6" path="res://audio/sfx/PressButton/PressButtonSFX1.mp3" id="40_4n7um"]
+[ext_resource type="AudioStream" uid="uid://2bvsvukiop0l" path="res://audio/sfx/PressButton/PressButtonSFX2.mp3" id="41_vvlxd"]
+[ext_resource type="AudioStream" uid="uid://j6yid8lhba7g" path="res://audio/sfx/RefillOxygen/RefillOxygenSFX1.mp3" id="42_ypcbq"]
+[ext_resource type="AudioStream" uid="uid://cnulj6cl8cojg" path="res://audio/sfx/RefillOxygen/RefillOxygenSFX2.mp3" id="43_xqgif"]
+[ext_resource type="AudioStream" uid="uid://dj2of06rtxh10" path="res://audio/sfx/RefillOxygen/RefillOxygenSFX3.mp3" id="44_q1cel"]
+[ext_resource type="AudioStream" uid="uid://dmtgep26a4rq0" path="res://audio/sfx/Rubble/RubbleSFX1.mp3" id="45_1qog6"]
+[ext_resource type="AudioStream" uid="uid://bwgck72txtlpc" path="res://audio/sfx/Rubble/RubbleSFX2.mp3" id="46_0xvgn"]
+[ext_resource type="AudioStream" uid="uid://d3sdnhkkeroyy" path="res://audio/sfx/Rubble/RubbleSFX3.mp3" id="47_rfr5h"]
+[ext_resource type="AudioStream" uid="uid://d3pbwqmjiokhx" path="res://audio/sfx/Rubble/RubbleSFX4.mp3" id="48_h12r6"]
+[ext_resource type="AudioStream" uid="uid://et6bi3qg6lio" path="res://audio/sfx/Rubble/RubbleSFX5.mp3" id="49_3l3mq"]
+[ext_resource type="AudioStream" uid="uid://cihkiu8xy77sf" path="res://audio/sfx/Rubble/RubbleSFX6.mp3" id="50_gsm6w"]
+[ext_resource type="AudioStream" uid="uid://dragk1qbf5cnw" path="res://audio/sfx/Rubble/RubbleSFX7.mp3" id="51_8c86t"]
+[ext_resource type="AudioStream" uid="uid://c6bdi77ys0cyl" path="res://audio/sfx/Search/SearchSFX1.mp3" id="52_jeqxx"]
+[ext_resource type="AudioStream" uid="uid://cpu56a3w7ml14" path="res://audio/sfx/Search/SearchSFX2.mp3" id="53_88kin"]
+[ext_resource type="AudioStream" uid="uid://80r3n5nibp5t" path="res://audio/sfx/UnderwaterAmbience/UnderwaterAmbienceSFX1.mp3" id="54_qndp4"]
+[ext_resource type="AudioStream" uid="uid://b7bq17kps28wt" path="res://audio/sfx/UnderwaterAmbience/UnderwaterAmbienceSFX2.mp3" id="55_ymwc7"]
+[ext_resource type="AudioStream" uid="uid://c1rif2u8mfack" path="res://audio/sfx/UnderwaterAmbience/UnderwaterAmbienceSFX3.mp3" id="56_5bsqn"]
+[ext_resource type="AudioStream" uid="uid://h6u1obmj0c44" path="res://audio/sfx/UnderwaterAmbience/UnderwaterAmbienceSFX4.mp3" id="57_fg1mu"]
+[ext_resource type="AudioStream" uid="uid://4dl26we8ydc0" path="res://audio/sfx/UnderwaterAmbience/UnderwaterAmbienceSFX5.mp3" id="58_aqjpk"]
+[ext_resource type="AudioStream" uid="uid://rdixjou4q7cl" path="res://audio/sfx/UnderwaterAmbience/UnderwaterAmbienceSFX6.mp3" id="59_7dh6m"]
+[ext_resource type="AudioStream" uid="uid://cnmspu6degbux" path="res://audio/sfx/UnderwaterAmbience/UnderwaterAmbienceSFX7.mp3" id="60_1wthn"]
+[ext_resource type="AudioStream" uid="uid://bbddy7qlavuwi" path="res://audio/sfx/UnderwaterAmbience/UnderwaterAmbienceSFX8.mp3" id="61_fvkbk"]
+[ext_resource type="AudioStream" uid="uid://bp5dg2j6nirkp" path="res://audio/sfx/UnderwaterAmbience/UnderwaterAmbienceSFX9.mp3" id="62_ixg4g"]
+[ext_resource type="AudioStream" uid="uid://73j158jjcvuu" path="res://audio/sfx/UnderwaterDrone/UnderwaterDroneSFX1.mp3" id="63_54c6c"]
+[ext_resource type="AudioStream" uid="uid://cioqep6g413hj" path="res://audio/sfx/UnderwaterDrone/UnderwaterDroneSFX2.mp3" id="64_fl3pf"]
+[ext_resource type="AudioStream" uid="uid://jsrkm42ujhgc" path="res://audio/sfx/UnderwaterDrone/UnderwaterDroneSFX3.mp3" id="65_q658x"]
+[ext_resource type="AudioStream" uid="uid://5qpmyb6epnbc" path="res://audio/sfx/UnderwaterDrone/UnderwaterDroneSFX4.mp3" id="66_84dgi"]
+[ext_resource type="AudioStream" uid="uid://disgrwlcbeipy" path="res://audio/sfx/UnderwaterDrone/UnderwaterDroneSFX5.mp3" id="67_vegcj"]
+[ext_resource type="AudioStream" uid="uid://bbul32mfseqh6" path="res://audio/sfx/UnderwaterDrone/UnderwaterDroneSFX6.mp3" id="68_j4rak"]
+[ext_resource type="AudioStream" uid="uid://bafoiry1jrwk2" path="res://audio/sfx/UnderwaterDrone/UnderwaterDroneSFX7.mp3" id="69_cqvci"]
+[ext_resource type="AudioStream" uid="uid://b6fvlppf4hm41" path="res://audio/sfx/UnderwaterDrone/UnderwaterDroneSFX8.mp3" id="70_wqtiv"]
+[ext_resource type="AudioStream" uid="uid://dc5tp5pmhr58m" path="res://audio/sfx/UnderwaterDrone/UnderwaterDroneSFX9.mp3" id="71_tqxsk"]
+[ext_resource type="AudioStream" uid="uid://dwb2wa5fom782" path="res://audio/sfx/UnderwaterDrone/UnderwaterDroneSFX10.mp3" id="72_wctae"]
+
+[node name="SfxManager" type="Node2D"]
+script = ExtResource("1_hetwi")
+
+[node name="AirpocketAmbience" type="Node" parent="."]
+
+[node name="AirpocketAmbienceSFX1" type="AudioStreamPlayer" parent="AirpocketAmbience"]
+stream = ExtResource("2_wp0wu")
+
+[node name="AirpocketAmbienceSFX2" type="AudioStreamPlayer" parent="AirpocketAmbience"]
+stream = ExtResource("3_pe4fu")
+
+[node name="AirpocketAmbienceSFX3" type="AudioStreamPlayer" parent="AirpocketAmbience"]
+stream = ExtResource("4_jdanj")
+
+[node name="AirpocketAmbienceSFX4" type="AudioStreamPlayer" parent="AirpocketAmbience"]
+stream = ExtResource("5_4nmj1")
+
+[node name="AirpocketAmbienceSFX5" type="AudioStreamPlayer" parent="AirpocketAmbience"]
+stream = ExtResource("6_xcqxa")
+
+[node name="ActivateHammerbolt" type="Node" parent="."]
+
+[node name="ActivateHammerboltSFX1" type="AudioStreamPlayer" parent="ActivateHammerbolt"]
+
+[node name="ARGODisturbWater" type="Node" parent="."]
+
+[node name="ARGODisturbWaterSFX1" type="AudioStreamPlayer" parent="ARGODisturbWater"]
+stream = ExtResource("7_k0t34")
+
+[node name="ARGODisturbWaterSFX2" type="AudioStreamPlayer" parent="ARGODisturbWater"]
+stream = ExtResource("8_4d7pp")
+
+[node name="ARGODisturbWaterSFX3" type="AudioStreamPlayer" parent="ARGODisturbWater"]
+stream = ExtResource("9_4inm2")
+
+[node name="ARGODisturbWaterSFX4" type="AudioStreamPlayer" parent="ARGODisturbWater"]
+stream = ExtResource("10_nyfd2")
+
+[node name="ARGODoor" type="Node" parent="."]
+
+[node name="ARGODoorSFX1" type="AudioStreamPlayer" parent="ARGODoor"]
+stream = ExtResource("11_ehcjt")
+
+[node name="ARGODrive" type="Node" parent="."]
+
+[node name="ARGODriveSFX1" type="AudioStreamPlayer" parent="ARGODrive"]
+stream = ExtResource("12_caj56")
+
+[node name="ClickButton" type="Node" parent="."]
+
+[node name="ClickButtonSFX1" type="AudioStreamPlayer" parent="ClickButton"]
+stream = ExtResource("13_a3glf")
+
+[node name="CollectInverter" type="Node" parent="."]
+
+[node name="CollectDiodeSFX1" type="AudioStreamPlayer" parent="CollectInverter"]
+stream = ExtResource("14_fwp0a")
+
+[node name="CollectNote" type="Node" parent="."]
+
+[node name="CollectNoteSFX1" type="AudioStreamPlayer" parent="CollectNote"]
+stream = ExtResource("15_jwl5s")
+
+[node name="CollectNoteSFX2" type="AudioStreamPlayer" parent="CollectNote"]
+stream = ExtResource("16_as5h3")
+
+[node name="CollectNoteSFX3" type="AudioStreamPlayer" parent="CollectNote"]
+stream = ExtResource("17_4eill")
+
+[node name="DepositGlowstone" type="Node" parent="."]
+
+[node name="DepositGlowstoneSFX1" type="AudioStreamPlayer" parent="DepositGlowstone"]
+
+[node name="DismantleMachine" type="Node" parent="."]
+
+[node name="DismantleMachineSFX" type="AudioStreamPlayer" parent="DismantleMachine"]
+stream = ExtResource("18_bvgoq")
+
+[node name="DoorLocked" type="Node" parent="."]
+
+[node name="DoorLockedSFX1" type="AudioStreamPlayer" parent="DoorLocked"]
+stream = ExtResource("19_vudd4")
+
+[node name="Earthquake" type="Node" parent="."]
+
+[node name="EarthquakeSFX1" type="AudioStreamPlayer" parent="Earthquake"]
+stream = ExtResource("20_ahimh")
+
+[node name="EarthquakeSFX2" type="AudioStreamPlayer" parent="Earthquake"]
+stream = ExtResource("21_cfjt1")
+
+[node name="EarthquakeSFX3" type="AudioStreamPlayer" parent="Earthquake"]
+stream = ExtResource("22_hc2vs")
+
+[node name="EarthquakeSFX4" type="AudioStreamPlayer" parent="Earthquake"]
+stream = ExtResource("23_lmlg1")
+
+[node name="EmailReceived" type="Node" parent="."]
+
+[node name="EmailReceivedSFX1" type="AudioStreamPlayer" parent="EmailReceived"]
+stream = ExtResource("24_luxrm")
+
+[node name="GeneratorBreak" type="Node" parent="."]
+
+[node name="GeneratorBreakSFX" type="AudioStreamPlayer" parent="GeneratorBreak"]
+stream = ExtResource("25_7myrm")
+
+[node name="GeneratorRunning" type="Node" parent="."]
+
+[node name="GeneratorRunningSFX1" type="AudioStreamPlayer" parent="GeneratorRunning"]
+stream = ExtResource("26_55a64")
+
+[node name="GeneratorShort" type="Node" parent="."]
+
+[node name="GeneratorShortSFX1" type="AudioStreamPlayer" parent="GeneratorShort"]
+stream = ExtResource("27_i6bx1")
+
+[node name="GeneratorStart" type="Node" parent="."]
+
+[node name="GeneratorStartSFX1" type="AudioStreamPlayer" parent="GeneratorStart"]
+stream = ExtResource("28_ylo4h")
+
+[node name="IncorrectTool" type="Node" parent="."]
+
+[node name="IncorrectToolSFX1" type="AudioStreamPlayer" parent="IncorrectTool"]
+stream = ExtResource("29_mgsgm")
+
+[node name="IncorrectToolSFX2" type="AudioStreamPlayer" parent="IncorrectTool"]
+stream = ExtResource("30_n0w8e")
+
+[node name="InsertInverter" type="Node" parent="."]
+
+[node name="InsertInverterSFX1" type="AudioStreamPlayer" parent="InsertInverter"]
+stream = ExtResource("31_yeyvh")
+
+[node name="LandAmbience" type="Node" parent="."]
+
+[node name="LandAmbienceSFX1" type="AudioStreamPlayer" parent="LandAmbience"]
+stream = ExtResource("32_d5ie2")
+
+[node name="MiningSuccess" type="Node" parent="."]
+
+[node name="MiningSuccessSFX" type="AudioStreamPlayer" parent="MiningSuccess"]
+
+[node name="OpenDoor" type="Node" parent="."]
+
+[node name="OpenDoorSFX1" type="AudioStreamPlayer" parent="OpenDoor"]
+stream = ExtResource("33_te14l")
+
+[node name="OpenDoorSFX2" type="AudioStreamPlayer" parent="OpenDoor"]
+stream = ExtResource("34_bdrlc")
+
+[node name="PlayerSwim" type="Node" parent="."]
+
+[node name="PlayerSwimSFX1" type="AudioStreamPlayer" parent="PlayerSwim"]
+stream = ExtResource("35_d878c")
+
+[node name="PlayerSwimSFX2" type="AudioStreamPlayer" parent="PlayerSwim"]
+stream = ExtResource("36_xdlsk")
+
+[node name="PlayerSwimSFX3" type="AudioStreamPlayer" parent="PlayerSwim"]
+stream = ExtResource("37_1od4d")
+
+[node name="PlayerSwimSFX4" type="AudioStreamPlayer" parent="PlayerSwim"]
+stream = ExtResource("38_s38c2")
+
+[node name="PlayerSwimSFX5" type="AudioStreamPlayer" parent="PlayerSwim"]
+stream = ExtResource("39_b6fx1")
+
+[node name="PressButton" type="Node" parent="."]
+
+[node name="PressButtonSFX1" type="AudioStreamPlayer" parent="PressButton"]
+stream = ExtResource("40_4n7um")
+
+[node name="PressButtonSFX2" type="AudioStreamPlayer" parent="PressButton"]
+stream = ExtResource("41_vvlxd")
+
+[node name="RefillOxygen" type="Node" parent="."]
+
+[node name="RefillOxygenSFX1" type="AudioStreamPlayer" parent="RefillOxygen"]
+stream = ExtResource("42_ypcbq")
+
+[node name="RefillOxygenSFX2" type="AudioStreamPlayer" parent="RefillOxygen"]
+stream = ExtResource("43_xqgif")
+
+[node name="RefillOxygenSFX3" type="AudioStreamPlayer" parent="RefillOxygen"]
+stream = ExtResource("44_q1cel")
+
+[node name="Rubble" type="Node" parent="."]
+
+[node name="RubbleSFX1" type="AudioStreamPlayer" parent="Rubble"]
+stream = ExtResource("45_1qog6")
+
+[node name="RubbleSFX2" type="AudioStreamPlayer" parent="Rubble"]
+stream = ExtResource("46_0xvgn")
+
+[node name="RubbleSFX3" type="AudioStreamPlayer" parent="Rubble"]
+stream = ExtResource("47_rfr5h")
+
+[node name="RubbleSFX4" type="AudioStreamPlayer" parent="Rubble"]
+stream = ExtResource("48_h12r6")
+
+[node name="RubbleSFX5" type="AudioStreamPlayer" parent="Rubble"]
+stream = ExtResource("49_3l3mq")
+
+[node name="RubbleSFX6" type="AudioStreamPlayer" parent="Rubble"]
+stream = ExtResource("50_gsm6w")
+
+[node name="RubbleSFX7" type="AudioStreamPlayer" parent="Rubble"]
+stream = ExtResource("51_8c86t")
+
+[node name="Search" type="Node" parent="."]
+
+[node name="SearchSFX1" type="AudioStreamPlayer" parent="Search"]
+stream = ExtResource("52_jeqxx")
+
+[node name="SearchSFX2" type="AudioStreamPlayer" parent="Search"]
+stream = ExtResource("53_88kin")
+
+[node name="UnderwaterAmbience" type="Node" parent="."]
+
+[node name="UnderwaterAmbienceSFX1" type="AudioStreamPlayer" parent="UnderwaterAmbience"]
+stream = ExtResource("54_qndp4")
+
+[node name="UnderwaterAmbienceSFX2" type="AudioStreamPlayer" parent="UnderwaterAmbience"]
+stream = ExtResource("55_ymwc7")
+
+[node name="UnderwaterAmbienceSFX3" type="AudioStreamPlayer" parent="UnderwaterAmbience"]
+stream = ExtResource("56_5bsqn")
+
+[node name="UnderwaterAmbienceSFX4" type="AudioStreamPlayer" parent="UnderwaterAmbience"]
+stream = ExtResource("57_fg1mu")
+
+[node name="UnderwaterAmbienceSFX5" type="AudioStreamPlayer" parent="UnderwaterAmbience"]
+stream = ExtResource("58_aqjpk")
+
+[node name="UnderwaterAmbienceSFX6" type="AudioStreamPlayer" parent="UnderwaterAmbience"]
+stream = ExtResource("59_7dh6m")
+
+[node name="UnderwaterAmbienceSFX7" type="AudioStreamPlayer" parent="UnderwaterAmbience"]
+stream = ExtResource("60_1wthn")
+
+[node name="UnderwaterAmbienceSFX8" type="AudioStreamPlayer" parent="UnderwaterAmbience"]
+stream = ExtResource("61_fvkbk")
+
+[node name="UnderwaterAmbienceSFX9" type="AudioStreamPlayer" parent="UnderwaterAmbience"]
+stream = ExtResource("62_ixg4g")
+
+[node name="UnderwaterDrone" type="Node" parent="."]
+
+[node name="UnderwaterDroneSFX1" type="AudioStreamPlayer" parent="UnderwaterDrone"]
+stream = ExtResource("63_54c6c")
+
+[node name="UnderwaterDroneSFX2" type="AudioStreamPlayer" parent="UnderwaterDrone"]
+stream = ExtResource("64_fl3pf")
+
+[node name="UnderwaterDroneSFX3" type="AudioStreamPlayer" parent="UnderwaterDrone"]
+stream = ExtResource("65_q658x")
+
+[node name="UnderwaterDroneSFX4" type="AudioStreamPlayer" parent="UnderwaterDrone"]
+stream = ExtResource("66_84dgi")
+
+[node name="UnderwaterDroneSFX5" type="AudioStreamPlayer" parent="UnderwaterDrone"]
+stream = ExtResource("67_vegcj")
+
+[node name="UnderwaterDroneSFX6" type="AudioStreamPlayer" parent="UnderwaterDrone"]
+stream = ExtResource("68_j4rak")
+
+[node name="UnderwaterDroneSFX7" type="AudioStreamPlayer" parent="UnderwaterDrone"]
+stream = ExtResource("69_cqvci")
+
+[node name="UnderwaterDroneSFX8" type="AudioStreamPlayer" parent="UnderwaterDrone"]
+stream = ExtResource("70_wqtiv")
+
+[node name="UnderwaterDroneSFX9" type="AudioStreamPlayer" parent="UnderwaterDrone"]
+stream = ExtResource("71_tqxsk")
+
+[node name="UnderwaterDroneSFX10" type="AudioStreamPlayer" parent="UnderwaterDrone"]
+stream = ExtResource("72_wctae")

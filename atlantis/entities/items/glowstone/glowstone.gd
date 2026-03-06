@@ -19,3 +19,5 @@ func _physics_process(_delta: float) -> void:
 func _on_interactable_just_interacted() -> void:
 	if Globals.player.inventory.has_item(Ids.Items.MiningTool):
 		mined = true
+	else:
+		SfxManager.play_sfx("IncorrectTool",0,-20,-15,0.9,1.1)

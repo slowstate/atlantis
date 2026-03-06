@@ -52,7 +52,9 @@ func _process(delta: float) -> void:
 func _on_interactable_just_interacted() -> void:
 	if !Globals.player.inventory.has_note(Ids.Notes.ArkPlans):
 		Globals.player.inventory.add_note(Ids.Notes.ArkPlans)
+		SfxManager.play_sfx("EmailReceived",0,-20,-15,0.9,1.1)
 	if Globals.player.currently_selected_tool == Ids.Items.Glowstone:
 		Globals.player.inventory.remove_item(Ids.Items.Glowstone)
 		repaired = true
 		add_child(Dialogue.create("M's message", 3.0, Vector2(0.0, -40.0)))
+		SfxManager.play_sfx("EmailReceived",0,-20,-15,0.9,1.1)

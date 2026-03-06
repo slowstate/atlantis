@@ -22,3 +22,4 @@ func collect() -> void:
 		(Globals.player.inventory as Inventory).add_item(owner.id)
 	if owner is Note:
 		(Globals.player.inventory as Inventory).add_note(owner.id)
+		SfxManager.play_sfx("CollectNote",0,-20,-15,0.9,1.1)

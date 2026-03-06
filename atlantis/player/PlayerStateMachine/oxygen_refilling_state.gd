@@ -14,7 +14,7 @@ func enter() -> void:
 	player = owner as Player
 	assert(player != null, "Error: Owner must be Player scene and cannot be null.")
 	drowning_gradient = drowning_overlay.texture
-
+	SfxManager.play_sfx("RefillOxygen",0.2,-20.0,-15.0,0.9,1.1)
 
 func exit() -> void:
 	pass

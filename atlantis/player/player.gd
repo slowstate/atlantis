@@ -114,6 +114,7 @@ func _input(event: InputEvent) -> void:
 				_dialogue("It's too dark in here, maybe I can light it up somehow")
 			var interactable_component = ComponentUtils.get_component(warehouse, Interactable.string_name) as Interactable
 			interactable_component.interact()
+			SfxManager.play_sfx("OpenDoor",0,-20,-15,0.9,1.1)
 
 		if frontmost_interactable is WarehouseInterior:
 			var warehouse = frontmost_interactable
@@ -140,6 +141,7 @@ func enter_argo(is_entering: bool) -> void:
 	is_in_argo = is_entering
 	player_sprite.visible = !is_in_argo
 	Globals.argo.drive = is_in_argo
+	SfxManager.play_sfx("ARGODoor",0,-20.0,-15.0,0.9,1.1)
 	if is_in_argo:
 		spawn_point = ComponentUtils.get_component(Globals.argo, SpawnPoint.string_name) as SpawnPoint
 

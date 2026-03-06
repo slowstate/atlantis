@@ -10,4 +10,5 @@ func _init() -> void:
 
 func _on_interactable_just_interacted() -> void:
 	collectable.collect()
+	SfxManager.play_sfx("CollectInverter",0,-20,-15,0.9,1.1)
 	queue_free()
