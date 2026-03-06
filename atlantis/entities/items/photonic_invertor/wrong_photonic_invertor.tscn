@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ndopql3dys0y"]
 
-[ext_resource type="Script" uid="uid://6bjjpew41rx0" path="res://entities/items/diode/wrong_diode.gd" id="1_usu1g"]
+[ext_resource type="Script" uid="uid://6bjjpew41rx0" path="res://entities/items/photonic_invertor/wrong_photonic_invertor.gd" id="1_usu1g"]
 [ext_resource type="Script" uid="uid://ylglnacmilfi" path="res://components/interactable/interactable.gd" id="2_v1pku"]
 
 [sub_resource type="Gradient" id="Gradient_8v70o"]
@@ -15,7 +15,7 @@ height = 4
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0s52t"]
 size = Vector2(12, 4)
 
-[node name="WrongDiode" type="Node2D"]
+[node name="WrongPhotonicInvertor" type="Node2D"]
 script = ExtResource("1_usu1g")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

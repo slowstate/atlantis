@@ -1,25 +1,55 @@
-[gd_scene load_steps=15 format=3 uid="uid://78dtm2oyn1qs"]
+[gd_scene load_steps=34 format=3 uid="uid://78dtm2oyn1qs"]
 
 [ext_resource type="Script" uid="uid://j2aeuxkdgo4t" path="res://world/crystal_city/crystal_city.gd" id="1_bxvt2"]
 [ext_resource type="PackedScene" uid="uid://d26r2a2m086uo" path="res://world/crystal_city/buildings/warehouse/warehouse.tscn" id="1_p0dhy"]
 [ext_resource type="PackedScene" uid="uid://hw1iho5ivxbw" path="res://world/crystal_city/buildings/generator/generator.tscn" id="2_3xwy7"]
 [ext_resource type="Texture2D" uid="uid://bp5vvcvsefvxx" path="res://world/crystal_city/buildings/rothschild_building/rothschild_building.png" id="2_q3f7c"]
+[ext_resource type="Script" uid="uid://bf37rou75fm6v" path="res://world/parallax_2d_layer/parallax_2d_layer.gd" id="2_xw1xy"]
 [ext_resource type="PackedScene" uid="uid://bod07y12hlqh" path="res://world/crystal_city/buildings/warehouse/warehouse_interior.tscn" id="3_5r0gn"]
 [ext_resource type="Texture2D" uid="uid://c3cqdmmdu1pep" path="res://world/crystal_city/buildings/rothschild_building/rothschild_building_light.png" id="3_l36ib"]
+[ext_resource type="Texture2D" uid="uid://y3mww0r4fjc7" path="res://world/parallax_2d_layer/city_lights_1.png" id="5_6t3uo"]
 [ext_resource type="PackedScene" uid="uid://clsxexl5mayua" path="res://world/crystal_city/buildings/rocket_hangar/rocket_hangar.tscn" id="5_iojnm"]
 [ext_resource type="Texture2D" uid="uid://cb8jt5s32iw6k" path="res://world/crystal_city/buildings/building_1/building_1.png" id="6_7f3va"]
 [ext_resource type="Script" uid="uid://c5lkvw0sbomdj" path="res://common/camera_focus/camera_focus.gd" id="6_dg3dl"]
+[ext_resource type="Texture2D" uid="uid://cxhw3r6v0iv3e" path="res://world/parallax_2d_layer/city_lights_2.png" id="6_uduu4"]
+[ext_resource type="Texture2D" uid="uid://b3o2r4ibfh5m2" path="res://world/parallax_2d_layer/city_lights_3.png" id="7_dpvh0"]
 [ext_resource type="Texture2D" uid="uid://b78acuj880sps" path="res://world/crystal_city/buildings/building_1/building_1_light.png" id="7_xw1xy"]
+[ext_resource type="Texture2D" uid="uid://chk5uq4udmw11" path="res://world/parallax_2d_layer/city_lights_4.png" id="8_upa4o"]
+[ext_resource type="Texture2D" uid="uid://dqxsfpe6jencr" path="res://world/parallax_2d_layer/city_lights_5.png" id="9_hk0ii"]
+[ext_resource type="Texture2D" uid="uid://cbhg6n66yckfp" path="res://world/parallax_2d_layer/city_lights_6.png" id="10_kq7w8"]
+[ext_resource type="Texture2D" uid="uid://c2vtbogeeqc7o" path="res://world/crystal_city/city_back.png" id="11_7f3va"]
+[ext_resource type="Texture2D" uid="uid://cjgaa0ivoyafu" path="res://world/parallax_2d_layer/city_lights_7.png" id="11_f1k0a"]
+[ext_resource type="Texture2D" uid="uid://bgegfrl8ogpbs" path="res://world/parallax_2d_layer/city_lights_8.png" id="12_vvbxk"]
+[ext_resource type="Texture2D" uid="uid://dfajsy8c2vjey" path="res://world/crystal_city/city_front.png" id="12_xw1xy"]
+[ext_resource type="Texture2D" uid="uid://d3mqyhw232xto" path="res://world/parallax_2d_layer/city_lights_9.png" id="13_ndn3o"]
+[ext_resource type="Texture2D" uid="uid://diet4wq3adouw" path="res://world/parallax_2d_layer/city_lights_10.png" id="14_g4m1y"]
+[ext_resource type="Texture2D" uid="uid://d3gir8yj22biv" path="res://world/parallax_2d_layer/city_lights_11.png" id="15_gqhme"]
+[ext_resource type="Texture2D" uid="uid://bo2byvdel016" path="res://world/parallax_2d_layer/city_lights_12.png" id="16_tspd7"]
+[ext_resource type="Texture2D" uid="uid://bjloeksyusqxn" path="res://world/parallax_2d_layer/city_lights_13.png" id="17_1v00c"]
 
 [sub_resource type="Gradient" id="Gradient_5r0gn"]
 offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.50980395, 0.28235295, 0, 1)
+colors = PackedColorArray(0.26400003, 0.3047, 0.33, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_iojnm"]
 gradient = SubResource("Gradient_5r0gn")
+width = 1600
+height = 329
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dg3dl"]
-size = Vector2(64, 64)
+size = Vector2(1600, 329)
+
+[sub_resource type="Gradient" id="Gradient_xw1xy"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0srux"]
+gradient = SubResource("Gradient_xw1xy")
+width = 256
+height = 1024
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xw1xy"]
+size = Vector2(256, 1024)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ww5kb"]
 size = Vector2(462, 240)
@@ -28,49 +58,146 @@ size = Vector2(462, 240)
 z_index = 5
 script = ExtResource("1_bxvt2")
 
-[node name="RothschildTower" type="Sprite2D" parent="."]
-position = Vector2(0, -120)
-texture = ExtResource("2_q3f7c")
+[node name="Parallax2DLayer" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.98, 0.98)
+scroll_offset = Vector2(531, 450)
+script = ExtResource("2_xw1xy")
+metadata/_custom_type_script = "uid://bf37rou75fm6v"
 
-[node name="RothschildTowerLight" type="Sprite2D" parent="RothschildTower"]
-position = Vector2(0, 67)
-texture = ExtResource("3_l36ib")
+[node name="CityBack" type="Sprite2D" parent="Parallax2DLayer"]
+texture = ExtResource("11_7f3va")
 
-[node name="WarehouseInterior" parent="." instance=ExtResource("3_5r0gn")]
-visible = false
-position = Vector2(380, -80)
+[node name="CityLights8" type="Sprite2D" parent="Parallax2DLayer"]
+position = Vector2(-319, -40.5)
+texture = ExtResource("12_vvbxk")
 
-[node name="Warehouse" parent="." instance=ExtResource("1_p0dhy")]
-position = Vector2(380, -80)
+[node name="CityLights9" type="Sprite2D" parent="Parallax2DLayer"]
+position = Vector2(-357, -51)
+texture = ExtResource("13_ndn3o")
 
-[node name="Building1" type="Sprite2D" parent="."]
-position = Vector2(-304, -124)
-texture = ExtResource("6_7f3va")
+[node name="CityLights13" type="Sprite2D" parent="Parallax2DLayer"]
+position = Vector2(-514.5, -44.5)
+texture = ExtResource("17_1v00c")
 
-[node name="Building1Light" type="Sprite2D" parent="Building1"]
-position = Vector2(0, 25)
-texture = ExtResource("7_xw1xy")
+[node name="Parallax2DLayer2" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.95, 0.95)
+scroll_offset = Vector2(713, 530)
+script = ExtResource("2_xw1xy")
+metadata/_custom_type_script = "uid://bf37rou75fm6v"
 
-[node name="Generator" parent="." instance=ExtResource("2_3xwy7")]
-position = Vector2(505, -45)
+[node name="CityFront" type="Sprite2D" parent="Parallax2DLayer2"]
+texture = ExtResource("12_xw1xy")
+
+[node name="CityLights1" type="Sprite2D" parent="Parallax2DLayer2"]
+position = Vector2(-0.5, -13)
+texture = ExtResource("5_6t3uo")
+
+[node name="CityLights5" type="Sprite2D" parent="Parallax2DLayer2"]
+position = Vector2(-225, -11)
+texture = ExtResource("9_hk0ii")
+
+[node name="CityLights10" type="Sprite2D" parent="Parallax2DLayer2"]
+position = Vector2(-566, -27)
+texture = ExtResource("14_g4m1y")
+
+[node name="CityLights2" type="Sprite2D" parent="Parallax2DLayer2"]
+position = Vector2(-87, -54)
+texture = ExtResource("6_uduu4")
+
+[node name="CityLights3" type="Sprite2D" parent="Parallax2DLayer2"]
+position = Vector2(-2, -49.5)
+texture = ExtResource("7_dpvh0")
+
+[node name="CityLights4" type="Sprite2D" parent="Parallax2DLayer2"]
+position = Vector2(-89, -76)
+texture = ExtResource("8_upa4o")
+
+[node name="CityLights6" type="Sprite2D" parent="Parallax2DLayer2"]
+position = Vector2(-239.5, -47.5)
+texture = ExtResource("10_kq7w8")
+
+[node name="CityLights7" type="Sprite2D" parent="Parallax2DLayer2"]
+position = Vector2(-327, -70.5)
+texture = ExtResource("11_f1k0a")
+
+[node name="CityLights11" type="Sprite2D" parent="Parallax2DLayer2"]
+position = Vector2(-571.5, -59)
+texture = ExtResource("15_gqhme")
+
+[node name="CityLights12" type="Sprite2D" parent="Parallax2DLayer2"]
+position = Vector2(-569.5, -78)
+texture = ExtResource("16_tspd7")
+
+[node name="CityLightsTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="Floor" type="Sprite2D" parent="."]
-position = Vector2(0, 164.25)
-scale = Vector2(29.03125, 5.1328125)
+position = Vector2(639.5, 1223.25)
 texture = SubResource("GradientTexture2D_iojnm")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Floor"]
+visible = false
 collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/StaticBody2D"]
 shape = SubResource("RectangleShape2D_dg3dl")
 
+[node name="Building1" type="Sprite2D" parent="."]
+position = Vector2(84, 934.5)
+texture = ExtResource("6_7f3va")
+
+[node name="Building1Light" type="Sprite2D" parent="Building1"]
+visible = false
+position = Vector2(0, 25)
+texture = ExtResource("7_xw1xy")
+
+[node name="RothschildTower" type="Sprite2D" parent="."]
+position = Vector2(454, 850)
+texture = ExtResource("2_q3f7c")
+
+[node name="RothschildTowerLight" type="Sprite2D" parent="RothschildTower"]
+visible = false
+position = Vector2(0, 67)
+texture = ExtResource("3_l36ib")
+
+[node name="LeftBoundary" type="Sprite2D" parent="."]
+position = Vector2(-288, 874)
+texture = SubResource("GradientTexture2D_0srux")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="LeftBoundary"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBoundary/StaticBody2D"]
+shape = SubResource("RectangleShape2D_xw1xy")
+
+[node name="RightBoundary" type="Sprite2D" parent="."]
+position = Vector2(1567, 874)
+texture = SubResource("GradientTexture2D_0srux")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="RightBoundary"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightBoundary/StaticBody2D"]
+shape = SubResource("RectangleShape2D_xw1xy")
+
 [node name="RocketHangar" parent="." instance=ExtResource("5_iojnm")]
-position = Vector2(210, -60)
+position = Vector2(777, 1059)
+
+[node name="WarehouseInterior" parent="." instance=ExtResource("3_5r0gn")]
+visible = false
+position = Vector2(1048, 979)
+
+[node name="Warehouse" parent="." instance=ExtResource("1_p0dhy")]
+position = Vector2(1048, 1059)
+
+[node name="Generator" parent="." instance=ExtResource("2_3xwy7")]
+position = Vector2(1278, 1059)
 
 [node name="CameraFocusRocket" type="Area2D" parent="." node_paths=PackedStringArray("focus_point")]
-position = Vector2(206, -224)
+position = Vector2(773, 778)
 collision_layer = 32
 script = ExtResource("6_dg3dl")
 focus_point = NodePath("FocusPoint")
@@ -87,6 +214,7 @@ one_shot = true
 [node name="FocusOutTimer" type="Timer" parent="CameraFocusRocket"]
 one_shot = true
 
+[connection signal="timeout" from="CityLightsTimer" to="." method="_on_city_lights_timer_timeout"]
 [connection signal="warehouse_interior_door_just_interacted" from="WarehouseInterior" to="." method="_on_warehouse_interior_warehouse_interior_door_just_interacted"]
 [connection signal="warehouse_door_just_interacted" from="Warehouse" to="." method="_on_warehouse_warehouse_door_just_interacted"]
 [connection signal="generator_enabled" from="Generator" to="." method="_on_generator_generator_enabled"]

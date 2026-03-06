@@ -96,43 +96,25 @@ func _input(event: InputEvent) -> void:
 				if argo.repaired:
 					return
 			enter_argo(!is_in_argo)
-
-		if frontmost_interactable is Item or frontmost_interactable is Note:
-			var interactable_component = ComponentUtils.get_component(frontmost_interactable, Interactable.string_name) as Interactable
-			interactable_component.interact()
+			return
 
 		if frontmost_interactable is Generator:
-			var generator = frontmost_interactable
-			var interactable_component = ComponentUtils.get_component(generator, Interactable.string_name) as Interactable
-			interactable_component.interact()
-			if !generator.has_glowstone or !generator.has_diode:
+			if !frontmost_interactable.has_glowstone or !frontmost_interactable.has_photonic_invertor:
 				_dialogue("I think the generator is still missing something")
 
 		if frontmost_interactable is Warehouse:
-			var warehouse = frontmost_interactable
-			if !warehouse.is_lit:
+			if !frontmost_interactable.is_lit:
 				_dialogue("It's too dark in here, maybe I can light it up somehow")
-			var interactable_component = ComponentUtils.get_component(warehouse, Interactable.string_name) as Interactable
-			interactable_component.interact()
 
-		if frontmost_interactable is WarehouseInterior:
-			var warehouse = frontmost_interactable
-			var interactable_component = ComponentUtils.get_component(warehouse, Interactable.string_name) as Interactable
-			interactable_component.interact()
-
-		if frontmost_interactable is WarehouseGenerator:
-			var warehouse_generator = frontmost_interactable
-			var interactable_component = ComponentUtils.get_component(warehouse_generator, Interactable.string_name) as Interactable
-			interactable_component.interact()
-
-		if frontmost_interactable is WrongDiode:
-			_dialogue("This diode won't fit the generator")
+		if frontmost_interactable is WrongPhotonicInvertor:
+			_dialogue("This photonic invertor won't fit the generator")
 
 		if frontmost_interactable is RocketHangar:
 			if !Globals.is_crystal_city_generator_enabled:
 				_dialogue("It's too dark in here, I need to find a way to power the lights")
-			var rocket_hangar = frontmost_interactable
-			var interactable_component = ComponentUtils.get_component(rocket_hangar, Interactable.string_name) as Interactable
+
+		if ComponentUtils.has_component(frontmost_interactable, Interactable.string_name):
+			var interactable_component = ComponentUtils.get_component(frontmost_interactable, Interactable.string_name) as Interactable
 			interactable_component.interact()
 
 
