@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://de42tvif7rmmj"]
+
+[ext_resource type="Script" uid="uid://ylglnacmilfi" path="res://components/interactable/interactable.gd" id="1_2oack"]
+[ext_resource type="Script" uid="uid://cw1k3s1yy7c5i" path="res://world/crystal_city/buildings/generator/glowstone_socket/glowstone_socket.gd" id="1_7laoa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7laoa"]
+size = Vector2(10, 10)
+
+[node name="GlowstoneSocket" type="Node2D"]
+script = ExtResource("1_7laoa")
+
+[node name="InteractionBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionBox"]
+shape = SubResource("RectangleShape2D_7laoa")
+
+[node name="Interactable" type="Node" parent="." node_paths=PackedStringArray("interaction_box")]
+script = ExtResource("1_2oack")
+interaction_box = NodePath("../InteractionBox")
+metadata/_custom_type_script = "uid://ylglnacmilfi"
+
+[connection signal="just_interacted" from="Interactable" to="." method="_on_interactable_just_interacted"]

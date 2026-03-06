@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://ceic3s2ukuwmf"]
 
-[ext_resource type="Script" uid="uid://bim1cidskgumg" path="res://entities/items/diode/diode.gd" id="1_g1w71"]
+[ext_resource type="Script" uid="uid://bim1cidskgumg" path="res://entities/items/photonic_invertor/photonic_invertor.gd" id="1_g1w71"]
 [ext_resource type="Script" uid="uid://215ytidtgyrf" path="res://components/collectable/collectable.gd" id="2_rjrgs"]
 [ext_resource type="Script" uid="uid://ylglnacmilfi" path="res://components/interactable/interactable.gd" id="3_r7yhp"]
 

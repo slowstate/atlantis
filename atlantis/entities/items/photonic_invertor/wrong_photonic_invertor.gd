@@ -1,0 +1,2 @@
+class_name WrongPhotonicInvertor
+extends Node2D

@@ -29,7 +29,7 @@ radius = 4.0
 radius = 7.0
 
 [node name="Argo" type="CharacterBody2D"]
-z_index = 8
+z_index = 98
 collision_layer = 4
 collision_mask = 2
 floor_stop_on_slope = false

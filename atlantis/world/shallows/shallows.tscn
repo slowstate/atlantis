@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://bareqc1eyxlpq"]
+[gd_scene load_steps=16 format=3 uid="uid://bareqc1eyxlpq"]
 
 [ext_resource type="PackedScene" uid="uid://p6fv62obxr2c" path="res://world/shallows/open_air.tscn" id="2_usalr"]
 [ext_resource type="PackedScene" uid="uid://70xk32ju81ns" path="res://entities/items/mining_tool/mining_tool.tscn" id="3_fv0dc"]
 [ext_resource type="PackedScene" uid="uid://chblsv0q7dh0c" path="res://entities/notes/note/note.tscn" id="4_3a0gb"]
 [ext_resource type="PackedScene" uid="uid://dnd1any0b2rkh" path="res://entities/items/glowstone/glowstone.tscn" id="4_422jt"]
+[ext_resource type="Script" uid="uid://bf37rou75fm6v" path="res://world/parallax_2d_layer/parallax_2d_layer.gd" id="4_mwkxx"]
 [ext_resource type="Texture2D" uid="uid://d3uux8t0datas" path="res://world/shallows/ocean_back.png" id="5_vd8h0"]
 [ext_resource type="Texture2D" uid="uid://bjm2jugt3lgik" path="res://world/shallows/ocean_front.png" id="6_mwkxx"]
 [ext_resource type="Texture2D" uid="uid://c0rh6wpn15uo1" path="res://world/shallows/ocean_surface_light.png" id="7_64aqm"]
@@ -42,12 +43,22 @@ texture = ExtResource("8_ea2l5")
 position = Vector2(428, 46.5)
 texture = ExtResource("7_64aqm")
 
-[node name="OceanBack" type="Sprite2D" parent="."]
-position = Vector2(551.5, 155.5)
+[node name="Parallax2DLayer" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.95, 0.95)
+scroll_offset = Vector2(551.5, 155.5)
+script = ExtResource("4_mwkxx")
+metadata/_custom_type_script = "uid://bf37rou75fm6v"
+
+[node name="OceanBack" type="Sprite2D" parent="Parallax2DLayer"]
 texture = ExtResource("5_vd8h0")
 
-[node name="OceanMiddle" type="Sprite2D" parent="."]
-position = Vector2(547, 214.5)
+[node name="Parallax2DLayer2" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.93, 0.93)
+scroll_offset = Vector2(547, 214.5)
+script = ExtResource("4_mwkxx")
+metadata/_custom_type_script = "uid://bf37rou75fm6v"
+
+[node name="OceanMiddle" type="Sprite2D" parent="Parallax2DLayer2"]
 texture = ExtResource("11_sr3cf")
 
 [node name="CliffWallLeftFront" type="Sprite2D" parent="."]
@@ -58,25 +69,31 @@ texture = ExtResource("9_olmvm")
 position = Vector2(251, 157)
 texture = ExtResource("10_cxsdh")
 
-[node name="OceanFront" type="Sprite2D" parent="."]
-position = Vector2(557.5, 236.5)
+[node name="Parallax2DLayer3" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.9, 0.9)
+scroll_offset = Vector2(557.5, 236.5)
+script = ExtResource("4_mwkxx")
+metadata/_custom_type_script = "uid://bf37rou75fm6v"
+
+[node name="OceanFront" type="Sprite2D" parent="Parallax2DLayer3"]
 texture = ExtResource("6_mwkxx")
 
 [node name="Glowstone" parent="." instance=ExtResource("4_422jt")]
-position = Vector2(309, 113)
+position = Vector2(341, 116)
 
 [node name="Glowstone2" parent="." instance=ExtResource("4_422jt")]
 position = Vector2(1018, 571)
 
 [node name="MiningTool" parent="." instance=ExtResource("3_fv0dc")]
-position = Vector2(1084, 234)
+position = Vector2(1083, 234)
 
 [node name="SurvivorsJournalNote" parent="." instance=ExtResource("4_3a0gb")]
 position = Vector2(1034, 237)
 id = 1
 
 [node name="Shallows" type="Sprite2D" parent="."]
-position = Vector2(639, 283)
+z_index = 10
+position = Vector2(640, 283)
 texture = ExtResource("12_1jc31")
 
 [node name="LeftCliffCollision" type="StaticBody2D" parent="Shallows"]

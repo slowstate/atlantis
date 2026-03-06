@@ -1,39 +1,19 @@
-[gd_scene load_steps=12 format=3 uid="uid://clsxexl5mayua"]
+[gd_scene load_steps=14 format=3 uid="uid://clsxexl5mayua"]
 
 [ext_resource type="Script" uid="uid://guxkh04y6nk8" path="res://world/crystal_city/buildings/rocket_hangar/rocket_hangar.gd" id="1_ovpci"]
+[ext_resource type="Texture2D" uid="uid://c280gd5tyql1o" path="res://world/crystal_city/buildings/rocket_hangar/rocket_part_1.png" id="2_6fi8g"]
+[ext_resource type="Texture2D" uid="uid://qkv8gdy7ykjr" path="res://world/crystal_city/buildings/rocket_hangar/rocket_hangar.png" id="2_8wuce"]
 [ext_resource type="Script" uid="uid://ylglnacmilfi" path="res://components/interactable/interactable.gd" id="2_e1skg"]
+[ext_resource type="Texture2D" uid="uid://nhss85w4uyv5" path="res://world/crystal_city/buildings/rocket_hangar/rocket_part_2.png" id="3_cvgtr"]
 [ext_resource type="Script" uid="uid://chey41y122cdu" path="res://world/crystal_city/buildings/rocket_hangar/end_demo_overlay.gd" id="3_e1skg"]
-
-[sub_resource type="Gradient" id="Gradient_5r0gn"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.47843137, 0.2627451, 0.18431373, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_8wuce"]
-gradient = SubResource("Gradient_5r0gn")
-width = 180
-height = 120
-
-[sub_resource type="Gradient" id="Gradient_bxvt2"]
-offsets = PackedFloat32Array(0.28, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_1bqvj"]
-gradient = SubResource("Gradient_bxvt2")
-height = 240
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0)
-
-[sub_resource type="Gradient" id="Gradient_fkcjg"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(0.15167314, 5.3996683e-07, 2.9480086e-07, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_nr56y"]
-gradient = SubResource("Gradient_fkcjg")
-width = 24
-height = 32
+[ext_resource type="Texture2D" uid="uid://bhnmeynbwnbox" path="res://world/crystal_city/buildings/rocket_hangar/rocket_part_3.png" id="4_sxlnm"]
+[ext_resource type="Texture2D" uid="uid://dy4dwe5lgwmv0" path="res://world/crystal_city/buildings/rocket_hangar/rocket_part_4.png" id="5_bp10s"]
+[ext_resource type="Texture2D" uid="uid://dvjhwp30ew5q2" path="res://world/crystal_city/buildings/rocket_hangar/rocket_part_5.png" id="6_cvgtr"]
+[ext_resource type="Texture2D" uid="uid://ckh21isrn7ptw" path="res://world/crystal_city/buildings/rocket_hangar/rocket_hangar_light_off.png" id="9_ac3hy"]
+[ext_resource type="Texture2D" uid="uid://irol2s2bsbyg" path="res://world/crystal_city/buildings/rocket_hangar/rocket_hangar_light_on.png" id="10_wua2u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ovpci"]
-size = Vector2(24, 32)
+size = Vector2(62, 70)
 
 [sub_resource type="LabelSettings" id="LabelSettings_e1skg"]
 font_size = 8
@@ -41,22 +21,47 @@ font_size = 8
 [node name="RocketHangar" type="Node2D"]
 script = ExtResource("1_ovpci")
 
+[node name="RocketPart1" type="Sprite2D" parent="."]
+position = Vector2(1, -188.5)
+texture = ExtResource("2_6fi8g")
+
+[node name="RocketPart2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1, -188.5)
+texture = ExtResource("3_cvgtr")
+
+[node name="RocketPart5" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(37, -130)
+texture = ExtResource("6_cvgtr")
+
+[node name="RocketPart3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1, -137)
+texture = ExtResource("4_sxlnm")
+
+[node name="RocketPart4" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1, -219)
+texture = ExtResource("5_bp10s")
+
 [node name="RocketHangar" type="Sprite2D" parent="."]
-texture = SubResource("GradientTexture2D_8wuce")
+position = Vector2(0, -177.5)
+texture = ExtResource("2_8wuce")
 
-[node name="Sprite2D" type="Sprite2D" parent="RocketHangar"]
-show_behind_parent = true
-position = Vector2(3, -60)
-texture = SubResource("GradientTexture2D_1bqvj")
+[node name="RocketHangarLightsOff" type="Sprite2D" parent="."]
+position = Vector2(21, -52.5)
+texture = ExtResource("9_ac3hy")
 
-[node name="Door" type="Sprite2D" parent="."]
-position = Vector2(0, 44)
-texture = SubResource("GradientTexture2D_nr56y")
+[node name="RocketHangarLightsOn" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(75, -52.5)
+texture = ExtResource("10_wua2u")
 
 [node name="InteractionBox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionBox"]
-position = Vector2(0, 44)
+position = Vector2(3, -35)
 shape = SubResource("RectangleShape2D_ovpci")
 
 [node name="Interactable" type="Node" parent="." node_paths=PackedStringArray("interaction_box")]
@@ -72,6 +77,7 @@ script = ExtResource("3_e1skg")
 modulate = Color(1, 1, 1, 0)
 offset_right = 320.0
 offset_bottom = 180.0
+mouse_filter = 2
 color = Color(0.012920001, 0.012920001, 0.12835406, 1)
 
 [node name="ThanksForPlayingLabel" type="Label" parent="EndScreen"]
