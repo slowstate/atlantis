@@ -54,6 +54,11 @@ func add_note(note_id: Ids.Notes) -> void:
 	show_notification.emit()
 	notes_viewed.get_or_add(note_id, false)
 	update_user_interface()
+	visible = true
+	_on_notes_button_pressed()
+	for inventory_note in notes_grid.get_children():
+		if inventory_note.id == note_id:
+			_on_inventory_note_selected(inventory_note)
 
 
 func has_note(note_id: Ids.Notes) -> bool:
