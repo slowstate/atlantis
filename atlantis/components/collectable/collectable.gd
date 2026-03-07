@@ -20,6 +20,7 @@ func _exit_tree() -> void:
 func collect() -> void:
 	if owner is Item:
 		(Globals.player.inventory as Inventory).add_item(owner.id)
+		SfxManager.play_sfx("CollectInverter",0,-20,-15,0.9,1.1)
 	if owner is Note:
 		(Globals.player.inventory as Inventory).add_note(owner.id)
 		SfxManager.play_sfx("CollectNote",0,-20,-15,0.9,1.1)

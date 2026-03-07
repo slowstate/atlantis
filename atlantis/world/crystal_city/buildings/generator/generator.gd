@@ -7,6 +7,7 @@ var has_glowstone: bool = false
 var has_photonic_invertor: = false
 var has_played_first_interaction: bool = false
 var battery_partial_flicker_count: int = 0
+var is_fixed: bool = false
 
 @onready var photonic_invertor: Sprite2D = $PhotonicInvertor
 @onready var photonic_invertor_broken: Sprite2D = $PhotonicInvertorBroken
@@ -30,7 +31,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_interactable_just_interacted() -> void:
-	if !has_played_first_interaction:
+	if !has_played_first_interaction and !has_photonic_invertor and !has_glowstone:
 		SfxManager.play_sfx("GeneratorStart",0,-20,-15,0.9,1.1)
 		SfxManager.play_sfx("GeneratorShort",5,-15,-10,0.9,1.1)
 		SfxManager.play_sfx("GeneratorBreak",4.5,-20,-15,0.9,1.1)
@@ -38,18 +39,22 @@ func _on_interactable_just_interacted() -> void:
 		var sfx_timer = get_tree().create_timer(5.0)
 		await sfx_timer.timeout
 		_play_photonic_invertor_break_sequence()
-		
 		has_played_first_interaction = true
 		return
+		
 	if !has_photonic_invertor:
 		SfxManager.play_sfx("PressButton",0,-20,-15,0.9,1.1)
 		photonic_invertor_sparks.emitting = true
 
 	if has_glowstone and has_photonic_invertor:
-		generator_enabled.emit()
-		SfxManager.play_sfx("GeneratorStart",0,-20,-15,0.9,1.1)
-		SfxManager.play_sfx("GeneratorRunning",5,-15,-10,0.9,1.1)
-		Globals.is_crystal_city_generator_enabled = true
+		if is_fixed == false:
+			is_fixed = true
+			generator_enabled.emit()
+			SfxManager.stop_sfx("GeneratorBreak")
+			SfxManager.play_sfx("GeneratorStart",0,-20,-15,0.9,1.1)
+			SfxManager.play_sfx("GeneratorRunning",4.5,-15,-10,0.9,1.1)
+			SfxManager.fade_sfx("GeneratorRunning",10,50)
+			Globals.is_crystal_city_generator_enabled = true
 
 
 func _play_photonic_invertor_break_sequence() -> void:
@@ -65,6 +70,7 @@ func _on_photonic_invertor_break_timer_timeout() -> void:
 
 
 func _play_glowstone_break_sequence() -> void:
+	SfxManager.play_sfx("InverterBreak",0,-20,-15,0.9,1.1)
 	battery_partial_flicker_timer.start(0.2)
 
 
@@ -96,6 +102,7 @@ func _on_photonic_invertor_socket_photonic_invertor_just_interacted() -> void:
 		Globals.player.inventory.remove_item(Ids.Items.PhotonicInvertor)
 		has_photonic_invertor = true
 		photonic_invertor_new.visible = true
+		SfxManager.play_sfx("InsertInverter",0,-20,-15,0.9,1.1)
 		_play_glowstone_break_sequence()
 
 

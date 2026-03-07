@@ -14,5 +14,8 @@ func _on_interactable_just_interacted() -> void:
 	if Globals.player.currently_selected_tool == Ids.Items.MiningTool:
 		if !interacted:
 			interacted = true
-			photonic_invertor.visible = true
 			# photonic_invertor.play_animation()
+			SfxManager.play_sfx("DismantleMachine",0,-15,-10,0.9,1.1)
+			var sfx_timer = get_tree().create_timer(2.0)
+			await sfx_timer.timeout
+			photonic_invertor.visible = true

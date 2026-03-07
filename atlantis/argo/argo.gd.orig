@@ -57,11 +57,11 @@ func _process(delta: float) -> void:
 	move_and_slide()
 
 	if move_vec != Vector2.ZERO:
-		SfxManager.play_continuous_sfx("ARGODrive",0,-20,-15,0.9,1.1)
-		SfxManager.play_continuous_sfx("ARGODisturbWater",0,-25,-20,0.9,1.1)
+		SfxManager.play_continuous_sfx("ARGODrive",0,-15,-10,0.9,1.1)
+		#SfxManager.play_continuous_sfx("ARGODisturbWater",0,-25,-20,0.9,1.1)
 	else:
 		SfxManager.stop_sfx("ARGODrive")
-		SfxManager.fade_sfx("ARGODisturbWater",0,5)
+		#SfxManager.start_fade_sfx("ARGODisturbWater")
 	
 
 func _on_interactable_just_interacted() -> void:
@@ -75,6 +75,9 @@ func _on_interactable_just_interacted() -> void:
 		window_light_2.enabled = true
 		window_light_3.enabled = true
 		add_child(Dialogue.create("M's message", 3.0, Vector2(0.0, -40.0)))
+<<<<<<< HEAD
 		SfxManager.play_sfx("EmailReceived",0,-20,-15,0.9,1.1)
+=======
 	if repaired:
 		point_light_2d.enabled = true
+>>>>>>> 53145f87bbe8a8b3b7e5eab0d6d58771eeb72b74
