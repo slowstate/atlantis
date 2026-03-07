@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://j51i3vf5hn3d"]
+[gd_scene load_steps=23 format=3 uid="uid://j51i3vf5hn3d"]
 
 [ext_resource type="Script" uid="uid://d33wj2wxlurur" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Texture2D" uid="uid://bhsbeiho1ftwj" path="res://player/player.png" id="2_g1dw6"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://ygoqb4k67vi1" path="res://player/PlayerStateMachine/oxygen_refilling_state.gd" id="5_qjkh3"]
 [ext_resource type="Script" uid="uid://bfj0tbm2sub6y" path="res://player/PlayerStateMachine/oxygen_depleting_state.gd" id="6_g6k8r"]
 [ext_resource type="Script" uid="uid://by7vkwfrt78qv" path="res://player/PlayerStateMachine/drowning_state.gd" id="7_boad6"]
+[ext_resource type="PackedScene" uid="uid://ca6mfue2lfa8u" path="res://menus/pause_menu/pause_menu.tscn" id="10_8t03j"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qjkh3"]
 radius = 5.0
@@ -28,8 +29,8 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_8t03j"]
 gradient = SubResource("Gradient_hg6s5")
-width = 80
-height = 80
+width = 120
+height = 120
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
@@ -94,7 +95,7 @@ collision_mask = 8
 shape = SubResource("CapsuleShape2D_rkbax")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-energy = 0.7
+color = Color(0.73, 0.6467801, 0.31390002, 1)
 texture = SubResource("GradientTexture2D_8t03j")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
@@ -102,6 +103,7 @@ light_mask = 0
 texture = ExtResource("2_g1dw6")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+limit_top = 0
 position_smoothing_enabled = true
 
 [node name="UserInterface" type="CanvasLayer" parent="."]
@@ -173,6 +175,8 @@ script = ExtResource("7_boad6")
 
 [node name="DrowningTimer" type="Timer" parent="PlayerStateMachine/DrowningState"]
 one_shot = true
+
+[node name="PauseMenu" parent="." instance=ExtResource("10_8t03j")]
 
 [connection signal="show_notification" from="UserInterface/Inventory" to="UserInterface/NotificationSprite" method="_on_inventory_show_notification"]
 [connection signal="pressed" from="UserInterface/DrownedOverlay/RespawnButton" to="." method="_on_respawn_button_pressed"]

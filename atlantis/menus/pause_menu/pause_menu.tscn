@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://ca6mfue2lfa8u"]
+
+[ext_resource type="Script" uid="uid://u3yadp4ba7y4" path="res://menus/pause_menu/pause_menu.gd" id="1_5ndmu"]
+
+[sub_resource type="Gradient" id="Gradient_bkue7"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 0.5)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5ndmu"]
+gradient = SubResource("Gradient_bkue7")
+width = 320
+height = 180
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+layer = 9
+script = ExtResource("1_5ndmu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_5ndmu")
+centered = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ResumeButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 6
+text = "Resume"
+
+[node name="MainMenuButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 6
+text = "Main Menu"
+
+[connection signal="pressed" from="VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

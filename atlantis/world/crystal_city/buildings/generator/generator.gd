@@ -20,6 +20,7 @@ var battery_partial_flicker_count: int = 0
 @onready var glowstone_flicker_timer: Timer = $GlowstoneFlickerTimer
 @onready var glowstone_break_timer: Timer = $GlowstoneBreakTimer
 @onready var glowstone_new: Sprite2D = $GlowstoneNew
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 func _physics_process(delta: float) -> void:
@@ -27,6 +28,8 @@ func _physics_process(delta: float) -> void:
 		photonic_invertor_broken.modulate.a = 1.0 - TimerUtils.timer_progress(photonic_invertor_break_timer)
 	if !glowstone_break_timer.is_stopped() and glowstone_after.visible:
 		glowstone_after.modulate.a = 1.0 - TimerUtils.timer_progress(glowstone_break_timer)
+	if Globals.is_crystal_city_generator_enabled:
+		animation_player.play("cog_rotate")
 
 
 func _on_interactable_just_interacted() -> void:
