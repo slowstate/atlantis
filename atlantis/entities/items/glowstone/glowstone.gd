@@ -17,5 +17,5 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_interactable_just_interacted() -> void:
-	if Globals.player.inventory.has_item(Ids.Items.MiningTool):
+	if Globals.player.currently_selected_tool == Ids.Items.MiningTool:
 		mined = true

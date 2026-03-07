@@ -31,6 +31,7 @@ var current_dialogue: Dialogue
 @onready var item_selector: ItemSelector = $UserInterface/ItemSelector
 @onready var notification_sprite: Sprite2D = $UserInterface/NotificationSprite
 @onready var point_light_2d: PointLight2D = $PointLight2D
+@onready var pause_menu: CanvasLayer = $PauseMenu
 
 
 func _ready() -> void:
