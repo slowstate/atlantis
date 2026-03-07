@@ -18,6 +18,14 @@ var currently_selected_tool: Ids.Items:
 			return Ids.Items.Nothing
 		return inventory.items.keys().get(item_selector.currently_selected_item_index) as Ids.Items
 var current_dialogue: Dialogue
+# Camera shake
+var shake_intensity: float = 0.0
+var active_shake_time: float = 0.0
+var total_shake_time: float = 0.0
+var shake_decay: float = 0.0
+var shake_time: float = 0.0
+var shake_time_speed: float = 20.0
+var noise = FastNoiseLite.new()
 
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var player_sprite: Sprite2D = $PlayerSprite
@@ -46,25 +54,27 @@ func _process(delta: float) -> void:
 		velocity = Vector2(0, 0)
 		return
 
-	if Input.is_action_just_pressed("god_mode") and OS.is_debug_build() and controls_enabled:
-		god_mode = !god_mode
-		if god_mode:
-			acceleration = 400
-			max_speed = 200
-			friction = 200
-		else:
-			acceleration = 200
-			max_speed = 50
-			friction = 100
 	var move_vec = Vector2.ZERO
-	if Input.is_action_pressed("player_move_up"):
-		move_vec.y = -1
-	if Input.is_action_pressed("player_move_left"):
-		move_vec.x = -1
-	if Input.is_action_pressed("player_move_down"):
-		move_vec.y = 1
-	if Input.is_action_pressed("player_move_right"):
-		move_vec.x = 1
+	if controls_enabled:
+		if Input.is_action_just_pressed("god_mode") and OS.is_debug_build():
+			god_mode = !god_mode
+			if god_mode:
+				acceleration = 400
+				max_speed = 200
+				friction = 200
+			else:
+				acceleration = 200
+				max_speed = 50
+				friction = 100
+
+		if Input.is_action_pressed("player_move_up"):
+			move_vec.y = -1
+		if Input.is_action_pressed("player_move_left"):
+			move_vec.x = -1
+		if Input.is_action_pressed("player_move_down"):
+			move_vec.y = 1
+		if Input.is_action_pressed("player_move_right"):
+			move_vec.x = 1
 
 	## Swimming: Fixed max speed, better "handling", floating damping suddenly drops when moving
 	if move_vec != Vector2.ZERO:
@@ -73,6 +83,21 @@ func _process(delta: float) -> void:
 		# Apply damping (friction) when no input is pressed
 		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
 	move_and_slide()
+
+
+func _physics_process(delta: float) -> void:
+	if active_shake_time > 0:
+		shake_time += delta * shake_time_speed
+		active_shake_time -= delta
+
+		camera_2d.offset = Vector2(
+			noise.get_noise_2d(shake_time, 0) * shake_intensity,
+			noise.get_noise_2d(0, shake_time) * shake_intensity,
+		) * active_shake_time / total_shake_time
+
+		shake_intensity = max(shake_intensity - shake_decay * delta, 0)
+	else:
+		camera_2d.offset = lerp(camera_2d.offset, Vector2.ZERO, 10.5 * delta)
 
 
 func _input(event: InputEvent) -> void:
@@ -129,6 +154,17 @@ func enter_argo(is_entering: bool) -> void:
 		point_light_2d.enabled = false
 	else:
 		point_light_2d.enabled = true
+
+
+func camera_shake(intensity: float = 0.0, time: float = 0.0) -> void:
+	randomize()
+	noise.seed = randi()
+	noise.frequency = 2.0
+
+	shake_intensity = intensity
+	active_shake_time = time
+	total_shake_time = time
+	shake_time = 0.0
 
 
 func _on_respawn_button_pressed() -> void:
