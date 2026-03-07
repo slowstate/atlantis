@@ -59,28 +59,29 @@ z_index = 5
 script = ExtResource("1_bxvt2")
 
 [node name="Parallax2DLayer" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0.98, 0.98)
+scroll_scale = Vector2(0.95, 0.95)
 scroll_offset = Vector2(531, 450)
 script = ExtResource("2_xw1xy")
 metadata/_custom_type_script = "uid://bf37rou75fm6v"
 
 [node name="CityBack" type="Sprite2D" parent="Parallax2DLayer"]
+position = Vector2(105, 19)
 texture = ExtResource("11_7f3va")
 
 [node name="CityLights8" type="Sprite2D" parent="Parallax2DLayer"]
-position = Vector2(-319, -40.5)
+position = Vector2(-214, -21.5)
 texture = ExtResource("12_vvbxk")
 
 [node name="CityLights9" type="Sprite2D" parent="Parallax2DLayer"]
-position = Vector2(-357, -51)
+position = Vector2(-252, -32)
 texture = ExtResource("13_ndn3o")
 
 [node name="CityLights13" type="Sprite2D" parent="Parallax2DLayer"]
-position = Vector2(-514.5, -44.5)
+position = Vector2(-409.5, -25.5)
 texture = ExtResource("17_1v00c")
 
 [node name="Parallax2DLayer2" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0.95, 0.95)
+scroll_scale = Vector2(0.92, 0.92)
 scroll_offset = Vector2(713, 530)
 script = ExtResource("2_xw1xy")
 metadata/_custom_type_script = "uid://bf37rou75fm6v"

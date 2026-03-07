@@ -30,6 +30,7 @@ var current_dialogue: Dialogue
 @onready var drowned_overlay: VBoxContainer = $UserInterface/DrownedOverlay
 @onready var item_selector: ItemSelector = $UserInterface/ItemSelector
 @onready var notification_sprite: Sprite2D = $UserInterface/NotificationSprite
+@onready var point_light_2d: PointLight2D = $PointLight2D
 
 
 func _ready() -> void:
@@ -124,6 +125,9 @@ func enter_argo(is_entering: bool) -> void:
 	Globals.argo.drive = is_in_argo
 	if is_in_argo:
 		spawn_point = ComponentUtils.get_component(Globals.argo, SpawnPoint.string_name) as SpawnPoint
+		point_light_2d.enabled = false
+	else:
+		point_light_2d.enabled = true
 
 
 func _on_respawn_button_pressed() -> void:
