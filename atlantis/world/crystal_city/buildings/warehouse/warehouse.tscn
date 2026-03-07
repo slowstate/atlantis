@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d26r2a2m086uo"]
+[gd_scene load_steps=8 format=3 uid="uid://d26r2a2m086uo"]
 
 [ext_resource type="Script" uid="uid://f1ntgcfa2cma" path="res://world/crystal_city/buildings/warehouse/warehouse.gd" id="1_d76dh"]
 [ext_resource type="PackedScene" uid="uid://44g3nqpsueeg" path="res://components/interactable/interactable.tscn" id="2_jsrcb"]
@@ -10,9 +10,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k3j1t"]
 size = Vector2(18, 38)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d76dh"]
-size = Vector2(38, 10)
-
 [node name="Warehouse" type="Node2D"]
 script = ExtResource("1_d76dh")
 
@@ -21,12 +18,10 @@ position = Vector2(0, -156)
 texture = ExtResource("2_omwtg")
 
 [node name="WarehouseSkylight" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(0, -225)
 texture = ExtResource("3_k3j1t")
 
 [node name="WarehouseLightArgo" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(0, -108)
 texture = ExtResource("4_n7fuo")
 
@@ -35,33 +30,16 @@ visible = false
 position = Vector2(0, -108)
 texture = ExtResource("5_kaniw")
 
+[node name="LightUpPoint" type="Node2D" parent="."]
+position = Vector2(0, -225)
+
 [node name="InteractionBox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionBox"]
 position = Vector2(0, -19)
 shape = SubResource("RectangleShape2D_k3j1t")
 
-[node name="LightUpBox" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LightUpBox"]
-position = Vector2(-64, -225)
-shape = SubResource("RectangleShape2D_d76dh")
-
-[node name="LightUpBox2" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LightUpBox2"]
-position = Vector2(64, -225)
-shape = SubResource("RectangleShape2D_d76dh")
-
 [node name="Interactable" parent="." node_paths=PackedStringArray("interaction_box") instance=ExtResource("2_jsrcb")]
 interaction_box = NodePath("../InteractionBox")
 
-[connection signal="body_entered" from="LightUpBox" to="." method="_on_light_up_box_body_entered"]
-[connection signal="body_exited" from="LightUpBox" to="." method="_on_light_up_box_body_exited"]
-[connection signal="body_entered" from="LightUpBox2" to="." method="_on_light_up_box_2_body_entered"]
-[connection signal="body_exited" from="LightUpBox2" to="." method="_on_light_up_box_2_body_exited"]
 [connection signal="just_interacted" from="Interactable" to="." method="_on_interactable_just_interacted"]

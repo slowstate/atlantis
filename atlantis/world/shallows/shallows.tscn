@@ -55,7 +55,7 @@ height = 2
 z_index = 5
 
 [node name="TopBoundary" type="StaticBody2D" parent="."]
-position = Vector2(686, 1)
+position = Vector2(686, -5)
 collision_layer = 2
 collision_mask = 5
 physics_material_override = SubResource("PhysicsMaterial_usalr")

@@ -6,13 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://csf0beklm550h" path="res://components/spawn_point/spawn_point.tscn" id="4_7w5ae"]
 
 [sub_resource type="Gradient" id="Gradient_6c8hy"]
-offsets = PackedFloat32Array(0.75757575, 1)
+offsets = PackedFloat32Array(0.510101, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_sm076"]
 gradient = SubResource("Gradient_6c8hy")
-width = 16
-height = 16
+width = 24
+height = 24
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
@@ -23,8 +23,8 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_lwlk0"]
 gradient = SubResource("Gradient_sm076")
-width = 128
-height = 128
+width = 160
+height = 160
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
@@ -66,23 +66,26 @@ texture = ExtResource("1_23iny")
 
 [node name="WindowLight1" type="PointLight2D" parent="Sprite2D"]
 position = Vector2(-14, 2)
+color = Color(0.7294118, 0.64705884, 0.3137255, 1)
 energy = 0.5
 texture = SubResource("GradientTexture2D_sm076")
 
 [node name="WindowLight2" type="PointLight2D" parent="Sprite2D"]
 position = Vector2(-2, 2)
+color = Color(0.7294118, 0.64705884, 0.3137255, 1)
 energy = 0.5
 texture = SubResource("GradientTexture2D_sm076")
 
 [node name="WindowLight3" type="PointLight2D" parent="Sprite2D"]
 position = Vector2(10, 2)
+color = Color(0.7294118, 0.64705884, 0.3137255, 1)
 energy = 0.5
 texture = SubResource("GradientTexture2D_sm076")
 
 [node name="PointLight2D" type="PointLight2D" parent="Sprite2D"]
 position = Vector2(0.5, 3.5)
 scale = Vector2(2, 1)
-energy = 0.5
+color = Color(0.73, 0.6862, 0.511, 1)
 texture = SubResource("GradientTexture2D_lwlk0")
 
 [node name="InteractionBox" type="Area2D" parent="."]

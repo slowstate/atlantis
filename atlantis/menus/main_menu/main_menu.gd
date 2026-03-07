@@ -5,6 +5,10 @@ const WORLD = preload("uid://chhtc74hdy2e5")
 func _ready() -> void:
 	SfxManager.stop_all_sfx()
 
+func _ready() -> void:
+	get_tree().paused = false
+
+
 func _on_start_button_pressed() -> void:
 	SfxManager.play_sfx("ClickButton",0,-30,-25,0.9,1.1)
 	get_tree().change_scene_to_packed(WORLD)
