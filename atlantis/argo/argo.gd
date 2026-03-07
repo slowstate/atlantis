@@ -48,6 +48,13 @@ func _process(delta: float) -> void:
 		velocity.y = move_toward(velocity.y, 0, argo_friction * delta)
 	move_and_slide()
 
+	if move_vec != Vector2.ZERO:
+		SfxManager.play_continuous_sfx("ARGODrive",0,-15,-10,0.9,1.1)
+		#SfxManager.play_continuous_sfx("ARGODisturbWater",0,-25,-20,0.9,1.1)
+	else:
+		SfxManager.stop_sfx("ARGODrive")
+		#SfxManager.start_fade_sfx("ARGODisturbWater")
+	
 
 func _on_interactable_just_interacted() -> void:
 	if !Globals.player.inventory.has_note(Ids.Notes.ArkPlans):

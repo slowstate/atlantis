@@ -31,14 +31,24 @@ func _physics_process(delta: float) -> void:
 
 func _on_interactable_just_interacted() -> void:
 	if !has_played_first_interaction:
+		SfxManager.play_sfx("GeneratorStart",0,-20,-15,0.9,1.1)
+		SfxManager.play_sfx("GeneratorShort",5,-15,-10,0.9,1.1)
+		SfxManager.play_sfx("GeneratorBreak",4.5,-20,-15,0.9,1.1)
+		
+		var sfx_timer = get_tree().create_timer(5.0)
+		await sfx_timer.timeout
 		_play_photonic_invertor_break_sequence()
+		
 		has_played_first_interaction = true
 		return
 	if !has_photonic_invertor:
+		SfxManager.play_sfx("PressButton",0,-20,-15,0.9,1.1)
 		photonic_invertor_sparks.emitting = true
 
 	if has_glowstone and has_photonic_invertor:
 		generator_enabled.emit()
+		SfxManager.play_sfx("GeneratorStart",0,-20,-15,0.9,1.1)
+		SfxManager.play_sfx("GeneratorRunning",5,-15,-10,0.9,1.1)
 		Globals.is_crystal_city_generator_enabled = true
 
 

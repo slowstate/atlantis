@@ -9,7 +9,8 @@ extends Node2D
 
 func _ready() -> void:
 	fish_spawn_timer.start(randf_range(4.0, 8.0))
-	SfxManager.play_ambience_sfx("UnderwaterAmbience",15,-20,-15,0.9,1.1)
+	SfxManager.play_ambience_sfx("UnderwaterAmbience",5,-20,-15,0.9,1.1)
+	SfxManager.play_ambience_sfx("UnderwaterDrone",5,-20,-15,0.9,1.1)
 	
 
 func _on_fish_spawn_timer_timeout() -> void:

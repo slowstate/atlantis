@@ -67,14 +67,10 @@ func _process(delta: float) -> void:
 	## Swimming: Fixed max speed, better "handling", floating damping suddenly drops when moving
 	if move_vec != Vector2.ZERO:
 		velocity = velocity.move_toward(move_vec.normalized() * max_speed, acceleration * delta)
-		SfxManager.play_continuous_sfx("PlayerSwim",0,-20,-15,0.9,1.1)
 	else:
 		# Apply damping (friction) when no input is pressed
 		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
 	move_and_slide()
-	
-	if move_vec == Vector2.ZERO:
-		SfxManager.stop_sfx("PlayerSwim")
 
 
 func _input(event: InputEvent) -> void:
@@ -109,11 +105,15 @@ func _input(event: InputEvent) -> void:
 		if frontmost_interactable is Warehouse:
 			if !frontmost_interactable.is_lit:
 				_dialogue("It's too dark in here, maybe I can light it up somehow")
-				SfxManager.play_sfx("OpenDoor",0,-20,-15,0.9,1.1)
+<<<<<<< HEAD
+			var interactable_component = ComponentUtils.get_component(warehouse, Interactable.string_name) as Interactable
+			interactable_component.interact()
+			SfxManager.play_sfx("OpenDoor",0,-20,-15,0.9,1.1)
+=======
+>>>>>>> da26dd6b3b7740a387863d7337b208af2e0b151f
 
 		if frontmost_interactable is WrongPhotonicInvertor:
 			_dialogue("This photonic invertor won't fit the generator")
-			SfxManager.play_sfx("SearchSFX",0,-20,-15,0.9,1.1)
 
 		if frontmost_interactable is RocketHangar:
 			if !Globals.is_crystal_city_generator_enabled:

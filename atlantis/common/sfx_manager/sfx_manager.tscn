@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://cnojh8ult7c0v"]
+[gd_scene load_steps=72 format=3 uid="uid://cnojh8ult7c0v"]
 
 [ext_resource type="Script" uid="uid://dr6l7ajnsag05" path="res://common/sfx_manager/sfx_manager.gd" id="1_hetwi"]
 [ext_resource type="AudioStream" uid="uid://dilu1c57o7rld" path="res://audio/sfx/AirpocketAmbience/AirpocketAmbienceSFX1.mp3" id="2_wp0wu"]
@@ -51,8 +51,7 @@
 [ext_resource type="AudioStream" uid="uid://et6bi3qg6lio" path="res://audio/sfx/Rubble/RubbleSFX5.mp3" id="49_3l3mq"]
 [ext_resource type="AudioStream" uid="uid://cihkiu8xy77sf" path="res://audio/sfx/Rubble/RubbleSFX6.mp3" id="50_gsm6w"]
 [ext_resource type="AudioStream" uid="uid://dragk1qbf5cnw" path="res://audio/sfx/Rubble/RubbleSFX7.mp3" id="51_8c86t"]
-[ext_resource type="AudioStream" uid="uid://c6bdi77ys0cyl" path="res://audio/sfx/Search/SearchSFX1.mp3" id="52_jeqxx"]
-[ext_resource type="AudioStream" uid="uid://cpu56a3w7ml14" path="res://audio/sfx/Search/SearchSFX2.mp3" id="53_88kin"]
+[ext_resource type="AudioStream" uid="uid://cpu56a3w7ml14" path="res://audio/sfx/Search/SearchSFX1.mp3" id="53_88kin"]
 [ext_resource type="AudioStream" uid="uid://80r3n5nibp5t" path="res://audio/sfx/UnderwaterAmbience/UnderwaterAmbienceSFX1.mp3" id="54_qndp4"]
 [ext_resource type="AudioStream" uid="uid://b7bq17kps28wt" path="res://audio/sfx/UnderwaterAmbience/UnderwaterAmbienceSFX2.mp3" id="55_ymwc7"]
 [ext_resource type="AudioStream" uid="uid://c1rif2u8mfack" path="res://audio/sfx/UnderwaterAmbience/UnderwaterAmbienceSFX3.mp3" id="56_5bsqn"]
@@ -287,9 +286,6 @@ stream = ExtResource("51_8c86t")
 [node name="Search" type="Node" parent="."]
 
 [node name="SearchSFX1" type="AudioStreamPlayer" parent="Search"]
-stream = ExtResource("52_jeqxx")
-
-[node name="SearchSFX2" type="AudioStreamPlayer" parent="Search"]
 stream = ExtResource("53_88kin")
 
 [node name="UnderwaterAmbience" type="Node" parent="."]
