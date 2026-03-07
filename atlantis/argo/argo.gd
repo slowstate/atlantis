@@ -14,10 +14,18 @@ var argo_friction := 40
 @onready var collision_shape_top: CollisionShape2D = $CollisionShapeTop
 @onready var collision_shape_body_4: CollisionShape2D = $CollisionShapeBody4
 @onready var collision_shape_body_5: CollisionShape2D = $CollisionShapeBody5
+@onready var window_light_1: PointLight2D = $Sprite2D/WindowLight1
+@onready var window_light_2: PointLight2D = $Sprite2D/WindowLight2
+@onready var window_light_3: PointLight2D = $Sprite2D/WindowLight3
+@onready var point_light_2d: PointLight2D = $Sprite2D/PointLight2D
 
 
 func _ready() -> void:
 	Globals.argo = self
+	window_light_1.enabled = false
+	window_light_2.enabled = false
+	window_light_3.enabled = false
+	point_light_2d.enabled = false
 
 
 func _process(delta: float) -> void:
@@ -30,12 +38,12 @@ func _process(delta: float) -> void:
 			move_vec.y = -1
 		if Input.is_action_pressed("player_move_left"):
 			move_vec.x = -1
-			sprite_2d.flip_h = false
+			sprite_2d.scale.x = 1
 		if Input.is_action_pressed("player_move_down"):
 			move_vec.y = 1
 		if Input.is_action_pressed("player_move_right"):
 			move_vec.x = 1
-			sprite_2d.flip_h = true
+			sprite_2d.scale.x = -1
 
 	## ARGO: Move "realistic" damping, diagonal max speed higher than single axis, more floaty
 	if move_vec.x != 0:
@@ -55,4 +63,9 @@ func _on_interactable_just_interacted() -> void:
 	if Globals.player.currently_selected_tool == Ids.Items.Glowstone:
 		Globals.player.inventory.remove_item(Ids.Items.Glowstone)
 		repaired = true
+		window_light_1.enabled = true
+		window_light_2.enabled = true
+		window_light_3.enabled = true
 		add_child(Dialogue.create("M's message", 3.0, Vector2(0.0, -40.0)))
+	if repaired:
+		point_light_2d.enabled = true
