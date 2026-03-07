@@ -68,10 +68,14 @@ func _process(delta: float) -> void:
 	## Swimming: Fixed max speed, better "handling", floating damping suddenly drops when moving
 	if move_vec != Vector2.ZERO:
 		velocity = velocity.move_toward(move_vec.normalized() * max_speed, acceleration * delta)
+		SfxManager.play_continuous_sfx("PlayerSwim",0,-20,-15,0.9,1.1)
 	else:
 		# Apply damping (friction) when no input is pressed
 		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
+		SfxManager.fade_sfx("PlayerSwim",0,1)
 	move_and_slide()
+	
+
 
 
 func _input(event: InputEvent) -> void:
@@ -102,17 +106,24 @@ func _input(event: InputEvent) -> void:
 		if frontmost_interactable is Generator:
 			if !frontmost_interactable.has_glowstone or !frontmost_interactable.has_photonic_invertor:
 				_dialogue("I think the generator is still missing something")
+				SfxManager.play_sfx("PressButton",0,-20,-15,0.9,1.1)
 
 		if frontmost_interactable is Warehouse:
 			if !frontmost_interactable.is_lit:
 				_dialogue("It's too dark in here, maybe I can light it up somehow")
+				SfxManager.play_sfx("OpenDoor",0,-20,-15,0.9,1.1)
 
 		if frontmost_interactable is WrongPhotonicInvertor:
+			SfxManager.play_sfx("Search",0,-15,-10,0.9,1.1)
+			var sfx_timer = get_tree().create_timer(2.0)
+			await sfx_timer.timeout
+			SfxManager.stop_sfx("Search")
 			_dialogue("This photonic invertor won't fit the generator")
 
 		if frontmost_interactable is RocketHangar:
 			if !Globals.is_crystal_city_generator_enabled:
-				_dialogue("It's too dark in here, I need to find a way to power the lights")
+				_dialogue("The door won't open. I should find a way to power it")
+				SfxManager.play_sfx("PressButton",0,-20,-15,0.9,1.1)
 
 		if ComponentUtils.has_component(frontmost_interactable, Interactable.string_name):
 			var interactable_component = ComponentUtils.get_component(frontmost_interactable, Interactable.string_name) as Interactable
@@ -123,6 +134,7 @@ func enter_argo(is_entering: bool) -> void:
 	is_in_argo = is_entering
 	player_sprite.visible = !is_in_argo
 	Globals.argo.drive = is_in_argo
+	SfxManager.play_sfx("ARGODoor",0,-20.0,-15.0,0.9,1.1)
 	if is_in_argo:
 		spawn_point = ComponentUtils.get_component(Globals.argo, SpawnPoint.string_name) as SpawnPoint
 		point_light_2d.enabled = false
