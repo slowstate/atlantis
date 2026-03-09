@@ -1,11 +1,11 @@
-[gd_scene load_steps=34 format=3 uid="uid://78dtm2oyn1qs"]
+[gd_scene load_steps=44 format=3 uid="uid://78dtm2oyn1qs"]
 
 [ext_resource type="Script" uid="uid://j2aeuxkdgo4t" path="res://world/crystal_city/crystal_city.gd" id="1_bxvt2"]
 [ext_resource type="PackedScene" uid="uid://d26r2a2m086uo" path="res://world/crystal_city/buildings/warehouse/warehouse.tscn" id="1_p0dhy"]
 [ext_resource type="PackedScene" uid="uid://hw1iho5ivxbw" path="res://world/crystal_city/buildings/generator/generator.tscn" id="2_3xwy7"]
 [ext_resource type="Texture2D" uid="uid://bp5vvcvsefvxx" path="res://world/crystal_city/buildings/rothschild_building/rothschild_building.png" id="2_q3f7c"]
 [ext_resource type="Script" uid="uid://bf37rou75fm6v" path="res://world/parallax_2d_layer/parallax_2d_layer.gd" id="2_xw1xy"]
-[ext_resource type="PackedScene" uid="uid://bod07y12hlqh" path="res://world/crystal_city/buildings/warehouse/warehouse_interior.tscn" id="3_5r0gn"]
+[ext_resource type="PackedScene" uid="uid://bod07y12hlqh" path="res://world/crystal_city/buildings/warehouse/warehouse_interior/warehouse_interior.tscn" id="3_5r0gn"]
 [ext_resource type="Texture2D" uid="uid://c3cqdmmdu1pep" path="res://world/crystal_city/buildings/rothschild_building/rothschild_building_light.png" id="3_l36ib"]
 [ext_resource type="Texture2D" uid="uid://y3mww0r4fjc7" path="res://world/parallax_2d_layer/city_lights_1.png" id="5_6t3uo"]
 [ext_resource type="PackedScene" uid="uid://clsxexl5mayua" path="res://world/crystal_city/buildings/rocket_hangar/rocket_hangar.tscn" id="5_iojnm"]
@@ -26,6 +26,16 @@
 [ext_resource type="Texture2D" uid="uid://d3gir8yj22biv" path="res://world/parallax_2d_layer/city_lights_11.png" id="15_gqhme"]
 [ext_resource type="Texture2D" uid="uid://bo2byvdel016" path="res://world/parallax_2d_layer/city_lights_12.png" id="16_tspd7"]
 [ext_resource type="Texture2D" uid="uid://bjloeksyusqxn" path="res://world/parallax_2d_layer/city_lights_13.png" id="17_1v00c"]
+[ext_resource type="Texture2D" uid="uid://sb4d24vsxoy6" path="res://world/crystal_city/city_foreground.png" id="26_uduu4"]
+[ext_resource type="Texture2D" uid="uid://bcoyd5t8s8fd4" path="res://world/flora/plant_5.png" id="27_gqhme"]
+[ext_resource type="Texture2D" uid="uid://0aj27nct7mbv" path="res://world/flora/plant_3.png" id="28_tspd7"]
+[ext_resource type="Texture2D" uid="uid://bkdmm3uhewgtm" path="res://world/flora/plant_7.png" id="29_1v00c"]
+[ext_resource type="Texture2D" uid="uid://drlqyhmva4ic8" path="res://world/flora/plant_6.png" id="30_as0vk"]
+[ext_resource type="Texture2D" uid="uid://dm1fhps443mw7" path="res://world/flora/plant_2.png" id="31_qxa0j"]
+[ext_resource type="Texture2D" uid="uid://c817m563qf2es" path="res://world/flora/plant_4.png" id="32_6sou6"]
+[ext_resource type="Texture2D" uid="uid://dnm0huyjrxfim" path="res://world/flora/plant_8.png" id="33_bb1ri"]
+[ext_resource type="Texture2D" uid="uid://dof1tsyif3q8w" path="res://world/flora/plant_1.png" id="34_2x46g"]
+[ext_resource type="Texture2D" uid="uid://nuxixsbgdnfa" path="res://world/flora/plant_9.png" id="35_ugiha"]
 
 [sub_resource type="Gradient" id="Gradient_5r0gn"]
 offsets = PackedFloat32Array(0)
@@ -188,14 +198,130 @@ shape = SubResource("RectangleShape2D_xw1xy")
 position = Vector2(777, 1059)
 
 [node name="WarehouseInterior" parent="." instance=ExtResource("3_5r0gn")]
-visible = false
-position = Vector2(1048, 979)
+position = Vector2(1048, 956)
 
 [node name="Warehouse" parent="." instance=ExtResource("1_p0dhy")]
 position = Vector2(1048, 1059)
 
 [node name="Generator" parent="." instance=ExtResource("2_3xwy7")]
 position = Vector2(1278, 1059)
+
+[node name="Parallax2DLayer3" type="Parallax2D" parent="."]
+z_index = 99
+script = ExtResource("2_xw1xy")
+metadata/_custom_type_script = "uid://bf37rou75fm6v"
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2DLayer3"]
+position = Vector2(640, 1102)
+texture = ExtResource("26_uduu4")
+
+[node name="Plant5" type="Sprite2D" parent="Parallax2DLayer3"]
+position = Vector2(-130, 1002)
+texture = ExtResource("27_gqhme")
+
+[node name="Plant13" type="Sprite2D" parent="Parallax2DLayer3"]
+position = Vector2(-106, 1020)
+texture = ExtResource("28_tspd7")
+
+[node name="Plant14" type="Sprite2D" parent="Parallax2DLayer3"]
+position = Vector2(-89, 1028)
+texture = ExtResource("29_1v00c")
+
+[node name="Plant12" type="Sprite2D" parent="Parallax2DLayer3"]
+position = Vector2(-48, 1038)
+texture = ExtResource("30_as0vk")
+
+[node name="Plant15" type="Sprite2D" parent="Parallax2DLayer3"]
+position = Vector2(26, 1059)
+texture = ExtResource("31_qxa0j")
+
+[node name="Plant16" type="Sprite2D" parent="Parallax2DLayer3"]
+position = Vector2(54, 1053)
+texture = ExtResource("27_gqhme")
+
+[node name="Plant17" type="Sprite2D" parent="Parallax2DLayer3"]
+position = Vector2(68, 1056)
+texture = ExtResource("32_6sou6")
+
+[node name="Plant18" type="Sprite2D" parent="Parallax2DLayer3"]
+position = Vector2(186, 1052)
+texture = ExtResource("29_1v00c")
+
+[node name="Plant19" type="Sprite2D" parent="Parallax2DLayer3"]
+position = Vector2(107, 1054)
+texture = ExtResource("33_bb1ri")
+
+[node name="Plant20" type="Sprite2D" parent="Parallax2DLayer3"]
+position = Vector2(205, 1044)
+texture = ExtResource("34_2x46g")
+
+[node name="Plant21" type="Sprite2D" parent="Parallax2DLayer3"]
+position = Vector2(245, 1052)
+texture = ExtResource("28_tspd7")
+
+[node name="Plant22" type="Sprite2D" parent="Parallax2DLayer3"]
+position = Vector2(357, 1060)
+texture = ExtResource("29_1v00c")
+
+[node name="Plant23" type="Sprite2D" parent="Parallax2DLayer3"]
+position = Vector2(377, 1045)
+texture = ExtResource("28_tspd7")
+
+[node name="Plant24" type="Sprite2D" parent="Parallax2DLayer3"]
+position = Vector2(423, 1045)
+texture = ExtResource("35_ugiha")
+
+[node name="Plant25" type="Sprite2D" parent="Parallax2DLayer3"]
+position = Vector2(576, 1054)
+texture = ExtResource("31_qxa0j")
+
+[node name="Plant26" type="Sprite2D" parent="Parallax2DLayer3"]
+position = Vector2(593, 1051)
+texture = ExtResource("32_6sou6")
+
+[node name="Plant27" type="Sprite2D" parent="Parallax2DLayer3"]
+position = Vector2(628, 1042)
+texture = ExtResource("30_as0vk")
+
+[node name="Plant28" type="Sprite2D" parent="Parallax2DLayer3"]
+position = Vector2(646, 1050)
+texture = ExtResource("28_tspd7")
+
+[node name="Plant29" type="Sprite2D" parent="Parallax2DLayer3"]
+position = Vector2(707, 1041)
+texture = ExtResource("34_2x46g")
+
+[node name="Plant30" type="Sprite2D" parent="Parallax2DLayer3"]
+position = Vector2(744, 1050)
+texture = ExtResource("33_bb1ri")
+
+[node name="Plant31" type="Sprite2D" parent="Parallax2DLayer3"]
+position = Vector2(905, 1050)
+texture = ExtResource("27_gqhme")
+
+[node name="Plant32" type="Sprite2D" parent="Parallax2DLayer3"]
+position = Vector2(1143, 1048)
+texture = ExtResource("31_qxa0j")
+
+[node name="Plant33" type="Sprite2D" parent="Parallax2DLayer3"]
+position = Vector2(1262, 1059)
+texture = ExtResource("30_as0vk")
+
+[node name="Plant34" type="Sprite2D" parent="Parallax2DLayer3"]
+position = Vector2(1274, 1051)
+texture = ExtResource("33_bb1ri")
+
+[node name="Plant35" type="Sprite2D" parent="Parallax2DLayer3"]
+position = Vector2(1391, 1046)
+texture = ExtResource("30_as0vk")
+
+[node name="Plant36" type="Sprite2D" parent="Parallax2DLayer3"]
+position = Vector2(1402, 1039)
+texture = ExtResource("34_2x46g")
+
+[node name="Plant37" type="Sprite2D" parent="Parallax2DLayer3"]
+position = Vector2(1425, 1032)
+texture = ExtResource("29_1v00c")
 
 [node name="CameraFocusRocket" type="Area2D" parent="." node_paths=PackedStringArray("focus_point")]
 position = Vector2(773, 778)
