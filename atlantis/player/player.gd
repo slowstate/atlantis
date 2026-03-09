@@ -28,7 +28,7 @@ var shake_time_speed: float = 20.0
 var noise = FastNoiseLite.new()
 
 @onready var camera_2d: Camera2D = $Camera2D
-@onready var player_sprite: Sprite2D = $PlayerSprite
+@onready var player_sprite: AnimatedSprite2D = $PlayerSprite
 @onready var player_state_machine: PlayerStateMachine = $PlayerStateMachine
 @onready var oxygen_meter_label: Label = $UserInterface/OxygenMeterLabel
 @onready var oxygen_box: Area2D = $OxygenBox
@@ -78,9 +78,14 @@ func _process(delta: float) -> void:
 
 	## Swimming: Fixed max speed, better "handling", floating damping suddenly drops when moving
 	if move_vec != Vector2.ZERO:
+		player_sprite.play("swim")
+		player_sprite.flip_h = move_vec.x == -1
+		player_sprite.rotation = move_vec.angle() - PI if move_vec.x == -1 else move_vec.angle()
 		velocity = velocity.move_toward(move_vec.normalized() * max_speed, acceleration * delta)
 	else:
 		# Apply damping (friction) when no input is pressed
+		player_sprite.play("default")
+		player_sprite.rotation = 0
 		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
 	move_and_slide()
 

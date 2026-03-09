@@ -103,7 +103,7 @@ texture = ExtResource("10_cxsdh")
 
 [node name="Parallax2DLayer3" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.9, 0.9)
-scroll_offset = Vector2(557.5, 236.5)
+scroll_offset = Vector2(514, 241)
 script = ExtResource("4_mwkxx")
 metadata/_custom_type_script = "uid://bf37rou75fm6v"
 
@@ -116,15 +116,8 @@ position = Vector2(341, 116)
 [node name="Glowstone2" parent="." instance=ExtResource("4_422jt")]
 position = Vector2(1018, 571)
 
-[node name="MiningTool" parent="." instance=ExtResource("3_fv0dc")]
-position = Vector2(1083, 234)
-
-[node name="SurvivorsJournalNote" parent="." instance=ExtResource("4_3a0gb")]
-position = Vector2(1034, 237)
-id = 1
-
 [node name="Shallows" type="Sprite2D" parent="."]
-z_index = 10
+z_index = 9
 position = Vector2(640, 283)
 texture = ExtResource("12_1jc31")
 
@@ -145,6 +138,13 @@ collision_mask = 5
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shallows/RightCliffCollision"]
 build_mode = 1
 polygon = PackedVector2Array(0, 0, 0, 3, 1, 4, 1, 26, 30, 26, 30, 33, 37, 33, 37, 57, 40, 57, 40, 87, 53, 87, 53, 102, 83, 102, 106, 104, 106, 109, 95, 109, 95, 130, 82, 130, 82, 168, 112, 168, 112, 172, 150, 172, 180, 174, 218, 174, 218, 184, 239, 184, 239, 240, 211, 240, 199, 242, 173, 244, 173, 261, 156, 261, 141, 263, 111, 263, 107, 264, 101, 271, 101, 275, 92, 275, 84, 281, 72, 282, 72, 320, 92, 320, 92, 329, 84, 329, 84, 360, 80, 360, 80, 398, 92, 398, 92, 408, 84, 408, 84, 422, 66, 422, 63, 430, 36, 430, 36, 453, 28, 453, 28, 491, 31, 491, 31, 505, 66, 505, 66, 509, 83, 509, 83, 526, 96, 526, 96, 542, 134, 542, 134, 550, 169, 550, 170, 561, 173, 561, 173, 579, 147, 579, 147, 617, 182, 617, 182, 634, 268, 634, 268, 599, 393, 607, 393, 623, 428, 623, 428, 593, 588, 593, 588, 0)
+
+[node name="MiningTool" parent="." instance=ExtResource("3_fv0dc")]
+position = Vector2(962, 263)
+
+[node name="SurvivorsJournalNote" parent="." instance=ExtResource("4_3a0gb")]
+position = Vector2(1062, 233)
+id = 1
 
 [node name="SurfaceSparkleParticles" type="GPUParticles2D" parent="."]
 position = Vector2(698, 8)
