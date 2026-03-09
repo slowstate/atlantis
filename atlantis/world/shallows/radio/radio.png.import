@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcghsvx8x0qxk"
-path="res://.godot/imported/decorative_crate.png-f622a85d7c724807ce96f1f2115da7d9.ctex"
+uid="uid://bmu2agumk8iw2"
+path="res://.godot/imported/radio.png-5611d65da7ef19517ea5f75f5720dde1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/items/decorative_crate.png"
-dest_files=["res://.godot/imported/decorative_crate.png-f622a85d7c724807ce96f1f2115da7d9.ctex"]
+source_file="res://world/shallows/radio/radio.png"
+dest_files=["res://.godot/imported/radio.png-5611d65da7ef19517ea5f75f5720dde1.ctex"]
 
 [params]
 

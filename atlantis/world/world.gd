@@ -51,5 +51,5 @@ func _on_fish_spawn_timer_timeout() -> void:
 
 func _on_fade_in_timer_timeout() -> void:
 	animation_player.play("player_dive")
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(1.5).timeout
 	player.controls_enabled = true

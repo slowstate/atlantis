@@ -1,5 +1,6 @@
-[gd_scene load_steps=23 format=3 uid="uid://bareqc1eyxlpq"]
+[gd_scene load_steps=33 format=3 uid="uid://bareqc1eyxlpq"]
 
+[ext_resource type="Script" uid="uid://dvyb3kaml26qq" path="res://world/shallows/shallows.gd" id="1_ea2l5"]
 [ext_resource type="PackedScene" uid="uid://p6fv62obxr2c" path="res://world/shallows/open_air.tscn" id="2_usalr"]
 [ext_resource type="PackedScene" uid="uid://70xk32ju81ns" path="res://entities/items/mining_tool/mining_tool.tscn" id="3_fv0dc"]
 [ext_resource type="PackedScene" uid="uid://chblsv0q7dh0c" path="res://entities/notes/note/note.tscn" id="4_3a0gb"]
@@ -11,8 +12,14 @@
 [ext_resource type="Texture2D" uid="uid://c0qtbaxpx7pic" path="res://world/shallows/ocean_surface_distort.png" id="8_ea2l5"]
 [ext_resource type="Texture2D" uid="uid://0br2fbkys6ob" path="res://world/shallows/cliff_wall_left_front.png" id="9_olmvm"]
 [ext_resource type="Texture2D" uid="uid://ol70tvc2u3jj" path="res://world/shallows/cliff_wall_left_back.png" id="10_cxsdh"]
+[ext_resource type="Texture2D" uid="uid://djsovt8oxlqi" path="res://entities/items/glowstone/glowstone_mined.png" id="11_s8uee"]
 [ext_resource type="Texture2D" uid="uid://73j4gep5jqyx" path="res://world/shallows/ocean_middle.png" id="11_sr3cf"]
 [ext_resource type="Texture2D" uid="uid://1gnqesbohr3l" path="res://world/shallows/shallows.png" id="12_1jc31"]
+[ext_resource type="Texture2D" uid="uid://djprvnwki31km" path="res://world/shallows/bridge.png" id="12_64aqm"]
+[ext_resource type="Texture2D" uid="uid://ctq2klh1io2cm" path="res://entities/items/glowstone/glowstone_2.png" id="12_sr3cf"]
+[ext_resource type="Texture2D" uid="uid://bu4ss7xo0p4hd" path="res://entities/items/glowstone/glowstone_2_mined.png" id="13_ffikv"]
+[ext_resource type="Texture2D" uid="uid://dcghsvx8x0qxk" path="res://world/shallows/decorative_crate.png" id="16_olmvm"]
+[ext_resource type="PackedScene" uid="uid://hjw7uadu67x2" path="res://world/shallows/radio/radio.tscn" id="17_cxsdh"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_usalr"]
 friction = 0.0
@@ -51,8 +58,47 @@ gradient = SubResource("Gradient_64aqm")
 width = 2
 height = 2
 
+[sub_resource type="Animation" id="Animation_ea2l5"]
+resource_name = "bridge_sway"
+length = 3.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bridge:skew")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 2),
+"update": 0,
+"values": [-0.012217304763960357, 0.012217304763960109]
+}
+
+[sub_resource type="Animation" id="Animation_olmvm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bridge:skew")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cxsdh"]
+_data = {
+&"RESET": SubResource("Animation_olmvm"),
+&"bridge_sway": SubResource("Animation_ea2l5")
+}
+
 [node name="Shallows" type="Node2D"]
 z_index = 5
+script = ExtResource("1_ea2l5")
 
 [node name="TopBoundary" type="StaticBody2D" parent="."]
 position = Vector2(686, -5)
@@ -110,11 +156,22 @@ metadata/_custom_type_script = "uid://bf37rou75fm6v"
 [node name="OceanFront" type="Sprite2D" parent="Parallax2DLayer3"]
 texture = ExtResource("6_mwkxx")
 
+[node name="GlowstoneMined" type="Sprite2D" parent="."]
+position = Vector2(338, 123)
+texture = ExtResource("11_s8uee")
+
 [node name="Glowstone" parent="." instance=ExtResource("4_422jt")]
 position = Vector2(341, 116)
 
-[node name="Glowstone2" parent="." instance=ExtResource("4_422jt")]
-position = Vector2(1018, 571)
+[node name="Glowstone2Mined" type="Sprite2D" parent="."]
+position = Vector2(1199, 572)
+texture = ExtResource("13_ffikv")
+
+[node name="GlowstoneAlcove" parent="." instance=ExtResource("4_422jt")]
+position = Vector2(1204, 579)
+
+[node name="Sprite2D" parent="GlowstoneAlcove" index="0"]
+texture = ExtResource("12_sr3cf")
 
 [node name="Shallows" type="Sprite2D" parent="."]
 z_index = 9
@@ -137,7 +194,11 @@ collision_mask = 5
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shallows/RightCliffCollision"]
 build_mode = 1
-polygon = PackedVector2Array(0, 0, 0, 3, 1, 4, 1, 26, 30, 26, 30, 33, 37, 33, 37, 57, 40, 57, 40, 87, 53, 87, 53, 102, 83, 102, 106, 104, 106, 109, 95, 109, 95, 130, 82, 130, 82, 168, 112, 168, 112, 172, 150, 172, 180, 174, 218, 174, 218, 184, 239, 184, 239, 240, 211, 240, 199, 242, 173, 244, 173, 261, 156, 261, 141, 263, 111, 263, 107, 264, 101, 271, 101, 275, 92, 275, 84, 281, 72, 282, 72, 320, 92, 320, 92, 329, 84, 329, 84, 360, 80, 360, 80, 398, 92, 398, 92, 408, 84, 408, 84, 422, 66, 422, 63, 430, 36, 430, 36, 453, 28, 453, 28, 491, 31, 491, 31, 505, 66, 505, 66, 509, 83, 509, 83, 526, 96, 526, 96, 542, 134, 542, 134, 550, 169, 550, 170, 561, 173, 561, 173, 579, 147, 579, 147, 617, 182, 617, 182, 634, 268, 634, 268, 599, 393, 607, 393, 623, 428, 623, 428, 593, 588, 593, 588, 0)
+polygon = PackedVector2Array(0, 0, 0, 3, 1, 4, 1, 26, 30, 26, 30, 33, 37, 33, 37, 57, 40, 57, 40, 87, 53, 87, 53, 102, 83, 102, 106, 104, 106, 109, 95, 109, 95, 130, 82, 130, 82, 168, 112, 168, 112, 172, 150, 172, 180, 174, 218, 174, 218, 184, 239, 184, 239, 240, 211, 240, 199, 242, 173, 244, 173, 261, 156, 261, 141, 263, 111, 263, 107, 264, 101, 271, 101, 275, 92, 275, 84, 281, 72, 282, 72, 320, 92, 320, 92, 329, 84, 329, 84, 360, 80, 360, 80, 398, 92, 398, 92, 408, 84, 408, 84, 422, 66, 422, 63, 430, 36, 430, 36, 453, 28, 453, 28, 491, 31, 491, 31, 505, 66, 505, 66, 509, 83, 509, 83, 526, 96, 526, 96, 542, 134, 542, 134, 550, 169, 550, 170, 561, 173, 561, 173, 579, 147, 579, 147, 617, 182, 617, 182, 634, 266, 634, 271, 618, 279, 617, 284, 596, 320, 596, 320, 579, 331, 577, 339, 577, 340, 571, 361, 571, 365, 581, 361, 594, 366, 603, 365, 609, 388, 609, 393, 623, 428, 623, 428, 593, 588, 593, 588, 0)
+
+[node name="Bridge" type="Sprite2D" parent="."]
+position = Vector2(687, 367)
+texture = ExtResource("12_64aqm")
 
 [node name="MiningTool" parent="." instance=ExtResource("3_fv0dc")]
 position = Vector2(962, 263)
@@ -159,3 +220,28 @@ amount = 64
 texture = SubResource("GradientTexture2D_ea2l5")
 lifetime = 1.5
 process_material = SubResource("ParticleProcessMaterial_ea2l5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_cxsdh")
+}
+
+[node name="DecorativeCrate" type="Sprite2D" parent="."]
+position = Vector2(340, 447)
+texture = ExtResource("16_olmvm")
+
+[node name="DecorativeCrate2" type="Sprite2D" parent="."]
+position = Vector2(339, 428)
+texture = ExtResource("16_olmvm")
+
+[node name="DecorativeCrate3" type="Sprite2D" parent="."]
+position = Vector2(314, 425)
+texture = ExtResource("16_olmvm")
+
+[node name="Note" parent="." instance=ExtResource("4_3a0gb")]
+position = Vector2(303, 424)
+
+[node name="Radio" parent="." instance=ExtResource("17_cxsdh")]
+position = Vector2(285, 372)
+
+[editable path="GlowstoneAlcove"]
