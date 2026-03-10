@@ -83,9 +83,10 @@ func _process(delta: float) -> void:
 		player_sprite.rotation = move_vec.angle() - PI if move_vec.x == -1 else move_vec.angle()
 		velocity = velocity.move_toward(move_vec.normalized() * max_speed, acceleration * delta)
 	else:
-		# Apply damping (friction) when no input is pressed
-		player_sprite.play("default")
+		if !player_sprite.is_playing() or player_sprite.animation == "default" or player_sprite.animation == "swim":
+			player_sprite.play("default")
 		player_sprite.rotation = 0
+		# Apply damping (friction) when no input is pressed
 		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
 	move_and_slide()
 
@@ -130,6 +131,17 @@ func _input(event: InputEvent) -> void:
 			enter_argo(!is_in_argo)
 			return
 
+		if ComponentUtils.has_component(frontmost_interactable, Interactable.string_name):
+			var interactable_component = ComponentUtils.get_component(frontmost_interactable, Interactable.string_name) as Interactable
+			interactable_component.interact()
+
+		if frontmost_interactable is Glowstone:
+			if currently_selected_tool != Ids.Items.MiningTool:
+				_dialogue("I need a tool to mine this")
+			else:
+				player_sprite.play("mine")
+			return
+
 		if frontmost_interactable is Generator:
 			if !frontmost_interactable.has_glowstone or !frontmost_interactable.has_photonic_invertor:
 				_dialogue("I think the generator is still missing something")
@@ -145,9 +157,7 @@ func _input(event: InputEvent) -> void:
 			if !Globals.is_crystal_city_generator_enabled:
 				_dialogue("It's too dark in here, I need to find a way to power the lights")
 
-		if ComponentUtils.has_component(frontmost_interactable, Interactable.string_name):
-			var interactable_component = ComponentUtils.get_component(frontmost_interactable, Interactable.string_name) as Interactable
-			interactable_component.interact()
+		player_sprite.play("interact")
 
 
 func enter_argo(is_entering: bool) -> void:

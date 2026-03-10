@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://j51i3vf5hn3d"]
+[gd_scene load_steps=42 format=3 uid="uid://j51i3vf5hn3d"]
 
 [ext_resource type="Script" uid="uid://d33wj2wxlurur" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Texture2D" uid="uid://bhsbeiho1ftwj" path="res://player/player.png" id="2_g1dw6"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://cws56lrnieioe" path="res://player/PlayerStateMachine/player_state_machine.gd" id="4_yw30f"]
 [ext_resource type="Script" uid="uid://demetty61s5el" path="res://player/notification.gd" id="5_hg6s5"]
 [ext_resource type="Script" uid="uid://ygoqb4k67vi1" path="res://player/PlayerStateMachine/oxygen_refilling_state.gd" id="5_qjkh3"]
+[ext_resource type="Texture2D" uid="uid://blwq8tf8r4cnw" path="res://player/player_mine.png" id="5_wodsf"]
 [ext_resource type="Script" uid="uid://bfj0tbm2sub6y" path="res://player/PlayerStateMachine/oxygen_depleting_state.gd" id="6_g6k8r"]
 [ext_resource type="Script" uid="uid://by7vkwfrt78qv" path="res://player/PlayerStateMachine/drowning_state.gd" id="7_boad6"]
 [ext_resource type="PackedScene" uid="uid://ca6mfue2lfa8u" path="res://menus/pause_menu/pause_menu.tscn" id="10_8t03j"]
@@ -57,6 +58,22 @@ region = Rect2(80, 0, 40, 40)
 atlas = ExtResource("3_ebec5")
 region = Rect2(120, 0, 40, 40)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7pn3"]
+atlas = ExtResource("5_wodsf")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8hi5"]
+atlas = ExtResource("5_wodsf")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2uvqg"]
+atlas = ExtResource("5_wodsf")
+region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1s1yo"]
+atlas = ExtResource("5_wodsf")
+region = Rect2(120, 0, 40, 40)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_c35mf"]
 atlas = ExtResource("4_yllr7")
 region = Rect2(0, 0, 40, 40)
@@ -91,6 +108,11 @@ animations = [{
 "name": &"default",
 "speed": 1.0
 }, {
+"frames": [],
+"loop": false,
+"name": &"interact",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wodsf")
@@ -106,6 +128,23 @@ animations = [{
 }],
 "loop": false,
 "name": &"jump_off",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7pn3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b8hi5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2uvqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1s1yo")
+}],
+"loop": false,
+"name": &"mine",
 "speed": 10.0
 }, {
 "frames": [{
@@ -198,8 +237,6 @@ texture = SubResource("GradientTexture2D_8t03j")
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 light_mask = 0
 sprite_frames = SubResource("SpriteFrames_knn7v")
-animation = &"swim"
-frame_progress = 0.20423117
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_top = 0

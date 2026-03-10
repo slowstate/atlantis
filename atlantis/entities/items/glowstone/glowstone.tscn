@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnd1any0b2rkh"]
+[gd_scene load_steps=7 format=3 uid="uid://dnd1any0b2rkh"]
 
 [ext_resource type="Script" uid="uid://bb8qqaqjh6rvb" path="res://entities/items/glowstone/glowstone.gd" id="1_05abb"]
 [ext_resource type="Texture2D" uid="uid://dyv5541unjajh" path="res://entities/items/glowstone/glowstone.png" id="1_o7jv2"]
+[ext_resource type="PackedScene" uid="uid://b6ruttq66ok04" path="res://entities/items/glowstone/glowstone_sparkles.tscn" id="3_v1puu"]
 [ext_resource type="PackedScene" uid="uid://44g3nqpsueeg" path="res://components/interactable/interactable.tscn" id="3_yo7q6"]
 [ext_resource type="PackedScene" uid="uid://c22m6y805jswx" path="res://components/collectable/collectable.tscn" id="4_3vn4x"]
 
@@ -12,8 +13,11 @@ z_index = 9
 script = ExtResource("1_05abb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-3, -1)
 texture = ExtResource("1_o7jv2")
+
+[node name="GlowstoneSparkles" parent="." instance=ExtResource("3_v1puu")]
+position = Vector2(1, -11)
+amount = 12
 
 [node name="InteractionBox" type="Area2D" parent="."]
 collision_layer = 8
