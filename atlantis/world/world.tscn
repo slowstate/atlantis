@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://j51i3vf5hn3d" path="res://player/player.tscn" id="2_h5o24"]
 [ext_resource type="PackedScene" uid="uid://78dtm2oyn1qs" path="res://world/crystal_city/crystal_city.tscn" id="2_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://bkqgm12tie6br" path="res://argo/argo.tscn" id="3_mmdvd"]
+[ext_resource type="Script" uid="uid://dqoyxm1kcp32q" path="res://world/surface_spawn_point.gd" id="7_ai45w"]
+[ext_resource type="Script" uid="uid://ds4fwatayx6mo" path="res://components/spawn_point/spawn_point.gd" id="7_sc4t8"]
 [ext_resource type="Texture2D" uid="uid://okf7smr618ds" path="res://world/parallax_2d_layer/ocean.png" id="8_ai45w"]
 
 [sub_resource type="Gradient" id="Gradient_fn3g3"]
@@ -207,15 +209,6 @@ _data = {
 &"player_dive": SubResource("Animation_fn3g3")
 }
 
-[sub_resource type="Gradient" id="Gradient_sc4t8"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ai45w"]
-gradient = SubResource("Gradient_sc4t8")
-width = 600
-height = 300
-
 [node name="World" type="Node2D"]
 script = ExtResource("1_mmdvd")
 
@@ -261,16 +254,14 @@ libraries = {
 &"": SubResource("AnimationLibrary_ai45w")
 }
 
-[node name="FadeInOverlay" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0)
-z_index = 99
-position = Vector2(601, 90)
-texture = SubResource("GradientTexture2D_ai45w")
-
-[node name="FadeInTimer" type="Timer" parent="."]
-one_shot = true
-
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
+[node name="SurfaceSpawnPoint" type="Node2D" parent="."]
+position = Vector2(600, 35)
+script = ExtResource("7_ai45w")
+
+[node name="SpawnPoint" type="Node" parent="SurfaceSpawnPoint"]
+script = ExtResource("7_sc4t8")
+metadata/_custom_type_script = "uid://ds4fwatayx6mo"
+
 [connection signal="timeout" from="FishSpawnTimer" to="." method="_on_fish_spawn_timer_timeout"]
-[connection signal="timeout" from="FadeInTimer" to="." method="_on_fade_in_timer_timeout"]

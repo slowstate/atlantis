@@ -1,0 +1,238 @@
+[gd_scene load_steps=28 format=3 uid="uid://cfmj22pmpp3tn"]
+
+[ext_resource type="Texture2D" uid="uid://c71rkj41ho73l" path="res://world/opening/opening_scene.png" id="1_i7n71"]
+[ext_resource type="Script" uid="uid://d04ii4w0xspsr" path="res://world/opening/opening_scene.gd" id="1_yfivt"]
+[ext_resource type="Texture2D" uid="uid://drn2wfpxrdplg" path="res://player/player_jump_off.png" id="3_qxmy1"]
+[ext_resource type="Texture2D" uid="uid://b6t46gcedg7ao" path="res://world/opening/opening_scene_water.png" id="4_qxmy1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18swj"]
+atlas = ExtResource("3_qxmy1")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oftnv"]
+atlas = ExtResource("3_qxmy1")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_km1f2"]
+atlas = ExtResource("3_qxmy1")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g16jo"]
+atlas = ExtResource("3_qxmy1")
+region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rewee"]
+atlas = ExtResource("3_qxmy1")
+region = Rect2(120, 0, 40, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_co3hy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18swj")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oftnv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_km1f2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g16jo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rewee")
+}],
+"loop": false,
+"name": &"jump_off",
+"speed": 20.0
+}]
+
+[sub_resource type="Animation" id="Animation_66mpu"]
+resource_name = "jump_off"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 1, 3, 3, 0),
+"points": PackedFloat32Array(63, 0, 0, 0, 0, 63, 0, 0, 0, 0, 81.5, -0.06666668, -7, 0.06666668, 7, 103, -0.09874153, -2.5, 0.09874153, 2.5, 104, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.000854454, 0.2, 0.56666666, 0.6)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 3, 3, 0, 0),
+"points": PackedFloat32Array(111, 0, 0, 0, 0, 113.5, -0.0002136135, 0, 0.0002136135, 0, 100, -0.06666667, 5, 0.06666667, -5, 106.5, -0.03333333, -3, 0.03333333, 3, 142, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.000854454, 0.1, 0.36666667, 0.6)
+}
+
+[sub_resource type="Animation" id="Animation_bjfkh"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(63, 0, 0, 0, 0, 63, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.000854454)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(111, 0, 0, 0, 0, 113.5, -0.0002136135, 0, 0.0002136135, 0),
+"times": PackedFloat32Array(0, 0.000854454)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4avxg"]
+_data = {
+&"RESET": SubResource("Animation_bjfkh"),
+&"jump_off": SubResource("Animation_66mpu")
+}
+
+[sub_resource type="Curve" id="Curve_qxmy1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_18swj"]
+curve = SubResource("Curve_qxmy1")
+
+[sub_resource type="Gradient" id="Gradient_oftnv"]
+offsets = PackedFloat32Array(0, 0.65584415)
+colors = PackedColorArray(0.49411765, 0.53333336, 0.7137255, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_km1f2"]
+gradient = SubResource("Gradient_oftnv")
+width = 4
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g16jo"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 6.0
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 60.0
+gravity = Vector3(0, 98, 0)
+scale_max = 2.0
+color_initial_ramp = SubResource("GradientTexture1D_km1f2")
+alpha_curve = SubResource("CurveTexture_18swj")
+
+[sub_resource type="Curve" id="Curve_18swj"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_oftnv"]
+curve = SubResource("Curve_18swj")
+
+[sub_resource type="Gradient" id="Gradient_km1f2"]
+colors = PackedColorArray(0.5568628, 0.5921569, 0.7647059, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_g16jo"]
+gradient = SubResource("Gradient_km1f2")
+width = 4
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qxmy1"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(160, 6, 1)
+gravity = Vector3(0, 0, 0)
+color_initial_ramp = SubResource("GradientTexture1D_g16jo")
+alpha_curve = SubResource("CurveTexture_oftnv")
+turbulence_noise_strength = 0.1
+turbulence_noise_scale = 0.2
+
+[sub_resource type="Gradient" id="Gradient_yfivt"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qxmy1"]
+gradient = SubResource("Gradient_yfivt")
+width = 320
+height = 180
+
+[sub_resource type="Gradient" id="Gradient_qxmy1"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 0.5, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_18swj"]
+gradient = SubResource("Gradient_qxmy1")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="OpeningScene" type="Node2D"]
+script = ExtResource("1_yfivt")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_i7n71")
+centered = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(63, 111)
+sprite_frames = SubResource("SpriteFrames_co3hy")
+animation = &"jump_off"
+frame = 3
+frame_progress = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_4avxg")
+}
+
+[node name="OpeningSceneWater" type="Sprite2D" parent="."]
+position = Vector2(160, 154.5)
+texture = ExtResource("4_qxmy1")
+
+[node name="WaterSplashParticles" type="GPUParticles2D" parent="."]
+position = Vector2(101, 131)
+emitting = false
+amount = 32
+one_shot = true
+explosiveness = 0.9
+process_material = SubResource("ParticleProcessMaterial_g16jo")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(160, 130)
+amount = 128
+lifetime = 1.5
+process_material = SubResource("ParticleProcessMaterial_qxmy1")
+
+[node name="FadeInOverlay" type="Sprite2D" parent="."]
+visible = false
+texture = SubResource("GradientTexture2D_qxmy1")
+centered = false
+
+[node name="FadeInTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(282, 47)
+texture = SubResource("GradientTexture2D_18swj")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(282, 156)
+scale = Vector2(0.8, 0.5)
+texture = SubResource("GradientTexture2D_18swj")
+
+[connection signal="timeout" from="FadeInTimer" to="." method="_on_fade_in_timer_timeout"]

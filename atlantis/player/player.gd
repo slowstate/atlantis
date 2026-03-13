@@ -192,7 +192,9 @@ func _on_respawn_button_pressed() -> void:
 
 	player_state_machine.set_state("OxygenDepletingState")
 	oxygen = OXYGEN_MAX
-	enter_argo(true)
+
+	if spawn_point.owner is Argo:
+		enter_argo(true)
 
 	SignalBus.player_respawned.emit()
 
