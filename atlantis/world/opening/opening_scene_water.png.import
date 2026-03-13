@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blwq8tf8r4cnw"
-path="res://.godot/imported/player_mine.png-58e29465c2948b1a88ed4b7b484b2b6c.ctex"
+uid="uid://b6t46gcedg7ao"
+path="res://.godot/imported/opening_scene_water.png-1f209220a2d349c73b5970ccbb261dd7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/player_mine.png"
-dest_files=["res://.godot/imported/player_mine.png-58e29465c2948b1a88ed4b7b484b2b6c.ctex"]
+source_file="res://world/opening/opening_scene_water.png"
+dest_files=["res://.godot/imported/opening_scene_water.png-1f209220a2d349c73b5970ccbb261dd7.ctex"]
 
 [params]
 

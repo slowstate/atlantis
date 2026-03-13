@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blwq8tf8r4cnw"
-path="res://.godot/imported/player_mine.png-58e29465c2948b1a88ed4b7b484b2b6c.ctex"
+uid="uid://dcghsvx8x0qxk"
+path="res://.godot/imported/decorative_crate.png-192c525ae95f108da6d4577d13a4186a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/player_mine.png"
-dest_files=["res://.godot/imported/player_mine.png-58e29465c2948b1a88ed4b7b484b2b6c.ctex"]
+source_file="res://world/shallows/decorative_crate.png"
+dest_files=["res://.godot/imported/decorative_crate.png-192c525ae95f108da6d4577d13a4186a.ctex"]
 
 [params]
 

@@ -24,7 +24,7 @@ var is_fixed: bool = false
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if !photonic_invertor_break_timer.is_stopped() and photonic_invertor_broken.visible:
 		photonic_invertor_broken.modulate.a = 1.0 - TimerUtils.timer_progress(photonic_invertor_break_timer)
 	if !glowstone_break_timer.is_stopped() and glowstone_after.visible:

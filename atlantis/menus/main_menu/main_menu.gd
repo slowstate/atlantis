@@ -1,6 +1,6 @@
 extends Node2D
 
-const WORLD = preload("uid://chhtc74hdy2e5")
+const OPENING_SCENE = preload("uid://cfmj22pmpp3tn")
 
 func _ready() -> void:
 	SfxManager.stop_all_sfx()

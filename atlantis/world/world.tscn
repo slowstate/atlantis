@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://j51i3vf5hn3d" path="res://player/player.tscn" id="2_h5o24"]
 [ext_resource type="PackedScene" uid="uid://78dtm2oyn1qs" path="res://world/crystal_city/crystal_city.tscn" id="2_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://bkqgm12tie6br" path="res://argo/argo.tscn" id="3_mmdvd"]
+[ext_resource type="Script" uid="uid://dqoyxm1kcp32q" path="res://world/surface_spawn_point.gd" id="7_ai45w"]
+[ext_resource type="Script" uid="uid://ds4fwatayx6mo" path="res://components/spawn_point/spawn_point.gd" id="7_sc4t8"]
 [ext_resource type="Texture2D" uid="uid://okf7smr618ds" path="res://world/parallax_2d_layer/ocean.png" id="8_ai45w"]
 
 [sub_resource type="Gradient" id="Gradient_fn3g3"]
@@ -44,58 +46,6 @@ initial_velocity_min = 10.0
 initial_velocity_max = 20.0
 gravity = Vector3(0, -98, 0)
 scale_min = 0.5
-
-[sub_resource type="Animation" id="Animation_fn3g3"]
-resource_name = "player_dive"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Player:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(0.1, 1),
-"update": 0,
-"values": [Vector2(578, -19), Vector2(600, 35)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Player/GPUParticles2D:emitting")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Player:collision_layer")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(2),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Player:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="Animation" id="Animation_sc4t8"]
 length = 0.001
@@ -200,21 +150,64 @@ tracks/1/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_fn3g3"]
+resource_name = "player_dive"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(0.1, 1),
+"update": 0,
+"values": [Vector2(578, -19), Vector2(600, 35)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player/GPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Player:collision_layer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.4666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Player:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ai45w"]
 _data = {
 &"RESET": SubResource("Animation_sc4t8"),
 &"argo_rising": SubResource("Animation_ai45w"),
 &"player_dive": SubResource("Animation_fn3g3")
 }
-
-[sub_resource type="Gradient" id="Gradient_sc4t8"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ai45w"]
-gradient = SubResource("Gradient_sc4t8")
-width = 600
-height = 300
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_mmdvd")
@@ -261,14 +254,14 @@ libraries = {
 &"": SubResource("AnimationLibrary_ai45w")
 }
 
-[node name="FadeInOverlay" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0)
-z_index = 99
-position = Vector2(601, 90)
-texture = SubResource("GradientTexture2D_ai45w")
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
 
-[node name="FadeInTimer" type="Timer" parent="."]
-one_shot = true
+[node name="SurfaceSpawnPoint" type="Node2D" parent="."]
+position = Vector2(600, 35)
+script = ExtResource("7_ai45w")
+
+[node name="SpawnPoint" type="Node" parent="SurfaceSpawnPoint"]
+script = ExtResource("7_sc4t8")
+metadata/_custom_type_script = "uid://ds4fwatayx6mo"
 
 [connection signal="timeout" from="FishSpawnTimer" to="." method="_on_fish_spawn_timer_timeout"]
-[connection signal="timeout" from="FadeInTimer" to="." method="_on_fade_in_timer_timeout"]

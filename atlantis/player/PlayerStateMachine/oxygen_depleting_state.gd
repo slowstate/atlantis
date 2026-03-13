@@ -25,6 +25,8 @@ func update(_delta: float) -> void:
 
 
 func physics_update(delta: float) -> void:
+	if !player.controls_enabled:
+		return
 	if oxygen_box.has_overlapping_areas() or oxygen_box.has_overlapping_bodies() or player.is_in_argo:
 		transition.emit("OxygenRefillingState")
 		return

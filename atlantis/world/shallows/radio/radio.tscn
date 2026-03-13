@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://hjw7uadu67x2"]
+
+[ext_resource type="Texture2D" uid="uid://bmu2agumk8iw2" path="res://world/shallows/radio/radio.png" id="1_y1l3w"]
+[ext_resource type="Script" uid="uid://bnuahl343n38p" path="res://world/shallows/radio/radio.gd" id="2_211eb"]
+[ext_resource type="Script" uid="uid://ylglnacmilfi" path="res://components/interactable/interactable.gd" id="2_wlnxv"]
+[ext_resource type="PackedScene" uid="uid://c4ttiym402sta" path="res://entities/effects/sparkles/sparkles.tscn" id="4_arupp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wlnxv"]
+size = Vector2(8, 4)
+
+[node name="Radio" type="Sprite2D"]
+texture = ExtResource("1_y1l3w")
+script = ExtResource("2_211eb")
+
+[node name="Sparkles" parent="." instance=ExtResource("4_arupp")]
+position = Vector2(0, -6)
+
+[node name="InteractionBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionBox"]
+shape = SubResource("RectangleShape2D_wlnxv")
+
+[node name="Interactable" type="Node" parent="." node_paths=PackedStringArray("interaction_box")]
+script = ExtResource("2_wlnxv")
+interaction_box = NodePath("../InteractionBox")
+metadata/_custom_type_script = "uid://ylglnacmilfi"
+
+[connection signal="just_interacted" from="Interactable" to="." method="_on_interactable_just_interacted"]

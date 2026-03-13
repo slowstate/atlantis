@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blwq8tf8r4cnw"
-path="res://.godot/imported/player_mine.png-58e29465c2948b1a88ed4b7b484b2b6c.ctex"
+uid="uid://bmu2agumk8iw2"
+path="res://.godot/imported/radio.png-5611d65da7ef19517ea5f75f5720dde1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/player_mine.png"
-dest_files=["res://.godot/imported/player_mine.png-58e29465c2948b1a88ed4b7b484b2b6c.ctex"]
+source_file="res://world/shallows/radio/radio.png"
+dest_files=["res://.godot/imported/radio.png-5611d65da7ef19517ea5f75f5720dde1.ctex"]
 
 [params]
 

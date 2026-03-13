@@ -8,24 +8,24 @@ var has_played_argo_sequence: bool = false
 @onready var fish_spawn_timer: Timer = $FishSpawnTimer
 @onready var player: Player = $Player
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var fade_in_overlay: Sprite2D = $FadeInOverlay
-@onready var fade_in_timer: Timer = $FadeInTimer
+@onready var surface_spawn_point: SurfaceSpawnPoint = $SurfaceSpawnPoint
 
 
 func _ready() -> void:
+	player.spawn_point = ComponentUtils.get_component(surface_spawn_point, SpawnPoint.string_name) as SpawnPoint
+	#print("spawn: " + str(player.spawn_point.owner))
 	fish_spawn_timer.start(randf_range(4.0, 8.0))
 	SfxManager.play_ambience_sfx("UnderwaterAmbience",5,-30,-25,0.9,1.1)
 	SfxManager.play_ambience_sfx("UnderwaterDrone",5,-20,-15,0.9,1.1)
 	
 	player.visible = false
 	player.controls_enabled = false
-	fade_in_overlay.modulate.a = 1.0
-	fade_in_timer.start(2.0)
+	animation_player.play("player_dive")
+	await get_tree().create_timer(1.5).timeout
+	player.controls_enabled = true
 
 
 func _physics_process(_delta: float) -> void:
-	if !fade_in_timer.is_stopped():
-		fade_in_overlay.modulate.a = 1.0 - TimerUtils.timer_progress(fade_in_timer)
 	if !has_played_argo_sequence and player.global_position.y >= 64:
 		_play_argo_sequence()
 		has_played_argo_sequence = true
@@ -50,9 +50,3 @@ func _on_fish_spawn_timer_timeout() -> void:
 		add_child(additional_fish)
 
 	fish_spawn_timer.start(randf_range(4.0, 16.0))
-
-
-func _on_fade_in_timer_timeout() -> void:
-	animation_player.play("player_dive")
-	await get_tree().create_timer(1.0).timeout
-	player.controls_enabled = true
