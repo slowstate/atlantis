@@ -1,0 +1,2 @@
+class_name SurfaceSpawnPoint
+extends Node2D

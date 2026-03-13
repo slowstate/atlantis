@@ -1,6 +1,6 @@
 extends Node2D
 
-const WORLD = preload("uid://chhtc74hdy2e5")
+const OPENING_SCENE = preload("uid://cfmj22pmpp3tn")
 
 
 func _ready() -> void:
@@ -8,7 +8,7 @@ func _ready() -> void:
 
 
 func _on_start_button_pressed() -> void:
-	get_tree().change_scene_to_packed(WORLD)
+	get_tree().change_scene_to_packed(OPENING_SCENE)
 
 
 func _on_quit_button_pressed() -> void:

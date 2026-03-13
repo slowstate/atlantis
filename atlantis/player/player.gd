@@ -28,7 +28,7 @@ var shake_time_speed: float = 20.0
 var noise = FastNoiseLite.new()
 
 @onready var camera_2d: Camera2D = $Camera2D
-@onready var player_sprite: Sprite2D = $PlayerSprite
+@onready var player_sprite: AnimatedSprite2D = $PlayerSprite
 @onready var player_state_machine: PlayerStateMachine = $PlayerStateMachine
 @onready var oxygen_meter_label: Label = $UserInterface/OxygenMeterLabel
 @onready var oxygen_box: Area2D = $OxygenBox
@@ -78,8 +78,14 @@ func _process(delta: float) -> void:
 
 	## Swimming: Fixed max speed, better "handling", floating damping suddenly drops when moving
 	if move_vec != Vector2.ZERO:
+		player_sprite.play("swim")
+		player_sprite.flip_h = move_vec.x == -1
+		player_sprite.rotation = move_vec.angle() - PI if move_vec.x == -1 else move_vec.angle()
 		velocity = velocity.move_toward(move_vec.normalized() * max_speed, acceleration * delta)
 	else:
+		if !player_sprite.is_playing() or player_sprite.animation == "default" or player_sprite.animation == "swim":
+			player_sprite.play("default")
+		player_sprite.rotation = 0
 		# Apply damping (friction) when no input is pressed
 		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
 	move_and_slide()
@@ -125,6 +131,17 @@ func _input(event: InputEvent) -> void:
 			enter_argo(!is_in_argo)
 			return
 
+		if ComponentUtils.has_component(frontmost_interactable, Interactable.string_name):
+			var interactable_component = ComponentUtils.get_component(frontmost_interactable, Interactable.string_name) as Interactable
+			interactable_component.interact()
+
+		if frontmost_interactable is Glowstone:
+			if currently_selected_tool != Ids.Items.MiningTool:
+				_dialogue("I need a tool to mine this")
+			else:
+				player_sprite.play("mine")
+			return
+
 		if frontmost_interactable is Generator:
 			if !frontmost_interactable.has_glowstone or !frontmost_interactable.has_photonic_invertor:
 				_dialogue("I think the generator is still missing something")
@@ -140,9 +157,7 @@ func _input(event: InputEvent) -> void:
 			if !Globals.is_crystal_city_generator_enabled:
 				_dialogue("It's too dark in here, I need to find a way to power the lights")
 
-		if ComponentUtils.has_component(frontmost_interactable, Interactable.string_name):
-			var interactable_component = ComponentUtils.get_component(frontmost_interactable, Interactable.string_name) as Interactable
-			interactable_component.interact()
+		player_sprite.play("interact")
 
 
 func enter_argo(is_entering: bool) -> void:
@@ -177,7 +192,9 @@ func _on_respawn_button_pressed() -> void:
 
 	player_state_machine.set_state("OxygenDepletingState")
 	oxygen = OXYGEN_MAX
-	enter_argo(true)
+
+	if spawn_point.owner is Argo:
+		enter_argo(true)
 
 	SignalBus.player_respawned.emit()
 

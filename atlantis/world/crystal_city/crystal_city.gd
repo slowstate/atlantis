@@ -42,13 +42,13 @@ func _ready() -> void:
 	set_city_lights_visible(Globals.is_crystal_city_generator_enabled)
 
 
-func set_all_children_visible(set_children_visible: bool) -> void:for child in get_children():
-	child.visible = set_children_visible
+func set_all_children_visible(set_visibility: bool) -> void:for child in get_children():
+	child.visible = set_visibility
 
 
-func set_city_lights_visible(set_city_lights_visible: bool) -> void:
+func set_city_lights_visible(set_visibility: bool) -> void:
 	for city_light in city_lights:
-		city_light.visible = set_city_lights_visible
+		city_light.visible = set_visibility
 
 
 func _on_warehouse_warehouse_door_just_interacted() -> void:
