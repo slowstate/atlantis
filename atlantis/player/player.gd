@@ -142,8 +142,11 @@ func _input(event: InputEvent) -> void:
 		if frontmost_interactable is Glowstone:
 			if currently_selected_tool != Ids.Items.MiningTool:
 				_dialogue("I need a tool to mine this")
+				SfxManager.play_sfx("IncorrectTool",0,-20,-15,0.9,1.1)
 			else:
 				player_sprite.play("mine")
+				SfxManager.play_sfx("ActivateMiningTool",0,-20,-15,0.9,1.1)
+				SfxManager.fade_sfx("ActivateMiningTool",2,0.5)
 			return
 
 		if frontmost_interactable is Generator:
@@ -158,9 +161,7 @@ func _input(event: InputEvent) -> void:
 
 		if frontmost_interactable is WrongPhotonicInvertor:
 			SfxManager.play_sfx("Search",0,-15,-10,0.9,1.1)
-			var sfx_timer = get_tree().create_timer(2.0)
-			await sfx_timer.timeout
-			SfxManager.stop_sfx("Search")
+			SfxManager.fade_sfx("Search",2,1)
 			_dialogue("This photonic invertor won't fit the generator")
 
 		if frontmost_interactable is RocketHangar:

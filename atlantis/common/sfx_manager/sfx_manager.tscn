@@ -1,12 +1,14 @@
-[gd_scene load_steps=72 format=3 uid="uid://cnojh8ult7c0v"]
+[gd_scene load_steps=75 format=3 uid="uid://cnojh8ult7c0v"]
 
 [ext_resource type="Script" uid="uid://dr6l7ajnsag05" path="res://common/sfx_manager/sfx_manager.gd" id="1_hetwi"]
 [ext_resource type="AudioStream" uid="uid://dilu1c57o7rld" path="res://audio/sfx/AirpocketAmbience/AirpocketAmbienceSFX1.mp3" id="2_wp0wu"]
-[ext_resource type="AudioStream" uid="uid://dbekon64q04sc" path="res://audio/sfx/AirpocketAmbience/AirpocketAmbienceSFX2.mp3" id="3_pe4fu"]
 [ext_resource type="AudioStream" uid="uid://vnvsmx7gim0k" path="res://audio/sfx/AirpocketAmbience/AirpocketAmbienceSFX3.mp3" id="4_jdanj"]
 [ext_resource type="AudioStream" uid="uid://d1ku87idigs61" path="res://audio/sfx/AirpocketAmbience/AirpocketAmbienceSFX4.mp3" id="5_4nmj1"]
+[ext_resource type="AudioStream" uid="uid://sy0msi5mic" path="res://audio/sfx/ActivateMiningTool/ActivateMiningToolSFX1.mp3" id="6_jdanj"]
 [ext_resource type="AudioStream" uid="uid://clmk2m6mc17t7" path="res://audio/sfx/AirpocketAmbience/AirpocketAmbienceSFX5.mp3" id="6_xcqxa"]
+[ext_resource type="AudioStream" uid="uid://b5qxib8wpqmbc" path="res://audio/sfx/ActivateMiningTool/ActivateMiningToolSFX2.mp3" id="7_4nmj1"]
 [ext_resource type="AudioStream" uid="uid://buthoq5vugbi" path="res://audio/sfx/ARGODisturbWater/ARGODisturbWaterSFX1.mp3" id="7_k0t34"]
+[ext_resource type="AudioStream" uid="uid://bhtqvbg6r51e0" path="res://audio/sfx/ActivateMiningTool/ActivateMiningToolSFX3.mp3" id="8_xcqxa"]
 [ext_resource type="AudioStream" uid="uid://bpwh7l4s4vn0j" path="res://audio/sfx/ARGODisturbWater/ARGODisturbWaterSFX3.mp3" id="9_4inm2"]
 [ext_resource type="AudioStream" uid="uid://dlqcsqdtt0fco" path="res://audio/sfx/ARGODisturbWater/ARGODisturbWaterSFX4.mp3" id="10_nyfd2"]
 [ext_resource type="AudioStream" uid="uid://xixe7skyjpxh" path="res://audio/sfx/ARGODoor/ARGODoorSFX1.mp3" id="11_ehcjt"]
@@ -43,6 +45,7 @@
 [ext_resource type="AudioStream" uid="uid://2bvsvukiop0l" path="res://audio/sfx/PressButton/PressButtonSFX2.mp3" id="41_vvlxd"]
 [ext_resource type="AudioStream" uid="uid://j6yid8lhba7g" path="res://audio/sfx/RefillOxygen/RefillOxygenSFX1.mp3" id="42_ypcbq"]
 [ext_resource type="AudioStream" uid="uid://cnulj6cl8cojg" path="res://audio/sfx/RefillOxygen/RefillOxygenSFX2.mp3" id="43_xqgif"]
+[ext_resource type="AudioStream" uid="uid://cjqyvekul7qjy" path="res://audio/sfx/PlayerDive/PlayerDiveSFX1.mp3" id="44_k0t34"]
 [ext_resource type="AudioStream" uid="uid://dj2of06rtxh10" path="res://audio/sfx/RefillOxygen/RefillOxygenSFX3.mp3" id="44_q1cel"]
 [ext_resource type="AudioStream" uid="uid://dmtgep26a4rq0" path="res://audio/sfx/Rubble/RubbleSFX1.mp3" id="45_1qog6"]
 [ext_resource type="AudioStream" uid="uid://bwgck72txtlpc" path="res://audio/sfx/Rubble/RubbleSFX2.mp3" id="46_0xvgn"]
@@ -80,9 +83,6 @@ script = ExtResource("1_hetwi")
 [node name="AirpocketAmbienceSFX1" type="AudioStreamPlayer" parent="AirpocketAmbience"]
 stream = ExtResource("2_wp0wu")
 
-[node name="AirpocketAmbienceSFX2" type="AudioStreamPlayer" parent="AirpocketAmbience"]
-stream = ExtResource("3_pe4fu")
-
 [node name="AirpocketAmbienceSFX3" type="AudioStreamPlayer" parent="AirpocketAmbience"]
 stream = ExtResource("4_jdanj")
 
@@ -92,9 +92,16 @@ stream = ExtResource("5_4nmj1")
 [node name="AirpocketAmbienceSFX5" type="AudioStreamPlayer" parent="AirpocketAmbience"]
 stream = ExtResource("6_xcqxa")
 
-[node name="ActivateHammerbolt" type="Node" parent="."]
+[node name="ActivateMiningTool" type="Node" parent="."]
 
-[node name="ActivateHammerboltSFX1" type="AudioStreamPlayer" parent="ActivateHammerbolt"]
+[node name="ActivateMiningToolSFX1" type="AudioStreamPlayer" parent="ActivateMiningTool"]
+stream = ExtResource("6_jdanj")
+
+[node name="ActivateMiningToolSFX2" type="AudioStreamPlayer" parent="ActivateMiningTool"]
+stream = ExtResource("7_4nmj1")
+
+[node name="ActivateMiningToolSFX3" type="AudioStreamPlayer" parent="ActivateMiningTool"]
+stream = ExtResource("8_xcqxa")
 
 [node name="ARGODisturbWater" type="Node" parent="."]
 
@@ -250,6 +257,11 @@ stream = ExtResource("40_4n7um")
 
 [node name="PressButtonSFX2" type="AudioStreamPlayer" parent="PressButton"]
 stream = ExtResource("41_vvlxd")
+
+[node name="PlayerDive" type="Node" parent="."]
+
+[node name="PlayerDiveSFX1" type="AudioStreamPlayer" parent="PlayerDive"]
+stream = ExtResource("44_k0t34")
 
 [node name="RefillOxygen" type="Node" parent="."]
 
