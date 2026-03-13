@@ -4,8 +4,6 @@ const WORLD = preload("uid://chhtc74hdy2e5")
 
 func _ready() -> void:
 	SfxManager.stop_all_sfx()
-
-func _ready() -> void:
 	get_tree().paused = false
 
 
