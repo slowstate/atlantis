@@ -36,4 +36,5 @@ func _physics_process(_delta: float) -> void:
 
 func _on_interactable_just_interacted() -> void:
 	if is_lit:
+		SfxManager.play_sfx("OpenDoor",0,-20,-15,0.9,1.1)
 		warehouse_door_just_interacted.emit()

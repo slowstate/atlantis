@@ -56,10 +56,18 @@ func _process(delta: float) -> void:
 		velocity.y = move_toward(velocity.y, 0, argo_friction * delta)
 	move_and_slide()
 
+	if move_vec != Vector2.ZERO:
+		SfxManager.play_continuous_sfx("ARGODrive",0,-20,-15,0.9,1.1)
+		SfxManager.play_continuous_sfx("ARGODisturbWater",0,-25,-20,0.9,1.1)
+	else:
+		SfxManager.stop_sfx("ARGODrive")
+		SfxManager.fade_sfx("ARGODisturbWater",0,5)
+	
 
 func _on_interactable_just_interacted() -> void:
 	if !Globals.player.inventory.has_note(Ids.Notes.ArkPlans):
 		Globals.player.inventory.add_note(Ids.Notes.ArkPlans)
+		SfxManager.play_sfx("EmailReceived",0,-20,-15,0.9,1.1)
 	if Globals.player.currently_selected_tool == Ids.Items.Glowstone:
 		Globals.player.inventory.remove_item(Ids.Items.Glowstone)
 		repaired = true
@@ -67,5 +75,6 @@ func _on_interactable_just_interacted() -> void:
 		window_light_2.enabled = true
 		window_light_3.enabled = true
 		add_child(Dialogue.create("M's message", 3.0, Vector2(0.0, -40.0)))
+		SfxManager.play_sfx("EmailReceived",0,-20,-15,0.9,1.1)
 	if repaired:
 		point_light_2d.enabled = true
