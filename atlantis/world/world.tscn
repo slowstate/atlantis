@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://chhtc74hdy2e5"]
+[gd_scene load_steps=17 format=3 uid="uid://chhtc74hdy2e5"]
 
 [ext_resource type="PackedScene" uid="uid://bareqc1eyxlpq" path="res://world/shallows/shallows.tscn" id="1_4717r"]
 [ext_resource type="Script" uid="uid://bo7x6fki5nxsa" path="res://world/world.gd" id="1_mmdvd"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://78dtm2oyn1qs" path="res://world/crystal_city/crystal_city.tscn" id="2_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://bkqgm12tie6br" path="res://argo/argo.tscn" id="3_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://d0tsetknr3fcf" path="res://components/spawn_point/basic_spawn_point.tscn" id="7_sc4t8"]
+[ext_resource type="PackedScene" uid="uid://cfmj22pmpp3tn" path="res://world/opening/opening_scene.tscn" id="8_4papg"]
 [ext_resource type="Texture2D" uid="uid://okf7smr618ds" path="res://world/parallax_2d_layer/ocean.png" id="8_ai45w"]
 
 [sub_resource type="Gradient" id="Gradient_fn3g3"]
@@ -258,4 +259,8 @@ libraries = {
 [node name="BasicSpawnPoint" parent="." instance=ExtResource("7_sc4t8")]
 position = Vector2(600, 35)
 
+[node name="OpeningScene" parent="." instance=ExtResource("8_4papg")]
+position = Vector2(501, -354)
+
 [connection signal="timeout" from="FishSpawnTimer" to="." method="_on_fish_spawn_timer_timeout"]
+[connection signal="complete" from="OpeningScene" to="." method="_on_opening_scene_complete"]

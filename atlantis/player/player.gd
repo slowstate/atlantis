@@ -3,6 +3,8 @@ extends CharacterBody2D
 
 const OXYGEN_MAX := 30.0
 
+@export var is_dummy: bool = false
+
 var god_mode := false
 var controls_enabled := true
 var oxygen := OXYGEN_MAX
@@ -30,8 +32,6 @@ var noise = FastNoiseLite.new()
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var player_sprite: AnimatedSprite2D = $PlayerSprite
 @onready var player_state_machine: PlayerStateMachine = $PlayerStateMachine
-@onready var oxygen_meter_label: Label = $UserInterface/OxygenMeterLabel
-@onready var oxygen_box: Area2D = $OxygenBox
 @onready var interaction_box: Area2D = $InteractionBox
 @onready var inventory: Inventory = $UserInterface/Inventory
 @onready var drowning_overlay: Sprite2D = $UserInterface/DrowningOverlay
@@ -41,6 +41,7 @@ var noise = FastNoiseLite.new()
 @onready var point_light_2d: PointLight2D = $PointLight2D
 @onready var pause_menu: CanvasLayer = $PauseMenu
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var user_interface: CanvasLayer = $UserInterface
 
 
 func _ready() -> void:
@@ -83,17 +84,15 @@ func _process(delta: float) -> void:
 		player_sprite.flip_h = move_vec.x == -1
 		player_sprite.rotation = move_vec.angle() - PI if move_vec.x == -1 else move_vec.angle()
 		velocity = velocity.move_toward(move_vec.normalized() * max_speed, acceleration * delta)
-		SfxManager.play_continuous_sfx("PlayerSwim",0,-20,-15,0.9,1.1)
+		SfxManager.play_continuous_sfx("PlayerSwim", 0, -20, -15, 0.9, 1.1)
 	else:
 		if !player_sprite.is_playing() or player_sprite.animation == "default" or player_sprite.animation == "swim":
 			player_sprite.play("default")
 		player_sprite.rotation = 0
 		# Apply damping (friction) when no input is pressed
 		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
-		SfxManager.fade_sfx("PlayerSwim",0,1)
+		SfxManager.fade_sfx("PlayerSwim", 0, 1)
 	move_and_slide()
-	
-
 
 
 func _physics_process(delta: float) -> void:
@@ -143,11 +142,11 @@ func _input(event: InputEvent) -> void:
 		if frontmost_interactable is Glowstone:
 			if currently_selected_tool != Ids.Items.MiningTool:
 				dialogue("I need a tool to mine this")
-				SfxManager.play_sfx("IncorrectTool",0,-20,-15,0.9,1.1)
+				SfxManager.play_sfx("IncorrectTool", 0, -20, -15, 0.9, 1.1)
 			else:
 				player_sprite.play("mine")
-				SfxManager.play_sfx("ActivateMiningTool",0,-20,-15,0.9,1.1)
-				SfxManager.fade_sfx("ActivateMiningTool",2,0.5)
+				SfxManager.play_sfx("ActivateMiningTool", 0, -20, -15, 0.9, 1.1)
+				SfxManager.fade_sfx("ActivateMiningTool", 2, 0.5)
 			return
 
 		if frontmost_interactable is WarehouseGenerator:
@@ -160,22 +159,22 @@ func _input(event: InputEvent) -> void:
 		if frontmost_interactable is Generator:
 			if !frontmost_interactable.has_glowstone or !frontmost_interactable.has_photonic_invertor:
 				dialogue("I think the generator is still missing something")
-				SfxManager.play_sfx("PressButton",0,-20,-15,0.9,1.1)
+				SfxManager.play_sfx("PressButton", 0, -20, -15, 0.9, 1.1)
 
 		if frontmost_interactable is Warehouse:
 			if !frontmost_interactable.is_lit:
 				dialogue("It's too dark in here, maybe I can light it up somehow")
-				SfxManager.play_sfx("OpenDoor",0,-20,-15,0.9,1.1)
+				SfxManager.play_sfx("OpenDoor", 0, -20, -15, 0.9, 1.1)
 
 		if frontmost_interactable is WrongPhotonicInvertor:
-			SfxManager.play_sfx("Search",0,-15,-10,0.9,1.1)
-			SfxManager.fade_sfx("Search",2,1)
+			SfxManager.play_sfx("Search", 0, -15, -10, 0.9, 1.1)
+			SfxManager.fade_sfx("Search", 2, 1)
 			dialogue("This photonic invertor won't fit the generator")
 
 		if frontmost_interactable is RocketHangar:
 			if !Globals.is_crystal_city_generator_enabled:
 				dialogue("The door won't open. I should find a way to power it")
-				SfxManager.play_sfx("PressButton",0,-20,-15,0.9,1.1)
+				SfxManager.play_sfx("PressButton", 0, -20, -15, 0.9, 1.1)
 
 		player_sprite.play("interact")
 
@@ -184,7 +183,7 @@ func enter_argo(is_entering: bool) -> void:
 	is_in_argo = is_entering
 	player_sprite.visible = !is_in_argo
 	Globals.argo.drive = is_in_argo
-	SfxManager.play_sfx("ARGODoor",0,-20.0,-15.0,0.9,1.1)
+	SfxManager.play_sfx("ARGODoor", 0, -20.0, -15.0, 0.9, 1.1)
 	if is_in_argo:
 		spawn_point = ComponentUtils.get_component(Globals.argo, SpawnPoint.string_name) as SpawnPoint
 		point_light_2d.enabled = false
@@ -203,7 +202,7 @@ func camera_shake(intensity: float = 0.0, time: float = 0.0) -> void:
 	shake_time = 0.0
 
 
-func dialogue(dialogue_key: String, duration: float = 3.0, relative_position: Vector2 = Vector2(0.0, -32.0)) -> void:
+func dialogue(dialogue_key: String, duration: float = 3.0, relative_position: Vector2 = Vector2(0.0, -36.0)) -> void:
 	if current_dialogue:
 		current_dialogue.queue_free()
 	current_dialogue = Dialogue.create(dialogue_key, duration, relative_position)

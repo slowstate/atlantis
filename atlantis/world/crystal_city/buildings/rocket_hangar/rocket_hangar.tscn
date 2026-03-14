@@ -84,7 +84,7 @@ modulate = Color(1, 1, 1, 0)
 offset_right = 320.0
 offset_bottom = 180.0
 mouse_filter = 2
-color = Color(0.012920001, 0.012920001, 0.12835406, 1)
+color = Color(0.012280904, 1.02277845e-07, 0.15788493, 1)
 
 [node name="ThanksForPlayingLabel" type="Label" parent="EndScreen"]
 modulate = Color(1, 1, 1, 0)
