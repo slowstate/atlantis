@@ -1,0 +1,21 @@
+extends Node2D
+
+const OPENING_SCENE = preload("uid://cfmj22pmpp3tn")
+
+func _ready() -> void:
+	SfxManager.stop_all_sfx()
+	get_tree().paused = false
+
+
+func _on_start_button_pressed() -> void:
+<<<<<<< HEAD
+	SfxManager.play_sfx("ClickButton",0,-30,-25,0.9,1.1)
+	get_tree().change_scene_to_packed(WORLD)
+=======
+	get_tree().change_scene_to_packed(OPENING_SCENE)
+>>>>>>> a36804e02dd011ed88fb5735b336d7b4d464d867
+
+
+func _on_quit_button_pressed() -> void:
+	SfxManager.play_sfx("ClickButton",0,-30,-25,0.9,1.1)
+	get_tree().quit()

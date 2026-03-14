@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cfmj22pmpp3tn"]
+[gd_scene load_steps=35 format=3 uid="uid://cfmj22pmpp3tn"]
 
 [ext_resource type="Texture2D" uid="uid://c71rkj41ho73l" path="res://world/opening/opening_scene.png" id="1_i7n71"]
 [ext_resource type="Script" uid="uid://d04ii4w0xspsr" path="res://world/opening/opening_scene.gd" id="1_yfivt"]
@@ -182,6 +182,54 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_co3hy"]
+atlas = ExtResource("3_qxmy1")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66mpu"]
+atlas = ExtResource("3_qxmy1")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjfkh"]
+atlas = ExtResource("3_qxmy1")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4avxg"]
+atlas = ExtResource("3_qxmy1")
+region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_avenj"]
+atlas = ExtResource("3_qxmy1")
+region = Rect2(120, 0, 40, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_66mpu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_co3hy")
+}],
+"loop": false,
+"name": &"default",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66mpu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjfkh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4avxg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_avenj")
+}],
+"loop": false,
+"name": &"jump_off",
+"speed": 5.0
+}]
+
 [node name="OpeningScene" type="Node2D"]
 script = ExtResource("1_yfivt")
 
@@ -224,9 +272,6 @@ centered = false
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(63, 111)
 sprite_frames = SubResource("SpriteFrames_co3hy")
-animation = &"jump_off"
-frame = 3
-frame_progress = 1.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -267,6 +312,14 @@ texture = SubResource("GradientTexture2D_18swj")
 position = Vector2(282, 156)
 scale = Vector2(0.8, 0.5)
 texture = SubResource("GradientTexture2D_18swj")
+
+[node name="PlayerReflectionSprite" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.24000001)
+position = Vector2(63, 134)
+scale = Vector2(1, 0.6)
+sprite_frames = SubResource("SpriteFrames_66mpu")
+animation = &"jump_off"
+flip_v = true
 
 [connection signal="timeout" from="FadeInTimer" to="." method="_on_fade_in_timer_timeout"]
 

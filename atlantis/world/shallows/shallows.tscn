@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bareqc1eyxlpq"]
+[gd_scene load_steps=43 format=3 uid="uid://bareqc1eyxlpq"]
 
 [ext_resource type="Script" uid="uid://dvyb3kaml26qq" path="res://world/shallows/shallows.gd" id="1_ea2l5"]
 [ext_resource type="PackedScene" uid="uid://p6fv62obxr2c" path="res://world/shallows/open_air.tscn" id="2_usalr"]
@@ -18,8 +18,10 @@
 [ext_resource type="Texture2D" uid="uid://1gnqesbohr3l" path="res://world/shallows/shallows.png" id="12_1jc31"]
 [ext_resource type="Texture2D" uid="uid://djprvnwki31km" path="res://world/shallows/bridge.png" id="12_64aqm"]
 [ext_resource type="Texture2D" uid="uid://bu4ss7xo0p4hd" path="res://entities/items/glowstone/glowstone_2_mined.png" id="13_ffikv"]
+[ext_resource type="Script" path="res://world/shallows/air_pocket_2.gd" id="16_lwpao"]
 [ext_resource type="Texture2D" uid="uid://dcghsvx8x0qxk" path="res://world/shallows/decorative_crate.png" id="16_olmvm"]
 [ext_resource type="PackedScene" uid="uid://hjw7uadu67x2" path="res://world/shallows/radio/radio.tscn" id="17_cxsdh"]
+[ext_resource type="Script" path="res://world/shallows/air_pocket_1.gd" id="18_qdtt6"]
 [ext_resource type="Texture2D" uid="uid://d3uplqrlc8p2h" path="res://world/flora/plant_12.png" id="22_g1huq"]
 [ext_resource type="Texture2D" uid="uid://domugcwa178if" path="res://world/shallows/air_pocket_2.png" id="23_7q0gg"]
 [ext_resource type="Texture2D" uid="uid://ce5j2usasdei8" path="res://world/flora/plant_11.png" id="23_v7rw3"]
@@ -124,6 +126,7 @@ shape = SubResource("WorldBoundaryShape2D_usalr")
 
 [node name="OpenAir" parent="." instance=ExtResource("2_usalr")]
 position = Vector2(686, 4)
+collision_mask = 1
 
 [node name="OceanSurfaceDistort" type="Sprite2D" parent="."]
 position = Vector2(466, 96.5)
@@ -222,6 +225,7 @@ texture = ExtResource("12_64aqm")
 [node name="AirPocket2" type="Sprite2D" parent="."]
 position = Vector2(1001, 166.5)
 texture = ExtResource("23_7q0gg")
+script = ExtResource("16_lwpao")
 
 [node name="Area2D" type="Area2D" parent="AirPocket2"]
 collision_layer = 16
@@ -247,10 +251,10 @@ position = Vector2(343, 116)
 [node name="AirPocket1" type="Sprite2D" parent="Cave1"]
 position = Vector2(370, 72)
 texture = ExtResource("11_7q0gg")
+script = ExtResource("18_qdtt6")
 
 [node name="Area2D" type="Area2D" parent="Cave1/AirPocket1"]
 collision_layer = 16
-collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cave1/AirPocket1/Area2D"]
 shape = SubResource("RectangleShape2D_g1huq")
@@ -302,7 +306,7 @@ position = Vector2(314, 425)
 texture = ExtResource("16_olmvm")
 
 [node name="Note" parent="Cave3" instance=ExtResource("4_3a0gb")]
-position = Vector2(303, 424)
+position = Vector2(318, 426)
 id = 3
 
 [node name="Radio" parent="Cave3" instance=ExtResource("17_cxsdh")]
@@ -323,3 +327,13 @@ texture = ExtResource("26_lwpao")
 [node name="Plant16" type="Sprite2D" parent="Cave3"]
 position = Vector2(403, 427)
 texture = ExtResource("22_g1huq")
+
+[connection signal="area_entered" from="OpenAir" to="." method="_on_open_air_area_entered"]
+[connection signal="area_exited" from="OpenAir" to="." method="_on_open_air_area_exited"]
+[connection signal="body_entered" from="AirPocket2/Area2D" to="AirPocket2" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="AirPocket2/Area2D" to="AirPocket2" method="_on_area_2d_body_exited"]
+[connection signal="area_entered" from="Cave1/AirPocket1/Area2D" to="Cave1/AirPocket1" method="_on_area_2d_area_entered"]
+[connection signal="area_shape_entered" from="Cave1/AirPocket1/Area2D" to="Cave1/AirPocket1" method="_on_area_2d_area_shape_entered"]
+[connection signal="body_entered" from="Cave1/AirPocket1/Area2D" to="Cave1/AirPocket1" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Cave1/AirPocket1/Area2D" to="Cave1/AirPocket1" method="_on_area_2d_body_exited"]
+[connection signal="body_shape_entered" from="Cave1/AirPocket1/Area2D" to="Cave1/AirPocket1" method="_on_area_2d_body_shape_entered"]

@@ -16,7 +16,7 @@ func _ready() -> void:
 	fade_in_overlay.visible = true
 	fade_in_overlay.modulate.a = 1.0
 	fade_in_timer.start(3.0)
-
+	SfxManager.play_sfx("LandAmbience",0,-20,-15,0.9,1.1)
 
 func _process(_delta: float) -> void:
 	if !fade_in_timer.is_stopped():
@@ -41,4 +41,6 @@ func _on_fade_in_timer_timeout() -> void:
 	await get_tree().create_timer(0.45).timeout
 	water_splash_particles.emitting = true
 	await get_tree().create_timer(0.1).timeout
+	SfxManager.stop_sfx("LandAmbience")
+	SfxManager.play_sfx("PlayerDive",0,-15,-10,0.9,1.1)
 	get_tree().change_scene_to_packed(WORLD)

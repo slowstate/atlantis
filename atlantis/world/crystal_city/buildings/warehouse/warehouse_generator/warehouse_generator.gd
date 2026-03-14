@@ -16,3 +16,7 @@ func _on_interactable_just_interacted() -> void:
 			interaction_box.monitoring = false
 			interaction_box.monitorable = false
 			# photonic_invertor.play_animation()
+			SfxManager.play_sfx("DismantleMachine",0,-15,-10,0.9,1.1)
+			var sfx_timer = get_tree().create_timer(2.0)
+			await sfx_timer.timeout
+			photonic_invertor.visible = true
