@@ -22,4 +22,5 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_main_menu_button_pressed() -> void:
+	SfxManager.stop_all_sfx()
 	get_tree().change_scene_to_packed(MAIN_MENU)

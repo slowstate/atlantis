@@ -82,13 +82,17 @@ func _process(delta: float) -> void:
 		player_sprite.flip_h = move_vec.x == -1
 		player_sprite.rotation = move_vec.angle() - PI if move_vec.x == -1 else move_vec.angle()
 		velocity = velocity.move_toward(move_vec.normalized() * max_speed, acceleration * delta)
+		SfxManager.play_continuous_sfx("PlayerSwim",0,-20,-15,0.9,1.1)
 	else:
 		if !player_sprite.is_playing() or player_sprite.animation == "default" or player_sprite.animation == "swim":
 			player_sprite.play("default")
 		player_sprite.rotation = 0
 		# Apply damping (friction) when no input is pressed
 		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
+		SfxManager.fade_sfx("PlayerSwim",0,1)
 	move_and_slide()
+	
+
 
 
 func _physics_process(delta: float) -> void:
@@ -138,24 +142,32 @@ func _input(event: InputEvent) -> void:
 		if frontmost_interactable is Glowstone:
 			if currently_selected_tool != Ids.Items.MiningTool:
 				_dialogue("I need a tool to mine this")
+				SfxManager.play_sfx("IncorrectTool",0,-20,-15,0.9,1.1)
 			else:
 				player_sprite.play("mine")
+				SfxManager.play_sfx("ActivateMiningTool",0,-20,-15,0.9,1.1)
+				SfxManager.fade_sfx("ActivateMiningTool",2,0.5)
 			return
 
 		if frontmost_interactable is Generator:
 			if !frontmost_interactable.has_glowstone or !frontmost_interactable.has_photonic_invertor:
 				_dialogue("I think the generator is still missing something")
+				SfxManager.play_sfx("PressButton",0,-20,-15,0.9,1.1)
 
 		if frontmost_interactable is Warehouse:
 			if !frontmost_interactable.is_lit:
 				_dialogue("It's too dark in here, maybe I can light it up somehow")
+				SfxManager.play_sfx("OpenDoor",0,-20,-15,0.9,1.1)
 
 		if frontmost_interactable is WrongPhotonicInvertor:
+			SfxManager.play_sfx("Search",0,-15,-10,0.9,1.1)
+			SfxManager.fade_sfx("Search",2,1)
 			_dialogue("This photonic invertor won't fit the generator")
 
 		if frontmost_interactable is RocketHangar:
 			if !Globals.is_crystal_city_generator_enabled:
-				_dialogue("It's too dark in here, I need to find a way to power the lights")
+				_dialogue("The door won't open. I should find a way to power it")
+				SfxManager.play_sfx("PressButton",0,-20,-15,0.9,1.1)
 
 		player_sprite.play("interact")
 
@@ -164,6 +176,7 @@ func enter_argo(is_entering: bool) -> void:
 	is_in_argo = is_entering
 	player_sprite.visible = !is_in_argo
 	Globals.argo.drive = is_in_argo
+	SfxManager.play_sfx("ARGODoor",0,-20.0,-15.0,0.9,1.1)
 	if is_in_argo:
 		spawn_point = ComponentUtils.get_component(Globals.argo, SpawnPoint.string_name) as SpawnPoint
 		point_light_2d.enabled = false

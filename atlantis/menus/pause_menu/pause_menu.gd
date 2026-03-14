@@ -23,4 +23,5 @@ func _on_resume_button_pressed() -> void:
 
 
 func _on_main_menu_button_pressed() -> void:
+	SfxManager.stop_all_sfx()
 	get_tree().change_scene_to_packed(MAIN_MENU)

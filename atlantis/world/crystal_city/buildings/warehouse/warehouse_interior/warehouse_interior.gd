@@ -24,4 +24,5 @@ func enable_boundaries(enable: bool) -> void:
 
 
 func _on_interactable_just_interacted() -> void:
+	SfxManager.play_sfx("OpenDoor",0,-20,-15,0.9,1.1)
 	warehouse_interior_door_just_interacted.emit()
