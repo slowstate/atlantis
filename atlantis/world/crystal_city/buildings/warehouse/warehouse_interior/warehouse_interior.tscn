@@ -31,6 +31,7 @@ z_index = 10
 script = ExtResource("1_oqesa")
 
 [node name="Background" type="Sprite2D" parent="."]
+visible = false
 texture = SubResource("GradientTexture2D_n34xo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

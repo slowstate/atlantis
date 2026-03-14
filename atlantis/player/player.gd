@@ -36,10 +36,11 @@ var noise = FastNoiseLite.new()
 @onready var inventory: Inventory = $UserInterface/Inventory
 @onready var drowning_overlay: Sprite2D = $UserInterface/DrowningOverlay
 @onready var drowned_overlay: VBoxContainer = $UserInterface/DrownedOverlay
-@onready var item_selector: ItemSelector = $UserInterface/ItemSelector
+@onready var item_selector: ItemSelector = $ItemSelector
 @onready var notification_sprite: Sprite2D = $UserInterface/NotificationSprite
 @onready var point_light_2d: PointLight2D = $PointLight2D
 @onready var pause_menu: CanvasLayer = $PauseMenu
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 
 func _ready() -> void:
@@ -137,25 +138,32 @@ func _input(event: InputEvent) -> void:
 
 		if frontmost_interactable is Glowstone:
 			if currently_selected_tool != Ids.Items.MiningTool:
-				_dialogue("I need a tool to mine this")
+				dialogue("I need a tool to mine this")
 			else:
 				player_sprite.play("mine")
 			return
 
+		if frontmost_interactable is WarehouseGenerator:
+			if currently_selected_tool == Ids.Items.MiningTool:
+				player_sprite.play("mine")
+			else:
+				dialogue("I need a tool to remove this panel")
+			return
+
 		if frontmost_interactable is Generator:
 			if !frontmost_interactable.has_glowstone or !frontmost_interactable.has_photonic_invertor:
-				_dialogue("I think the generator is still missing something")
+				dialogue("I think the generator is still missing something")
 
 		if frontmost_interactable is Warehouse:
 			if !frontmost_interactable.is_lit:
-				_dialogue("It's too dark in here, maybe I can light it up somehow")
+				dialogue("It's too dark in here, maybe I can light it up somehow")
 
 		if frontmost_interactable is WrongPhotonicInvertor:
-			_dialogue("This photonic invertor won't fit the generator")
+			dialogue("This photonic invertor won't fit the generator")
 
 		if frontmost_interactable is RocketHangar:
 			if !Globals.is_crystal_city_generator_enabled:
-				_dialogue("It's too dark in here, I need to find a way to power the lights")
+				dialogue("It's too dark in here, I need to find a way to power the lights")
 
 		player_sprite.play("interact")
 
@@ -182,6 +190,13 @@ func camera_shake(intensity: float = 0.0, time: float = 0.0) -> void:
 	shake_time = 0.0
 
 
+func dialogue(dialogue_key: String, duration: float = 3.0, relative_position: Vector2 = Vector2(0.0, -32.0)) -> void:
+	if current_dialogue:
+		current_dialogue.queue_free()
+	current_dialogue = Dialogue.create(dialogue_key, duration, relative_position)
+	add_child(current_dialogue)
+
+
 func _on_respawn_button_pressed() -> void:
 	if spawn_point == null:
 		spawn_point = ComponentUtils.get_component(Globals.argo, SpawnPoint.string_name) as SpawnPoint
@@ -197,10 +212,3 @@ func _on_respawn_button_pressed() -> void:
 		enter_argo(true)
 
 	SignalBus.player_respawned.emit()
-
-
-func _dialogue(dialogue_key: String, duration: float = 3.0, relative_position: Vector2 = Vector2(0.0, -32.0)) -> void:
-	if current_dialogue:
-		current_dialogue.queue_free()
-	current_dialogue = Dialogue.create(dialogue_key, duration, relative_position)
-	add_child(current_dialogue)

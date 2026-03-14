@@ -100,7 +100,7 @@ player_pause={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://common/localisation/locales_notes.en.translation", "res://common/localisation/locales_items.en.translation")
+locale/translations=PackedStringArray("res://common/localisation/locales_notes.en.translation", "res://common/localisation/locales_items.en.translation", "res://common/localisation/locales_dialogue.en.translation")
 
 [layer_names]
 

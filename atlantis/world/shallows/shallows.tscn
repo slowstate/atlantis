@@ -67,6 +67,21 @@ height = 2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v7rw3"]
 size = Vector2(20, 10)
 
+[sub_resource type="Animation" id="Animation_olmvm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bridge:skew")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="Animation" id="Animation_ea2l5"]
 resource_name = "bridge_sway"
 length = 3.0
@@ -81,22 +96,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 3),
 "transitions": PackedFloat32Array(1, 2),
 "update": 0,
-"values": [-0.012217304763960357, 0.012217304763960109]
-}
-
-[sub_resource type="Animation" id="Animation_olmvm"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Bridge:skew")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
+"values": [-0.01221730476396035, 0.0122173047639601]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cxsdh"]
@@ -192,7 +192,7 @@ lifetime = 1.5
 process_material = SubResource("ParticleProcessMaterial_ea2l5")
 
 [node name="Shallows" type="Sprite2D" parent="."]
-z_index = 9
+z_index = 11
 position = Vector2(640, 283)
 texture = ExtResource("12_1jc31")
 
@@ -215,6 +215,7 @@ build_mode = 1
 polygon = PackedVector2Array(0, 0, 0, 3, 1, 4, 1, 26, 30, 26, 30, 33, 37, 33, 37, 57, 40, 57, 40, 87, 53, 87, 53, 102, 83, 102, 106, 104, 106, 109, 95, 109, 95, 130, 82, 130, 82, 168, 112, 168, 112, 172, 140.48903, 172, 141, 164, 157, 164, 157, 170, 154, 171, 154, 176, 156, 176, 157, 173, 180, 174, 218, 174, 218, 184, 239, 184, 239, 240, 211, 240, 199, 242, 173, 244, 173, 261, 156, 261, 141, 263, 129, 267, 124, 275, 119, 277, 99, 277, 84, 281, 72, 282, 72, 320, 92, 320, 92, 329, 84, 329, 84, 360, 80, 360, 80, 398, 92, 398, 92, 408, 84, 408, 84, 422, 66, 422, 63, 430, 36, 430, 36, 453, 28, 453, 28, 491, 31, 491, 31, 505, 66, 505, 66, 509, 83, 509, 83, 526, 96, 526, 96, 542, 134, 542, 134, 550, 169, 550, 170, 561, 173, 561, 173, 579, 147, 579, 147, 617, 182, 617, 182, 634, 266, 634, 271, 618, 279, 617, 284, 596, 320, 596, 320, 579, 331, 577, 339, 577, 340, 571, 361, 571, 365, 581, 361, 594, 366, 603, 365, 609, 388, 609, 393, 623, 428, 623, 428, 593, 588, 593, 588, 0)
 
 [node name="Bridge" type="Sprite2D" parent="."]
+z_index = 11
 position = Vector2(687, 367)
 texture = ExtResource("12_64aqm")
 
@@ -267,9 +268,9 @@ texture = ExtResource("23_v7rw3")
 [node name="MiningTool" parent="Cave2" instance=ExtResource("3_fv0dc")]
 position = Vector2(962.5, 263)
 
-[node name="SurvivorsJournalNote" parent="Cave2" instance=ExtResource("4_3a0gb")]
+[node name="SurvivorsJournal1Note" parent="Cave2" instance=ExtResource("4_3a0gb")]
 position = Vector2(1062, 233)
-id = 1
+id = 2
 
 [node name="Plant14" type="Sprite2D" parent="Cave2"]
 z_index = 9
@@ -302,6 +303,7 @@ texture = ExtResource("16_olmvm")
 
 [node name="Note" parent="Cave3" instance=ExtResource("4_3a0gb")]
 position = Vector2(303, 424)
+id = 3
 
 [node name="Radio" parent="Cave3" instance=ExtResource("17_cxsdh")]
 position = Vector2(285, 372)

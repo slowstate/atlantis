@@ -1,11 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://dgksxox3np48f"]
+[gd_scene load_steps=16 format=3 uid="uid://dgksxox3np48f"]
 
 [ext_resource type="Script" uid="uid://cwmo876cdwweu" path="res://menus/inventory/inventory.gd" id="1_5ksev"]
 [ext_resource type="PackedScene" uid="uid://bpt3so4d8palv" path="res://menus/inventory/inventory_note/inventory_note.tscn" id="2_lhdlt"]
 
 [sub_resource type="Gradient" id="Gradient_lhdlt"]
 offsets = PackedFloat32Array(0.995, 1)
-colors = PackedColorArray(0.47397572, 0.47397572, 0.47397572, 0.1, 0, 0, 0, 1)
+colors = PackedColorArray(0.1931151, 0.1931151, 0.1931151, 0.8, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_lk85g"]
 gradient = SubResource("Gradient_lhdlt")
@@ -14,54 +14,60 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lhdlt"]
-content_margin_top = 1.0
-content_margin_bottom = 1.0
-bg_color = Color(0.1, 0.1, 0.1, 0.6)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0, 0, 0, 0.5)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_blj0o"]
-content_margin_top = 1.0
-content_margin_bottom = 1.0
-bg_color = Color(0, 0, 0, 0.6)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0, 0, 0.5)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lk85g"]
-content_margin_top = 1.0
-content_margin_bottom = 1.0
-bg_color = Color(0.225, 0.225, 0.225, 0.6)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3vech"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0, 0, 0, 0.5)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fvn0m"]
-content_margin_top = 1.0
-content_margin_bottom = 1.0
-bg_color = Color(0.1, 0.1, 0.1, 0.6)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cgr8y"]
-content_margin_top = 1.0
-content_margin_bottom = 1.0
-bg_color = Color(0, 0, 0, 0.6)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fjoyv"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0, 0, 0, 0.5)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_srch5"]
 content_margin_left = 2.0
@@ -89,10 +95,11 @@ fill_to = Vector2(0.5, 0)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_blj0o"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_cgr8y"]
-font_size = 8
+font_size = 5
 
 [sub_resource type="LabelSettings" id="LabelSettings_srch5"]
-font_size = 4
+line_spacing = 0.0
+font_size = 3
 
 [node name="Inventory" type="HBoxContainer"]
 anchors_preset = 8
@@ -137,7 +144,8 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 4
 theme_override_styles/normal = SubResource("StyleBoxFlat_lhdlt")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_blj0o")
-theme_override_styles/hover = SubResource("StyleBoxFlat_lk85g")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3vech")
+theme_override_styles/focus = SubResource("StyleBoxFlat_fjoyv")
 text = "Items"
 
 [node name="NotesButton" type="Button" parent="Items/VBoxContainer/HBoxContainer"]
@@ -146,9 +154,10 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 4
-theme_override_styles/normal = SubResource("StyleBoxFlat_fvn0m")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_cgr8y")
-theme_override_styles/hover = SubResource("StyleBoxFlat_lk85g")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lhdlt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_blj0o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3vech")
+theme_override_styles/focus = SubResource("StyleBoxFlat_fjoyv")
 text = "Notes"
 
 [node name="ItemsGrid" type="GridContainer" parent="Items/VBoxContainer"]
@@ -215,6 +224,7 @@ custom_minimum_size = Vector2(120, 120)
 layout_mode = 0
 offset_right = 120.0
 offset_bottom = 122.0
+theme_override_constants/separation = 3
 
 [node name="HSeparator" type="HSeparator" parent="TextureRect/Info"]
 layout_mode = 2
@@ -234,6 +244,10 @@ size_flags_horizontal = 4
 text = "Content goes here"
 label_settings = SubResource("LabelSettings_srch5")
 autowrap_mode = 2
+
+[node name="ContentSprite" type="Sprite2D" parent="TextureRect/Info"]
+position = Vector2(60, 66)
+scale = Vector2(0.3, 0.3)
 
 [connection signal="pressed" from="Items/VBoxContainer/HBoxContainer/ItemsButton" to="." method="_on_items_button_pressed"]
 [connection signal="pressed" from="Items/VBoxContainer/HBoxContainer/NotesButton" to="." method="_on_notes_button_pressed"]

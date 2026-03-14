@@ -13,7 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://blwq8tf8r4cnw" path="res://player/player_mine.png" id="5_wodsf"]
 [ext_resource type="Script" uid="uid://bfj0tbm2sub6y" path="res://player/PlayerStateMachine/oxygen_depleting_state.gd" id="6_g6k8r"]
 [ext_resource type="Script" uid="uid://by7vkwfrt78qv" path="res://player/PlayerStateMachine/drowning_state.gd" id="7_boad6"]
+[ext_resource type="Texture2D" uid="uid://c5psn855ehry6" path="res://player/hud/inventory.png" id="9_32hag"]
 [ext_resource type="PackedScene" uid="uid://ca6mfue2lfa8u" path="res://menus/pause_menu/pause_menu.tscn" id="10_8t03j"]
+[ext_resource type="Texture2D" uid="uid://cltjsdli0rcc8" path="res://player/hud/notification.png" id="11_tqiix"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qjkh3"]
 radius = 5.0
@@ -203,18 +205,6 @@ animations = [{
 [sub_resource type="LabelSettings" id="LabelSettings_g1dw6"]
 font_size = 8
 
-[sub_resource type="Gradient" id="Gradient_jjcwd"]
-offsets = PackedFloat32Array(0.9866667, 1)
-colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_rgyib"]
-gradient = SubResource("Gradient_jjcwd")
-width = 6
-height = 6
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0)
-
 [sub_resource type="Gradient" id="Gradient_g1dw6"]
 offsets = PackedFloat32Array(0.50666666, 1)
 colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
@@ -231,14 +221,14 @@ fill_to = Vector2(1, 1)
 font_size = 8
 
 [node name="Player" type="CharacterBody2D"]
-z_index = 51
+z_index = 10
 collision_mask = 66
 floor_stop_on_slope = false
 floor_constant_speed = true
 script = ExtResource("1_oul6g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -3)
+position = Vector2(0, -2)
 shape = SubResource("CapsuleShape2D_qjkh3")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
@@ -263,6 +253,11 @@ shape = SubResource("CapsuleShape2D_rkbax")
 color = Color(0.73, 0.6467801, 0.31390002, 1)
 texture = SubResource("GradientTexture2D_8t03j")
 
+[node name="ItemSelector" parent="." instance=ExtResource("4_rgyib")]
+offset_left = -8.0
+offset_top = -26.0
+offset_bottom = -10.0
+
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 light_mask = 0
 sprite_frames = SubResource("SpriteFrames_knn7v")
@@ -284,16 +279,15 @@ offset_bottom = 176.0
 text = "O₂: 30"
 label_settings = SubResource("LabelSettings_g1dw6")
 
-[node name="ItemSelector" parent="UserInterface" instance=ExtResource("4_rgyib")]
-offset_left = 292.0
-offset_top = 154.0
-offset_right = 308.0
-offset_bottom = 170.0
-
 [node name="NotificationSprite" type="Sprite2D" parent="UserInterface"]
 position = Vector2(305, 148)
-texture = SubResource("GradientTexture2D_rgyib")
+texture = ExtResource("9_32hag")
 script = ExtResource("5_hg6s5")
+
+[node name="Notification" type="Sprite2D" parent="UserInterface/NotificationSprite"]
+modulate = Color(0.91636676, 0.7430534, 0, 1)
+position = Vector2(5.5, -4)
+texture = ExtResource("11_tqiix")
 
 [node name="DrowningOverlay" type="Sprite2D" parent="UserInterface"]
 visible = false

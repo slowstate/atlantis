@@ -12,7 +12,6 @@ size = Vector2(26, 28)
 script = ExtResource("1_mf2ym")
 
 [node name="PhotonicInvertor" parent="." instance=ExtResource("3_ehj8r")]
-z_index = 1
 position = Vector2(-2, 2)
 
 [node name="Panel" type="Sprite2D" parent="."]
