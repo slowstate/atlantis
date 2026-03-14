@@ -7,7 +7,7 @@ const MAIN_MENU = preload("uid://cbtihbid7ppjv")
 @onready var rocket_hangar_lights_on: Sprite2D = $RocketHangarLightsOn
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Globals.is_crystal_city_generator_enabled:
 		rocket_hangar_lights_on.visible = true
 

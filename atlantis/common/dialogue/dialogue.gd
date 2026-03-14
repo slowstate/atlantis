@@ -7,9 +7,6 @@ const DIALOGUE = preload("uid://bh4c2cjfq0w6f")
 
 var _dialogue_key: String
 var _duration: float = 3.0
-var _original_position: Vector2
-var _final_position: Vector2
-var _position_offset: float = 8.0
 
 @onready var timer: Timer = $Timer
 @onready var fade_in_timer: Timer = $FadeInTimer
@@ -37,8 +34,8 @@ func _ready() -> void:
 	fade_in_timer.start(1.0)
 
 
-func _process(delta: float) -> void:
-	print(str(position.y))
+func _process(_delta: float) -> void:
+	#print(str(position.y))
 	#position.y = lerp(position.y, _final_position.y, ease(TimerUtils.timer_progress(fade_in_timer), 0.2))
 	#modulate.a = lerp(modulate.a, 1.0, ease(TimerUtils.timer_progress(fade_in_timer), 0.2))
 	#position.y = min(position.y + delta * 2.0 * _position_offset, _final_position.y)
