@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://clsxexl5mayua"]
+[gd_scene load_steps=15 format=3 uid="uid://clsxexl5mayua"]
 
 [ext_resource type="Script" uid="uid://guxkh04y6nk8" path="res://world/crystal_city/buildings/rocket_hangar/rocket_hangar.gd" id="1_ovpci"]
 [ext_resource type="Texture2D" uid="uid://c280gd5tyql1o" path="res://world/crystal_city/buildings/rocket_hangar/rocket_part_1.png" id="2_6fi8g"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bhnmeynbwnbox" path="res://world/crystal_city/buildings/rocket_hangar/rocket_part_3.png" id="4_sxlnm"]
 [ext_resource type="Texture2D" uid="uid://dy4dwe5lgwmv0" path="res://world/crystal_city/buildings/rocket_hangar/rocket_part_4.png" id="5_bp10s"]
 [ext_resource type="Texture2D" uid="uid://dvjhwp30ew5q2" path="res://world/crystal_city/buildings/rocket_hangar/rocket_part_5.png" id="6_cvgtr"]
+[ext_resource type="Texture2D" uid="uid://c2ge724xf208x" path="res://world/crystal_city/buildings/rocket_hangar/hangar_door.png" id="8_sxlnm"]
 [ext_resource type="Texture2D" uid="uid://ckh21isrn7ptw" path="res://world/crystal_city/buildings/rocket_hangar/rocket_hangar_light_off.png" id="9_ac3hy"]
 [ext_resource type="Texture2D" uid="uid://irol2s2bsbyg" path="res://world/crystal_city/buildings/rocket_hangar/rocket_hangar_light_on.png" id="10_wua2u"]
 
@@ -49,6 +50,10 @@ texture = ExtResource("5_bp10s")
 position = Vector2(0, -177.5)
 texture = ExtResource("2_8wuce")
 
+[node name="HangarDoor" type="Sprite2D" parent="."]
+position = Vector2(4, -37)
+texture = ExtResource("8_sxlnm")
+
 [node name="RocketHangarLightsOff" type="Sprite2D" parent="."]
 position = Vector2(21, -52.5)
 texture = ExtResource("9_ac3hy")
@@ -59,6 +64,7 @@ position = Vector2(75, -52.5)
 texture = ExtResource("10_wua2u")
 
 [node name="InteractionBox" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionBox"]
 position = Vector2(3, -35)

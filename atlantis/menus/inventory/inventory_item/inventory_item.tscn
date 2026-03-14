@@ -1,15 +1,64 @@
-[gd_scene load_steps=8 format=3 uid="uid://dr650y141ls7y"]
+[gd_scene load_steps=10 format=3 uid="uid://dr650y141ls7y"]
 
 [ext_resource type="Script" uid="uid://8q268n5af11x" path="res://menus/inventory/inventory_item/inventory_item.gd" id="1_jjcwd"]
 [ext_resource type="Texture2D" uid="uid://cwpmv527qq3qs" path="res://icon.svg" id="1_wod2m"]
+[ext_resource type="Texture2D" uid="uid://cltjsdli0rcc8" path="res://player/hud/notification.png" id="3_wod2m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jjcwd"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0, 0, 0, 0.5)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kjq3l"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
 bg_color = Color(0, 0, 0, 0.5)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.8001019, 0.8001019, 0.8001019, 0.5)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wod2m"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0, 0, 0, 0.5)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_atne7"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0, 0, 0, 0.5)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jjcwd"]
 content_margin_right = 1.0
@@ -17,23 +66,14 @@ content_margin_right = 1.0
 [sub_resource type="LabelSettings" id="LabelSettings_jjcwd"]
 font_size = 4
 
-[sub_resource type="Gradient" id="Gradient_jjcwd"]
-offsets = PackedFloat32Array(0.9866667, 1)
-colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_wod2m"]
-gradient = SubResource("Gradient_jjcwd")
-width = 6
-height = 6
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0)
-
 [node name="InventoryItem" type="Button"]
 custom_minimum_size = Vector2(16, 16)
 offset_right = 16.0
 offset_bottom = 16.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_jjcwd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_kjq3l")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wod2m")
+theme_override_styles/focus = SubResource("StyleBoxFlat_atne7")
 icon = ExtResource("1_wod2m")
 text_overrun_behavior = 1
 autowrap_trim_flags = 192
@@ -53,7 +93,8 @@ horizontal_alignment = 2
 vertical_alignment = 2
 
 [node name="ItemNotification" type="Sprite2D" parent="."]
-position = Vector2(12, 4)
-texture = SubResource("GradientTexture2D_wod2m")
+modulate = Color(0.91636676, 0.7430534, 0, 1)
+position = Vector2(13.5, 3.5)
+texture = ExtResource("3_wod2m")
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

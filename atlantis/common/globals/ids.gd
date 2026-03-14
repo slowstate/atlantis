@@ -11,5 +11,7 @@ enum Items {
 }
 enum Notes {
 	ArkPlans = 0,
-	SurvivorsJournal = 1,
+	Letter = 1,
+	SurvivorsJournal1 = 2,
+	SurvivorsJournal2 = 3,
 }

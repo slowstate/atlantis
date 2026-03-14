@@ -8,12 +8,11 @@ var has_played_argo_sequence: bool = false
 @onready var fish_spawn_timer: Timer = $FishSpawnTimer
 @onready var player: Player = $Player
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var surface_spawn_point: SurfaceSpawnPoint = $SurfaceSpawnPoint
+@onready var basic_spawn_point: Node2D = $BasicSpawnPoint
 
 
 func _ready() -> void:
-	player.spawn_point = ComponentUtils.get_component(surface_spawn_point, SpawnPoint.string_name) as SpawnPoint
-	#print("spawn: " + str(player.spawn_point.owner))
+	player.spawn_point = ComponentUtils.get_component(basic_spawn_point, SpawnPoint.string_name) as SpawnPoint
 	fish_spawn_timer.start(randf_range(4.0, 8.0))
 	SfxManager.play_ambience_sfx("UnderwaterAmbience",5,-25,-20,0.9,1.1)
 	SfxManager.play_ambience_sfx("UnderwaterDrone",5,-20,-15,0.9,1.1)
@@ -23,6 +22,7 @@ func _ready() -> void:
 	animation_player.play("player_dive")
 	await get_tree().create_timer(1.5).timeout
 	player.controls_enabled = true
+	Globals.player.inventory.add_note(Ids.Notes.Letter, false)
 
 
 func _physics_process(_delta: float) -> void:

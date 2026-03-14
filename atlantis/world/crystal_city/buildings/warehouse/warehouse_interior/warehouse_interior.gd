@@ -3,6 +3,7 @@ extends Node2D
 
 signal warehouse_interior_door_just_interacted
 
+@onready var background: Sprite2D = $Background
 @onready var top_boundary_collision_shape_2d: CollisionShape2D = $TopBoundary/TopBoundaryCollisionShape2D
 @onready var right_boundary_collision_shape_2d: CollisionShape2D = $RightBoundary/RightBoundaryCollisionShape2D
 @onready var bottom_boundary_collision_shape_2d: CollisionShape2D = $BottomBoundary/BottomBoundaryCollisionShape2D
@@ -10,6 +11,7 @@ signal warehouse_interior_door_just_interacted
 
 
 func _ready() -> void:
+	background.visible = true
 	top_boundary_collision_shape_2d.disabled = true
 	right_boundary_collision_shape_2d.disabled = true
 	bottom_boundary_collision_shape_2d.disabled = true

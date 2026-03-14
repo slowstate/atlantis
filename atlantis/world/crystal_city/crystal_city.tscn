@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://78dtm2oyn1qs"]
+[gd_scene load_steps=45 format=3 uid="uid://78dtm2oyn1qs"]
 
 [ext_resource type="Script" uid="uid://j2aeuxkdgo4t" path="res://world/crystal_city/crystal_city.gd" id="1_bxvt2"]
 [ext_resource type="PackedScene" uid="uid://d26r2a2m086uo" path="res://world/crystal_city/buildings/warehouse/warehouse.tscn" id="1_p0dhy"]
@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://d3gir8yj22biv" path="res://world/parallax_2d_layer/city_lights_11.png" id="15_gqhme"]
 [ext_resource type="Texture2D" uid="uid://bo2byvdel016" path="res://world/parallax_2d_layer/city_lights_12.png" id="16_tspd7"]
 [ext_resource type="Texture2D" uid="uid://bjloeksyusqxn" path="res://world/parallax_2d_layer/city_lights_13.png" id="17_1v00c"]
+[ext_resource type="Script" uid="uid://ccusxj5vk8chx" path="res://world/crystal_city/city_boundary_dialogue_box.gd" id="23_1v00c"]
 [ext_resource type="Texture2D" uid="uid://sb4d24vsxoy6" path="res://world/crystal_city/city_foreground.png" id="26_uduu4"]
 [ext_resource type="Texture2D" uid="uid://bcoyd5t8s8fd4" path="res://world/flora/plant_5.png" id="27_gqhme"]
 [ext_resource type="Texture2D" uid="uid://0aj27nct7mbv" path="res://world/flora/plant_3.png" id="28_tspd7"]
@@ -36,15 +37,7 @@
 [ext_resource type="Texture2D" uid="uid://dnm0huyjrxfim" path="res://world/flora/plant_8.png" id="33_bb1ri"]
 [ext_resource type="Texture2D" uid="uid://dof1tsyif3q8w" path="res://world/flora/plant_1.png" id="34_2x46g"]
 [ext_resource type="Texture2D" uid="uid://nuxixsbgdnfa" path="res://world/flora/plant_9.png" id="35_ugiha"]
-
-[sub_resource type="Gradient" id="Gradient_5r0gn"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.26400003, 0.3047, 0.33, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_iojnm"]
-gradient = SubResource("Gradient_5r0gn")
-width = 1600
-height = 329
+[ext_resource type="Texture2D" uid="uid://34wp40kyn554" path="res://world/crystal_city/city_deco.png" id="37_tspd7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dg3dl"]
 size = Vector2(1600, 329)
@@ -59,6 +52,9 @@ width = 256
 height = 1024
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xw1xy"]
+size = Vector2(256, 1024)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_as0vk"]
 size = Vector2(256, 1024)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ww5kb"]
@@ -97,6 +93,7 @@ script = ExtResource("2_xw1xy")
 metadata/_custom_type_script = "uid://bf37rou75fm6v"
 
 [node name="CityFront" type="Sprite2D" parent="Parallax2DLayer2"]
+position = Vector2(-79.5, 0)
 texture = ExtResource("12_xw1xy")
 
 [node name="CityLights1" type="Sprite2D" parent="Parallax2DLayer2"]
@@ -142,12 +139,14 @@ texture = ExtResource("16_tspd7")
 [node name="CityLightsTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="CityDeco" type="Sprite2D" parent="."]
+position = Vector2(649, 946)
+texture = ExtResource("37_tspd7")
+
 [node name="Floor" type="Sprite2D" parent="."]
 position = Vector2(639.5, 1223.25)
-texture = SubResource("GradientTexture2D_iojnm")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Floor"]
-visible = false
 collision_layer = 2
 collision_mask = 0
 
@@ -183,6 +182,14 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBoundary/StaticBody2D"]
 shape = SubResource("RectangleShape2D_xw1xy")
 
+[node name="CityBoundaryDialogueBox" type="Area2D" parent="LeftBoundary"]
+position = Vector2(80, 0)
+collision_layer = 0
+script = ExtResource("23_1v00c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBoundary/CityBoundaryDialogueBox"]
+shape = SubResource("RectangleShape2D_as0vk")
+
 [node name="RightBoundary" type="Sprite2D" parent="."]
 position = Vector2(1567, 874)
 texture = SubResource("GradientTexture2D_0srux")
@@ -193,6 +200,14 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightBoundary/StaticBody2D"]
 shape = SubResource("RectangleShape2D_xw1xy")
+
+[node name="CityBoundaryDialogueBox2" type="Area2D" parent="RightBoundary"]
+position = Vector2(-80, 0)
+collision_layer = 0
+script = ExtResource("23_1v00c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightBoundary/CityBoundaryDialogueBox2"]
+shape = SubResource("RectangleShape2D_as0vk")
 
 [node name="RocketHangar" parent="." instance=ExtResource("5_iojnm")]
 position = Vector2(777, 1059)
@@ -288,15 +303,15 @@ position = Vector2(646, 1050)
 texture = ExtResource("28_tspd7")
 
 [node name="Plant29" type="Sprite2D" parent="Parallax2DLayer3"]
-position = Vector2(707, 1041)
+position = Vector2(672, 1041)
 texture = ExtResource("34_2x46g")
 
 [node name="Plant30" type="Sprite2D" parent="Parallax2DLayer3"]
-position = Vector2(744, 1050)
+position = Vector2(703, 1050)
 texture = ExtResource("33_bb1ri")
 
 [node name="Plant31" type="Sprite2D" parent="Parallax2DLayer3"]
-position = Vector2(905, 1050)
+position = Vector2(919, 1050)
 texture = ExtResource("27_gqhme")
 
 [node name="Plant32" type="Sprite2D" parent="Parallax2DLayer3"]
@@ -304,11 +319,11 @@ position = Vector2(1143, 1048)
 texture = ExtResource("31_qxa0j")
 
 [node name="Plant33" type="Sprite2D" parent="Parallax2DLayer3"]
-position = Vector2(1262, 1059)
+position = Vector2(1170, 1059)
 texture = ExtResource("30_as0vk")
 
 [node name="Plant34" type="Sprite2D" parent="Parallax2DLayer3"]
-position = Vector2(1274, 1051)
+position = Vector2(1361, 1049)
 texture = ExtResource("33_bb1ri")
 
 [node name="Plant35" type="Sprite2D" parent="Parallax2DLayer3"]
@@ -342,6 +357,8 @@ one_shot = true
 one_shot = true
 
 [connection signal="timeout" from="CityLightsTimer" to="." method="_on_city_lights_timer_timeout"]
+[connection signal="body_entered" from="LeftBoundary/CityBoundaryDialogueBox" to="LeftBoundary/CityBoundaryDialogueBox" method="_on_body_entered"]
+[connection signal="body_entered" from="RightBoundary/CityBoundaryDialogueBox2" to="RightBoundary/CityBoundaryDialogueBox2" method="_on_body_entered"]
 [connection signal="warehouse_interior_door_just_interacted" from="WarehouseInterior" to="." method="_on_warehouse_interior_warehouse_interior_door_just_interacted"]
 [connection signal="warehouse_door_just_interacted" from="Warehouse" to="." method="_on_warehouse_warehouse_door_just_interacted"]
 [connection signal="generator_enabled" from="Generator" to="." method="_on_generator_generator_enabled"]

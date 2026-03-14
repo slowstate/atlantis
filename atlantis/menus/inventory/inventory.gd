@@ -15,6 +15,7 @@ var notes_viewed: Dictionary[Ids.Notes, bool] = { }
 @onready var notes_grid: GridContainer = $Items/VBoxContainer/NotesGrid
 @onready var title_label: Label = $TextureRect/Info/TitleLabel
 @onready var content_label: Label = $TextureRect/Info/ContentLabel
+@onready var content_sprite: Sprite2D = $TextureRect/Info/ContentSprite
 
 
 func _ready() -> void:
@@ -48,13 +49,13 @@ func get_item_count(item_id: Ids.Items) -> int:
 	return items.get(item_id)
 
 
-func add_note(note_id: Ids.Notes) -> void:
+func add_note(note_id: Ids.Notes, show_inventory: bool = true) -> void:
 	var index := notes.bsearch(note_id)
 	notes.insert(index, note_id)
 	show_notification.emit()
 	notes_viewed.get_or_add(note_id, false)
 	update_user_interface()
-	visible = true
+	visible = show_inventory
 	_on_notes_button_pressed()
 	for inventory_note in notes_grid.get_children():
 		if inventory_note.id == note_id:
@@ -98,13 +99,20 @@ func _on_inventory_item_selected(inventory_item: InventoryItem) -> void:
 
 func _on_inventory_note_selected(inventory_note: InventoryNote) -> void:
 	title_label.text = inventory_note.title
-	content_label.text = inventory_note.content
+	if inventory_note.content_texture != null:
+		content_label.text = ""
+		content_sprite.texture = inventory_note.content_texture
+		content_sprite.visible = true
+	else:
+		content_label.text = inventory_note.content
+		content_sprite.visible = false
 	notes_viewed.set(inventory_note.id, true)
 
 
 func _on_items_button_pressed() -> void:
 	items_grid.visible = true
 	notes_grid.visible = false
+	content_sprite.visible = false
 	_clear_info_text()
 
 

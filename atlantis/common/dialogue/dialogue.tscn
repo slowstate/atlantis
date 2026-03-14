@@ -3,9 +3,11 @@
 [ext_resource type="Script" uid="uid://c4tweg85pwg8l" path="res://common/dialogue/dialogue.gd" id="1_wx8oo"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wx8oo"]
+line_spacing = 0.0
 font_size = 4
 
 [node name="Dialogue" type="Label"]
+z_index = 99
 custom_minimum_size = Vector2(80, 0)
 anchors_preset = 7
 anchor_left = 0.5
@@ -28,6 +30,9 @@ autowrap_mode = 2
 script = ExtResource("1_wx8oo")
 
 [node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="FadeInTimer" type="Timer" parent="."]
 one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

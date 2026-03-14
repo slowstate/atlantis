@@ -10,7 +10,7 @@
 radius = 5.0
 
 [node name="Note" type="Sprite2D"]
-z_index = 9
+z_index = 12
 texture = ExtResource("1_lyyc8")
 script = ExtResource("1_ymd6p")
 
