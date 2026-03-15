@@ -39,8 +39,8 @@ func _input(event: InputEvent) -> void:
 		press_any_button.visible = false
 		camera.camera_shake(1.0, 6.0)
 		SfxManager.play_sfx("Earthquake", 0, -15, -10, 0.9, 1.1)
-		SfxManager.fade_sfx("Earthquake", 6, 1)
-		await get_tree().create_timer(6.0).timeout
+		SfxManager.fade_sfx("Earthquake",4,4)
+		await get_tree().create_timer(7.0).timeout
 		var dialogue = Dialogue.create("OPENING_SCENE_PLAYER_DIALOGUE_1", 4.0, Vector2(63.0, 75.0))
 		add_child(dialogue)
 		await get_tree().create_timer(5.0).timeout

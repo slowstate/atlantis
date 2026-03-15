@@ -377,10 +377,21 @@ position = Vector2(13, 125)
 texture = ExtResource("9_32hag")
 
 [node name="NotificationSprite" type="Sprite2D" parent="UserInterface"]
+visible = false
 modulate = Color(0.91764706, 0.7411765, 0, 1)
 position = Vector2(18.5, 121)
 texture = ExtResource("11_tqiix")
 script = ExtResource("5_hg6s5")
+
+[node name="NotificationTooltip" type="Label" parent="UserInterface"]
+offset_left = 4.0
+offset_top = 111.0
+offset_right = 23.0
+offset_bottom = 118.0
+theme_override_font_sizes/font_size = 4
+text = "Press TAB"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="DrowningOverlay" type="Sprite2D" parent="UserInterface"]
 visible = false
