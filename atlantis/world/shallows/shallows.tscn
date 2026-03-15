@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bareqc1eyxlpq"]
+[gd_scene load_steps=45 format=3 uid="uid://bareqc1eyxlpq"]
 
 [ext_resource type="Script" uid="uid://dvyb3kaml26qq" path="res://world/shallows/shallows.gd" id="1_ea2l5"]
 [ext_resource type="PackedScene" uid="uid://p6fv62obxr2c" path="res://world/shallows/open_air.tscn" id="2_usalr"]
@@ -18,16 +18,17 @@
 [ext_resource type="Texture2D" uid="uid://1gnqesbohr3l" path="res://world/shallows/shallows.png" id="12_1jc31"]
 [ext_resource type="Texture2D" uid="uid://djprvnwki31km" path="res://world/shallows/bridge.png" id="12_64aqm"]
 [ext_resource type="Texture2D" uid="uid://bu4ss7xo0p4hd" path="res://entities/items/glowstone/glowstone_2_mined.png" id="13_ffikv"]
-[ext_resource type="Script" path="res://world/shallows/air_pocket_2.gd" id="16_lwpao"]
+[ext_resource type="Script" uid="uid://bavxfl50ofeug" path="res://world/shallows/air_pocket_2.gd" id="16_lwpao"]
 [ext_resource type="Texture2D" uid="uid://dcghsvx8x0qxk" path="res://world/shallows/decorative_crate.png" id="16_olmvm"]
 [ext_resource type="PackedScene" uid="uid://hjw7uadu67x2" path="res://world/shallows/radio/radio.tscn" id="17_cxsdh"]
-[ext_resource type="Script" path="res://world/shallows/air_pocket_1.gd" id="18_qdtt6"]
+[ext_resource type="Script" uid="uid://nl3va5njk7y6" path="res://world/shallows/air_pocket_1.gd" id="18_qdtt6"]
 [ext_resource type="Texture2D" uid="uid://d3uplqrlc8p2h" path="res://world/flora/plant_12.png" id="22_g1huq"]
 [ext_resource type="Texture2D" uid="uid://domugcwa178if" path="res://world/shallows/air_pocket_2.png" id="23_7q0gg"]
 [ext_resource type="Texture2D" uid="uid://ce5j2usasdei8" path="res://world/flora/plant_11.png" id="23_v7rw3"]
 [ext_resource type="Texture2D" uid="uid://bmta2goiceyo" path="res://world/flora/plant_14.png" id="24_wtmgm"]
 [ext_resource type="Texture2D" uid="uid://cmjgd7tn6ivj0" path="res://world/flora/plant_15.png" id="25_qdtt6"]
 [ext_resource type="Texture2D" uid="uid://ckk1rkporjlw2" path="res://world/flora/plant_13.png" id="26_lwpao"]
+[ext_resource type="Script" uid="uid://cut05sybp2b1k" path="res://world/shallows/shallows_music_proximity.gd" id="29_jku5c"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_usalr"]
 friction = 0.0
@@ -109,6 +110,9 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g1huq"]
 size = Vector2(30, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ir1wp"]
+size = Vector2(1834, 1194)
 
 [node name="Shallows" type="Node2D"]
 z_index = 5
@@ -229,7 +233,6 @@ script = ExtResource("16_lwpao")
 
 [node name="Area2D" type="Area2D" parent="AirPocket2"]
 collision_layer = 16
-collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AirPocket2/Area2D"]
 shape = SubResource("RectangleShape2D_v7rw3")
@@ -328,8 +331,13 @@ texture = ExtResource("26_lwpao")
 position = Vector2(403, 427)
 texture = ExtResource("22_g1huq")
 
-[connection signal="area_entered" from="OpenAir" to="." method="_on_open_air_area_entered"]
-[connection signal="area_exited" from="OpenAir" to="." method="_on_open_air_area_exited"]
+[node name="ShallowsMusicProximity" type="Area2D" parent="."]
+script = ExtResource("29_jku5c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShallowsMusicProximity"]
+position = Vector2(662, -133)
+shape = SubResource("RectangleShape2D_ir1wp")
+
 [connection signal="body_entered" from="AirPocket2/Area2D" to="AirPocket2" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="AirPocket2/Area2D" to="AirPocket2" method="_on_area_2d_body_exited"]
 [connection signal="area_entered" from="Cave1/AirPocket1/Area2D" to="Cave1/AirPocket1" method="_on_area_2d_area_entered"]
@@ -337,3 +345,4 @@ texture = ExtResource("22_g1huq")
 [connection signal="body_entered" from="Cave1/AirPocket1/Area2D" to="Cave1/AirPocket1" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Cave1/AirPocket1/Area2D" to="Cave1/AirPocket1" method="_on_area_2d_body_exited"]
 [connection signal="body_shape_entered" from="Cave1/AirPocket1/Area2D" to="Cave1/AirPocket1" method="_on_area_2d_body_shape_entered"]
+[connection signal="area_entered" from="ShallowsMusicProximity" to="ShallowsMusicProximity" method="_on_area_entered"]

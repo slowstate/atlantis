@@ -28,6 +28,7 @@ var shake_decay: float = 0.0
 var shake_time: float = 0.0
 var shake_time_speed: float = 20.0
 var noise = FastNoiseLite.new()
+var controls_disabled_timer: SceneTreeTimer = null
 
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var player_sprite: AnimatedSprite2D = $PlayerSprite
@@ -144,9 +145,13 @@ func _input(event: InputEvent) -> void:
 				dialogue("I need a tool to mine this")
 				SfxManager.play_sfx("IncorrectTool", 0, -20, -15, 0.9, 1.1)
 			else:
+				controls_enabled = false
 				player_sprite.play("mine")
 				SfxManager.play_sfx("ActivateMiningTool", 0, -20, -15, 0.9, 1.1)
 				SfxManager.fade_sfx("ActivateMiningTool", 2, 0.5)
+				controls_disabled_timer = get_tree().create_timer(2)
+				await controls_disabled_timer.timeout
+				controls_enabled = true
 			return
 
 		if frontmost_interactable is WarehouseGenerator:
@@ -169,6 +174,10 @@ func _input(event: InputEvent) -> void:
 		if frontmost_interactable is WrongPhotonicInvertor:
 			SfxManager.play_sfx("Search", 0, -15, -10, 0.9, 1.1)
 			SfxManager.fade_sfx("Search", 2, 1)
+			controls_enabled = false
+			controls_disabled_timer = get_tree().create_timer(2)
+			await controls_disabled_timer.timeout
+			controls_enabled = true
 			dialogue("This photonic invertor won't fit the generator")
 
 		if frontmost_interactable is RocketHangar:

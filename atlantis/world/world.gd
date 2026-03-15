@@ -12,6 +12,12 @@ var has_played_argo_sequence: bool = false
 
 
 func _ready() -> void:
+	player.spawn_point = ComponentUtils.get_component(basic_spawn_point, SpawnPoint.string_name) as SpawnPoint
+	fish_spawn_timer.start(randf_range(4.0, 8.0))
+	SfxManager.stop_all_sfx()
+	SfxManager.play_ambience_sfx("UnderwaterAmbience",5,-25,-20,0.9,1.1)
+	#SfxManager.play_ambience_sfx("UnderwaterDrone",5,-20,-15,0.9,1.1)
+	
 	player.camera_2d.enabled = false
 	player.visible = false
 	player.process_mode = Node.PROCESS_MODE_DISABLED

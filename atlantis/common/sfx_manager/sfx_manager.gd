@@ -87,13 +87,15 @@ func play_ambience_sfx(
 	sfx_stream.pitch_scale = randf_range(pitch_scale_min, pitch_scale_max)
 	sfx_stream.play()
 	
-	#Creates a delay timer
-	if time_delay > -1:
-		sfx_timer = get_tree().create_timer(time_delay+sfx_stream.stream.get_length())
-		await sfx_timer.timeout
-		sfx_timer = null
-	
-	play_continuous_sfx(sfx_stream_string, time_delay, volume_db_min, volume_db_max, pitch_scale_min, pitch_scale_max)
+	sfx_timer = get_tree().create_timer(sfx_stream.stream.get_length()-0.1)
+	await sfx_timer.timeout
+	if sfx_stream.is_playing() == true:
+		if time_delay > -1:
+			sfx_timer = get_tree().create_timer(time_delay+sfx_stream.stream.get_length())
+			await sfx_timer.timeout
+			sfx_timer = null
+		
+		play_continuous_sfx(sfx_stream_string, time_delay, volume_db_min, volume_db_max, pitch_scale_min, pitch_scale_max)
 
 
 func fade_sfx(

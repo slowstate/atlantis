@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bwjotfdnw4bei"
+path="res://.godot/imported/UnlitCrystalCity.mp3-d94aa6a3781074871bc9d76df43bf5aa.mp3str"
+
+[deps]
+
+source_file="res://audio/music/UnlitCrystalCity/Audio Export/UnlitCrystalCity.mp3"
+dest_files=["res://.godot/imported/UnlitCrystalCity.mp3-d94aa6a3781074871bc9d76df43bf5aa.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4
