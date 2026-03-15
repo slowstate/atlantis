@@ -43,6 +43,7 @@ var controls_disabled_timer: SceneTreeTimer = null
 @onready var pause_menu: CanvasLayer = $PauseMenu
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var user_interface: CanvasLayer = $UserInterface
+@onready var mine_timer: Timer = $MineTimer
 
 
 func _ready() -> void:
@@ -81,18 +82,23 @@ func _process(delta: float) -> void:
 
 	## Swimming: Fixed max speed, better "handling", floating damping suddenly drops when moving
 	if move_vec != Vector2.ZERO:
-		player_sprite.play("swim")
+		if mine_timer.is_stopped():
+			player_sprite.play("swim")
 		player_sprite.flip_h = move_vec.x == -1
 		player_sprite.rotation = move_vec.angle() - PI if move_vec.x == -1 else move_vec.angle()
 		velocity = velocity.move_toward(move_vec.normalized() * max_speed, acceleration * delta)
 		SfxManager.play_continuous_sfx("PlayerSwim", 0, -20, -15, 0.9, 1.1)
 	else:
 		if !player_sprite.is_playing() or player_sprite.animation == "default" or player_sprite.animation == "swim":
-			player_sprite.play("default")
+			if mine_timer.is_stopped():
+				player_sprite.play("default")
 		player_sprite.rotation = 0
 		# Apply damping (friction) when no input is pressed
 		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
 		SfxManager.fade_sfx("PlayerSwim", 0, 1)
+
+	if !mine_timer.is_stopped():
+		player_sprite.play("mine")
 	move_and_slide()
 
 
@@ -146,7 +152,8 @@ func _input(event: InputEvent) -> void:
 				SfxManager.play_sfx("IncorrectTool", 0, -20, -15, 0.9, 1.1)
 			else:
 				controls_enabled = false
-				player_sprite.play("mine")
+				#player_sprite.play("mine")
+				mine_timer.start(2.0)
 				SfxManager.play_sfx("ActivateMiningTool", 0, -20, -15, 0.9, 1.1)
 				SfxManager.fade_sfx("ActivateMiningTool", 2, 0.5)
 				controls_disabled_timer = get_tree().create_timer(2)
@@ -156,7 +163,8 @@ func _input(event: InputEvent) -> void:
 
 		if frontmost_interactable is WarehouseGenerator:
 			if currently_selected_tool == Ids.Items.MiningTool:
-				player_sprite.play("mine")
+				#player_sprite.play("mine")
+				mine_timer.start(2.0)
 			else:
 				dialogue("I need a tool to remove this panel")
 			return

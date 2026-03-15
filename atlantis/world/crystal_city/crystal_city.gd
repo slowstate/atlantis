@@ -19,6 +19,8 @@ var city_lights: Array[Sprite2D] = []
 @onready var city_lights_8: Sprite2D = $Parallax2DLayer/CityLights8
 @onready var city_lights_9: Sprite2D = $Parallax2DLayer/CityLights9
 @onready var city_lights_13: Sprite2D = $Parallax2DLayer/CityLights13
+@onready var city_lights_14: Sprite2D = $Parallax2DLayer2/CityLights14
+@onready var city_lights_15: Sprite2D = $Parallax2DLayer2/CityLights15
 
 
 func _ready() -> void:
@@ -38,6 +40,8 @@ func _ready() -> void:
 		city_lights_11,
 		city_lights_12,
 		city_lights_13,
+		city_lights_14,
+		city_lights_15,
 	]
 	set_city_lights_visible(Globals.is_crystal_city_generator_enabled)
 
