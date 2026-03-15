@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://78dtm2oyn1qs"]
+[gd_scene load_steps=49 format=3 uid="uid://78dtm2oyn1qs"]
 
 [ext_resource type="Script" uid="uid://j2aeuxkdgo4t" path="res://world/crystal_city/crystal_city.gd" id="1_bxvt2"]
 [ext_resource type="PackedScene" uid="uid://d26r2a2m086uo" path="res://world/crystal_city/buildings/warehouse/warehouse.tscn" id="1_p0dhy"]
@@ -26,6 +26,8 @@
 [ext_resource type="Texture2D" uid="uid://d3gir8yj22biv" path="res://world/parallax_2d_layer/city_lights_11.png" id="15_gqhme"]
 [ext_resource type="Texture2D" uid="uid://bo2byvdel016" path="res://world/parallax_2d_layer/city_lights_12.png" id="16_tspd7"]
 [ext_resource type="Texture2D" uid="uid://bjloeksyusqxn" path="res://world/parallax_2d_layer/city_lights_13.png" id="17_1v00c"]
+[ext_resource type="Texture2D" uid="uid://d37pqghnsgciu" path="res://world/parallax_2d_layer/city_lights_14.png" id="18_qxa0j"]
+[ext_resource type="Texture2D" uid="uid://c33gv43cmrgpn" path="res://world/parallax_2d_layer/city_lights_15.png" id="19_6sou6"]
 [ext_resource type="Script" uid="uid://ccusxj5vk8chx" path="res://world/crystal_city/city_boundary_dialogue_box.gd" id="23_1v00c"]
 [ext_resource type="Texture2D" uid="uid://sb4d24vsxoy6" path="res://world/crystal_city/city_foreground.png" id="26_uduu4"]
 [ext_resource type="Texture2D" uid="uid://bcoyd5t8s8fd4" path="res://world/flora/plant_5.png" id="27_gqhme"]
@@ -38,7 +40,7 @@
 [ext_resource type="Texture2D" uid="uid://dof1tsyif3q8w" path="res://world/flora/plant_1.png" id="34_2x46g"]
 [ext_resource type="Texture2D" uid="uid://nuxixsbgdnfa" path="res://world/flora/plant_9.png" id="35_ugiha"]
 [ext_resource type="Texture2D" uid="uid://34wp40kyn554" path="res://world/crystal_city/city_deco.png" id="37_tspd7"]
-[ext_resource type="Script" uid="uid://ddeicb8mm4lah" path="res://world/crystal_city/crystal_city_music_proximity.gd" id="39_as0vk"]
+[ext_resource type="Script" path="res://world/crystal_city/crystal_city_music_proximity.gd" id="39_as0vk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dg3dl"]
 size = Vector2(1600, 329)
@@ -140,6 +142,14 @@ texture = ExtResource("15_gqhme")
 position = Vector2(-569.5, -78)
 texture = ExtResource("16_tspd7")
 
+[node name="CityLights14" type="Sprite2D" parent="Parallax2DLayer2"]
+position = Vector2(-791, -57)
+texture = ExtResource("18_qxa0j")
+
+[node name="CityLights15" type="Sprite2D" parent="Parallax2DLayer2"]
+position = Vector2(-784, -27.5)
+texture = ExtResource("19_6sou6")
+
 [node name="CityLightsTimer" type="Timer" parent="."]
 one_shot = true
 
@@ -217,6 +227,7 @@ shape = SubResource("RectangleShape2D_as0vk")
 position = Vector2(777, 1059)
 
 [node name="WarehouseInterior" parent="." instance=ExtResource("3_5r0gn")]
+z_index = 5
 position = Vector2(1044, 956)
 
 [node name="Warehouse" parent="." instance=ExtResource("1_p0dhy")]

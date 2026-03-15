@@ -7,6 +7,7 @@ var argo_acceleration := 50
 var argo_max_speed := 100
 var argo_friction := 40
 var tooltip_enabled: bool = false
+var current_dialogue: Dialogue
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var collision_shape_body_1: CollisionShape2D = $CollisionShapeBody1
@@ -59,12 +60,27 @@ func _process(delta: float) -> void:
 	move_and_slide()
 
 	if move_vec != Vector2.ZERO:
-		SfxManager.play_continuous_sfx("ARGODrive",0,-20,-15,0.9,1.1)
-		SfxManager.play_continuous_sfx("ARGODisturbWater",0,-25,-20,0.9,1.1)
+		SfxManager.play_continuous_sfx("ARGODrive", 0, -20, -15, 0.9, 1.1)
+		SfxManager.play_continuous_sfx("ARGODisturbWater", 0, -25, -20, 0.9, 1.1)
 	else:
 		SfxManager.stop_sfx("ARGODrive")
-		SfxManager.fade_sfx("ARGODisturbWater",0,5)
-	
+		SfxManager.fade_sfx("ARGODisturbWater", 0, 5)
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("player_move_up") or \
+	event.is_action_pressed("player_move_left") or \
+	event.is_action_pressed("player_move_down") or \
+	event.is_action_pressed("player_move_right"):
+		dialogue("", 3.0, Vector2(0.0, -40.0))
+
+
+func dialogue(dialogue_key: String, duration: float = 3.0, relative_position: Vector2 = Vector2(0.0, -36.0)) -> void:
+	if current_dialogue:
+		current_dialogue.queue_free()
+	current_dialogue = Dialogue.create(dialogue_key, duration, relative_position)
+	add_child(current_dialogue)
+
 
 func _on_interactable_just_interacted() -> void:
 	tooltip_enabled = false
@@ -72,7 +88,7 @@ func _on_interactable_just_interacted() -> void:
 	tween.tween_property(tooltip, "modulate:a", 0, 1)
 	if !Globals.player.inventory.has_note(Ids.Notes.ArkPlans):
 		Globals.player.inventory.add_note(Ids.Notes.ArkPlans)
-		SfxManager.play_sfx("EmailReceived",0,-20,-15,0.9,1.1)
+		SfxManager.play_sfx("EmailReceived", 0, -20, -15, 0.9, 1.1)
 	if Globals.player.currently_selected_tool == Ids.Items.Glowstone:
 		Globals.player.inventory.remove_item(Ids.Items.Glowstone)
 		SfxManager.play_sfx("DepositGlowstone",0,-20,-15,0.9,1.1)
@@ -80,8 +96,8 @@ func _on_interactable_just_interacted() -> void:
 		window_light_1.enabled = true
 		window_light_2.enabled = true
 		window_light_3.enabled = true
-		add_child(Dialogue.create("M's message", 3.0, Vector2(0.0, -40.0)))
-		SfxManager.play_sfx("EmailReceived",0,-20,-15,0.9,1.1)
+		dialogue("M's message", 3.0, Vector2(0.0, -40.0))
+		SfxManager.play_sfx("EmailReceived", 0, -20, -15, 0.9, 1.1)
 	if repaired:
 		point_light_2d.enabled = true
 
