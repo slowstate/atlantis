@@ -322,7 +322,7 @@ point_count = 3
 curve = SubResource("Curve_18swj")
 
 [sub_resource type="Gradient" id="Gradient_km1f2"]
-colors = PackedColorArray(0.8745098, 0.8901961, 0.9607843, 1, 1, 1, 1, 1)
+colors = PackedColorArray(0.71387357, 0.74125385, 0.87455684, 0.75000006, 0.7055968, 0.7293979, 0.86663747, 0.4)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_g16jo"]
 gradient = SubResource("Gradient_km1f2")
@@ -395,8 +395,8 @@ explosiveness = 0.9
 process_material = SubResource("ParticleProcessMaterial_g16jo")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-position = Vector2(160, 130.5)
-amount = 128
+position = Vector2(160, 132.5)
+amount = 75
 lifetime = 1.5
 process_material = SubResource("ParticleProcessMaterial_qxmy1")
 
@@ -414,11 +414,13 @@ one_shot = true
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(282, 47)
+energy = 0.5
 texture = SubResource("GradientTexture2D_18swj")
 
 [node name="PointLight2D2" type="PointLight2D" parent="."]
 position = Vector2(282, 156)
 scale = Vector2(0.8, 0.5)
+energy = 0.5
 texture = SubResource("GradientTexture2D_18swj")
 
 [node name="Camera" parent="." instance=ExtResource("5_18swj")]
