@@ -139,6 +139,10 @@ func _input(event: InputEvent) -> void:
 				interactable_component.interact()
 				if argo.repaired:
 					return
+			if argo.playing_m_message:
+				return
+			var interactable_component = ComponentUtils.get_component(argo, Interactable.string_name) as Interactable
+			interactable_component.interact()
 			enter_argo(!is_in_argo)
 			return
 
@@ -152,7 +156,6 @@ func _input(event: InputEvent) -> void:
 				SfxManager.play_sfx("IncorrectTool", 0, -20, -15, 0.9, 1.1)
 			else:
 				controls_enabled = false
-				#player_sprite.play("mine")
 				mine_timer.start(2.0)
 				SfxManager.play_sfx("ActivateMiningTool", 0, -20, -15, 0.9, 1.1)
 				SfxManager.fade_sfx("ActivateMiningTool", 2, 0.5)
@@ -163,7 +166,6 @@ func _input(event: InputEvent) -> void:
 
 		if frontmost_interactable is WarehouseGenerator:
 			if currently_selected_tool == Ids.Items.MiningTool:
-				#player_sprite.play("mine")
 				mine_timer.start(2.0)
 			else:
 				dialogue("I need a tool to remove this panel")
@@ -186,7 +188,7 @@ func _input(event: InputEvent) -> void:
 			controls_disabled_timer = get_tree().create_timer(2)
 			await controls_disabled_timer.timeout
 			controls_enabled = true
-			dialogue("This photonic invertor won't fit the generator")
+			dialogue("This isn't what I'm looking for")
 
 		if frontmost_interactable is RocketHangar:
 			if !Globals.is_crystal_city_generator_enabled:

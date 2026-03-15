@@ -40,7 +40,7 @@
 [ext_resource type="Texture2D" uid="uid://dof1tsyif3q8w" path="res://world/flora/plant_1.png" id="34_2x46g"]
 [ext_resource type="Texture2D" uid="uid://nuxixsbgdnfa" path="res://world/flora/plant_9.png" id="35_ugiha"]
 [ext_resource type="Texture2D" uid="uid://34wp40kyn554" path="res://world/crystal_city/city_deco.png" id="37_tspd7"]
-[ext_resource type="Script" path="res://world/crystal_city/crystal_city_music_proximity.gd" id="39_as0vk"]
+[ext_resource type="Script" uid="uid://ddeicb8mm4lah" path="res://world/crystal_city/crystal_city_music_proximity.gd" id="39_as0vk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dg3dl"]
 size = Vector2(1600, 329)
@@ -158,7 +158,7 @@ position = Vector2(649, 946)
 texture = ExtResource("37_tspd7")
 
 [node name="Floor" type="Sprite2D" parent="."]
-position = Vector2(639.5, 1223.25)
+position = Vector2(639.5, 1222.25)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Floor"]
 collision_layer = 2
