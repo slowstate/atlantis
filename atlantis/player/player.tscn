@@ -1,10 +1,10 @@
-[gd_scene load_steps=52 format=3 uid="uid://j51i3vf5hn3d"]
+[gd_scene load_steps=53 format=3 uid="uid://j51i3vf5hn3d"]
 
 [ext_resource type="Script" uid="uid://d33wj2wxlurur" path="res://player/player.gd" id="1_oul6g"]
-[ext_resource type="Texture2D" uid="uid://bhsbeiho1ftwj" path="res://player/player.png" id="2_g1dw6"]
 [ext_resource type="Texture2D" uid="uid://drn2wfpxrdplg" path="res://player/player_jump_off.png" id="3_ebec5"]
 [ext_resource type="PackedScene" uid="uid://dgksxox3np48f" path="res://menus/inventory/inventory.tscn" id="3_g1dw6"]
 [ext_resource type="Texture2D" uid="uid://crss4sr06xmor" path="res://player/player_interact.png" id="3_kb6p2"]
+[ext_resource type="Texture2D" uid="uid://cepgentgvwn3d" path="res://player/player_idle.png" id="3_tqiix"]
 [ext_resource type="PackedScene" uid="uid://do72rdi1hrydt" path="res://player/hud/item_selector/item_selector.tscn" id="4_rgyib"]
 [ext_resource type="Texture2D" uid="uid://c3dtey7lxhtqa" path="res://player/player_swim.png" id="4_yllr7"]
 [ext_resource type="Script" uid="uid://cws56lrnieioe" path="res://player/PlayerStateMachine/player_state_machine.gd" id="4_yw30f"]
@@ -42,9 +42,21 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kb6p2"]
-atlas = ExtResource("2_g1dw6")
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7pn3"]
+atlas = ExtResource("3_tqiix")
 region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1s1yo"]
+atlas = ExtResource("3_tqiix")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ejfk"]
+atlas = ExtResource("3_tqiix")
+region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jd2rm"]
+atlas = ExtResource("3_tqiix")
+region = Rect2(120, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_knn7v"]
 atlas = ExtResource("3_kb6p2")
@@ -78,10 +90,6 @@ region = Rect2(80, 0, 40, 40)
 atlas = ExtResource("3_ebec5")
 region = Rect2(120, 0, 40, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r7pn3"]
-atlas = ExtResource("5_wodsf")
-region = Rect2(0, 0, 40, 40)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_b8hi5"]
 atlas = ExtResource("5_wodsf")
 region = Rect2(40, 0, 40, 40)
@@ -89,10 +97,6 @@ region = Rect2(40, 0, 40, 40)
 [sub_resource type="AtlasTexture" id="AtlasTexture_2uvqg"]
 atlas = ExtResource("5_wodsf")
 region = Rect2(80, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1s1yo"]
-atlas = ExtResource("5_wodsf")
-region = Rect2(120, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c35mf"]
 atlas = ExtResource("4_yllr7")
@@ -122,7 +126,16 @@ region = Rect2(200, 0, 40, 40)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kb6p2")
+"texture": SubResource("AtlasTexture_r7pn3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1s1yo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ejfk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jd2rm")
 }],
 "loop": false,
 "name": &"default",
@@ -164,16 +177,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_r7pn3")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_b8hi5")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2uvqg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1s1yo")
 }],
 "loop": false,
 "name": &"mine",
@@ -314,7 +321,6 @@ offset_bottom = -10.0
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 light_mask = 0
 sprite_frames = SubResource("SpriteFrames_knn7v")
-animation = &"jump_off"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_top = 0
@@ -353,15 +359,15 @@ position = Vector2(13, 160)
 scale = Vector2(2, 2)
 texture = ExtResource("9_tqiix")
 
-[node name="NotificationSprite" type="Sprite2D" parent="UserInterface"]
+[node name="Notification" type="Sprite2D" parent="UserInterface"]
 position = Vector2(13, 125)
 texture = ExtResource("9_32hag")
-script = ExtResource("5_hg6s5")
 
-[node name="Notification" type="Sprite2D" parent="UserInterface/NotificationSprite"]
-modulate = Color(0.91636676, 0.7430534, 0, 1)
-position = Vector2(5.5, -4)
+[node name="NotificationSprite" type="Sprite2D" parent="UserInterface"]
+modulate = Color(0.91764706, 0.7411765, 0, 1)
+position = Vector2(18.5, 121)
 texture = ExtResource("11_tqiix")
+script = ExtResource("5_hg6s5")
 
 [node name="DrowningOverlay" type="Sprite2D" parent="UserInterface"]
 visible = false
@@ -416,6 +422,9 @@ script = ExtResource("7_boad6")
 one_shot = true
 
 [node name="PauseMenu" parent="." instance=ExtResource("10_8t03j")]
+
+[node name="MineTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="show_notification" from="UserInterface/Inventory" to="UserInterface/NotificationSprite" method="_on_inventory_show_notification"]
 [connection signal="pressed" from="UserInterface/DrownedOverlay/RespawnButton" to="." method="_on_respawn_button_pressed"]

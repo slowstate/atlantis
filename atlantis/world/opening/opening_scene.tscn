@@ -412,6 +412,9 @@ centered = false
 [node name="FadeInTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="PressAnyButtonFadeInTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(282, 47)
 energy = 0.5

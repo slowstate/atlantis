@@ -30,7 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://bmta2goiceyo" path="res://world/flora/plant_14.png" id="24_wtmgm"]
 [ext_resource type="Texture2D" uid="uid://cmjgd7tn6ivj0" path="res://world/flora/plant_15.png" id="25_qdtt6"]
 [ext_resource type="Texture2D" uid="uid://ckk1rkporjlw2" path="res://world/flora/plant_13.png" id="26_lwpao"]
-[ext_resource type="Script" uid="uid://cut05sybp2b1k" path="res://world/shallows/shallows_music_proximity.gd" id="29_jku5c"]
+[ext_resource type="Script" path="res://world/shallows/shallows_music_proximity.gd" id="29_jku5c"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_usalr"]
 friction = 0.0
