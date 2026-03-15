@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://j51i3vf5hn3d"]
+[gd_scene load_steps=52 format=3 uid="uid://j51i3vf5hn3d"]
 
 [ext_resource type="Script" uid="uid://d33wj2wxlurur" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Texture2D" uid="uid://bhsbeiho1ftwj" path="res://player/player.png" id="2_g1dw6"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://bfj0tbm2sub6y" path="res://player/PlayerStateMachine/oxygen_depleting_state.gd" id="6_g6k8r"]
 [ext_resource type="Script" uid="uid://by7vkwfrt78qv" path="res://player/PlayerStateMachine/drowning_state.gd" id="7_boad6"]
 [ext_resource type="Texture2D" uid="uid://c5psn855ehry6" path="res://player/hud/inventory.png" id="9_32hag"]
+[ext_resource type="Texture2D" uid="uid://cvk45t8npanrw" path="res://player/hud/oxygen_tank.png" id="9_tqiix"]
 [ext_resource type="PackedScene" uid="uid://ca6mfue2lfa8u" path="res://menus/pause_menu/pause_menu.tscn" id="10_8t03j"]
 [ext_resource type="Texture2D" uid="uid://cltjsdli0rcc8" path="res://player/hud/notification.png" id="11_tqiix"]
 
@@ -220,6 +221,58 @@ fill_to = Vector2(1, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_yw30f"]
 font_size = 8
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tqiix"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0, 0, 0, 0.5)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e7oew"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0, 0, 0.5)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c35mf"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0, 0, 0, 0.5)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_65viv"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0, 0, 0, 0.5)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 10
 collision_mask = 66
@@ -272,6 +325,7 @@ position_smoothing_enabled = true
 [node name="Inventory" parent="UserInterface" instance=ExtResource("3_g1dw6")]
 
 [node name="OxygenMeterLabel" type="Label" parent="UserInterface"]
+visible = false
 offset_left = 4.0
 offset_top = 164.0
 offset_right = 27.0
@@ -279,8 +333,28 @@ offset_bottom = 176.0
 text = "O₂: 30"
 label_settings = SubResource("LabelSettings_g1dw6")
 
+[node name="OxygenTankFill" type="ColorRect" parent="UserInterface"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -142.0
+offset_top = -5.0
+offset_right = -132.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(-1, -1)
+color = Color(0.16862746, 0.43137255, 0.4392157, 1)
+
+[node name="OxygenTank" type="Sprite2D" parent="UserInterface"]
+position = Vector2(13, 160)
+scale = Vector2(2, 2)
+texture = ExtResource("9_tqiix")
+
 [node name="NotificationSprite" type="Sprite2D" parent="UserInterface"]
-position = Vector2(305, 148)
+position = Vector2(13, 125)
 texture = ExtResource("9_32hag")
 script = ExtResource("5_hg6s5")
 
@@ -317,7 +391,12 @@ label_settings = SubResource("LabelSettings_yw30f")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_mode = 0
 theme_override_font_sizes/font_size = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_tqiix")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_e7oew")
+theme_override_styles/hover = SubResource("StyleBoxFlat_c35mf")
+theme_override_styles/focus = SubResource("StyleBoxFlat_65viv")
 text = "Respawn"
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]

@@ -18,12 +18,10 @@ func _ready() -> void:
 	SfxManager.play_ambience_sfx("UnderwaterAmbience",5,-25,-20,0.9,1.1)
 	SfxManager.play_ambience_sfx("UnderwaterDrone",5,-20,-15,0.9,1.1)
 	
+	player.camera_2d.enabled = false
 	player.visible = false
-	player.controls_enabled = false
-	animation_player.play("player_dive")
-	await get_tree().create_timer(1.5).timeout
-	player.controls_enabled = true
-	Globals.player.inventory.add_note(Ids.Notes.Letter, false)
+	player.process_mode = Node.PROCESS_MODE_DISABLED
+	player.user_interface.visible = false
 
 
 func _physics_process(_delta: float) -> void:
@@ -35,12 +33,13 @@ func _physics_process(_delta: float) -> void:
 func _play_argo_sequence() -> void:
 	player.controls_enabled = false
 	player.camera_shake(2, 12.0)
-	SfxManager.play_sfx("Earthquake",0,-10,-5,0.9,1.1)
-	SfxManager.fade_sfx("Earthquake",11,2)
+	SfxManager.play_sfx("Earthquake", 0, -10, -5, 0.9, 1.1)
+	SfxManager.fade_sfx("Earthquake", 11, 2)
 	await get_tree().create_timer(4.0).timeout
 	animation_player.play("argo_rising")
 	await get_tree().create_timer(8.0).timeout
 	player.controls_enabled = true
+	player.dialogue("PLAYER_DIALOGUE_2", 5.0)
 
 
 func _on_fish_spawn_timer_timeout() -> void:
@@ -53,3 +52,19 @@ func _on_fish_spawn_timer_timeout() -> void:
 		add_child(additional_fish)
 
 	fish_spawn_timer.start(randf_range(4.0, 16.0))
+
+
+func _on_opening_scene_complete() -> void:
+	player.process_mode = Node.PROCESS_MODE_INHERIT
+	player.spawn_point = ComponentUtils.get_component(basic_spawn_point, SpawnPoint.string_name) as SpawnPoint
+	fish_spawn_timer.start(randf_range(4.0, 8.0))
+	SfxManager.play_ambience_sfx("UnderwaterAmbience", 5, -25, -20, 0.9, 1.1)
+	SfxManager.play_ambience_sfx("UnderwaterDrone", 5, -20, -15, 0.9, 1.1)
+
+	player.camera_2d.enabled = true
+	player.visible = true
+	player.user_interface.visible = true
+	animation_player.play("player_dive")
+	await get_tree().create_timer(1.5).timeout
+	player.controls_enabled = true
+	Globals.player.inventory.add_note(Ids.Notes.Letter, false)

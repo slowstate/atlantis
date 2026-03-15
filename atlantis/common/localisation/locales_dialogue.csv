@@ -1,9 +1,11 @@
 keys,en
 OPENING_SCENE_PLAYER_DIALOGUE_1,"The sea is rising again"
 OPENING_SCENE_PLAYER_DIALOGUE_2,"I might only have one day left before it’s all gone"
-OPENING_SCENE_PLAYER_DIALOGUE_3,"I better go look for more resources before it gets dark"
+OPENING_SCENE_PLAYER_DIALOGUE_3,"I better go now before it gets dark"
 PLAYER_DIALOGUE_2,"How on earth… Who built this?"
 PLAYER_DIALOGUE_3,"Well, that was 2 months ago"
 PLAYER_DIALOGUE_4,"Just me now"
-RADIO_MESSAGE,"This is a global message to all remaining people of this world. The final GEP spaceship will be departing from Earth on 31 March 1949 at midday. 
-Please arrange evacuation rafts from your location to ensure you arrive at Port Phillip. This is the final ship. We repeat. This is the final ship."
+RADIO_1_MESSAGE_1,"This is a global message to all remaining people of this world"
+RADIO_1_MESSAGE_2,"The final GEP spaceship will be departing from Earth on 31 March 1949 at midday"
+RADIO_1_MESSAGE_3,"Please arrange evacuation rafts from your location to ensure you arrive at Port Phillip"
+RADIO_1_MESSAGE_4,"This is the final ship. We repeat. This is the final ship..."

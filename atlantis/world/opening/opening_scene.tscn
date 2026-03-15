@@ -1,10 +1,11 @@
-[gd_scene load_steps=35 format=3 uid="uid://cfmj22pmpp3tn"]
+[gd_scene load_steps=37 format=3 uid="uid://cfmj22pmpp3tn"]
 
 [ext_resource type="Texture2D" uid="uid://c71rkj41ho73l" path="res://world/opening/opening_scene.png" id="1_i7n71"]
 [ext_resource type="Script" uid="uid://d04ii4w0xspsr" path="res://world/opening/opening_scene.gd" id="1_yfivt"]
 [ext_resource type="Texture2D" uid="uid://drn2wfpxrdplg" path="res://player/player_jump_off.png" id="3_qxmy1"]
 [ext_resource type="Texture2D" uid="uid://b6t46gcedg7ao" path="res://world/opening/opening_scene_water.png" id="4_qxmy1"]
-[ext_resource type="PackedScene" uid="uid://j51i3vf5hn3d" path="res://player/player.tscn" id="5_18swj"]
+[ext_resource type="PackedScene" uid="uid://dcg5jitqi6eac" path="res://common/camera/camera.tscn" id="5_18swj"]
+[ext_resource type="Texture2D" uid="uid://degxoo0p2e54m" path="res://world/opening/Press Any Button.png" id="6_oftnv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_18swj"]
 atlas = ExtResource("3_qxmy1")
@@ -78,6 +79,40 @@ tracks/1/keys = {
 "points": PackedFloat32Array(111, 0, 0, 0, 0, 113.5, -0.0002136135, 0, 0.0002136135, 0),
 "times": PackedFloat32Array(0, 0.000854454)
 }
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerReflectionSprite:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(63, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerReflectionSprite:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(131, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PlayerReflectionSprite:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_66mpu"]
 resource_name = "jump_off"
@@ -99,88 +134,110 @@ tracks/1/path = NodePath("AnimatedSprite2D:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 3, 0, 0),
+"points": PackedFloat32Array(111, -0.0002136135, 0, 0.0002136135, 0, 100, -0.06666667, 5, 0.06666667, -5, 106.5, -0.03333333, -3, 0.03333333, 3, 142, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.1, 0.36666667, 0.6)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerReflectionSprite:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(63, 0, 0, 0, 0, 63, 0, 0, 0, 0, 81.5, -0.06666668, -7, 0.06666668, 7, 103, -0.09874153, -2.5, 0.09874153, 2.5, 104, 0, 0, 0, 0),
+"times": PackedFloat32Array(-0.00085445493, 0, 0.19914556, 0.56581223, 0.59914553)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerReflectionSprite:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(131, 0, 0, 0, 0, 141.39, -0.067, -5, 0.067, 5, 140.5, -0.033, 3, 0.033, -3, 116, 0, 0, 0, 0),
+"times": PackedFloat32Array(-0.00085445493, 0.09914556, 0.3658122, 0.59914553)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PlayerReflectionSprite:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(-0.00085445493, 0.43333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_18swj"]
+resource_name = "reflection_jump_off"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("AnimatedSprite2D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 1, 3, 3, 0),
+"points": PackedFloat32Array(63, 0, 0, 0, 0, 63, 0, 0, 0, 0, 81.5, -0.06666668, -7, 0.06666668, 7, 103, -0.09874153, -2.5, 0.09874153, 2.5, 104, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.000854454, 0.2, 0.56666666, 0.6)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("AnimatedSprite2D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 3, 3, 0, 0),
-"points": PackedFloat32Array(111, 0, 0, 0, 0, 113.5, -0.0002136135, 0, 0.0002136135, 0, 100, -0.06666667, 5, 0.06666667, -5, 106.5, -0.03333333, -3, 0.03333333, 3, 142, 0, 0, 0, 0),
+"points": PackedFloat32Array(111, 0, 0, 0, 0, 113.5, -0.0002136135, 0, 0.0002136135, 0, 121.39, -0.067, -5, 0.067, 5, 120.5, -0.033, 3, 0.033, -3, 96.4, 0, 0, 0, 0),
 "times": PackedFloat32Array(0, 0.000854454, 0.1, 0.36666667, 0.6)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerReflectionSprite:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(63, 0, 0, 0, 0, 63, 0, 0, 0, 0, 81.5, -0.06666668, -7, 0.06666668, 7, 103, -0.09874153, -2.5, 0.09874153, 2.5, 104, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.00085445493, 0.2, 0.56666666, 0.6)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerReflectionSprite:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(131, 0, 0, 0, 0, 141.39, -0.067, -5, 0.067, 5, 140.5, -0.033, 3, 0.033, -3, 116, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.10000001, 0.36666667, 0.6)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PlayerReflectionSprite:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4avxg"]
 _data = {
 &"RESET": SubResource("Animation_bjfkh"),
-&"jump_off": SubResource("Animation_66mpu")
+&"jump_off": SubResource("Animation_66mpu"),
+&"reflection_jump_off": SubResource("Animation_18swj")
 }
-
-[sub_resource type="Curve" id="Curve_qxmy1"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_18swj"]
-curve = SubResource("Curve_qxmy1")
-
-[sub_resource type="Gradient" id="Gradient_oftnv"]
-offsets = PackedFloat32Array(0, 0.65584415)
-colors = PackedColorArray(0.49411765, 0.53333336, 0.7137255, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_km1f2"]
-gradient = SubResource("Gradient_oftnv")
-width = 4
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g16jo"]
-particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 6.0
-direction = Vector3(0, -1, 0)
-initial_velocity_min = 20.0
-initial_velocity_max = 60.0
-gravity = Vector3(0, 98, 0)
-scale_max = 2.0
-color_initial_ramp = SubResource("GradientTexture1D_km1f2")
-alpha_curve = SubResource("CurveTexture_18swj")
-
-[sub_resource type="Curve" id="Curve_18swj"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_oftnv"]
-curve = SubResource("Curve_18swj")
-
-[sub_resource type="Gradient" id="Gradient_km1f2"]
-colors = PackedColorArray(0.5568628, 0.5921569, 0.7647059, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_g16jo"]
-gradient = SubResource("Gradient_km1f2")
-width = 4
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qxmy1"]
-particle_flag_disable_z = true
-emission_shape = 3
-emission_box_extents = Vector3(160, 6, 1)
-gravity = Vector3(0, 0, 0)
-color_initial_ramp = SubResource("GradientTexture1D_g16jo")
-alpha_curve = SubResource("CurveTexture_oftnv")
-turbulence_noise_strength = 0.1
-turbulence_noise_scale = 0.2
-
-[sub_resource type="Gradient" id="Gradient_yfivt"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_qxmy1"]
-gradient = SubResource("Gradient_yfivt")
-width = 320
-height = 180
-
-[sub_resource type="Gradient" id="Gradient_qxmy1"]
-interpolation_mode = 2
-colors = PackedColorArray(1, 1, 1, 0.5, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_18swj"]
-gradient = SubResource("Gradient_qxmy1")
-width = 128
-height = 128
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_co3hy"]
 atlas = ExtResource("3_qxmy1")
@@ -230,40 +287,80 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Curve" id="Curve_qxmy1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_18swj"]
+curve = SubResource("Curve_qxmy1")
+
+[sub_resource type="Gradient" id="Gradient_oftnv"]
+offsets = PackedFloat32Array(0, 0.65584415)
+colors = PackedColorArray(0.49411765, 0.53333336, 0.7137255, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_km1f2"]
+gradient = SubResource("Gradient_oftnv")
+width = 4
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g16jo"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 6.0
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 60.0
+gravity = Vector3(0, 98, 0)
+scale_max = 2.0
+color_initial_ramp = SubResource("GradientTexture1D_km1f2")
+alpha_curve = SubResource("CurveTexture_18swj")
+
+[sub_resource type="Curve" id="Curve_18swj"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_oftnv"]
+curve = SubResource("Curve_18swj")
+
+[sub_resource type="Gradient" id="Gradient_km1f2"]
+colors = PackedColorArray(0.8745098, 0.8901961, 0.9607843, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_g16jo"]
+gradient = SubResource("Gradient_km1f2")
+width = 4
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qxmy1"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(160, 6, 1)
+gravity = Vector3(0, 0, 0)
+color_initial_ramp = SubResource("GradientTexture1D_g16jo")
+alpha_curve = SubResource("CurveTexture_oftnv")
+turbulence_noise_strength = 0.1
+turbulence_noise_scale = 0.2
+
+[sub_resource type="Gradient" id="Gradient_yfivt"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qxmy1"]
+gradient = SubResource("Gradient_yfivt")
+width = 320
+height = 180
+
+[sub_resource type="Gradient" id="Gradient_qxmy1"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 0.5, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_18swj"]
+gradient = SubResource("Gradient_qxmy1")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
 [node name="OpeningScene" type="Node2D"]
 script = ExtResource("1_yfivt")
-
-[node name="Player" parent="." instance=ExtResource("5_18swj")]
-visible = false
-z_index = 0
-position = Vector2(160, 90)
-
-[node name="CollisionShape2D" parent="Player" index="0"]
-visible = false
-
-[node name="CollisionShape2D2" parent="Player" index="1"]
-visible = false
-
-[node name="OxygenBox" parent="Player" index="2"]
-visible = false
-
-[node name="InteractionBox" parent="Player" index="3"]
-visible = false
-
-[node name="PointLight2D" parent="Player" index="4"]
-visible = false
-
-[node name="ItemSelector" parent="Player" index="5"]
-visible = false
-
-[node name="PlayerSprite" parent="Player" index="6"]
-visible = false
-
-[node name="UserInterface" parent="Player" index="8"]
-visible = false
-
-[node name="PauseMenu" parent="Player" index="10"]
-visible = false
 
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("1_i7n71")
@@ -282,6 +379,13 @@ libraries = {
 position = Vector2(160, 154.5)
 texture = ExtResource("4_qxmy1")
 
+[node name="PlayerReflectionSprite" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.24000001)
+position = Vector2(63, 131)
+scale = Vector2(1, 0.8)
+sprite_frames = SubResource("SpriteFrames_66mpu")
+flip_v = true
+
 [node name="WaterSplashParticles" type="GPUParticles2D" parent="."]
 position = Vector2(101, 131)
 emitting = false
@@ -295,6 +399,10 @@ position = Vector2(160, 130.5)
 amount = 128
 lifetime = 1.5
 process_material = SubResource("ParticleProcessMaterial_qxmy1")
+
+[node name="PressAnyButton" type="Sprite2D" parent="."]
+position = Vector2(160, 60)
+texture = ExtResource("6_oftnv")
 
 [node name="FadeInOverlay" type="Sprite2D" parent="."]
 visible = false
@@ -313,14 +421,7 @@ position = Vector2(282, 156)
 scale = Vector2(0.8, 0.5)
 texture = SubResource("GradientTexture2D_18swj")
 
-[node name="PlayerReflectionSprite" type="AnimatedSprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.24000001)
-position = Vector2(63, 134)
-scale = Vector2(1, 0.6)
-sprite_frames = SubResource("SpriteFrames_66mpu")
-animation = &"jump_off"
-flip_v = true
+[node name="Camera" parent="." instance=ExtResource("5_18swj")]
+position = Vector2(160, 90)
 
 [connection signal="timeout" from="FadeInTimer" to="." method="_on_fade_in_timer_timeout"]
-
-[editable path="Player"]

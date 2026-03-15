@@ -6,7 +6,7 @@ var oxygen_deplete_rate := 1.0
 var drowning_gradient: GradientTexture2D
 
 @onready var oxygen_box: Area2D = $"../../OxygenBox"
-@onready var oxygen_meter_label: Label = $"../../UserInterface/OxygenMeterLabel"
+@onready var oxygen_tank_fill: ColorRect = $"../../UserInterface/OxygenTankFill"
 @onready var drowning_overlay: Sprite2D = $"../../UserInterface/DrowningOverlay"
 
 
@@ -35,7 +35,7 @@ func physics_update(delta: float) -> void:
 		return
 
 	player.oxygen = clamp(player.oxygen - oxygen_deplete_rate * delta, 0.0, player.OXYGEN_MAX)
-	oxygen_meter_label.text = "O₂: " + str(roundi(player.oxygen))
+	oxygen_tank_fill.scale.y = lerp(0.0, -1.0, player.oxygen / player.OXYGEN_MAX)
 	drowning_gradient.fill_to = clamp(drowning_gradient.fill_to + Vector2(1.0, 1.0) * delta, Vector2(0.499, 0.499), Vector2(1.0, 1.0))
 
 	if player.oxygen <= 0:
