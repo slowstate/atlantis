@@ -30,7 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://bmta2goiceyo" path="res://world/flora/plant_14.png" id="24_wtmgm"]
 [ext_resource type="Texture2D" uid="uid://cmjgd7tn6ivj0" path="res://world/flora/plant_15.png" id="25_qdtt6"]
 [ext_resource type="Texture2D" uid="uid://ckk1rkporjlw2" path="res://world/flora/plant_13.png" id="26_lwpao"]
-[ext_resource type="Script" path="res://world/shallows/shallows_music_proximity.gd" id="29_jku5c"]
+[ext_resource type="Script" uid="uid://cut05sybp2b1k" path="res://world/shallows/shallows_music_proximity.gd" id="29_jku5c"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_usalr"]
 friction = 0.0
@@ -68,9 +68,6 @@ colors = PackedColorArray(0.47058824, 0.77254903, 0.8117647, 1)
 gradient = SubResource("Gradient_64aqm")
 width = 2
 height = 2
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v7rw3"]
-size = Vector2(20, 10)
 
 [sub_resource type="Animation" id="Animation_olmvm"]
 length = 0.001
@@ -112,6 +109,9 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g1huq"]
 size = Vector2(30, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v7rw3"]
+size = Vector2(20, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ir1wp"]
 size = Vector2(1834, 1194)
@@ -231,17 +231,6 @@ z_index = 11
 position = Vector2(687, 367)
 texture = ExtResource("12_64aqm")
 
-[node name="AirPocket2" type="Sprite2D" parent="."]
-position = Vector2(1001, 167.5)
-texture = ExtResource("23_7q0gg")
-script = ExtResource("16_lwpao")
-
-[node name="Area2D" type="Area2D" parent="AirPocket2"]
-collision_layer = 16
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AirPocket2/Area2D"]
-shape = SubResource("RectangleShape2D_v7rw3")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_cxsdh")
@@ -257,6 +246,8 @@ texture = ExtResource("11_s8uee")
 position = Vector2(343, 116)
 
 [node name="AirPocket1" type="Sprite2D" parent="Cave1"]
+modulate = Color(1, 1, 1, 0.5)
+z_index = 7
 position = Vector2(370.5, 71.5)
 texture = ExtResource("11_7q0gg")
 script = ExtResource("18_qdtt6")
@@ -284,6 +275,18 @@ position = Vector2(962.5, 263)
 [node name="SurvivorsJournal1Note" parent="Cave2" instance=ExtResource("4_3a0gb")]
 position = Vector2(1062, 233)
 id = 2
+
+[node name="AirPocket2" type="Sprite2D" parent="Cave2"]
+z_index = 7
+position = Vector2(1001, 167.5)
+texture = ExtResource("23_7q0gg")
+script = ExtResource("16_lwpao")
+
+[node name="Area2D" type="Area2D" parent="Cave2/AirPocket2"]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cave2/AirPocket2/Area2D"]
+shape = SubResource("RectangleShape2D_v7rw3")
 
 [node name="Dirt" type="Sprite2D" parent="Cave2"]
 z_index = 5
@@ -354,11 +357,11 @@ script = ExtResource("29_jku5c")
 position = Vector2(662, -136)
 shape = SubResource("RectangleShape2D_ir1wp")
 
-[connection signal="body_entered" from="AirPocket2/Area2D" to="AirPocket2" method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="AirPocket2/Area2D" to="AirPocket2" method="_on_area_2d_body_exited"]
 [connection signal="area_entered" from="Cave1/AirPocket1/Area2D" to="Cave1/AirPocket1" method="_on_area_2d_area_entered"]
 [connection signal="area_shape_entered" from="Cave1/AirPocket1/Area2D" to="Cave1/AirPocket1" method="_on_area_2d_area_shape_entered"]
 [connection signal="body_entered" from="Cave1/AirPocket1/Area2D" to="Cave1/AirPocket1" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Cave1/AirPocket1/Area2D" to="Cave1/AirPocket1" method="_on_area_2d_body_exited"]
 [connection signal="body_shape_entered" from="Cave1/AirPocket1/Area2D" to="Cave1/AirPocket1" method="_on_area_2d_body_shape_entered"]
+[connection signal="body_entered" from="Cave2/AirPocket2/Area2D" to="Cave2/AirPocket2" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Cave2/AirPocket2/Area2D" to="Cave2/AirPocket2" method="_on_area_2d_body_exited"]
 [connection signal="area_entered" from="ShallowsMusicProximity" to="ShallowsMusicProximity" method="_on_area_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://j51i3vf5hn3d"]
+[gd_scene load_steps=54 format=3 uid="uid://j51i3vf5hn3d"]
 
 [ext_resource type="Script" uid="uid://d33wj2wxlurur" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Texture2D" uid="uid://drn2wfpxrdplg" path="res://player/player_jump_off.png" id="3_ebec5"]
@@ -98,6 +98,10 @@ region = Rect2(40, 0, 40, 40)
 atlas = ExtResource("5_wodsf")
 region = Rect2(80, 0, 40, 40)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_q28gw"]
+atlas = ExtResource("5_wodsf")
+region = Rect2(120, 0, 40, 40)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_c35mf"]
 atlas = ExtResource("4_yllr7")
 region = Rect2(0, 0, 40, 40)
@@ -178,6 +182,12 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_b8hi5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2uvqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q28gw")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2uvqg")
@@ -321,6 +331,9 @@ offset_bottom = -10.0
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 light_mask = 0
 sprite_frames = SubResource("SpriteFrames_knn7v")
+animation = &"mine"
+frame = 3
+frame_progress = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_top = 0

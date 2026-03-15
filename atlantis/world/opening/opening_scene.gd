@@ -12,6 +12,7 @@ var has_play_intro: bool = false
 @onready var camera: Camera2D = $Camera
 @onready var press_any_button: Sprite2D = $PressAnyButton
 @onready var press_any_button_fade_in_timer: Timer = $PressAnyButtonFadeInTimer
+@onready var clouds: Sprite2D = $Clouds
 
 
 func _ready() -> void:
@@ -22,11 +23,13 @@ func _ready() -> void:
 	fade_in_timer.start(3.0)
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if !fade_in_timer.is_stopped():
 		fade_in_overlay.modulate.a = 1.0 - TimerUtils.timer_progress(fade_in_timer)
 	if !press_any_button_fade_in_timer.is_stopped():
 		press_any_button.modulate.a = TimerUtils.timer_progress(press_any_button_fade_in_timer)
+
+	clouds.position.x += delta / 3.0
 
 
 func _input(event: InputEvent) -> void:
