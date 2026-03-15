@@ -68,7 +68,7 @@ func _on_player_respawned() -> void:
 
 
 func _on_generator_generator_enabled() -> void:
-	city_lights_timer.start(randf_range(0.5, 1.0))
+	city_lights_timer.start(4.5)
 
 
 func _on_city_lights_timer_timeout() -> void:

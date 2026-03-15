@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://cnojh8ult7c0v"]
+[gd_scene load_steps=76 format=3 uid="uid://cnojh8ult7c0v"]
 
 [ext_resource type="Script" uid="uid://dr6l7ajnsag05" path="res://common/sfx_manager/sfx_manager.gd" id="1_hetwi"]
 [ext_resource type="AudioStream" uid="uid://dilu1c57o7rld" path="res://audio/sfx/AirpocketAmbience/AirpocketAmbienceSFX1.mp3" id="2_wp0wu"]
@@ -20,10 +20,11 @@
 [ext_resource type="AudioStream" uid="uid://c8fcpf6uxv7fa" path="res://audio/sfx/CollectNote/CollectNoteSFX3.mp3" id="17_4eill"]
 [ext_resource type="AudioStream" uid="uid://csy7q5x2hdwx" path="res://audio/sfx/DismantleMachine/DismantleMachineSFX1.mp3" id="18_bvgoq"]
 [ext_resource type="AudioStream" uid="uid://bbgbbyuoa8mm5" path="res://audio/sfx/DoorLocked/DoorLockedSFX1.mp3" id="19_vudd4"]
+[ext_resource type="AudioStream" uid="uid://dgndvil8csdfb" path="res://audio/sfx/DepositGlowstone/DepositGlowstoneSFX1.mp3" id="19_xcqxa"]
 [ext_resource type="AudioStream" uid="uid://btjngokw73j3o" path="res://audio/sfx/Earthquake/EarthquakeSFX1.mp3" id="20_ahimh"]
+[ext_resource type="AudioStream" uid="uid://cdwypm718m46f" path="res://audio/sfx/MineGlowstone/MineGlowstoneSFX1.mp3" id="20_k0t34"]
 [ext_resource type="AudioStream" uid="uid://kyvgc0sqryto" path="res://audio/sfx/Earthquake/EarthquakeSFX2.mp3" id="21_cfjt1"]
 [ext_resource type="AudioStream" uid="uid://srrkjkdlibiw" path="res://audio/sfx/Earthquake/EarthquakeSFX3.mp3" id="22_hc2vs"]
-[ext_resource type="AudioStream" uid="uid://bl3hp1fokrl1v" path="res://audio/sfx/Earthquake/EarthquakeSFX4.mp3" id="23_lmlg1"]
 [ext_resource type="AudioStream" uid="uid://ciqfmil4shpe6" path="res://audio/sfx/EmailReceived/EmailReceivedSFX1.mp3" id="24_luxrm"]
 [ext_resource type="AudioStream" uid="uid://de56u4idusoeo" path="res://audio/sfx/GeneratorBreak/GeneratorBreakSFX1.mp3" id="25_7myrm"]
 [ext_resource type="AudioStream" uid="uid://cua8sumb5dx55" path="res://audio/sfx/GeneratorRunning/GeneratorRunningSFX1.mp3" id="26_55a64"]
@@ -148,6 +149,12 @@ stream = ExtResource("17_4eill")
 [node name="DepositGlowstone" type="Node" parent="."]
 
 [node name="DepositGlowstoneSFX1" type="AudioStreamPlayer" parent="DepositGlowstone"]
+stream = ExtResource("19_xcqxa")
+
+[node name="MineGlowstone" type="Node" parent="."]
+
+[node name="MineGlowstoneSFX1" type="AudioStreamPlayer" parent="MineGlowstone"]
+stream = ExtResource("20_k0t34")
 
 [node name="DismantleMachine" type="Node" parent="."]
 
@@ -169,9 +176,6 @@ stream = ExtResource("21_cfjt1")
 
 [node name="EarthquakeSFX3" type="AudioStreamPlayer" parent="Earthquake"]
 stream = ExtResource("22_hc2vs")
-
-[node name="EarthquakeSFX4" type="AudioStreamPlayer" parent="Earthquake"]
-stream = ExtResource("23_lmlg1")
 
 [node name="EmailReceived" type="Node" parent="."]
 

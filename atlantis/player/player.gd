@@ -152,6 +152,7 @@ func _input(event: InputEvent) -> void:
 				controls_disabled_timer = get_tree().create_timer(2)
 				await controls_disabled_timer.timeout
 				controls_enabled = true
+				SfxManager.play_sfx("MineGlowstone", 0, -20, -15, 0.9, 1.1)
 			return
 
 		if frontmost_interactable is WarehouseGenerator:

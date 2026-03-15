@@ -130,4 +130,17 @@ position = Vector2(0, -8)
 rotation = -3.1415925
 shape = SubResource("CircleShape2D_6c8hy")
 
+[node name="Tooltip" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = -23.0
+offset_top = -29.0
+offset_right = 23.0
+offset_bottom = -20.0
+theme_override_font_sizes/font_size = 4
+text = "Press F or right click"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="area_entered" from="InteractionBox" to="." method="_on_interaction_box_area_entered"]
+[connection signal="area_exited" from="InteractionBox" to="." method="_on_interaction_box_area_exited"]
 [connection signal="just_interacted" from="Interactable" to="." method="_on_interactable_just_interacted"]
