@@ -8,6 +8,7 @@ var argo_max_speed := 100
 var argo_friction := 40
 var tooltip_enabled: bool = false
 var current_dialogue: Dialogue
+var playing_m_message: bool = false
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var collision_shape_body_1: CollisionShape2D = $CollisionShapeBody1
@@ -68,11 +69,13 @@ func _process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if !drive or repaired:
+		return
 	if event.is_action_pressed("player_move_up") or \
 	event.is_action_pressed("player_move_left") or \
 	event.is_action_pressed("player_move_down") or \
 	event.is_action_pressed("player_move_right"):
-		dialogue("", 3.0, Vector2(0.0, -40.0))
+		dialogue("FUEL RESERVES EMPTY", 3.0, Vector2(0.0, -40.0))
 
 
 func dialogue(dialogue_key: String, duration: float = 3.0, relative_position: Vector2 = Vector2(0.0, -36.0)) -> void:
@@ -86,17 +89,33 @@ func _on_interactable_just_interacted() -> void:
 	tooltip_enabled = false
 	var tween = create_tween()
 	tween.tween_property(tooltip, "modulate:a", 0, 0.5)
-	if !Globals.player.inventory.has_note(Ids.Notes.ArkPlans):
-		Globals.player.inventory.add_note(Ids.Notes.ArkPlans)
-		SfxManager.play_sfx("EmailReceived", 0, -20, -15, 0.9, 1.1)
-	if Globals.player.currently_selected_tool == Ids.Items.Glowstone:
+	if Globals.player.currently_selected_tool == Ids.Items.Glowstone and !repaired:
+		playing_m_message = true
 		Globals.player.inventory.remove_item(Ids.Items.Glowstone)
 		SfxManager.play_sfx("DepositGlowstone",0,-20,-15,0.9,1.1)
 		repaired = true
 		window_light_1.enabled = true
 		window_light_2.enabled = true
 		window_light_3.enabled = true
-		dialogue("M's message", 3.0, Vector2(0.0, -40.0))
+		Globals.player.dialogue("There's an unplayed message", 3.0)
+		await get_tree().create_timer(2.0).timeout
+		SfxManager.play_sfx("EmailReceived", 0, -20, -15, 0.9, 1.1)
+		dialogue("ARGO_M_MESSAGE_1", 4.0, Vector2(0.0, -40.0))
+		await get_tree().create_timer(4.5).timeout
+		dialogue("ARGO_M_MESSAGE_2", 4.0, Vector2(0.0, -40.0))
+		await get_tree().create_timer(4.5).timeout
+		dialogue("ARGO_M_MESSAGE_3", 4.0, Vector2(0.0, -40.0))
+		await get_tree().create_timer(4.5).timeout
+		dialogue("ARGO_M_MESSAGE_4", 4.0, Vector2(0.0, -40.0))
+		await get_tree().create_timer(4.5).timeout
+		dialogue("ARGO_M_MESSAGE_5", 6.0, Vector2(0.0, -40.0))
+		await get_tree().create_timer(6.5).timeout
+		dialogue("ARGO_M_MESSAGE_6", 5.0, Vector2(0.0, -40.0))
+		await get_tree().create_timer(5.5).timeout
+		playing_m_message = false
+		return
+	if !Globals.player.inventory.has_note(Ids.Notes.ArkPlans):
+		Globals.player.inventory.add_note(Ids.Notes.ArkPlans)
 		SfxManager.play_sfx("EmailReceived", 0, -20, -15, 0.9, 1.1)
 	if repaired:
 		point_light_2d.enabled = true
