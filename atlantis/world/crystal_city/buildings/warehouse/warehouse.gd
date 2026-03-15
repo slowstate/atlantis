@@ -20,14 +20,11 @@ func _physics_process(_delta: float) -> void:
 		warehouse_light.visible = true
 		return
 	var distance_x = clamp(abs(Globals.argo.global_position.x - light_up_point.global_position.x), 60.0, 180.0)
-	if distance_x > 180.0:
-		is_lit = false
-		return
 	var distance_y = clamp(abs(Globals.argo.global_position.y - light_up_point.global_position.y), 20.0, 40.0)
-	if distance_y > 40.0:
+	if distance_x < 180.0 and distance_y < 40.0:
+		is_lit = true
+	else:
 		is_lit = false
-		return
-	is_lit = true
 	var warehouse_lights_alpha_y = clamp(remap(distance_y, 20.0, 40.0, 1.0, 0.0), 0.0, 1.0)
 	var warehouse_lights_alpha_x = clamp(remap(distance_x, 60.0, 180.0, 1.0, 0.0), 0.0, 1.0)
 	warehouse_skylight.modulate.a = warehouse_lights_alpha_y * warehouse_lights_alpha_x
@@ -36,5 +33,5 @@ func _physics_process(_delta: float) -> void:
 
 func _on_interactable_just_interacted() -> void:
 	if is_lit:
-		SfxManager.play_sfx("OpenDoor",0,-20,-15,0.9,1.1)
+		SfxManager.play_sfx("OpenDoor", 0, -20, -15, 0.9, 1.1)
 		warehouse_door_just_interacted.emit()
