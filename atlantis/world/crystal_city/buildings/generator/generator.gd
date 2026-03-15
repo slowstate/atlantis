@@ -57,6 +57,7 @@ func _on_interactable_just_interacted() -> void:
 			SfxManager.play_sfx("GeneratorStart",0,-20,-15,0.9,1.1)
 			SfxManager.play_sfx("GeneratorRunning",4.5,-15,-10,0.9,1.1)
 			SfxManager.fade_sfx("GeneratorRunning",10,50)
+			MusicManager.play_music("LitCrystalCity",0,-5,2)
 			Globals.is_crystal_city_generator_enabled = true
 
 

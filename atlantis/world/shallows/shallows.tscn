@@ -112,7 +112,7 @@ _data = {
 size = Vector2(30, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ir1wp"]
-size = Vector2(1834, 553)
+size = Vector2(1834, 1194)
 
 [node name="Shallows" type="Node2D"]
 z_index = 5
@@ -233,7 +233,6 @@ script = ExtResource("16_lwpao")
 
 [node name="Area2D" type="Area2D" parent="AirPocket2"]
 collision_layer = 16
-collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AirPocket2/Area2D"]
 shape = SubResource("RectangleShape2D_v7rw3")
@@ -336,7 +335,7 @@ texture = ExtResource("22_g1huq")
 script = ExtResource("29_jku5c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShallowsMusicProximity"]
-position = Vector2(662, 187.5)
+position = Vector2(662, -133)
 shape = SubResource("RectangleShape2D_ir1wp")
 
 [connection signal="body_entered" from="AirPocket2/Area2D" to="AirPocket2" method="_on_area_2d_body_entered"]

@@ -5,7 +5,7 @@
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vuj0a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epd75"]
-size = Vector2(1802, 2.0000002)
+size = Vector2(1802, 2)
 
 [node name="OpenAir" type="Area2D"]
 rotation = 3.1415927

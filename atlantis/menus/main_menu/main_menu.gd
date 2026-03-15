@@ -5,7 +5,6 @@ const WORLD = preload("uid://chhtc74hdy2e5")
 
 func _ready() -> void:
 	get_tree().paused = false
-	MusicManager.play_music("Shallows",2,-10)
 
 func _on_start_button_pressed() -> void:
 	SfxManager.play_sfx("ClickButton", 0, -30, -25, 0.9, 1.1)
