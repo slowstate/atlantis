@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://cnojh8ult7c0v"]
+[gd_scene load_steps=77 format=3 uid="uid://cnojh8ult7c0v"]
 
 [ext_resource type="Script" uid="uid://dr6l7ajnsag05" path="res://common/sfx_manager/sfx_manager.gd" id="1_hetwi"]
 [ext_resource type="AudioStream" uid="uid://dilu1c57o7rld" path="res://audio/sfx/AirpocketAmbience/AirpocketAmbienceSFX1.mp3" id="2_wp0wu"]
@@ -25,6 +25,7 @@
 [ext_resource type="AudioStream" uid="uid://cdwypm718m46f" path="res://audio/sfx/MineGlowstone/MineGlowstoneSFX1.mp3" id="20_k0t34"]
 [ext_resource type="AudioStream" uid="uid://kyvgc0sqryto" path="res://audio/sfx/Earthquake/EarthquakeSFX2.mp3" id="21_cfjt1"]
 [ext_resource type="AudioStream" uid="uid://srrkjkdlibiw" path="res://audio/sfx/Earthquake/EarthquakeSFX3.mp3" id="22_hc2vs"]
+[ext_resource type="AudioStream" uid="uid://bpkp4bsfxieyo" path="res://audio/sfx/Radio/RadioSFX1.mp3" id="23_xcqxa"]
 [ext_resource type="AudioStream" uid="uid://ciqfmil4shpe6" path="res://audio/sfx/EmailReceived/EmailReceivedSFX1.mp3" id="24_luxrm"]
 [ext_resource type="AudioStream" uid="uid://de56u4idusoeo" path="res://audio/sfx/GeneratorBreak/GeneratorBreakSFX1.mp3" id="25_7myrm"]
 [ext_resource type="AudioStream" uid="uid://cua8sumb5dx55" path="res://audio/sfx/GeneratorRunning/GeneratorRunningSFX1.mp3" id="26_55a64"]
@@ -165,6 +166,11 @@ stream = ExtResource("18_bvgoq")
 
 [node name="DoorLockedSFX1" type="AudioStreamPlayer" parent="DoorLocked"]
 stream = ExtResource("19_vudd4")
+
+[node name="Radio" type="Node" parent="."]
+
+[node name="RadioSFX1" type="AudioStreamPlayer" parent="Radio"]
+stream = ExtResource("23_xcqxa")
 
 [node name="Earthquake" type="Node" parent="."]
 

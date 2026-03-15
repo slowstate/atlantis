@@ -18,6 +18,7 @@ func _physics_process(_delta: float) -> void:
 
 func _on_interactable_just_interacted() -> void:
 	if Globals.player.currently_selected_tool == Ids.Items.MiningTool:
+		await get_tree().create_timer(2).timeout
 		mined = true
 	else:
 		SfxManager.play_sfx("IncorrectTool",0,-20,-15,0.9,1.1)

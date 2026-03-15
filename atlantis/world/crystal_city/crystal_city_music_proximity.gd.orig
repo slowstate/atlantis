@@ -1,0 +1,13 @@
+extends Area2D
+
+
+func _on_area_entered(_area: Area2D) -> void:
+	#MusicManager.fade_music(2)
+	if Globals.is_crystal_city_generator_enabled == false:
+<<<<<<< HEAD
+		MusicManager.play_music("UnlitCrystalCity",0,-5,2)
+=======
+		MusicManager.play_music("UnlitCrystalCity", 0, -10, 2)
+>>>>>>> 4e2828a466e74b94057055aed5203c5e0d62975c
+	else:
+		MusicManager.play_music("LitCrystalCity", 0, -5, 2)

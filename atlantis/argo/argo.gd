@@ -85,7 +85,7 @@ func dialogue(dialogue_key: String, duration: float = 3.0, relative_position: Ve
 func _on_interactable_just_interacted() -> void:
 	tooltip_enabled = false
 	var tween = create_tween()
-	tween.tween_property(tooltip, "modulate:a", 0, 1)
+	tween.tween_property(tooltip, "modulate:a", 0, 0.5)
 	if !Globals.player.inventory.has_note(Ids.Notes.ArkPlans):
 		Globals.player.inventory.add_note(Ids.Notes.ArkPlans)
 		SfxManager.play_sfx("EmailReceived", 0, -20, -15, 0.9, 1.1)
@@ -105,10 +105,10 @@ func _on_interactable_just_interacted() -> void:
 func _on_interaction_box_area_entered(area: Area2D) -> void:
 	if tooltip_enabled == true:
 		var tween = create_tween()
-		tween.tween_property(tooltip, "modulate:a", 1, 1)
+		tween.tween_property(tooltip, "modulate:a", 1, 0.5)
 		
 
 func _on_interaction_box_area_exited(area: Area2D) -> void:
 	if tooltip_enabled == true:
 		var tween = create_tween()
-		tween.tween_property(tooltip, "modulate:a", 0, 1)
+		tween.tween_property(tooltip, "modulate:a", 0, 0.5)

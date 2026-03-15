@@ -38,9 +38,7 @@ func _on_interactable_just_interacted() -> void:
 		SfxManager.play_sfx("GeneratorStart",0,-25,-20,0.9,1.1)
 		SfxManager.play_sfx("GeneratorShort",5,-15,-10,0.9,1.1)
 		SfxManager.play_sfx("GeneratorBreak",4.5,-25,-20,0.9,1.1)
-		
-		var sfx_timer = get_tree().create_timer(5.0)
-		await sfx_timer.timeout
+		await get_tree().create_timer(5.0).timeout
 		_play_photonic_invertor_break_sequence()
 		has_played_first_interaction = true
 		return
