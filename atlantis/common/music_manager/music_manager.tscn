@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3v7etarxcfyp"]
+
+[ext_resource type="Script" uid="uid://cnbsxfjk8ckgi" path="res://common/music_manager/music_manager.gd" id="1_bnkna"]
+[ext_resource type="AudioStream" uid="uid://b28wgfrefj7el" path="res://audio/music/Shallows/Audio Export/Shallows.mp3" id="2_n4axb"]
+[ext_resource type="AudioStream" uid="uid://bwjotfdnw4bei" path="res://audio/music/UnlitCrystalCity/Audio Export/UnlitCrystalCity.mp3" id="3_tqt8i"]
+[ext_resource type="AudioStream" uid="uid://bnrl8iaatvcig" path="res://audio/music/LitCrystalCity/Audio Export/LitCrystalCity.mp3" id="4_yq5tw"]
+
+[node name="MusicManager" type="Node2D"]
+script = ExtResource("1_bnkna")
+
+[node name="Shallows" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_n4axb")
+
+[node name="UnlitCrystalCity" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_tqt8i")
+
+[node name="LitCrystalCity" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_yq5tw")
