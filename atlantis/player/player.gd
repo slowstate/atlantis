@@ -173,7 +173,7 @@ func _input(event: InputEvent) -> void:
 
 		if frontmost_interactable is RocketHangar:
 			if !Globals.is_crystal_city_generator_enabled:
-				dialogue("The door won't open. I should find a way to power it")
+				dialogue("It's too dark in here, maybe I can light it up somehow")
 				SfxManager.play_sfx("PressButton", 0, -20, -15, 0.9, 1.1)
 
 		player_sprite.play("interact")

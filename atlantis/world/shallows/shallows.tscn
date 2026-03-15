@@ -18,10 +18,10 @@
 [ext_resource type="Texture2D" uid="uid://1gnqesbohr3l" path="res://world/shallows/shallows.png" id="12_1jc31"]
 [ext_resource type="Texture2D" uid="uid://djprvnwki31km" path="res://world/shallows/bridge.png" id="12_64aqm"]
 [ext_resource type="Texture2D" uid="uid://bu4ss7xo0p4hd" path="res://entities/items/glowstone/glowstone_2_mined.png" id="13_ffikv"]
-[ext_resource type="Script" path="res://world/shallows/air_pocket_2.gd" id="16_lwpao"]
+[ext_resource type="Script" uid="uid://bavxfl50ofeug" path="res://world/shallows/air_pocket_2.gd" id="16_lwpao"]
 [ext_resource type="Texture2D" uid="uid://dcghsvx8x0qxk" path="res://world/shallows/decorative_crate.png" id="16_olmvm"]
 [ext_resource type="PackedScene" uid="uid://hjw7uadu67x2" path="res://world/shallows/radio/radio.tscn" id="17_cxsdh"]
-[ext_resource type="Script" path="res://world/shallows/air_pocket_1.gd" id="18_qdtt6"]
+[ext_resource type="Script" uid="uid://nl3va5njk7y6" path="res://world/shallows/air_pocket_1.gd" id="18_qdtt6"]
 [ext_resource type="Texture2D" uid="uid://d3uplqrlc8p2h" path="res://world/flora/plant_12.png" id="22_g1huq"]
 [ext_resource type="Texture2D" uid="uid://domugcwa178if" path="res://world/shallows/air_pocket_2.png" id="23_7q0gg"]
 [ext_resource type="Texture2D" uid="uid://ce5j2usasdei8" path="res://world/flora/plant_11.png" id="23_v7rw3"]
@@ -195,7 +195,7 @@ lifetime = 1.5
 process_material = SubResource("ParticleProcessMaterial_ea2l5")
 
 [node name="Shallows" type="Sprite2D" parent="."]
-z_index = 11
+z_index = 12
 position = Vector2(640, 283)
 texture = ExtResource("12_1jc31")
 

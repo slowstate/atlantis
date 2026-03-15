@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://78dtm2oyn1qs"]
+[gd_scene load_steps=46 format=3 uid="uid://78dtm2oyn1qs"]
 
 [ext_resource type="Script" uid="uid://j2aeuxkdgo4t" path="res://world/crystal_city/crystal_city.gd" id="1_bxvt2"]
 [ext_resource type="PackedScene" uid="uid://d26r2a2m086uo" path="res://world/crystal_city/buildings/warehouse/warehouse.tscn" id="1_p0dhy"]
@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://d3gir8yj22biv" path="res://world/parallax_2d_layer/city_lights_11.png" id="15_gqhme"]
 [ext_resource type="Texture2D" uid="uid://bo2byvdel016" path="res://world/parallax_2d_layer/city_lights_12.png" id="16_tspd7"]
 [ext_resource type="Texture2D" uid="uid://bjloeksyusqxn" path="res://world/parallax_2d_layer/city_lights_13.png" id="17_1v00c"]
+[ext_resource type="Texture2D" uid="uid://biy6m1rs7adin" path="res://world/crystal_city/street _lamp_light.png" id="18_as0vk"]
 [ext_resource type="Script" uid="uid://ccusxj5vk8chx" path="res://world/crystal_city/city_boundary_dialogue_box.gd" id="23_1v00c"]
 [ext_resource type="Texture2D" uid="uid://sb4d24vsxoy6" path="res://world/crystal_city/city_foreground.png" id="26_uduu4"]
 [ext_resource type="Texture2D" uid="uid://bcoyd5t8s8fd4" path="res://world/flora/plant_5.png" id="27_gqhme"]
@@ -55,10 +56,10 @@ height = 1024
 size = Vector2(256, 1024)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_as0vk"]
-size = Vector2(256, 1024)
+size = Vector2(180, 1024)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ww5kb"]
-size = Vector2(462, 240)
+size = Vector2(338, 162)
 
 [node name="CrystalCity" type="Node2D"]
 z_index = 5
@@ -138,6 +139,21 @@ texture = ExtResource("16_tspd7")
 
 [node name="CityLightsTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="StreetLampLights" type="Node2D" parent="."]
+visible = false
+
+[node name="StreetLampLight" type="Sprite2D" parent="StreetLampLights"]
+position = Vector2(1408, 962)
+texture = ExtResource("18_as0vk")
+
+[node name="StreetLampLight2" type="Sprite2D" parent="StreetLampLights"]
+position = Vector2(934, 963)
+texture = ExtResource("18_as0vk")
+
+[node name="StreetLampLight3" type="Sprite2D" parent="StreetLampLights"]
+position = Vector2(166, 963)
+texture = ExtResource("18_as0vk")
 
 [node name="CityDeco" type="Sprite2D" parent="."]
 position = Vector2(649, 946)
