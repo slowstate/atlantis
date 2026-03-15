@@ -28,7 +28,6 @@ var shake_decay: float = 0.0
 var shake_time: float = 0.0
 var shake_time_speed: float = 20.0
 var noise = FastNoiseLite.new()
-var controls_disabled_timer: SceneTreeTimer = null
 
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var player_sprite: AnimatedSprite2D = $PlayerSprite
@@ -44,6 +43,7 @@ var controls_disabled_timer: SceneTreeTimer = null
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var user_interface: CanvasLayer = $UserInterface
 @onready var mine_timer: Timer = $MineTimer
+@onready var notification_tooltip: Label = $UserInterface/NotificationTooltip
 
 
 func _ready() -> void:
@@ -122,6 +122,8 @@ func _input(event: InputEvent) -> void:
 		return
 
 	if event.is_action_pressed("player_inventory"):
+		var tween = create_tween()
+		tween.tween_property(notification_tooltip, "modulate:a", 0, 0.5)
 		inventory.visible = !inventory.visible
 		notification_sprite.visible = false
 
@@ -159,9 +161,9 @@ func _input(event: InputEvent) -> void:
 				mine_timer.start(2.0)
 				SfxManager.play_sfx("ActivateMiningTool", 0, -20, -15, 0.9, 1.1)
 				SfxManager.fade_sfx("ActivateMiningTool", 2, 0.5)
-				controls_disabled_timer = get_tree().create_timer(2)
-				await controls_disabled_timer.timeout
+				await get_tree().create_timer(2).timeout
 				controls_enabled = true
+				SfxManager.play_sfx("MineGlowstone", 0, -20, -15, 0.9, 1.1)
 			return
 
 		if frontmost_interactable is WarehouseGenerator:
@@ -185,8 +187,7 @@ func _input(event: InputEvent) -> void:
 			SfxManager.play_sfx("Search", 0, -15, -10, 0.9, 1.1)
 			SfxManager.fade_sfx("Search", 2, 1)
 			controls_enabled = false
-			controls_disabled_timer = get_tree().create_timer(2)
-			await controls_disabled_timer.timeout
+			await get_tree().create_timer(2).timeout
 			controls_enabled = true
 			dialogue("This isn't what I'm looking for")
 

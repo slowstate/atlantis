@@ -6,6 +6,7 @@ var repaired := false
 var argo_acceleration := 50
 var argo_max_speed := 100
 var argo_friction := 40
+var tooltip_enabled: bool = false
 var current_dialogue: Dialogue
 var playing_m_message: bool = false
 
@@ -20,6 +21,7 @@ var playing_m_message: bool = false
 @onready var window_light_2: PointLight2D = $Sprite2D/WindowLight2
 @onready var window_light_3: PointLight2D = $Sprite2D/WindowLight3
 @onready var point_light_2d: PointLight2D = $Sprite2D/PointLight2D
+@onready var tooltip: Label = $Tooltip
 
 
 func _ready() -> void:
@@ -84,9 +86,13 @@ func dialogue(dialogue_key: String, duration: float = 3.0, relative_position: Ve
 
 
 func _on_interactable_just_interacted() -> void:
+	tooltip_enabled = false
+	var tween = create_tween()
+	tween.tween_property(tooltip, "modulate:a", 0, 0.5)
 	if Globals.player.currently_selected_tool == Ids.Items.Glowstone and !repaired:
 		playing_m_message = true
 		Globals.player.inventory.remove_item(Ids.Items.Glowstone)
+		SfxManager.play_sfx("DepositGlowstone",0,-20,-15,0.9,1.1)
 		repaired = true
 		window_light_1.enabled = true
 		window_light_2.enabled = true
@@ -113,3 +119,15 @@ func _on_interactable_just_interacted() -> void:
 		SfxManager.play_sfx("EmailReceived", 0, -20, -15, 0.9, 1.1)
 	if repaired:
 		point_light_2d.enabled = true
+
+
+func _on_interaction_box_area_entered(area: Area2D) -> void:
+	if tooltip_enabled == true:
+		var tween = create_tween()
+		tween.tween_property(tooltip, "modulate:a", 1, 0.5)
+		
+
+func _on_interaction_box_area_exited(area: Area2D) -> void:
+	if tooltip_enabled == true:
+		var tween = create_tween()
+		tween.tween_property(tooltip, "modulate:a", 0, 0.5)

@@ -16,6 +16,7 @@ var notes_viewed: Dictionary[Ids.Notes, bool] = { }
 @onready var title_label: Label = $TextureRect/Info/TitleLabel
 @onready var content_label: Label = $TextureRect/Info/ContentLabel
 @onready var content_sprite: Sprite2D = $TextureRect/Info/ContentSprite
+@onready var notification_tooltip: Label = $"../NotificationTooltip"
 
 
 func _ready() -> void:
@@ -28,6 +29,8 @@ func add_item(item_id: Ids.Items, count: int = 1) -> void:
 	items.get_or_add(item_id, 0)
 	items[item_id] += count
 	if !items_viewed.has(item_id):
+		var tween = create_tween()
+		tween.tween_property(notification_tooltip, "modulate:a", 1, 0.5)
 		show_notification.emit()
 		items_viewed.get_or_add(item_id, false)
 	update_user_interface()

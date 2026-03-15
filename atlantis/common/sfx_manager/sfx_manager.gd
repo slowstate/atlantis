@@ -1,7 +1,5 @@
 extends Node
 
-var sfx_timer: SceneTreeTimer = null
-
 
 func play_sfx(
 	sfx_stream_string: String,
@@ -15,9 +13,7 @@ func play_sfx(
 	
 	#Creates a delay timer
 	if time_delay > 0:
-		sfx_timer = get_tree().create_timer(time_delay)
-		await sfx_timer.timeout
-		sfx_timer = null
+		await get_tree().create_timer(time_delay).timeout
 
 	#Checks if file exists
 	var sfx_type = get_node_or_null(sfx_stream_string)
@@ -44,9 +40,7 @@ func play_continuous_sfx(
 	
 	#Creates a delay timer
 	if time_delay > 0:
-		sfx_timer = get_tree().create_timer(time_delay)
-		await sfx_timer.timeout
-		sfx_timer = null
+		await get_tree().create_timer(time_delay).timeout
 		
 	#Checks if file exists
 	var sfx_type = get_node_or_null(sfx_stream_string)
@@ -87,13 +81,10 @@ func play_ambience_sfx(
 	sfx_stream.pitch_scale = randf_range(pitch_scale_min, pitch_scale_max)
 	sfx_stream.play()
 	
-	sfx_timer = get_tree().create_timer(sfx_stream.stream.get_length()-0.1)
-	await sfx_timer.timeout
+	await get_tree().create_timer(sfx_stream.stream.get_length()-0.1).timeout
 	if sfx_stream.is_playing() == true:
 		if time_delay > -1:
-			sfx_timer = get_tree().create_timer(time_delay+sfx_stream.stream.get_length())
-			await sfx_timer.timeout
-			sfx_timer = null
+			await get_tree().create_timer(time_delay+sfx_stream.stream.get_length()).timeout
 		
 		play_continuous_sfx(sfx_stream_string, time_delay, volume_db_min, volume_db_max, pitch_scale_min, pitch_scale_max)
 
@@ -102,8 +93,7 @@ func fade_sfx(
 	sfx_stream_string: String,
 	timer_delay: float = 0.0,
 	fade_duration: float = 0.0):
-	sfx_timer = get_tree().create_timer(timer_delay)
-	await sfx_timer.timeout
+	await get_tree().create_timer(timer_delay).timeout
 	
 	var sfx_type = get_node_or_null(sfx_stream_string)
 	if sfx_type == null:
@@ -116,8 +106,7 @@ func fade_sfx(
 				var sfx_fade_tween = create_tween()
 				sfx_fade_tween.tween_property(child,"volume_db",-80,fade_duration)
 				
-				sfx_timer = get_tree().create_timer(fade_duration)
-				await sfx_timer.timeout
+				await get_tree().create_timer(fade_duration).timeout
 				stop_sfx(sfx_stream_string)
 
 
