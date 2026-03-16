@@ -59,7 +59,7 @@ height = 1024
 size = Vector2(256, 1024)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_as0vk"]
-size = Vector2(256, 1024)
+size = Vector2(180, 1024)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ww5kb"]
 size = Vector2(444, 182)
@@ -154,6 +154,25 @@ texture = ExtResource("19_6sou6")
 [node name="CityLightsTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="StreetLampLights" type="Node2D" parent="."]
+visible = false
+
+[node name="StreetLampLight" type="Sprite2D" parent="StreetLampLights"]
+position = Vector2(1408, 962)
+texture = ExtResource("29_bb1ri")
+
+[node name="StreetLampLight2" type="Sprite2D" parent="StreetLampLights"]
+position = Vector2(934, 963)
+texture = ExtResource("29_bb1ri")
+
+[node name="StreetLampLight3" type="Sprite2D" parent="StreetLampLights"]
+position = Vector2(166, 963)
+texture = ExtResource("29_bb1ri")
+
+[node name="CityDeco" type="Sprite2D" parent="."]
+position = Vector2(649, 946)
+texture = ExtResource("37_tspd7")
+
 [node name="Floor" type="Sprite2D" parent="."]
 position = Vector2(639.5, 1222.25)
 
@@ -224,7 +243,6 @@ shape = SubResource("RectangleShape2D_as0vk")
 position = Vector2(777, 1059)
 
 [node name="WarehouseInterior" parent="." instance=ExtResource("3_5r0gn")]
-z_index = 5
 position = Vector2(1044, 956)
 
 [node name="Warehouse" parent="." instance=ExtResource("1_p0dhy")]
@@ -232,24 +250,6 @@ position = Vector2(1048, 1059)
 
 [node name="Generator" parent="." instance=ExtResource("2_3xwy7")]
 position = Vector2(1278, 1059)
-
-[node name="StreetLampLights" type="Node2D" parent="."]
-
-[node name="StreetLampLight" type="Sprite2D" parent="StreetLampLights"]
-position = Vector2(166, 962)
-texture = ExtResource("29_bb1ri")
-
-[node name="StreetLampLight2" type="Sprite2D" parent="StreetLampLights"]
-position = Vector2(934, 962)
-texture = ExtResource("29_bb1ri")
-
-[node name="StreetLampLight3" type="Sprite2D" parent="StreetLampLights"]
-position = Vector2(1408, 962)
-texture = ExtResource("29_bb1ri")
-
-[node name="CityDeco" type="Sprite2D" parent="."]
-position = Vector2(649, 946)
-texture = ExtResource("37_tspd7")
 
 [node name="Parallax2DLayer3" type="Parallax2D" parent="."]
 z_index = 99

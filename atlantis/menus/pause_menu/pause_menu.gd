@@ -6,6 +6,7 @@ var MAIN_MENU = load("uid://cbtihbid7ppjv")
 func _init() -> void:
 	visible = false
 
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("player_pause"):
 		if get_tree().paused:
@@ -24,5 +25,4 @@ func _on_resume_button_pressed() -> void:
 func _on_quit_button_pressed() -> void:
 	SfxManager.stop_all_sfx()
 	MusicManager.fade_music(2)
-	get_tree().change_scene_to_packed(MAIN_MENU)
 	get_tree().quit()

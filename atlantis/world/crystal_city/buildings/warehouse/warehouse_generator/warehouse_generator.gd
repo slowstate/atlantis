@@ -6,6 +6,11 @@ var interacted := false
 @onready var photonic_invertor: PhotonicInvertor = $PhotonicInvertor
 @onready var panel: Sprite2D = $Panel
 @onready var interaction_box: Area2D = $InteractionBox
+@onready var collision_shape_2d: CollisionShape2D = $InteractionBox/CollisionShape2D
+
+
+func enable(enable: bool) -> void:
+	collision_shape_2d.disabled = !enable
 
 
 func _on_interactable_just_interacted() -> void:

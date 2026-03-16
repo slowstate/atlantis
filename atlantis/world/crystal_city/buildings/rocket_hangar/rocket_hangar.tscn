@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://clsxexl5mayua"]
+[gd_scene load_steps=23 format=3 uid="uid://clsxexl5mayua"]
 
 [ext_resource type="Script" uid="uid://guxkh04y6nk8" path="res://world/crystal_city/buildings/rocket_hangar/rocket_hangar.gd" id="1_ovpci"]
 [ext_resource type="Texture2D" uid="uid://c280gd5tyql1o" path="res://world/crystal_city/buildings/rocket_hangar/rocket_part_1.png" id="2_6fi8g"]
@@ -13,11 +13,79 @@
 [ext_resource type="Texture2D" uid="uid://ckh21isrn7ptw" path="res://world/crystal_city/buildings/rocket_hangar/rocket_hangar_light_off.png" id="9_ac3hy"]
 [ext_resource type="Texture2D" uid="uid://irol2s2bsbyg" path="res://world/crystal_city/buildings/rocket_hangar/rocket_hangar_light_on.png" id="10_wua2u"]
 
+[sub_resource type="Gradient" id="Gradient_sxlnm"]
+offsets = PackedFloat32Array(0.52960527, 1)
+colors = PackedColorArray(0.38039216, 0.15686275, 0.015686275, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bp10s"]
+gradient = SubResource("Gradient_sxlnm")
+fill_from = Vector2(0.517094, 1)
+fill_to = Vector2(0.508547, 0)
+
+[sub_resource type="Gradient" id="Gradient_ac3hy"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wua2u"]
+gradient = SubResource("Gradient_ac3hy")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ovpci"]
 size = Vector2(62, 70)
 
 [sub_resource type="LabelSettings" id="LabelSettings_e1skg"]
 font_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxlnm"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0, 0, 0, 0.5)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bp10s"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0, 0, 0.5)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ac3hy"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0, 0, 0, 0.5)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wua2u"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0, 0, 0, 0.5)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [node name="RocketHangar" type="Node2D"]
 script = ExtResource("1_ovpci")
@@ -46,13 +114,23 @@ visible = false
 position = Vector2(1, -219)
 texture = ExtResource("5_bp10s")
 
+[node name="HangarInteriorLight" type="Sprite2D" parent="."]
+position = Vector2(3, -9)
+scale = Vector2(1, 0.28125)
+texture = SubResource("GradientTexture2D_bp10s")
+
+[node name="HangarInterior" type="Sprite2D" parent="."]
+position = Vector2(3, -15.5)
+scale = Vector2(1.09375, 0.484375)
+texture = SubResource("GradientTexture2D_wua2u")
+
+[node name="HangarDoor" type="Sprite2D" parent="."]
+position = Vector2(3, -52)
+texture = ExtResource("8_sxlnm")
+
 [node name="RocketHangar" type="Sprite2D" parent="."]
 position = Vector2(0, -177.5)
 texture = ExtResource("2_8wuce")
-
-[node name="HangarDoor" type="Sprite2D" parent="."]
-position = Vector2(4, -37)
-texture = ExtResource("8_sxlnm")
 
 [node name="RocketHangarLightsOff" type="Sprite2D" parent="."]
 position = Vector2(21, -52.5)
@@ -100,7 +178,7 @@ text = "Thank you for playing"
 label_settings = SubResource("LabelSettings_e1skg")
 horizontal_alignment = 1
 
-[node name="MainMenuButton" type="Button" parent="EndScreen"]
+[node name="QuitButton" type="Button" parent="EndScreen"]
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 7
 anchor_left = 0.5
@@ -114,10 +192,14 @@ offset_bottom = -87.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 4
-text = "Main Menu"
+theme_override_styles/normal = SubResource("StyleBoxFlat_sxlnm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bp10s")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ac3hy")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_wua2u")
+text = "Quit"
 
 [node name="EndScreenTimer" type="Timer" parent="EndScreen"]
 one_shot = true
 
 [connection signal="just_interacted" from="Interactable" to="." method="_on_interactable_just_interacted"]
-[connection signal="pressed" from="EndScreen/MainMenuButton" to="EndScreen" method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="EndScreen/QuitButton" to="EndScreen" method="_on_main_menu_button_pressed"]

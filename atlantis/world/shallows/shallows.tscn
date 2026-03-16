@@ -203,7 +203,7 @@ lifetime = 1.5
 process_material = SubResource("ParticleProcessMaterial_ea2l5")
 
 [node name="Shallows" type="Sprite2D" parent="."]
-z_index = 11
+z_index = 12
 position = Vector2(640, 283)
 texture = ExtResource("12_1jc31")
 

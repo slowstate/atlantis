@@ -9,15 +9,11 @@ var has_played_argo_sequence: bool = false
 @onready var player: Player = $Player
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var basic_spawn_point: Node2D = $BasicSpawnPoint
+@onready var argo_bubble_particles: GPUParticles2D = $Argo/ArgoBubbleParticles
 
 
 func _ready() -> void:
 	player.spawn_point = ComponentUtils.get_component(basic_spawn_point, SpawnPoint.string_name) as SpawnPoint
-	fish_spawn_timer.start(randf_range(4.0, 8.0))
-	SfxManager.stop_all_sfx()
-	SfxManager.play_ambience_sfx("UnderwaterAmbience", 5, -25, -20, 0.9, 1.1)
-	#SfxManager.play_ambience_sfx("UnderwaterDrone",5,-20,-15,0.9,1.1)
-
 	player.camera_2d.enabled = false
 	player.visible = false
 	player.process_mode = Node.PROCESS_MODE_DISABLED
@@ -32,16 +28,18 @@ func _physics_process(_delta: float) -> void:
 
 func _play_argo_sequence() -> void:
 	player.controls_enabled = false
+	player.inventory.visible = false
 	player.camera_shake(2, 12.0)
-	SfxManager.play_sfx("Earthquake",0,-10,-5,0.9,1.1)
-	SfxManager.fade_sfx("Earthquake",11,2)
+	SfxManager.play_sfx("Earthquake", 0, -10, -5, 0.9, 1.1)
+	SfxManager.fade_sfx("Earthquake", 11, 2)
 	await get_tree().create_timer(4.0).timeout
 	animation_player.play("argo_rising")
+	create_tween().tween_property(argo_bubble_particles, "amount_ratio", 0.0, 5.0)
 	await get_tree().create_timer(8.0).timeout
 	player.controls_enabled = true
 	player.dialogue("PLAYER_DIALOGUE_2", 5.0)
 	get_node("Argo").tooltip_enabled = true
-	
+
 
 func _on_fish_spawn_timer_timeout() -> void:
 	var new_fish_location_x = randf_range(Globals.player.global_position.x - 160, Globals.player.global_position.x + 160)
@@ -59,13 +57,15 @@ func _on_opening_scene_complete() -> void:
 	player.process_mode = Node.PROCESS_MODE_INHERIT
 	player.spawn_point = ComponentUtils.get_component(basic_spawn_point, SpawnPoint.string_name) as SpawnPoint
 	fish_spawn_timer.start(randf_range(4.0, 8.0))
-	SfxManager.play_ambience_sfx("UnderwaterAmbience",5,-25,-20,0.9,1.1)
-	SfxManager.play_ambience_sfx("UnderwaterDrone",5,-20,-15,0.9,1.1)
+	SfxManager.play_ambience_sfx("UnderwaterAmbience", 5, -25, -20, 0.9, 1.1)
+	SfxManager.play_ambience_sfx("UnderwaterDrone", 5, -20, -15, 0.9, 1.1)
 
 	player.camera_2d.enabled = true
 	player.visible = true
 	player.user_interface.visible = true
 	animation_player.play("player_dive")
+	print("diving")
 	await get_tree().create_timer(1.6).timeout
+	print("can move")
 	player.controls_enabled = true
 	Globals.player.inventory.add_note(Ids.Notes.Letter, false)

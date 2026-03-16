@@ -28,6 +28,7 @@ var shake_decay: float = 0.0
 var shake_time: float = 0.0
 var shake_time_speed: float = 20.0
 var noise = FastNoiseLite.new()
+var first_glowstone_picked_up: bool = false
 
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var player_sprite: AnimatedSprite2D = $PlayerSprite
@@ -44,12 +45,14 @@ var noise = FastNoiseLite.new()
 @onready var user_interface: CanvasLayer = $UserInterface
 @onready var mine_timer: Timer = $MineTimer
 @onready var notification_tooltip: Label = $UserInterface/NotificationTooltip
+@onready var switch_tool_label: Label = $SwitchToolLabel
 
 
 func _ready() -> void:
 	Globals.player = self
 	player_sprite.visible = !is_in_argo
 	inventory.visible = false
+	switch_tool_label.modulate.a = 0.0
 
 
 func _process(delta: float) -> void:
@@ -80,6 +83,8 @@ func _process(delta: float) -> void:
 		if Input.is_action_pressed("player_move_right"):
 			move_vec.x = 1
 
+	if inventory.visible:
+		move_vec = Vector2.ZERO
 	## Swimming: Fixed max speed, better "handling", floating damping suddenly drops when moving
 	if move_vec != Vector2.ZERO:
 		if mine_timer.is_stopped():
@@ -127,6 +132,9 @@ func _input(event: InputEvent) -> void:
 		inventory.visible = !inventory.visible
 		notification_sprite.visible = false
 
+	if inventory.visible:
+		return
+
 	if event.is_action_pressed("player_interact"):
 		var overlapping_interactable_areas: Array[Area2D] = interaction_box.get_overlapping_areas().filter(func(area): return area.owner.visible)
 		overlapping_interactable_areas.sort_custom(func(a: Area2D, b: Area2D): return a.owner.z_index > b.owner.z_index)
@@ -136,14 +144,13 @@ func _input(event: InputEvent) -> void:
 
 		if frontmost_interactable is Argo:
 			var argo = frontmost_interactable
+			var interactable_component = ComponentUtils.get_component(argo, Interactable.string_name) as Interactable
 			if !argo.repaired and !is_in_argo:
-				var interactable_component = ComponentUtils.get_component(argo, Interactable.string_name) as Interactable
 				interactable_component.interact()
 				if argo.repaired:
 					return
 			if argo.playing_m_message:
 				return
-			var interactable_component = ComponentUtils.get_component(argo, Interactable.string_name) as Interactable
 			interactable_component.interact()
 			enter_argo(!is_in_argo)
 			return
@@ -164,6 +171,9 @@ func _input(event: InputEvent) -> void:
 				await get_tree().create_timer(2).timeout
 				controls_enabled = true
 				SfxManager.play_sfx("MineGlowstone", 0, -20, -15, 0.9, 1.1)
+				if !first_glowstone_picked_up:
+					first_glowstone_picked_up = true
+					create_tween().tween_property(switch_tool_label, "modulate:a", 1, 0.5)
 			return
 
 		if frontmost_interactable is WarehouseGenerator:
@@ -187,13 +197,15 @@ func _input(event: InputEvent) -> void:
 			SfxManager.play_sfx("Search", 0, -15, -10, 0.9, 1.1)
 			SfxManager.fade_sfx("Search", 2, 1)
 			controls_enabled = false
+			player_sprite.play("interact")
+			dialogue("Hmm...")
 			await get_tree().create_timer(2).timeout
 			controls_enabled = true
 			dialogue("This isn't what I'm looking for")
 
 		if frontmost_interactable is RocketHangar:
 			if !Globals.is_crystal_city_generator_enabled:
-				dialogue("The door won't open. I should find a way to power it")
+				dialogue("It's too dark in here, maybe I can light it up somehow")
 				SfxManager.play_sfx("PressButton", 0, -20, -15, 0.9, 1.1)
 
 		player_sprite.play("interact")

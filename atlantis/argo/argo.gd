@@ -9,6 +9,7 @@ var argo_friction := 40
 var tooltip_enabled: bool = false
 var current_dialogue: Dialogue
 var playing_m_message: bool = false
+var refueling_complete_dialogue: bool = false
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var collision_shape_body_1: CollisionShape2D = $CollisionShapeBody1
@@ -49,6 +50,8 @@ func _process(delta: float) -> void:
 			move_vec.x = 1
 			sprite_2d.scale.x = -1
 
+	if Globals.player.inventory.visible:
+		move_vec = Vector2.ZERO
 	## ARGO: Move "realistic" damping, diagonal max speed higher than single axis, more floaty
 	if move_vec.x != 0:
 		velocity.x = move_toward(velocity.x, move_vec.x * argo_max_speed, argo_acceleration * delta)
@@ -69,7 +72,7 @@ func _process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if !drive or repaired:
+	if !drive or repaired or Globals.player.inventory.visible:
 		return
 	if event.is_action_pressed("player_move_up") or \
 	event.is_action_pressed("player_move_left") or \
@@ -92,7 +95,7 @@ func _on_interactable_just_interacted() -> void:
 	if Globals.player.currently_selected_tool == Ids.Items.Glowstone and !repaired:
 		playing_m_message = true
 		Globals.player.inventory.remove_item(Ids.Items.Glowstone)
-		SfxManager.play_sfx("DepositGlowstone",0,-20,-15,0.9,1.1)
+		SfxManager.play_sfx("DepositGlowstone", 0, -20, -15, 0.9, 1.1)
 		repaired = true
 		window_light_1.enabled = true
 		window_light_2.enabled = true
@@ -119,15 +122,18 @@ func _on_interactable_just_interacted() -> void:
 		SfxManager.play_sfx("EmailReceived", 0, -20, -15, 0.9, 1.1)
 	if repaired:
 		point_light_2d.enabled = true
+		if !refueling_complete_dialogue:
+			refueling_complete_dialogue = true
+			dialogue("REFUELING COMPLETE", 5.0, Vector2(0.0, -40.0))
 
 
-func _on_interaction_box_area_entered(area: Area2D) -> void:
+func _on_interaction_box_area_entered(_area: Area2D) -> void:
 	if tooltip_enabled == true:
 		var tween = create_tween()
 		tween.tween_property(tooltip, "modulate:a", 1, 0.5)
-		
 
-func _on_interaction_box_area_exited(area: Area2D) -> void:
+
+func _on_interaction_box_area_exited(_area: Area2D) -> void:
 	if tooltip_enabled == true:
 		var tween = create_tween()
 		tween.tween_property(tooltip, "modulate:a", 0, 0.5)
