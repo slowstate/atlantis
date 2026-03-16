@@ -97,6 +97,7 @@ func update_user_interface() -> void:
 func _on_inventory_item_selected(inventory_item: InventoryItem) -> void:
 	title_label.text = inventory_item.item_name
 	content_label.text = inventory_item.description
+	SfxManager.play_sfx("ClickButton", 0, -30, -25, 0.9, 1.1)
 	items_viewed.set(inventory_item.id, true)
 
 
@@ -109,6 +110,7 @@ func _on_inventory_note_selected(inventory_note: InventoryNote) -> void:
 	else:
 		content_label.text = inventory_note.content
 		content_sprite.visible = false
+	SfxManager.play_sfx("ClickButton", 0, -30, -25, 0.9, 1.1)
 	notes_viewed.set(inventory_note.id, true)
 
 
@@ -116,12 +118,15 @@ func _on_items_button_pressed() -> void:
 	items_grid.visible = true
 	notes_grid.visible = false
 	content_sprite.visible = false
+	SfxManager.play_sfx("ClickButton", 0, -30, -25, 0.9, 1.1)
 	_clear_info_text()
+	
 
 
 func _on_notes_button_pressed() -> void:
 	items_grid.visible = false
 	notes_grid.visible = true
+	SfxManager.play_sfx("ClickButton", 0, -30, -25, 0.9, 1.1)
 	_clear_info_text()
 
 
