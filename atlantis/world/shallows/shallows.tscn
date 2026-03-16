@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bareqc1eyxlpq"]
+[gd_scene load_steps=47 format=3 uid="uid://bareqc1eyxlpq"]
 
 [ext_resource type="Script" uid="uid://dvyb3kaml26qq" path="res://world/shallows/shallows.gd" id="1_ea2l5"]
 [ext_resource type="PackedScene" uid="uid://p6fv62obxr2c" path="res://world/shallows/open_air.tscn" id="2_usalr"]
@@ -25,9 +25,12 @@
 [ext_resource type="Texture2D" uid="uid://d3uplqrlc8p2h" path="res://world/flora/plant_12.png" id="22_g1huq"]
 [ext_resource type="Texture2D" uid="uid://domugcwa178if" path="res://world/shallows/air_pocket_2.png" id="23_7q0gg"]
 [ext_resource type="Texture2D" uid="uid://ce5j2usasdei8" path="res://world/flora/plant_11.png" id="23_v7rw3"]
+[ext_resource type="Texture2D" uid="uid://bbq6fnaur0a0o" path="res://world/shallows/tents.png" id="24_ir1wp"]
+[ext_resource type="Texture2D" uid="uid://b5i7rn5t4vv31" path="res://world/shallows/cave_2_dirt.png" id="24_qqpas"]
 [ext_resource type="Texture2D" uid="uid://bmta2goiceyo" path="res://world/flora/plant_14.png" id="24_wtmgm"]
 [ext_resource type="Texture2D" uid="uid://cmjgd7tn6ivj0" path="res://world/flora/plant_15.png" id="25_qdtt6"]
 [ext_resource type="Texture2D" uid="uid://ckk1rkporjlw2" path="res://world/flora/plant_13.png" id="26_lwpao"]
+[ext_resource type="Script" uid="uid://cut05sybp2b1k" path="res://world/shallows/shallows_music_proximity.gd" id="29_jku5c"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_usalr"]
 friction = 0.0
@@ -65,9 +68,6 @@ colors = PackedColorArray(0.47058824, 0.77254903, 0.8117647, 1)
 gradient = SubResource("Gradient_64aqm")
 width = 2
 height = 2
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v7rw3"]
-size = Vector2(20, 10)
 
 [sub_resource type="Animation" id="Animation_olmvm"]
 length = 0.001
@@ -109,6 +109,12 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g1huq"]
 size = Vector2(30, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v7rw3"]
+size = Vector2(20, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ir1wp"]
+size = Vector2(1834, 1194)
 
 [node name="Shallows" type="Node2D"]
 z_index = 5
@@ -152,6 +158,7 @@ script = ExtResource("4_mwkxx")
 metadata/_custom_type_script = "uid://bf37rou75fm6v"
 
 [node name="OceanMiddle" type="Sprite2D" parent="Parallax2DLayer2"]
+position = Vector2(9, 7)
 texture = ExtResource("11_sr3cf")
 
 [node name="CliffWallLeftFront" type="Sprite2D" parent="."]
@@ -159,7 +166,7 @@ position = Vector2(209, 174.5)
 texture = ExtResource("9_olmvm")
 
 [node name="CliffWallLeftBack" type="Sprite2D" parent="."]
-position = Vector2(251, 157)
+position = Vector2(250.5, 157)
 texture = ExtResource("10_cxsdh")
 
 [node name="Parallax2DLayer3" type="Parallax2D" parent="."]
@@ -169,6 +176,7 @@ script = ExtResource("4_mwkxx")
 metadata/_custom_type_script = "uid://bf37rou75fm6v"
 
 [node name="OceanFront" type="Sprite2D" parent="Parallax2DLayer3"]
+position = Vector2(48.5, 41.5)
 texture = ExtResource("6_mwkxx")
 
 [node name="Glowstone2Mined" type="Sprite2D" parent="."]
@@ -205,6 +213,7 @@ collision_layer = 2
 collision_mask = 5
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shallows/LeftCliffCollision"]
+position = Vector2(-1, 0)
 build_mode = 1
 polygon = PackedVector2Array(0, -7, 576, -7, 700, -7, 712, 37, 707, 43, 655, 44, 653, 53, 629, 61, 623, 71, 597, 74, 593, 77, 545, 77, 539, 62, 527, 62, 519, 61, 512, 71, 492, 71, 482, 68, 478, 72, 467, 74, 465, 80, 456, 84, 456, 103, 459, 109, 465, 113, 484, 114, 487, 119, 520, 125, 536, 121, 548, 121, 569, 127, 574, 131, 603, 135, 604, 146, 613, 144, 617, 144, 636, 148, 620, 214, 576, 215, 573, 218, 558, 227, 551, 244, 537, 248, 526, 257, 519, 280, 507, 283, 456, 283, 452, 272, 398, 253, 381, 262, 381, 284, 392, 291, 413, 370, 458, 372, 461, 382, 451, 428, 483, 429, 485, 449, 511, 449, 513, 441, 537, 439, 539, 425, 543, 424, 599, 428, 602, 449, 628, 451, 629, 453, 629, 485.38007, 628, 487, 618, 489, 616, 494, 573, 499, 570, 517, 540, 519, 538, 550, 511, 553, 509, 568, 459, 570, 443, 589, 440, 609, 430, 611, 428, 627, 421, 628, 417, 631, 384, 631, 381, 629, 359, 627, 357, 610, 347, 608, 345, 593, 337, 591, 335, 586, 322, 584, 320, 581, -3, 581)
 
@@ -215,24 +224,12 @@ collision_mask = 5
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shallows/RightCliffCollision"]
 build_mode = 1
-polygon = PackedVector2Array(0, 0, 0, 3, 1, 4, 1, 26, 30, 26, 30, 33, 37, 33, 37, 57, 40, 57, 40, 87, 53, 87, 53, 102, 83, 102, 106, 104, 106, 109, 95, 109, 95, 130, 82, 130, 82, 168, 112, 168, 112, 172, 140.48903, 172, 141, 164, 157, 164, 157, 170, 154, 171, 154, 176, 156, 176, 157, 173, 180, 174, 218, 174, 218, 184, 239, 184, 239, 240, 211, 240, 199, 242, 173, 244, 173, 261, 156, 261, 141, 263, 129, 267, 124, 275, 119, 277, 99, 277, 84, 281, 72, 282, 72, 320, 92, 320, 92, 329, 84, 329, 84, 360, 80, 360, 80, 398, 92, 398, 92, 408, 84, 408, 84, 422, 66, 422, 63, 430, 36, 430, 36, 453, 28, 453, 28, 491, 31, 491, 31, 505, 66, 505, 66, 509, 83, 509, 83, 526, 96, 526, 96, 542, 134, 542, 134, 550, 169, 550, 170, 561, 173, 561, 173, 579, 147, 579, 147, 617, 182, 617, 182, 634, 266, 634, 271, 618, 279, 617, 284, 596, 320, 596, 320, 579, 331, 577, 339, 577, 340, 571, 361, 571, 365, 581, 361, 594, 366, 603, 365, 609, 388, 609, 393, 623, 428, 623, 428, 593, 588, 593, 588, 0)
+polygon = PackedVector2Array(0, 0, 0, 3, 1, 4, 1, 26, 30, 26, 30, 33, 37, 33, 37, 57, 40, 57, 40, 87, 53, 87, 53, 102, 83, 102, 106, 104, 106, 109, 95, 109, 95, 130, 82, 130, 82, 168, 112, 168, 112, 172, 140.48903, 172, 141, 164, 157, 164, 157, 170, 154, 171, 154, 176, 156, 176, 157, 173, 180, 174, 218, 174, 218, 184, 239, 184, 239, 240, 211, 240, 199, 242, 174, 244, 171, 247, 151, 247, 148, 249, 143, 266, 127, 267, 124, 275, 119, 277, 99, 277, 84, 281, 72, 282, 72, 320, 92, 320, 92, 329, 84, 329, 84, 360, 80, 360, 80, 398, 92, 398, 92, 408, 84, 408, 84, 422, 66, 422, 63, 430, 36, 430, 36, 453, 28, 453, 28, 491, 31, 491, 31, 505, 66, 505, 66, 509, 83, 509, 83, 526, 96, 526, 96, 542, 134, 542, 134, 550, 169, 550, 170, 561, 173, 561, 173, 579, 147, 579, 147, 617, 182, 617, 182, 634, 266, 634, 271, 618, 279, 617, 284, 596, 320, 596, 320, 579, 331, 577, 339, 577, 340, 571, 361, 571, 365, 581, 361, 594, 366, 603, 365, 609, 388, 609, 393, 623, 428, 623, 428, 593, 588, 593, 588, 0)
 
 [node name="Bridge" type="Sprite2D" parent="."]
 z_index = 11
 position = Vector2(687, 367)
 texture = ExtResource("12_64aqm")
-
-[node name="AirPocket2" type="Sprite2D" parent="."]
-position = Vector2(1001, 166.5)
-texture = ExtResource("23_7q0gg")
-script = ExtResource("16_lwpao")
-
-[node name="Area2D" type="Area2D" parent="AirPocket2"]
-collision_layer = 16
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AirPocket2/Area2D"]
-shape = SubResource("RectangleShape2D_v7rw3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -249,7 +246,9 @@ texture = ExtResource("11_s8uee")
 position = Vector2(343, 116)
 
 [node name="AirPocket1" type="Sprite2D" parent="Cave1"]
-position = Vector2(370, 72)
+modulate = Color(1, 1, 1, 0.5)
+z_index = 7
+position = Vector2(370.5, 71.5)
 texture = ExtResource("11_7q0gg")
 script = ExtResource("18_qdtt6")
 
@@ -276,6 +275,29 @@ position = Vector2(962.5, 263)
 position = Vector2(1062, 233)
 id = 2
 
+[node name="AirPocket2" type="Sprite2D" parent="Cave2"]
+modulate = Color(1, 1, 1, 0.5)
+z_index = 7
+position = Vector2(1001, 167.5)
+texture = ExtResource("23_7q0gg")
+script = ExtResource("16_lwpao")
+
+[node name="Area2D" type="Area2D" parent="Cave2/AirPocket2"]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cave2/AirPocket2/Area2D"]
+shape = SubResource("RectangleShape2D_v7rw3")
+
+[node name="Dirt" type="Sprite2D" parent="Cave2"]
+z_index = 5
+position = Vector2(961.5, 269.5)
+texture = ExtResource("24_qqpas")
+
+[node name="Tents" type="Sprite2D" parent="Cave2"]
+z_index = 5
+position = Vector2(1063, 232)
+texture = ExtResource("24_ir1wp")
+
 [node name="Plant14" type="Sprite2D" parent="Cave2"]
 z_index = 9
 position = Vector2(934, 266)
@@ -283,7 +305,7 @@ texture = ExtResource("26_lwpao")
 
 [node name="Plant13" type="Sprite2D" parent="Cave2"]
 z_index = 9
-position = Vector2(973.5, 260)
+position = Vector2(973.5, 263)
 texture = ExtResource("23_v7rw3")
 
 [node name="Plant15" type="Sprite2D" parent="Cave2"]
@@ -328,12 +350,18 @@ texture = ExtResource("26_lwpao")
 position = Vector2(403, 427)
 texture = ExtResource("22_g1huq")
 
-[connection signal="area_entered" from="OpenAir" to="." method="_on_open_air_area_entered"]
-[connection signal="area_exited" from="OpenAir" to="." method="_on_open_air_area_exited"]
-[connection signal="body_entered" from="AirPocket2/Area2D" to="AirPocket2" method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="AirPocket2/Area2D" to="AirPocket2" method="_on_area_2d_body_exited"]
+[node name="ShallowsMusicProximity" type="Area2D" parent="."]
+script = ExtResource("29_jku5c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShallowsMusicProximity"]
+position = Vector2(662, -136)
+shape = SubResource("RectangleShape2D_ir1wp")
+
 [connection signal="area_entered" from="Cave1/AirPocket1/Area2D" to="Cave1/AirPocket1" method="_on_area_2d_area_entered"]
 [connection signal="area_shape_entered" from="Cave1/AirPocket1/Area2D" to="Cave1/AirPocket1" method="_on_area_2d_area_shape_entered"]
 [connection signal="body_entered" from="Cave1/AirPocket1/Area2D" to="Cave1/AirPocket1" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Cave1/AirPocket1/Area2D" to="Cave1/AirPocket1" method="_on_area_2d_body_exited"]
 [connection signal="body_shape_entered" from="Cave1/AirPocket1/Area2D" to="Cave1/AirPocket1" method="_on_area_2d_body_shape_entered"]
+[connection signal="body_entered" from="Cave2/AirPocket2/Area2D" to="Cave2/AirPocket2" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Cave2/AirPocket2/Area2D" to="Cave2/AirPocket2" method="_on_area_2d_body_exited"]
+[connection signal="area_entered" from="ShallowsMusicProximity" to="ShallowsMusicProximity" method="_on_area_entered"]

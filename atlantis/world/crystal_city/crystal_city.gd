@@ -19,11 +19,14 @@ var city_lights: Array[Sprite2D] = []
 @onready var city_lights_8: Sprite2D = $Parallax2DLayer/CityLights8
 @onready var city_lights_9: Sprite2D = $Parallax2DLayer/CityLights9
 @onready var city_lights_13: Sprite2D = $Parallax2DLayer/CityLights13
+@onready var city_lights_14: Sprite2D = $Parallax2DLayer2/CityLights14
+@onready var city_lights_15: Sprite2D = $Parallax2DLayer2/CityLights15
 @onready var street_lamp_lights: Node2D = $StreetLampLights
 
 
 func _ready() -> void:
 	warehouse_interior.visible = false
+	street_lamp_lights.visible = false
 	SignalBus.player_respawned.connect(_on_player_respawned)
 	city_lights = [
 		city_lights_1,
@@ -36,9 +39,11 @@ func _ready() -> void:
 		city_lights_8,
 		city_lights_9,
 		city_lights_10,
-		city_lights_11,
 		city_lights_12,
 		city_lights_13,
+		city_lights_11,
+		city_lights_14,
+		city_lights_15,
 	]
 	set_city_lights_visible(Globals.is_crystal_city_generator_enabled)
 
@@ -54,13 +59,13 @@ func set_city_lights_visible(set_visibility: bool) -> void:
 
 func _on_warehouse_warehouse_door_just_interacted() -> void:
 	warehouse_interior.visible = true
-	warehouse_interior.enable_boundaries(true)
+	warehouse_interior.enable(true)
 	Globals.argo.visible = false
 
 
 func _on_warehouse_interior_warehouse_interior_door_just_interacted() -> void:
 	warehouse_interior.visible = false
-	warehouse_interior.enable_boundaries(false)
+	warehouse_interior.enable(false)
 	Globals.argo.visible = true
 
 
@@ -70,7 +75,7 @@ func _on_player_respawned() -> void:
 
 func _on_generator_generator_enabled() -> void:
 	street_lamp_lights.visible = true
-	city_lights_timer.start(randf_range(0.5, 1.0))
+	city_lights_timer.start(4.5)
 
 
 func _on_city_lights_timer_timeout() -> void:

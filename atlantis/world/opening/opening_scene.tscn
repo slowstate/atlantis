@@ -1,15 +1,29 @@
-[gd_scene load_steps=37 format=3 uid="uid://cfmj22pmpp3tn"]
+[gd_scene load_steps=42 format=3 uid="uid://cfmj22pmpp3tn"]
 
 [ext_resource type="Texture2D" uid="uid://c71rkj41ho73l" path="res://world/opening/opening_scene.png" id="1_i7n71"]
 [ext_resource type="Script" uid="uid://d04ii4w0xspsr" path="res://world/opening/opening_scene.gd" id="1_yfivt"]
+[ext_resource type="Texture2D" uid="uid://d0of0p5esghx" path="res://player/player_sit.png" id="3_km1f2"]
 [ext_resource type="Texture2D" uid="uid://drn2wfpxrdplg" path="res://player/player_jump_off.png" id="3_qxmy1"]
 [ext_resource type="Texture2D" uid="uid://b6t46gcedg7ao" path="res://world/opening/opening_scene_water.png" id="4_qxmy1"]
 [ext_resource type="PackedScene" uid="uid://dcg5jitqi6eac" path="res://common/camera/camera.tscn" id="5_18swj"]
 [ext_resource type="Texture2D" uid="uid://degxoo0p2e54m" path="res://world/opening/Press Any Button.png" id="6_oftnv"]
+[ext_resource type="Texture2D" uid="uid://badrbvpjcehdf" path="res://world/opening/clouds.png" id="8_g16jo"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_18swj"]
-atlas = ExtResource("3_qxmy1")
+[sub_resource type="AtlasTexture" id="AtlasTexture_djcxc"]
+atlas = ExtResource("3_km1f2")
 region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_521nl"]
+atlas = ExtResource("3_km1f2")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yrliw"]
+atlas = ExtResource("3_km1f2")
+region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qijtp"]
+atlas = ExtResource("3_km1f2")
+region = Rect2(120, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oftnv"]
 atlas = ExtResource("3_qxmy1")
@@ -31,11 +45,20 @@ region = Rect2(120, 0, 40, 40)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_18swj")
+"texture": SubResource("AtlasTexture_djcxc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_521nl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yrliw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qijtp")
 }],
-"loop": false,
+"loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -322,7 +345,7 @@ point_count = 3
 curve = SubResource("Curve_18swj")
 
 [sub_resource type="Gradient" id="Gradient_km1f2"]
-colors = PackedColorArray(0.8745098, 0.8901961, 0.9607843, 1, 1, 1, 1, 1)
+colors = PackedColorArray(0.71387357, 0.74125385, 0.87455684, 0.75000006, 0.7055968, 0.7293979, 0.86663747, 0.4)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_g16jo"]
 gradient = SubResource("Gradient_km1f2")
@@ -369,6 +392,8 @@ centered = false
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(63, 111)
 sprite_frames = SubResource("SpriteFrames_co3hy")
+frame = 3
+frame_progress = 1.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -378,6 +403,10 @@ libraries = {
 [node name="OpeningSceneWater" type="Sprite2D" parent="."]
 position = Vector2(160, 154.5)
 texture = ExtResource("4_qxmy1")
+
+[node name="Clouds" type="Sprite2D" parent="."]
+position = Vector2(58, 108)
+texture = ExtResource("8_g16jo")
 
 [node name="PlayerReflectionSprite" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.24000001)
@@ -395,8 +424,8 @@ explosiveness = 0.9
 process_material = SubResource("ParticleProcessMaterial_g16jo")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-position = Vector2(160, 130.5)
-amount = 128
+position = Vector2(160, 132.5)
+amount = 75
 lifetime = 1.5
 process_material = SubResource("ParticleProcessMaterial_qxmy1")
 
@@ -412,13 +441,18 @@ centered = false
 [node name="FadeInTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="PressAnyButtonFadeInTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(282, 47)
+energy = 0.5
 texture = SubResource("GradientTexture2D_18swj")
 
 [node name="PointLight2D2" type="PointLight2D" parent="."]
 position = Vector2(282, 156)
 scale = Vector2(0.8, 0.5)
+energy = 0.5
 texture = SubResource("GradientTexture2D_18swj")
 
 [node name="Camera" parent="." instance=ExtResource("5_18swj")]

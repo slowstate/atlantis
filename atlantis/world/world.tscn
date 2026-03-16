@@ -112,7 +112,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Argo/GPUParticles2D2:emitting")
+tracks/5/path = NodePath("Argo/ArgoBubbleParticles:emitting")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -140,7 +140,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Argo/GPUParticles2D2:emitting")
+tracks/1/path = NodePath("Argo/ArgoBubbleParticles:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -184,7 +184,7 @@ tracks/2/path = NodePath("Player:collision_layer")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1.4666667),
+"times": PackedFloat32Array(1.5),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [1]
@@ -219,13 +219,12 @@ script = ExtResource("1_mmdvd")
 [node name="Argo" parent="." instance=ExtResource("3_mmdvd")]
 position = Vector2(684, 210)
 
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="Argo"]
+[node name="ArgoBubbleParticles" type="GPUParticles2D" parent="Argo"]
 emitting = false
-amount = 32
+amount = 64
 texture = SubResource("GradientTexture2D_sc4t8")
 lifetime = 5.0
 one_shot = true
-explosiveness = 0.7
 process_material = SubResource("ParticleProcessMaterial_fn3g3")
 
 [node name="Player" parent="." instance=ExtResource("2_h5o24")]

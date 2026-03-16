@@ -28,6 +28,7 @@ Icons="*res://common/globals/icons.gd"
 NoteStrings="*res://common/globals/note_strings.gd"
 ItemStrings="*res://common/globals/item_strings.gd"
 SfxManager="*res://common/sfx_manager/sfx_manager.tscn"
+MusicManager="*res://common/music_manager/music_manager.tscn"
 
 [display]
 

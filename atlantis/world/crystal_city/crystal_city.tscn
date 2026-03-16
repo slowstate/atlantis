@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://78dtm2oyn1qs"]
+[gd_scene load_steps=50 format=3 uid="uid://78dtm2oyn1qs"]
 
 [ext_resource type="Script" uid="uid://j2aeuxkdgo4t" path="res://world/crystal_city/crystal_city.gd" id="1_bxvt2"]
 [ext_resource type="PackedScene" uid="uid://d26r2a2m086uo" path="res://world/crystal_city/buildings/warehouse/warehouse.tscn" id="1_p0dhy"]
@@ -26,12 +26,14 @@
 [ext_resource type="Texture2D" uid="uid://d3gir8yj22biv" path="res://world/parallax_2d_layer/city_lights_11.png" id="15_gqhme"]
 [ext_resource type="Texture2D" uid="uid://bo2byvdel016" path="res://world/parallax_2d_layer/city_lights_12.png" id="16_tspd7"]
 [ext_resource type="Texture2D" uid="uid://bjloeksyusqxn" path="res://world/parallax_2d_layer/city_lights_13.png" id="17_1v00c"]
-[ext_resource type="Texture2D" uid="uid://biy6m1rs7adin" path="res://world/crystal_city/street _lamp_light.png" id="18_as0vk"]
+[ext_resource type="Texture2D" uid="uid://d37pqghnsgciu" path="res://world/parallax_2d_layer/city_lights_14.png" id="18_qxa0j"]
+[ext_resource type="Texture2D" uid="uid://c33gv43cmrgpn" path="res://world/parallax_2d_layer/city_lights_15.png" id="19_6sou6"]
 [ext_resource type="Script" uid="uid://ccusxj5vk8chx" path="res://world/crystal_city/city_boundary_dialogue_box.gd" id="23_1v00c"]
 [ext_resource type="Texture2D" uid="uid://sb4d24vsxoy6" path="res://world/crystal_city/city_foreground.png" id="26_uduu4"]
 [ext_resource type="Texture2D" uid="uid://bcoyd5t8s8fd4" path="res://world/flora/plant_5.png" id="27_gqhme"]
 [ext_resource type="Texture2D" uid="uid://0aj27nct7mbv" path="res://world/flora/plant_3.png" id="28_tspd7"]
 [ext_resource type="Texture2D" uid="uid://bkdmm3uhewgtm" path="res://world/flora/plant_7.png" id="29_1v00c"]
+[ext_resource type="Texture2D" uid="uid://biy6m1rs7adin" path="res://world/crystal_city/street _lamp_light.png" id="29_bb1ri"]
 [ext_resource type="Texture2D" uid="uid://drlqyhmva4ic8" path="res://world/flora/plant_6.png" id="30_as0vk"]
 [ext_resource type="Texture2D" uid="uid://dm1fhps443mw7" path="res://world/flora/plant_2.png" id="31_qxa0j"]
 [ext_resource type="Texture2D" uid="uid://c817m563qf2es" path="res://world/flora/plant_4.png" id="32_6sou6"]
@@ -39,6 +41,7 @@
 [ext_resource type="Texture2D" uid="uid://dof1tsyif3q8w" path="res://world/flora/plant_1.png" id="34_2x46g"]
 [ext_resource type="Texture2D" uid="uid://nuxixsbgdnfa" path="res://world/flora/plant_9.png" id="35_ugiha"]
 [ext_resource type="Texture2D" uid="uid://34wp40kyn554" path="res://world/crystal_city/city_deco.png" id="37_tspd7"]
+[ext_resource type="Script" uid="uid://ddeicb8mm4lah" path="res://world/crystal_city/crystal_city_music_proximity.gd" id="39_as0vk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dg3dl"]
 size = Vector2(1600, 329)
@@ -59,7 +62,10 @@ size = Vector2(256, 1024)
 size = Vector2(180, 1024)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ww5kb"]
-size = Vector2(338, 162)
+size = Vector2(444, 182)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qxa0j"]
+size = Vector2(2351, 871.5)
 
 [node name="CrystalCity" type="Node2D"]
 z_index = 5
@@ -137,6 +143,14 @@ texture = ExtResource("15_gqhme")
 position = Vector2(-569.5, -78)
 texture = ExtResource("16_tspd7")
 
+[node name="CityLights14" type="Sprite2D" parent="Parallax2DLayer2"]
+position = Vector2(-791, -57)
+texture = ExtResource("18_qxa0j")
+
+[node name="CityLights15" type="Sprite2D" parent="Parallax2DLayer2"]
+position = Vector2(-784, -27.5)
+texture = ExtResource("19_6sou6")
+
 [node name="CityLightsTimer" type="Timer" parent="."]
 one_shot = true
 
@@ -145,22 +159,22 @@ visible = false
 
 [node name="StreetLampLight" type="Sprite2D" parent="StreetLampLights"]
 position = Vector2(1408, 962)
-texture = ExtResource("18_as0vk")
+texture = ExtResource("29_bb1ri")
 
 [node name="StreetLampLight2" type="Sprite2D" parent="StreetLampLights"]
 position = Vector2(934, 963)
-texture = ExtResource("18_as0vk")
+texture = ExtResource("29_bb1ri")
 
 [node name="StreetLampLight3" type="Sprite2D" parent="StreetLampLights"]
 position = Vector2(166, 963)
-texture = ExtResource("18_as0vk")
+texture = ExtResource("29_bb1ri")
 
 [node name="CityDeco" type="Sprite2D" parent="."]
 position = Vector2(649, 946)
 texture = ExtResource("37_tspd7")
 
 [node name="Floor" type="Sprite2D" parent="."]
-position = Vector2(639.5, 1223.25)
+position = Vector2(639.5, 1222.25)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Floor"]
 collision_layer = 2
@@ -372,6 +386,13 @@ one_shot = true
 [node name="FocusOutTimer" type="Timer" parent="CameraFocusRocket"]
 one_shot = true
 
+[node name="CrystalCityMusicProximity" type="Area2D" parent="."]
+script = ExtResource("39_as0vk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CrystalCityMusicProximity"]
+position = Vector2(702, 1014.25)
+shape = SubResource("RectangleShape2D_qxa0j")
+
 [connection signal="timeout" from="CityLightsTimer" to="." method="_on_city_lights_timer_timeout"]
 [connection signal="body_entered" from="LeftBoundary/CityBoundaryDialogueBox" to="LeftBoundary/CityBoundaryDialogueBox" method="_on_body_entered"]
 [connection signal="body_entered" from="RightBoundary/CityBoundaryDialogueBox2" to="RightBoundary/CityBoundaryDialogueBox2" method="_on_body_entered"]
@@ -381,3 +402,4 @@ one_shot = true
 [connection signal="body_entered" from="CameraFocusRocket" to="CameraFocusRocket" method="_on_body_entered"]
 [connection signal="body_exited" from="CameraFocusRocket" to="CameraFocusRocket" method="_on_body_exited"]
 [connection signal="timeout" from="CameraFocusRocket/FocusOutTimer" to="CameraFocusRocket" method="_on_focus_out_timer_timeout"]
+[connection signal="area_entered" from="CrystalCityMusicProximity" to="CrystalCityMusicProximity" method="_on_area_entered"]

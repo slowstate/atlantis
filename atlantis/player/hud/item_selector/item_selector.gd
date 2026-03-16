@@ -16,12 +16,16 @@ func _input(event: InputEvent) -> void:
 		return
 
 	if event.is_action_pressed("player_select_next_item"):
+		if Globals.player.first_glowstone_picked_up:
+			create_tween().tween_property(Globals.player.switch_tool_label, "modulate:a", 0, 0.5)
 		if currently_selected_item_index >= player_items.size() - 1:
 			currently_selected_item_index = 0
 		else:
 			currently_selected_item_index += 1
 		currently_selected_item_texture.modulate.a = 1.0
 	if event.is_action_pressed("player_select_previous_item"):
+		if Globals.player.first_glowstone_picked_up:
+			create_tween().tween_property(Globals.player.switch_tool_label, "modulate:a", 0, 0.5)
 		if currently_selected_item_index <= 0:
 			currently_selected_item_index = player_items.size() - 1
 		else:

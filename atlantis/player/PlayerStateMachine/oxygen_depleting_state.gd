@@ -30,13 +30,17 @@ func physics_update(delta: float) -> void:
 	if oxygen_box.has_overlapping_areas() or oxygen_box.has_overlapping_bodies() or player.is_in_argo:
 		transition.emit("OxygenRefillingState")
 		return
-
+	if Globals.argo.playing_m_message:
+		return
 	if player.god_mode:
 		return
 
-	player.oxygen = clamp(player.oxygen - oxygen_deplete_rate * delta, 0.0, player.OXYGEN_MAX)
+	if player.inventory.visible:
+		player.oxygen = clamp(player.oxygen - oxygen_deplete_rate / 5.0 * delta, 0.0, player.OXYGEN_MAX)
+	else:
+		player.oxygen = clamp(player.oxygen - oxygen_deplete_rate * delta, 0.0, player.OXYGEN_MAX)
 	oxygen_tank_fill.scale.y = lerp(0.0, -1.0, player.oxygen / player.OXYGEN_MAX)
 	drowning_gradient.fill_to = clamp(drowning_gradient.fill_to + Vector2(1.0, 1.0) * delta, Vector2(0.499, 0.499), Vector2(1.0, 1.0))
 
-	if player.oxygen <= 0:
+	if player.oxygen <= 0 and !player.inventory.visible:
 		transition.emit("DrowningState")
