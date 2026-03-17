@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://clsxexl5mayua"]
+[gd_scene load_steps=25 format=3 uid="uid://clsxexl5mayua"]
 
 [ext_resource type="Script" uid="uid://guxkh04y6nk8" path="res://world/crystal_city/buildings/rocket_hangar/rocket_hangar.gd" id="1_ovpci"]
 [ext_resource type="Texture2D" uid="uid://c280gd5tyql1o" path="res://world/crystal_city/buildings/rocket_hangar/rocket_part_1.png" id="2_6fi8g"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://c2ge724xf208x" path="res://world/crystal_city/buildings/rocket_hangar/hangar_door.png" id="8_sxlnm"]
 [ext_resource type="Texture2D" uid="uid://ckh21isrn7ptw" path="res://world/crystal_city/buildings/rocket_hangar/rocket_hangar_light_off.png" id="9_ac3hy"]
 [ext_resource type="Texture2D" uid="uid://irol2s2bsbyg" path="res://world/crystal_city/buildings/rocket_hangar/rocket_hangar_light_on.png" id="10_wua2u"]
+[ext_resource type="FontFile" uid="uid://bumo78dd5hebk" path="res://common/fonts/GlacialIndifference-Bold.otf" id="13_bp10s"]
 
 [sub_resource type="Gradient" id="Gradient_sxlnm"]
 offsets = PackedFloat32Array(0.52960527, 1)
@@ -86,6 +87,10 @@ corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_ac3hy"]
+font = ExtResource("13_bp10s")
+font_size = 4
 
 [node name="RocketHangar" type="Node2D"]
 script = ExtResource("1_ovpci")
@@ -201,5 +206,15 @@ text = "Quit"
 [node name="EndScreenTimer" type="Timer" parent="EndScreen"]
 one_shot = true
 
+[node name="3HPLabel" type="Label" parent="EndScreen"]
+offset_left = 288.0
+offset_top = 173.0
+offset_right = 317.0
+offset_bottom = 178.0
+text = "A GAME BY 3HP"
+label_settings = SubResource("LabelSettings_ac3hy")
+horizontal_alignment = 2
+vertical_alignment = 2
+
 [connection signal="just_interacted" from="Interactable" to="." method="_on_interactable_just_interacted"]
-[connection signal="pressed" from="EndScreen/QuitButton" to="EndScreen" method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="EndScreen/QuitButton" to="EndScreen" method="_on_quit_button_pressed"]

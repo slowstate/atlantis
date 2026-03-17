@@ -22,25 +22,25 @@ func _ready() -> void:
 	right_boundary_collision_shape_2d.disabled = true
 	bottom_boundary_collision_shape_2d.disabled = true
 	left_boundary_collision_shape_2d.disabled = true
-	warehouse_generator.enable(false)
-	wrong_photonic_invertor_1.enable(false)
-	wrong_photonic_invertor_2.enable(false)
-	wrong_photonic_invertor_3.enable(false)
-	wrong_photonic_invertor_4.enable(false)
-	wrong_photonic_invertor_5.enable(false)
+	warehouse_generator.enable_collision(false)
+	wrong_photonic_invertor_1.enable_collision(false)
+	wrong_photonic_invertor_2.enable_collision(false)
+	wrong_photonic_invertor_3.enable_collision(false)
+	wrong_photonic_invertor_4.enable_collision(false)
+	wrong_photonic_invertor_5.enable_collision(false)
 
 
-func enable(enable: bool) -> void:
+func enable_collision(enable: bool) -> void:
 	top_boundary_collision_shape_2d.disabled = !enable
 	right_boundary_collision_shape_2d.disabled = !enable
 	bottom_boundary_collision_shape_2d.disabled = !enable
 	left_boundary_collision_shape_2d.disabled = !enable
-	warehouse_generator.enable(enable)
-	wrong_photonic_invertor_1.enable(enable)
-	wrong_photonic_invertor_2.enable(enable)
-	wrong_photonic_invertor_3.enable(enable)
-	wrong_photonic_invertor_4.enable(enable)
-	wrong_photonic_invertor_5.enable(enable)
+	warehouse_generator.enable_collision(enable)
+	wrong_photonic_invertor_1.enable_collision(enable)
+	wrong_photonic_invertor_2.enable_collision(enable)
+	wrong_photonic_invertor_3.enable_collision(enable)
+	wrong_photonic_invertor_4.enable_collision(enable)
+	wrong_photonic_invertor_5.enable_collision(enable)
 
 
 func _on_interactable_just_interacted() -> void:

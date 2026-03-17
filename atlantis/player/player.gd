@@ -178,14 +178,23 @@ func _input(event: InputEvent) -> void:
 
 		if frontmost_interactable is WarehouseGenerator:
 			if currently_selected_tool == Ids.Items.MiningTool:
+				print("mining tool")
 				mine_timer.start(2.0)
+				SfxManager.play_sfx("ActivateMiningTool", 0, -20, -15, 0.9, 1.1)
+				SfxManager.fade_sfx("ActivateMiningTool", 2, 0.5)
 			else:
 				dialogue("I need a tool to remove this panel")
+				print("dialogue")
 			return
 
 		if frontmost_interactable is Generator:
-			if !frontmost_interactable.has_glowstone or !frontmost_interactable.has_photonic_invertor:
-				dialogue("I think the generator is still missing something")
+			var generator = frontmost_interactable as Generator
+			if !generator.has_glowstone or !generator.has_photonic_invertor:
+				if !generator.has_played_first_interaction:
+					if generator.interacted:
+						return
+					await get_tree().create_timer(5.0).timeout
+				dialogue("I think the generator is missing something")
 				SfxManager.play_sfx("PressButton", 0, -20, -15, 0.9, 1.1)
 
 		if frontmost_interactable is Warehouse:

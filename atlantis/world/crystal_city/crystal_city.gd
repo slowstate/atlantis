@@ -59,13 +59,13 @@ func set_city_lights_visible(set_visibility: bool) -> void:
 
 func _on_warehouse_warehouse_door_just_interacted() -> void:
 	warehouse_interior.visible = true
-	warehouse_interior.enable(true)
+	warehouse_interior.enable_collision(true)
 	Globals.argo.visible = false
 
 
 func _on_warehouse_interior_warehouse_interior_door_just_interacted() -> void:
 	warehouse_interior.visible = false
-	warehouse_interior.enable(false)
+	warehouse_interior.enable_collision(false)
 	Globals.argo.visible = true
 
 
@@ -74,11 +74,11 @@ func _on_player_respawned() -> void:
 
 
 func _on_generator_generator_enabled() -> void:
-	street_lamp_lights.visible = true
 	city_lights_timer.start(4.5)
 
 
 func _on_city_lights_timer_timeout() -> void:
+	street_lamp_lights.visible = true
 	for city_light in city_lights:
 		if !city_light.visible:
 			city_light.visible = true
