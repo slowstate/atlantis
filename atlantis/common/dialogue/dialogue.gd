@@ -21,6 +21,7 @@ static func create(
 	dialogue.position = relative_position - Vector2(40.0, 0.0)
 	dialogue._dialogue_key = dialogue_key
 	dialogue._duration = duration
+	SfxManager.play_sfx("Text",0,-20,-15,0.9,1.1)
 	return dialogue
 
 
