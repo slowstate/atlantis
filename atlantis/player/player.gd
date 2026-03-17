@@ -130,6 +130,7 @@ func _input(event: InputEvent) -> void:
 		var tween = create_tween()
 		tween.tween_property(notification_tooltip, "modulate:a", 0, 0.5)
 		inventory.visible = !inventory.visible
+		SfxManager.play_sfx("OpenInventory",0,-20,-15,0.9,1.1)
 		notification_sprite.visible = false
 
 	if inventory.visible:

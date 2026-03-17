@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://cnojh8ult7c0v"]
+[gd_scene load_steps=82 format=3 uid="uid://cnojh8ult7c0v"]
 
 [ext_resource type="Script" uid="uid://dr6l7ajnsag05" path="res://common/sfx_manager/sfx_manager.gd" id="1_hetwi"]
 [ext_resource type="AudioStream" uid="uid://dilu1c57o7rld" path="res://audio/sfx/AirpocketAmbience/AirpocketAmbienceSFX1.mp3" id="2_wp0wu"]
@@ -17,8 +17,13 @@
 [ext_resource type="AudioStream" uid="uid://donr5ts3yj77x" path="res://audio/sfx/CollectInverter/CollectInverterSFX1.mp3" id="14_fwp0a"]
 [ext_resource type="AudioStream" uid="uid://bpbda3rx42qr3" path="res://audio/sfx/CollectNote/CollectNoteSFX1.mp3" id="15_jwl5s"]
 [ext_resource type="AudioStream" uid="uid://c0m8v5sqkjwiq" path="res://audio/sfx/CollectNote/CollectNoteSFX2.mp3" id="16_as5h3"]
+[ext_resource type="AudioStream" uid="uid://cpgw6vuep1os5" path="res://audio/sfx/OpenInventory/OpenInventorySFX1.mp3" id="16_ehcjt"]
 [ext_resource type="AudioStream" uid="uid://c8fcpf6uxv7fa" path="res://audio/sfx/CollectNote/CollectNoteSFX3.mp3" id="17_4eill"]
+[ext_resource type="AudioStream" uid="uid://dp3tx1osi4go3" path="res://audio/sfx/OpenInventory/OpenInventorySFX2.mp3" id="17_caj56"]
+[ext_resource type="AudioStream" uid="uid://b6hnowq07jkby" path="res://audio/sfx/Text/TextSFX2.mp3" id="17_nyfd2"]
+[ext_resource type="AudioStream" uid="uid://dvos378xk0fqm" path="res://audio/sfx/OpenInventory/OpenInventorySFX3.mp3" id="18_a3glf"]
 [ext_resource type="AudioStream" uid="uid://csy7q5x2hdwx" path="res://audio/sfx/DismantleMachine/DismantleMachineSFX1.mp3" id="18_bvgoq"]
+[ext_resource type="AudioStream" uid="uid://ccuk3syl8qfxy" path="res://audio/sfx/Text/TextSFX3.mp3" id="18_ehcjt"]
 [ext_resource type="AudioStream" uid="uid://bbgbbyuoa8mm5" path="res://audio/sfx/DoorLocked/DoorLockedSFX1.mp3" id="19_vudd4"]
 [ext_resource type="AudioStream" uid="uid://dgndvil8csdfb" path="res://audio/sfx/DepositGlowstone/DepositGlowstoneSFX1.mp3" id="19_xcqxa"]
 [ext_resource type="AudioStream" uid="uid://btjngokw73j3o" path="res://audio/sfx/Earthquake/EarthquakeSFX1.mp3" id="20_ahimh"]
@@ -135,6 +140,25 @@ stream = ExtResource("13_a3glf")
 
 [node name="CollectDiodeSFX1" type="AudioStreamPlayer" parent="CollectInverter"]
 stream = ExtResource("14_fwp0a")
+
+[node name="OpenInventory" type="Node" parent="."]
+
+[node name="OpenInventorySFX1" type="AudioStreamPlayer" parent="OpenInventory"]
+stream = ExtResource("16_ehcjt")
+
+[node name="OpenInventorySFX2" type="AudioStreamPlayer" parent="OpenInventory"]
+stream = ExtResource("17_caj56")
+
+[node name="OpenInventorySFX3" type="AudioStreamPlayer" parent="OpenInventory"]
+stream = ExtResource("18_a3glf")
+
+[node name="Text" type="Node" parent="."]
+
+[node name="TextSFX2" type="AudioStreamPlayer" parent="Text"]
+stream = ExtResource("17_nyfd2")
+
+[node name="TextSFX3" type="AudioStreamPlayer" parent="Text"]
+stream = ExtResource("18_ehcjt")
 
 [node name="CollectNote" type="Node" parent="."]
 
