@@ -130,7 +130,7 @@ func _input(event: InputEvent) -> void:
 		var tween = create_tween()
 		tween.tween_property(notification_tooltip, "modulate:a", 0, 0.5)
 		inventory.visible = !inventory.visible
-		SfxManager.play_sfx("OpenInventory",0,-20,-15,0.9,1.1)
+		SfxManager.play_sfx("OpenInventory", 0, -20, -15, 0.9, 1.1)
 		notification_sprite.visible = false
 
 	if inventory.visible:
@@ -179,13 +179,11 @@ func _input(event: InputEvent) -> void:
 
 		if frontmost_interactable is WarehouseGenerator:
 			if currently_selected_tool == Ids.Items.MiningTool:
-				print("mining tool")
 				mine_timer.start(2.0)
 				SfxManager.play_sfx("ActivateMiningTool", 0, -20, -15, 0.9, 1.1)
 				SfxManager.fade_sfx("ActivateMiningTool", 2, 0.5)
 			else:
 				dialogue("I need a tool to remove this panel")
-				print("dialogue")
 			return
 
 		if frontmost_interactable is Generator:

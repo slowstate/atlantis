@@ -19,6 +19,7 @@ var is_fixed: bool = false
 @onready var glowstone_after: Sprite2D = $GlowstoneAfter
 @onready var battery_indicator_partial: Sprite2D = $BatteryIndicatorPartial
 @onready var battery_partial_flicker_timer: Timer = $BatteryPartialFlickerTimer
+@onready var battery_indicator: Sprite2D = $BatteryIndicator
 @onready var glowstone_flicker_timer: Timer = $GlowstoneFlickerTimer
 @onready var glowstone_break_timer: Timer = $GlowstoneBreakTimer
 @onready var glowstone_new: Sprite2D = $GlowstoneNew
@@ -59,6 +60,7 @@ func _on_interactable_just_interacted() -> void:
 			SfxManager.fade_sfx("GeneratorRunning", 10, 50)
 			MusicManager.play_music("LitCrystalCity", 0, -5, 2)
 			Globals.is_crystal_city_generator_enabled = true
+			battery_indicator.visible = true
 
 
 func _play_photonic_invertor_break_sequence() -> void:

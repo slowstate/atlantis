@@ -14,7 +14,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="Atlantis"
+config/name="Argo"
 run/main_scene="uid://chhtc74hdy2e5"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="uid://dasbnfj3xa38c"
