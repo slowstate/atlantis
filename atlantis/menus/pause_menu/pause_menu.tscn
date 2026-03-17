@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://ca6mfue2lfa8u"]
+[gd_scene load_steps=9 format=3 uid="uid://ca6mfue2lfa8u"]
 
 [ext_resource type="Script" uid="uid://u3yadp4ba7y4" path="res://menus/pause_menu/pause_menu.gd" id="1_5ndmu"]
+[ext_resource type="FontFile" uid="uid://bumo78dd5hebk" path="res://common/fonts/GlacialIndifference-Bold.otf" id="2_jwttc"]
 
 [sub_resource type="Gradient" id="Gradient_bkue7"]
 offsets = PackedFloat32Array(0)
@@ -52,6 +53,10 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
+[sub_resource type="LabelSettings" id="LabelSettings_qd56w"]
+font = ExtResource("2_jwttc")
+font_size = 4
+
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
 layer = 9
@@ -92,6 +97,16 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_jwttc")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qd56w")
 theme_override_styles/focus = SubResource("StyleBoxFlat_5ndmu")
 text = "Quit"
+
+[node name="3HPLabel" type="Label" parent="."]
+offset_left = 288.0
+offset_top = 173.0
+offset_right = 317.0
+offset_bottom = 178.0
+text = "A GAME BY 3HP"
+label_settings = SubResource("LabelSettings_qd56w")
+horizontal_alignment = 2
+vertical_alignment = 2
 
 [connection signal="pressed" from="VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

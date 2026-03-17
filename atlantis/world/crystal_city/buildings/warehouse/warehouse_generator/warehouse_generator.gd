@@ -9,8 +9,10 @@ var interacted := false
 @onready var collision_shape_2d: CollisionShape2D = $InteractionBox/CollisionShape2D
 
 
-func enable(enable: bool) -> void:
+func enable_collision(enable: bool) -> void:
 	collision_shape_2d.disabled = !enable
+	if photonic_invertor != null:
+		photonic_invertor.enable_collision(enable)
 
 
 func _on_interactable_just_interacted() -> void:
@@ -19,11 +21,10 @@ func _on_interactable_just_interacted() -> void:
 			interacted = true
 			interaction_box.monitoring = false
 			interaction_box.monitorable = false
-			# photonic_invertor.play_animation()
 			Globals.player.controls_enabled = false
 			SfxManager.play_sfx("DismantleMachine", 0, -15, -10, 0.9, 1.1)
 			var sfx_timer = get_tree().create_timer(2.0)
 			await sfx_timer.timeout
-			Globals.player.controls_enabled = true
 			panel.visible = false
 			photonic_invertor.visible = true
+			Globals.player.controls_enabled = true

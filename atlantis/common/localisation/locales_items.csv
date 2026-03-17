@@ -1,7 +1,7 @@
 keys,en
-ITEM_0_MINING_TOOL,Mining Tool
-ITEM_0_MINING_TOOL_DESCRIPTION,This tool can mine Glowstone
+ITEM_0_MINING_TOOL,PH-X1
+ITEM_0_MINING_TOOL_DESCRIPTION,"A reliable hammerbolt gun mostly used for mining."
 ITEM_100_GLOWSTONE,Glowstone
-ITEM_100_GLOWSTONE_DESCRIPTION,A glowing stone
+ITEM_100_GLOWSTONE_DESCRIPTION,"A glowing crystal used to power all kinds of devices. Better hold onto it."
 ITEM_101_PHOTONIC_INVERTOR,Photonic Invertor
-ITEM_101_PHOTONIC_INVERTOR_DESCRIPTION,An electrical component
+ITEM_101_PHOTONIC_INVERTOR_DESCRIPTION,"An electrical component used to convert photonic emissions into usable power. The generator in my old apartment used to have a smaller version."

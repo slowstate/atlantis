@@ -16,8 +16,8 @@ func _ready() -> void:
 	player.spawn_point = ComponentUtils.get_component(basic_spawn_point, SpawnPoint.string_name) as SpawnPoint
 	player.camera_2d.enabled = false
 	player.visible = false
-	player.process_mode = Node.PROCESS_MODE_DISABLED
 	player.user_interface.visible = false
+	player.process_mode = Node.PROCESS_MODE_DISABLED
 
 
 func _physics_process(_delta: float) -> void:
@@ -64,8 +64,6 @@ func _on_opening_scene_complete() -> void:
 	player.visible = true
 	player.user_interface.visible = true
 	animation_player.play("player_dive")
-	print("diving")
 	await get_tree().create_timer(1.6).timeout
-	print("can move")
 	player.controls_enabled = true
 	Globals.player.inventory.add_note(Ids.Notes.Letter, false)
